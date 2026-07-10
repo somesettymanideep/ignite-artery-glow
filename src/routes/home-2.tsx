@@ -27,12 +27,10 @@ export const Route = createFileRoute("/home-2")({
 /* ---------------- Navbar ---------------- */
 const NAV = [
   { label: "Home", href: "#top" },
-  { label: "About Us", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Treatments", href: "#services" },
-  { label: "Our Doctor", href: "#about" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "About", href: "#about" },
+  { label: "Our Treatments", href: "#services" },
+  { label: "Second Opinion", href: "#cta" },
+  { label: "Contact", href: "#contact" },
 ];
 
 function Nav() {
@@ -46,7 +44,7 @@ function Nav() {
   }, []);
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? "glass-card shadow-soft" : "bg-white/90 backdrop-blur"}`}>
+    <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-soft transition-all duration-500">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3.5 lg:px-8">
         <a href="#top" className="flex min-w-0 items-center gap-2.5">
           <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-brand font-display text-sm font-bold text-primary-foreground shadow-glow-red">IV</span>
