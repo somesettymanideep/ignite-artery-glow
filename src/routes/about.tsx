@@ -4,7 +4,7 @@ import {
   Phone, Menu, X, Target, Eye, UserCheck, Sparkles, Scissors, HeartHandshake,
   ShieldCheck, Siren, CheckCircle2, ArrowRight, Users, ShieldCheck as ShieldIcon,
   Smile, Activity, Clock, Microscope, Lightbulb, BookOpenCheck, MessagesSquare,
-  MapPin, Mail, Facebook, Instagram, Youtube, MessageCircle, Heart,
+  MapPin, Mail, Facebook, Instagram, Youtube, MessageCircle, Heart, Stethoscope,
 } from "lucide-react";
 import { Reveal, useCountUp } from "@/hooks/use-reveal";
 import receptionImg from "@/assets/about-reception.jpg";
@@ -177,12 +177,12 @@ function MissionVision() {
 
 function WhyChoose() {
   const cards = [
-    { icon: UserCheck, title: "Experienced Specialists", body: "Highly skilled vascular surgeons with extensive experience." },
-    { icon: Sparkles, title: "Advanced Technology", body: "State-of-the-art equipment for accurate diagnosis and treatment." },
-    { icon: Scissors, title: "Minimally Invasive Procedures", body: "Less pain, faster recovery and minimal risk." },
-    { icon: HeartHandshake, title: "Patient-Centered Approach", body: "Personalized care with compassion and respect." },
-    { icon: ShieldCheck, title: "Comprehensive Care", body: "From diagnosis to recovery, we are with you at every step." },
-    { icon: Siren, title: "Emergency Support", body: "Prompt care for urgent vascular conditions." },
+    { icon: Stethoscope, title: "Experienced Specialists", body: "Highly skilled vascular surgeons with extensive experience.", accent: false },
+    { icon: Sparkles, title: "Advanced Technology", body: "State-of-the-art equipment for accurate diagnosis and treatment.", accent: false },
+    { icon: Scissors, title: "Minimally Invasive Procedures", body: "Less pain, faster recovery and minimal risk.", accent: false },
+    { icon: HeartHandshake, title: "Patient-Centered Approach", body: "Personalized care with compassion and respect.", accent: false },
+    { icon: ShieldCheck, title: "Comprehensive Care", body: "From diagnosis to recovery, we are with you at every step.", accent: false },
+    { icon: Siren, title: "Emergency Support", body: "Prompt care for urgent vascular conditions.", accent: true },
   ];
   return (
     <section className="bg-white py-16 lg:py-20">
@@ -198,12 +198,13 @@ function WhyChoose() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {cards.map((c, i) => (
             <Reveal key={c.title} className="reveal" delay={i * 0.06}>
-              <div className="group h-full rounded-2xl border border-border/70 bg-white p-5 text-center shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lift">
-                <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-secondary/5 text-secondary transition-colors group-hover:bg-primary/10 group-hover:text-primary">
-                  <c.icon className="h-7 w-7" />
-                </span>
-                <h3 className="mt-4 font-display text-sm font-bold leading-snug text-secondary">{c.title}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{c.body}</p>
+              <div className="group flex h-full flex-col items-center rounded-2xl border border-border/70 bg-white px-4 py-8 text-center shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lift">
+                <c.icon
+                  strokeWidth={1.6}
+                  className={`h-11 w-11 ${c.accent ? "text-primary" : "text-secondary"} transition-transform duration-500 group-hover:-translate-y-0.5`}
+                />
+                <h3 className="mt-5 font-display text-sm font-bold leading-snug text-secondary">{c.title}</h3>
+                <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{c.body}</p>
               </div>
             </Reveal>
           ))}
