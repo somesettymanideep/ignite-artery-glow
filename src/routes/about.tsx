@@ -177,12 +177,12 @@ function MissionVision() {
 
 function WhyChoose() {
   const cards = [
-    { icon: UserCheck, title: "Experienced Specialists", body: "Highly skilled vascular surgeons with extensive experience." },
-    { icon: Sparkles, title: "Advanced Technology", body: "State-of-the-art equipment for accurate diagnosis and treatment." },
-    { icon: Scissors, title: "Minimally Invasive Procedures", body: "Less pain, faster recovery and minimal risk." },
-    { icon: HeartHandshake, title: "Patient-Centered Approach", body: "Personalized care with compassion and respect." },
-    { icon: ShieldCheck, title: "Comprehensive Care", body: "From diagnosis to recovery, we are with you at every step." },
-    { icon: Siren, title: "Emergency Support", body: "Prompt care for urgent vascular conditions." },
+    { icon: Stethoscope, title: "Experienced Specialists", body: "Highly skilled vascular surgeons with extensive experience.", accent: false },
+    { icon: Sparkles, title: "Advanced Technology", body: "State-of-the-art equipment for accurate diagnosis and treatment.", accent: false },
+    { icon: Scissors, title: "Minimally Invasive Procedures", body: "Less pain, faster recovery and minimal risk.", accent: false },
+    { icon: HeartHandshake, title: "Patient-Centered Approach", body: "Personalized care with compassion and respect.", accent: false },
+    { icon: ShieldCheck, title: "Comprehensive Care", body: "From diagnosis to recovery, we are with you at every step.", accent: false },
+    { icon: Siren, title: "Emergency Support", body: "Prompt care for urgent vascular conditions.", accent: true },
   ];
   return (
     <section className="bg-white py-16 lg:py-20">
