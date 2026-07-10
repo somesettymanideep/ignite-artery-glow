@@ -34,14 +34,7 @@ const NAV = [
 ];
 
 function Nav() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 20);
-    on();
-    window.addEventListener("scroll", on, { passive: true });
-    return () => window.removeEventListener("scroll", on);
-  }, []);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-soft transition-all duration-500">
