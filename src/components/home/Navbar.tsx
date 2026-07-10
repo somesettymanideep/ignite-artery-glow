@@ -4,20 +4,17 @@ import { Phone, Menu, X } from "lucide-react";
 const links = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#doctor" },
-  { label: "Services", href: "#services" },
-  { label: "Why Us", href: "#why-us" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "Our Treatments", href: "#services" },
+  { label: "Second Opinion", href: "#cta" },
   { label: "Contact", href: "#contact" },
 ];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 24);
       const max = document.documentElement.scrollHeight - window.innerHeight;
       setProgress(max > 0 ? (window.scrollY / max) * 100 : 0);
     };
@@ -27,11 +24,7 @@ export function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-card shadow-lift" : "bg-transparent"
-      }`}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-soft transition-all duration-500">
       {/* Scroll progress */}
       <div
         className="absolute bottom-0 left-0 h-0.5 bg-gradient-brand transition-[width] duration-150"
@@ -84,7 +77,7 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="glass-card border-t lg:hidden">
+        <div className="border-t bg-white lg:hidden">
           <ul className="space-y-1 px-5 py-4">
             {links.map((l) => (
               <li key={l.href}>
