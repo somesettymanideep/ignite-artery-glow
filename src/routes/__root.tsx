@@ -88,10 +88,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Advanced minimally invasive vascular & endovascular care with compassion and precision in Vijayawada.",
+          "Advanced vascular surgery & endovascular care in Kasturibai Peta, Vijayawada. Varicose veins, PAD, diabetic foot care & dialysis access by expert specialists.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Ignite Vascular Center | Vascular Surgery in Vijayawada" },
+      { name: "twitter:description", content: "Advanced vascular surgery & endovascular care in Kasturibai Peta, Vijayawada. Varicose veins, PAD, diabetic foot care & dialysis access by expert specialists." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/aa92a985-c3c0-4cb7-bcb3-5e314d0457c6/id-preview-af5d4c56--d45358fe-d96c-4335-a82c-94158683e95d.lovable.app-1783680897226.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/aa92a985-c3c0-4cb7-bcb3-5e314d0457c6/id-preview-af5d4c56--d45358fe-d96c-4335-a82c-94158683e95d.lovable.app-1783680897226.png" },
     ],
     links: [
       {
