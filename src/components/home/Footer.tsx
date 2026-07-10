@@ -12,49 +12,6 @@ const serviceLinks = [
   "Dialysis Access Surgery",
 ];
 
-function EmergencyCard() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="w-full overflow-hidden rounded-3xl glass-dark shadow-lift transition-all duration-500 sm:w-96">
-      <button
-        onClick={() => setOpen((o) => !o)}
-        aria-expanded={open}
-        className="flex w-full items-center gap-4 p-5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
-      >
-        <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-brand animate-pulse-glow text-primary-foreground">
-          <Siren className="h-7 w-7" />
-        </span>
-        <div className="min-w-0">
-          <h3 className="font-display text-lg font-bold text-primary-foreground">24/7 Emergency</h3>
-          <p className="text-sm text-secondary-foreground/70">Click to expand</p>
-        </div>
-        <ChevronDown
-          className={`ml-auto h-5 w-5 shrink-0 text-secondary-foreground/70 transition-transform duration-500 ${open ? "rotate-180" : ""}`}
-        />
-      </button>
-      <div className={`grid transition-all duration-500 ease-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-        <div className="overflow-hidden px-5 pb-5">
-          <p className="text-sm text-secondary-foreground/70">
-            Immediate care for vascular emergencies.
-          </p>
-          <a
-            href="tel:+919999999999"
-            className="mt-3 block font-display text-2xl font-extrabold text-primary-foreground transition-colors hover:text-red-soft"
-          >
-            +91 99999 99999
-          </a>
-          <a
-            href="tel:+919999999999"
-            className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105"
-          >
-            <Phone className="h-4 w-4" /> Call Now
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export function Footer() {
   const [showTop, setShowTop] = useState(false);
