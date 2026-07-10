@@ -423,7 +423,6 @@ function ContactPage() {
       <Nav />
       <main>
         <Hero />
-        <InfoBar />
         <ContactForm />
         <AppointmentBanner />
       </main>
