@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube, Send, ArrowUp, Siren } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube, Send, ArrowUp, Siren, ChevronDown } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 
 const quickLinks = ["Home", "About", "Services", "Why Us", "Testimonials", "Contact"];
@@ -11,6 +11,50 @@ const serviceLinks = [
   "Carotid Artery Disease",
   "Dialysis Access Surgery",
 ];
+
+function EmergencyCard() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="w-full overflow-hidden rounded-3xl glass-dark shadow-lift transition-all duration-500 sm:w-96">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className="flex w-full items-center gap-4 p-5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+      >
+        <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-brand animate-pulse-glow text-primary-foreground">
+          <Siren className="h-7 w-7" />
+        </span>
+        <div className="min-w-0">
+          <h3 className="font-display text-lg font-bold text-primary-foreground">24/7 Emergency</h3>
+          <p className="text-sm text-secondary-foreground/70">Click to expand</p>
+        </div>
+        <ChevronDown
+          className={`ml-auto h-5 w-5 shrink-0 text-secondary-foreground/70 transition-transform duration-500 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      <div className={`grid transition-all duration-500 ease-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+        <div className="overflow-hidden px-5 pb-5">
+          <p className="text-sm text-secondary-foreground/70">
+            Immediate care for vascular emergencies.
+          </p>
+          <a
+            href="tel:+919999999999"
+            className="mt-3 block font-display text-2xl font-extrabold text-primary-foreground transition-colors hover:text-red-soft"
+          >
+            +91 99999 99999
+          </a>
+          <a
+            href="tel:+919999999999"
+            className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105"
+          >
+            <Phone className="h-4 w-4" /> Call Now
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function Footer() {
   const [showTop, setShowTop] = useState(false);
@@ -129,31 +173,9 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Map + emergency */}
-        <div className="mt-12 grid gap-6 lg:grid-cols-[2fr_1fr]">
-          <div className="overflow-hidden rounded-3xl border border-secondary-foreground/10">
-            <iframe
-              title="Ignite Vascular Center location — Kasturibai Peta, Vijayawada"
-              src="https://www.google.com/maps?q=Kasturibai+Peta,+Vijayawada,+Andhra+Pradesh&output=embed"
-              className="h-64 w-full border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
-          </div>
-          <div className="glass-dark flex flex-col justify-center rounded-3xl p-8 text-center">
-            <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-gradient-brand animate-pulse-glow">
-              <Siren className="h-7 w-7" />
-            </span>
-            <h3 className="mt-4 font-display text-lg font-bold">24/7 Vascular Emergency</h3>
-            <p className="mt-1 text-sm text-secondary-foreground/70">Immediate care for vascular emergencies</p>
-            <a
-              href="tel:+919999999999"
-              className="mt-4 font-display text-2xl font-extrabold text-primary-foreground transition-colors hover:text-red-soft"
-            >
-              +91 99999 99999
-            </a>
-          </div>
+        {/* Emergency contact */}
+        <div className="mt-12 mb-16 flex justify-end">
+          <EmergencyCard />
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-secondary-foreground/10 pt-8 text-sm text-secondary-foreground/60 sm:flex-row">
