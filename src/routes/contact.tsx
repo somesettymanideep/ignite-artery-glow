@@ -85,74 +85,6 @@ function Nav() {
   );
 }
 
-const HERO_CARDS = [
-  { icon: MessageCircleHeart, title: "Quick Response", sub: "We reply within 24 hours" },
-  { icon: CalendarCheck, title: "Easy Appointment", sub: "Book your slot easily" },
-  { icon: ShieldCheck, title: "Patient Privacy", sub: "Your information is safe" },
-];
-
-function Hero() {
-  return (
-    <section className="relative overflow-hidden pt-28 pb-12 lg:pt-32">
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-6 lg:px-8">
-        <Reveal variant="left">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm">
-            <Link to="/" className="font-semibold text-muted-foreground transition-colors hover:text-primary">Home</Link>
-            <ChevronRight className="h-4 w-4 text-muted-foreground" />
-            <span className="font-semibold text-primary">Contact Us</span>
-          </nav>
-
-          <h1 className="mt-5 font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-secondary sm:text-6xl">
-            Contact Us
-          </h1>
-          <p className="mt-4 font-display text-lg font-bold text-gradient">We are here to help you.</p>
-          <div className="mt-3 h-1 w-14 rounded-full bg-gradient-brand" />
-
-          <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted-foreground">
-            Have questions or need expert vascular care? Get in touch with Ignite Vascular
-            Center, Vijayawada. Our team is ready to assist you with appointments,
-            consultations and more.
-          </p>
-
-          <ul className="mt-9 grid grid-cols-3 gap-4">
-            {HERO_CARDS.map((c, i) => (
-              <Reveal key={c.title} as="li" variant="up" delay={0.1 + i * 0.1} className="text-left">
-                <span className="glass-card grid h-12 w-12 place-items-center rounded-2xl text-primary shadow-soft transition-transform duration-500 hover:scale-110">
-                  <c.icon className="h-6 w-6" />
-                </span>
-                <p className="mt-3 text-[13px] font-bold leading-tight text-secondary">{c.title}</p>
-                <p className="mt-1 text-[11px] font-medium text-muted-foreground">{c.sub}</p>
-              </Reveal>
-            ))}
-          </ul>
-        </Reveal>
-
-        <Reveal variant="right" className="relative">
-          <div className="relative">
-            {/* Decorative curved shape */}
-            <svg className="absolute -left-6 top-0 h-full w-24 text-primary/70" viewBox="0 0 100 400" preserveAspectRatio="none" aria-hidden>
-              <path d="M100 0 C 20 100 20 300 100 400 L 100 0 Z" fill="url(#curveGrad)" />
-              <defs>
-                <linearGradient id="curveGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="var(--red-brand)" />
-                  <stop offset="100%" stopColor="var(--indigo-deep)" />
-                </linearGradient>
-              </defs>
-            </svg>
-            <img
-              src={buildingImg}
-              alt="Ignite Vascular Center building exterior"
-              width={1400}
-              height={1200}
-              className="relative w-full rounded-l-[3rem] rounded-r-2xl object-cover shadow-lift"
-            />
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
 const INFO = [
   {
     icon: MapPin,
@@ -181,27 +113,46 @@ const INFO = [
   },
 ];
 
-function InfoBar() {
+function Hero() {
   return (
-    <section className="relative -mt-2 py-6">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal variant="up" className="glass-card rounded-3xl p-6 shadow-lift sm:p-8">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-            {INFO.map((info, i) => (
-              <Reveal key={info.title} variant="up" delay={i * 0.08} className="flex gap-4">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-                  <info.icon className="h-5 w-5" />
-                </span>
-                <div className="min-w-0">
-                  <h3 className="font-display text-[15px] font-bold text-secondary">{info.title}</h3>
-                  <div className="mt-1 h-0.5 w-10 rounded-full bg-gradient-brand" />
-                  <div className="mt-2 space-y-0.5 text-[13px] leading-relaxed text-muted-foreground">
-                    {info.lines.map((l) => <p key={l}>{l}</p>)}
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+    <section className="relative flex min-h-[420px] items-center overflow-hidden pt-24 sm:min-h-[460px] lg:min-h-[520px] lg:pt-28">
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img
+          src={buildingImg}
+          alt="Ignite Vascular Center building exterior"
+          width={1600}
+          height={900}
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/75 to-secondary/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-secondary/60 via-transparent to-secondary/30" />
+      </div>
+
+      {/* Decorative bottom curve */}
+      <div className="absolute bottom-0 left-0 right-0" aria-hidden>
+        <svg className="h-12 w-full text-background sm:h-16 lg:h-20" viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path
+            fill="currentColor"
+            d="M0,64 C480,120 960,0 1440,64 L1440,120 L0,120 Z"
+          />
+        </svg>
+      </div>
+
+      <div className="relative mx-auto w-full max-w-7xl px-5 lg:px-8">
+        <Reveal variant="up" className="text-center sm:text-left">
+          <nav aria-label="Breadcrumb" className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm backdrop-blur-sm">
+            <Link to="/" className="font-semibold text-white/80 transition-colors hover:text-white">Home</Link>
+            <ChevronRight className="h-4 w-4 text-white/60" />
+            <span className="font-semibold text-primary-foreground">Contact Us</span>
+          </nav>
+
+          <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            Contact Us
+          </h1>
+          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/85 sm:mx-0 sm:text-lg">
+            Have questions or need expert vascular care? Our team in Vijayawada is ready to assist you with appointments and consultations.
+          </p>
         </Reveal>
       </div>
     </section>
@@ -472,7 +423,6 @@ function ContactPage() {
       <Nav />
       <main>
         <Hero />
-        <InfoBar />
         <ContactForm />
         <AppointmentBanner />
       </main>
