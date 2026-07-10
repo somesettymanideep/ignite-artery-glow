@@ -44,7 +44,7 @@ export function FloatingEmergency() {
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-label={open ? "Close emergency contact" : "Open emergency contact"}
-        className="grid h-14 w-14 place-items-center rounded-full bg-gradient-brand text-primary-foreground shadow-glow-red transition-all duration-300 hover:scale-110 hover:shadow-glow-red-strong focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+        className="grid h-14 w-14 place-items-center rounded-full bg-gradient-brand text-primary-foreground shadow-glow-red transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
       >
         {open ? (
           <X className="h-6 w-6" />
