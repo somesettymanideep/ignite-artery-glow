@@ -79,7 +79,7 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="glass-card border-t lg:hidden">
+        <div className="border-t bg-white lg:hidden">
           <ul className="space-y-1 px-5 py-4">
             {links.map((l) => (
               <li key={l.href}>
