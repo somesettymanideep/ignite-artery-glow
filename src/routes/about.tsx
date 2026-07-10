@@ -4,7 +4,7 @@ import {
   Phone, Menu, X, Target, Eye, UserCheck, Sparkles, Scissors, HeartHandshake,
   ShieldCheck, Siren, CheckCircle2, ArrowRight, Users, ShieldCheck as ShieldIcon,
   Smile, Activity, Clock, Microscope, Lightbulb, BookOpenCheck, MessagesSquare,
-  MapPin, Mail, Facebook, Instagram, Youtube, MessageCircle, Heart,
+  MapPin, Mail, Facebook, Instagram, Youtube, MessageCircle, Heart, Stethoscope,
 } from "lucide-react";
 import { Reveal, useCountUp } from "@/hooks/use-reveal";
 import receptionImg from "@/assets/about-reception.jpg";
