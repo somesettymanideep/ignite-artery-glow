@@ -28,6 +28,7 @@ function Index() {
       <Testimonials />
       <CTA />
       <Footer />
+      <FloatingEmergency />
     </main>
   );
 }
