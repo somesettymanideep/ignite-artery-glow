@@ -270,7 +270,7 @@ function Doctor() {
 function Stat({ end, suffix, label, icon: Icon }: { end: number; suffix: string; label: string; icon: React.ComponentType<{ className?: string }> }) {
   const { ref, value } = useCountUp(end, 1600);
   return (
-    <div ref={ref} className="text-center text-primary-foreground">
+    <div ref={ref as unknown as React.RefObject<HTMLDivElement>} className="text-center text-primary-foreground">
       <Icon className="mx-auto h-7 w-7 opacity-90" />
       <div className="mt-2 font-display text-3xl font-black tracking-tight sm:text-4xl">
         {value}
