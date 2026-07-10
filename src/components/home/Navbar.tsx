@@ -26,11 +26,7 @@ export function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-card shadow-lift" : "bg-transparent"
-      }`}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-soft transition-all duration-500">
       {/* Scroll progress */}
       <div
         className="absolute bottom-0 left-0 h-0.5 bg-gradient-brand transition-[width] duration-150"
