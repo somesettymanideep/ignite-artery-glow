@@ -9,6 +9,11 @@ const variantClass: Record<Variant, string> = {
   zoom: "reveal-zoom",
 };
 
+function prefersReducedMotion() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export function Reveal({
   children,
   variant = "up",
@@ -28,14 +33,39 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // Respect reduced-motion preferences — no transforms, no delays.
+    if (prefersReducedMotion()) {
+      setVisible(true);
+      return;
+    }
+
+    // If the element is already above/in the viewport at mount (e.g. hero,
+    // or when the user reloads mid-page), reveal it on the next frame so
+    // nothing stays invisible above the fold.
+    const rect = el.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    if (rect.top < vh * 0.92) {
+      const raf = requestAnimationFrame(() => setVisible(true));
+      return () => cancelAnimationFrame(raf);
+    }
+
     const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          io.disconnect();
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setVisible(true);
+            io.disconnect();
+            break;
+          }
         }
       },
-      { rootMargin: "0px 0px -80px 0px", threshold: 0.1 },
+      {
+        // Trigger a little before the element scrolls in so the motion
+        // feels connected to the scroll, not delayed after it.
+        rootMargin: "0px 0px -12% 0px",
+        threshold: 0.08,
+      },
     );
     io.observe(el);
     return () => io.disconnect();
