@@ -4,9 +4,8 @@ import { Phone, Menu, X } from "lucide-react";
 const links = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#doctor" },
-  { label: "Services", href: "#services" },
-  { label: "Why Us", href: "#why-us" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "Our Treatments", href: "#services" },
+  { label: "Second Opinion", href: "#cta" },
   { label: "Contact", href: "#contact" },
 ];
 
