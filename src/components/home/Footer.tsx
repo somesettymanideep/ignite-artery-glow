@@ -130,10 +130,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Emergency contact */}
-        <div className="mt-12 mb-16 flex justify-end">
-          <EmergencyCard />
-        </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-secondary-foreground/10 pt-8 text-sm text-secondary-foreground/60 sm:flex-row">
           <p>© {new Date().getFullYear()} Ignite Vascular Center, Vijayawada. All rights reserved.</p>
