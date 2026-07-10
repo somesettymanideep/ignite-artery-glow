@@ -173,31 +173,9 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Map + emergency */}
-        <div className="mt-12 grid gap-6 lg:grid-cols-[2fr_1fr]">
-          <div className="overflow-hidden rounded-3xl border border-secondary-foreground/10">
-            <iframe
-              title="Ignite Vascular Center location — Kasturibai Peta, Vijayawada"
-              src="https://www.google.com/maps?q=Kasturibai+Peta,+Vijayawada,+Andhra+Pradesh&output=embed"
-              className="h-64 w-full border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
-          </div>
-          <div className="glass-dark flex flex-col justify-center rounded-3xl p-8 text-center">
-            <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-gradient-brand animate-pulse-glow">
-              <Siren className="h-7 w-7" />
-            </span>
-            <h3 className="mt-4 font-display text-lg font-bold">24/7 Vascular Emergency</h3>
-            <p className="mt-1 text-sm text-secondary-foreground/70">Immediate care for vascular emergencies</p>
-            <a
-              href="tel:+919999999999"
-              className="mt-4 font-display text-2xl font-extrabold text-primary-foreground transition-colors hover:text-red-soft"
-            >
-              +91 99999 99999
-            </a>
-          </div>
+        {/* Emergency contact */}
+        <div className="mt-12 flex justify-end">
+          <EmergencyCard />
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-secondary-foreground/10 pt-8 text-sm text-secondary-foreground/60 sm:flex-row">
