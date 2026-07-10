@@ -223,86 +223,120 @@ function ContactForm() {
 
   return (
     <section className="py-8 lg:py-14">
-      <div className="mx-auto grid max-w-7xl gap-8 px-5 lg:grid-cols-2 lg:px-8">
-        <Reveal variant="left" className="rounded-[2rem] bg-card p-8 shadow-soft lg:p-10">
-          <h2 className="font-display text-2xl font-extrabold text-secondary sm:text-3xl">Send Us a Message</h2>
-          <div className="mt-3 h-0.5 w-14 rounded-full bg-gradient-brand" />
-          <p className="mt-3 text-[14px] text-muted-foreground">Fill out the form below and our team will get back to you shortly.</p>
+      <div className="mx-auto grid max-w-7xl items-start gap-8 px-5 lg:grid-cols-[1fr_minmax(320px,420px)] lg:px-8">
+        <div className="space-y-8">
+          <Reveal variant="left" className="rounded-[2rem] bg-card p-8 shadow-soft lg:p-10">
+            <h2 className="font-display text-2xl font-extrabold text-secondary sm:text-3xl">Send Us a Message</h2>
+            <div className="mt-3 h-0.5 w-14 rounded-full bg-gradient-brand" />
+            <p className="mt-3 text-[14px] text-muted-foreground">Fill out the form below and our team will get back to you shortly.</p>
 
-          <form onSubmit={submit} className="mt-7 space-y-4" aria-label="Contact form">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="relative">
-                <User className="pointer-events-none absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted-foreground" />
-                <input required maxLength={100} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={input} placeholder="Your Name" aria-label="Your name" />
+            <form onSubmit={submit} className="mt-7 space-y-4" aria-label="Contact form">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="relative">
+                  <User className="pointer-events-none absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted-foreground" />
+                  <input required maxLength={100} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={input} placeholder="Your Name" aria-label="Your name" />
+                </div>
+                <div className="relative">
+                  <Phone className="pointer-events-none absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted-foreground" />
+                  <input type="tel" maxLength={20} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={input} placeholder="Phone Number" aria-label="Phone number" />
+                </div>
+                <div className="relative">
+                  <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted-foreground" />
+                  <input required type="email" maxLength={255} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={input} placeholder="Email Address" aria-label="Email address" />
+                </div>
+                <div className="relative">
+                  <MessageCircle className="pointer-events-none absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted-foreground" />
+                  <input maxLength={150} value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} className={input} placeholder="Subject" aria-label="Subject" />
+                </div>
               </div>
+
               <div className="relative">
-                <Phone className="pointer-events-none absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted-foreground" />
-                <input type="tel" maxLength={20} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={input} placeholder="Phone Number" aria-label="Phone number" />
+                <MessageCircleHeart className="pointer-events-none absolute left-3.5 top-4 h-4.5 w-4.5 text-muted-foreground" />
+                <textarea required maxLength={1000} rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${input} min-h-32 resize-y pt-4`} placeholder="Your Message" aria-label="Your message" />
               </div>
-              <div className="relative">
-                <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted-foreground" />
-                <input required type="email" maxLength={255} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={input} placeholder="Email Address" aria-label="Email address" />
-              </div>
-              <div className="relative">
-                <MessageCircle className="pointer-events-none absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted-foreground" />
-                <input maxLength={150} value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} className={input} placeholder="Subject" aria-label="Subject" />
-              </div>
-            </div>
 
-            <div className="relative">
-              <MessageCircleHeart className="pointer-events-none absolute left-3.5 top-4 h-4.5 w-4.5 text-muted-foreground" />
-              <textarea required maxLength={1000} rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${input} min-h-32 resize-y pt-4`} placeholder="Your Message" aria-label="Your message" />
-            </div>
-
-            <label className="flex items-start gap-3 rounded-2xl border border-border/60 bg-surface/60 p-3.5 text-sm">
-              <input type="checkbox" required checked={form.agree} onChange={(e) => setForm({ ...form, agree: e.target.checked })} className="mt-0.5 h-4 w-4 accent-primary" />
-              <span className="text-[13px] font-medium text-muted-foreground">
-                I confirm the information above is correct and consent to be contacted by Ignite Vascular Center.
-              </span>
-            </label>
-
-            <button type="submit" className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-gradient-brand px-6 py-4 font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-[1.02]">
-              Send Message
-              <span className="grid h-7 w-7 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1">
-                <Send className="h-3.5 w-3.5" />
-              </span>
-            </button>
-
-            {status === "ok" && (
-              <p className="rounded-2xl bg-primary/10 px-4 py-3 text-sm font-semibold text-primary" role="status">
-                Thank you — your message has been received. We'll be in touch shortly.
-              </p>
-            )}
-          </form>
-        </Reveal>
-
-        <Reveal variant="right" className="relative">
-          <div className="relative h-full min-h-[520px] overflow-hidden rounded-[2rem] shadow-soft">
-            <iframe
-              title="Ignite Vascular Center — Kasturibai Peta, Vijayawada"
-              src="https://www.google.com/maps?q=Kasturibai+Peta,+Vijayawada,+Andhra+Pradesh&output=embed"
-              className="h-full w-full border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
-            <div className="glass-card pointer-events-auto absolute left-6 top-6 max-w-xs rounded-2xl p-5 shadow-lift">
-              <div className="flex items-center gap-2">
-                <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-brand text-primary-foreground">
-                  <MapPin className="h-4 w-4" />
+              <label className="flex items-start gap-3 rounded-2xl border border-border/60 bg-surface/60 p-3.5 text-sm">
+                <input type="checkbox" required checked={form.agree} onChange={(e) => setForm({ ...form, agree: e.target.checked })} className="mt-0.5 h-4 w-4 accent-primary" />
+                <span className="text-[13px] font-medium text-muted-foreground">
+                  I confirm the information above is correct and consent to be contacted by Ignite Vascular Center.
                 </span>
-                <p className="font-display text-sm font-extrabold text-secondary">Ignite Vascular Center</p>
+              </label>
+
+              <button type="submit" className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-gradient-brand px-6 py-4 font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-[1.02]">
+                Send Message
+                <span className="grid h-7 w-7 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1">
+                  <Send className="h-3.5 w-3.5" />
+                </span>
+              </button>
+
+              {status === "ok" && (
+                <p className="rounded-2xl bg-primary/10 px-4 py-3 text-sm font-semibold text-primary" role="status">
+                  Thank you — your message has been received. We'll be in touch shortly.
+                </p>
+              )}
+            </form>
+          </Reveal>
+
+          <Reveal variant="up" className="relative overflow-hidden rounded-[2rem] shadow-soft">
+            <div className="relative min-h-[360px] lg:min-h-[420px]">
+              <iframe
+                title="Ignite Vascular Center — Kasturibai Peta, Vijayawada"
+                src="https://www.google.com/maps?q=Kasturibai+Peta,+Vijayawada,+Andhra+Pradesh&output=embed"
+                className="absolute inset-0 h-full w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+              <div className="glass-card pointer-events-auto absolute left-5 top-5 max-w-xs rounded-2xl p-5 shadow-lift lg:left-6 lg:top-6">
+                <div className="flex items-center gap-2">
+                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-brand text-primary-foreground">
+                    <MapPin className="h-4 w-4" />
+                  </span>
+                  <p className="font-display text-sm font-extrabold text-secondary">Ignite Vascular Center</p>
+                </div>
+                <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
+                  Opp. Brahmanandam Orthopaedic Center, Bellapu Sobhanadri St, Kasturibai Peta, Vijayawada, Andhra Pradesh 520002
+                </p>
+                <a
+                  href="https://www.google.com/maps?q=Kasturibai+Peta,+Vijayawada"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-bold text-primary transition-all hover:gap-2.5"
+                >
+                  View on Google Maps <ArrowRight className="h-3.5 w-3.5" />
+                </a>
               </div>
-              <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
-                Opp. Brahmanandam Orthopaedic Center, Bellapu Sobhanadri St, Kasturibai Peta, Vijayawada, Andhra Pradesh 520002
-              </p>
-              <a
-                href="https://www.google.com/maps?q=Kasturibai+Peta,+Vijayawada"
-                target="_blank"
-                rel="noreferrer"
-                className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-bold text-primary transition-all hover:gap-2.5"
-              >
-                View on Google Maps <ArrowRight className="h-3.5 w-3.5" />
+            </div>
+          </Reveal>
+        </div>
+
+        <Reveal variant="right" className="lg:sticky lg:top-28">
+          <div className="rounded-[2rem] bg-card p-7 shadow-soft lg:p-9">
+            <h3 className="font-display text-xl font-extrabold text-secondary sm:text-2xl">Contact Information</h3>
+            <div className="mt-3 h-0.5 w-14 rounded-full bg-gradient-brand" />
+            <p className="mt-3 text-[14px] text-muted-foreground">Reach us directly through any of the channels below.</p>
+
+            <div className="mt-7 space-y-5">
+              {INFO.map((info, i) => (
+                <div key={info.title} className="flex gap-4">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-brand text-primary-foreground shadow-glow-red">
+                    <info.icon className="h-5 w-5" />
+                  </span>
+                  <div className="min-w-0">
+                    <h4 className="font-display text-[15px] font-bold text-secondary">{info.title}</h4>
+                    <div className="mt-1.5 space-y-0.5 text-[13px] leading-relaxed text-muted-foreground">
+                      {info.lines.map((l) => <p key={l}>{l}</p>)}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 rounded-2xl bg-gradient-to-br from-primary/10 to-indigo-500/10 p-5">
+              <p className="font-display text-sm font-extrabold text-secondary">Emergency Contact</p>
+              <p className="mt-1 text-[13px] text-muted-foreground">For urgent vascular care, call us directly.</p>
+              <a href="tel:+919966117292" className="mt-3 inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105">
+                <Phone className="h-4 w-4" /> +91 99661 17292
               </a>
             </div>
           </div>
