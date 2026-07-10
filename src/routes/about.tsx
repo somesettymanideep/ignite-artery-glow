@@ -125,7 +125,7 @@ function Hero() {
           </div>
         </Reveal>
 
-        <Reveal className="reveal" delay={120}>
+        <Reveal className="reveal" delay={0.12}>
           <div className="relative">
             {/* gradient arc frame */}
             <div className="absolute -left-4 -top-4 -bottom-4 w-40 rounded-l-[220px] bg-gradient-to-b from-primary via-primary/70 to-secondary opacity-90 blur-[0.5px]" aria-hidden />
@@ -197,7 +197,7 @@ function WhyChoose() {
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {cards.map((c, i) => (
-            <Reveal key={c.title} className="reveal" delay={i * 60}>
+            <Reveal key={c.title} className="reveal" delay={i * 0.06}>
               <div className="group h-full rounded-2xl border border-border/70 bg-white p-5 text-center shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lift">
                 <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-secondary/5 text-secondary transition-colors group-hover:bg-primary/10 group-hover:text-primary">
                   <c.icon className="h-7 w-7" />
@@ -228,7 +228,7 @@ function Doctor() {
           </div>
         </Reveal>
 
-        <Reveal className="reveal" delay={100}>
+        <Reveal className="reveal" delay={0.1}>
           <span className="text-xs font-bold uppercase tracking-[0.28em] text-primary">Our Doctor</span>
           <h2 className="mt-2 font-display text-3xl font-black tracking-tight text-secondary sm:text-4xl">
             Meet Our Vascular Specialist
@@ -259,7 +259,7 @@ function Doctor() {
           </Link>
         </Reveal>
 
-        <Reveal className="reveal" delay={180}>
+        <Reveal className="reveal" delay={0.18}>
           <img src={vascularImg} alt="Vascular anatomy illustration" width={900} height={1100} loading="lazy" className="mx-auto h-[360px] w-auto object-contain" />
         </Reveal>
       </div>
@@ -318,7 +318,7 @@ function Commitment() {
             <img src={surgeryImg} alt="Vascular surgery team" width={1200} height={900} loading="lazy" className="h-[340px] w-full object-cover" />
           </div>
         </Reveal>
-        <Reveal className="reveal" delay={120}>
+        <Reveal className="reveal" delay={0.12}>
           <h2 className="font-display text-3xl font-black tracking-tight text-primary sm:text-4xl">
             Our Commitment to You
           </h2>
