@@ -493,8 +493,27 @@ function Trust() {
 }
 
 function Home2() {
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const scrollToHash = () => {
+      const id = window.location.hash.slice(1);
+      if (!id) {
+        window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+        return;
+      }
+      // Wait a frame so target sections are mounted + measured.
+      requestAnimationFrame(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+      });
+    };
+    scrollToHash();
+    window.addEventListener("hashchange", scrollToHash);
+    return () => window.removeEventListener("hashchange", scrollToHash);
+  }, []);
+
   return (
-    <main className="bg-background">
+    <main className="bg-background [&_section]:scroll-mt-24">
       <Nav />
       <Hero />
       <Trust />
@@ -511,3 +530,4 @@ function Home2() {
     </main>
   );
 }
+
