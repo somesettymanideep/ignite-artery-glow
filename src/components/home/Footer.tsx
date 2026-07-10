@@ -174,7 +174,7 @@ export function Footer() {
         </div>
 
         {/* Emergency contact */}
-        <div className="mt-12 flex justify-end">
+        <div className="mt-12 mb-16 flex justify-end">
           <EmergencyCard />
         </div>
 
