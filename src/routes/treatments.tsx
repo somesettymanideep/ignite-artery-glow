@@ -232,7 +232,7 @@ function TreatmentsGrid() {
               </h3>
             </div>
             <div className="p-6 sm:p-8">
-              <ul className="grid gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+              <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
                 {activeCategory.items.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm font-medium text-secondary sm:text-[15px]">
                     <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
