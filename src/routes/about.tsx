@@ -35,7 +35,7 @@ function Hero() {
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pb-16 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:px-8 lg:pb-24">
         <Reveal className="reveal" variant="left">
           <span className="inline-block text-xs font-bold uppercase tracking-[0.28em] text-primary">About Us</span>
-          <h1 className="mt-4 font-display text-4xl font-black leading-[1.05] tracking-tight text-secondary sm:text-5xl lg:text-6xl">
+          <h1 className="mt-4 font-display text-2xl font-black leading-[1.1] tracking-tight text-secondary sm:text-3xl lg:text-4xl">
             Advanced Vascular Care.<br />
             <span className="text-primary">Compassionate</span> Hearts.
           </h1>
