@@ -263,7 +263,6 @@ function ContactPage() {
       <main>
         <Hero />
         <ContactForm />
-        <AppointmentBanner />
       </main>
       <Footer />
     </div>
