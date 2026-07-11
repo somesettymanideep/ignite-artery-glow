@@ -286,20 +286,31 @@ function Stat({ end, suffix, label, icon: Icon }: { end: number; suffix: string;
 }
 
 function StatsBar() {
+  const stats = [
+    { icon: Users, end: 10, suffix: "+", label: "Years of Experience" },
+    { icon: ShieldIcon, end: 2000, suffix: "+", label: "Successful Procedures" },
+    { icon: Smile, end: 1500, suffix: "+", label: "Happy Patients" },
+    { icon: Activity, end: 25, suffix: "+", label: "Advanced Treatments" },
+    { icon: Clock, end: 0, suffix: "", label: "Emergency Support", text: "24/7" },
+  ];
   return (
     <section className="bg-white pb-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal className="reveal rounded-[5px] bg-gradient-to-r from-primary via-[oklch(0.55_0.18_10)] to-secondary p-6 shadow-lift sm:p-8">
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5 lg:divide-x lg:divide-white/15">
-            <Stat icon={Users} end={10} suffix="+" label="Years of Experience" />
-            <Stat icon={ShieldIcon} end={2000} suffix="+" label="Successful Procedures" />
-            <Stat icon={Smile} end={1500} suffix="+" label="Happy Patients" />
-            <Stat icon={Activity} end={25} suffix="+" label="Advanced Treatments" />
-            <div className="text-center text-primary-foreground">
-              <Clock className="mx-auto h-7 w-7 opacity-90" />
-              <div className="mt-2 font-display text-3xl font-black tracking-tight sm:text-4xl">24/7</div>
-              <div className="mt-1 text-xs font-semibold uppercase tracking-wider text-primary-foreground/85">Emergency Support</div>
-            </div>
+            {stats.map((s, i) => (
+              <Reveal key={s.label} className="reveal" variant="zoom" delay={i * 0.08}>
+                {s.text ? (
+                  <div className="text-center text-primary-foreground">
+                    <s.icon className="mx-auto h-7 w-7 opacity-90" />
+                    <div className="mt-2 font-display text-3xl font-black tracking-tight sm:text-4xl">{s.text}</div>
+                    <div className="mt-1 text-xs font-semibold uppercase tracking-wider text-primary-foreground/85">{s.label}</div>
+                  </div>
+                ) : (
+                  <Stat icon={s.icon} end={s.end} suffix={s.suffix} label={s.label} />
+                )}
+              </Reveal>
+            ))}
           </div>
         </Reveal>
       </div>
