@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Youtube, MessageCircle, MapPin, Phone, Mail, Clock, Heart } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Heart } from "lucide-react";
+import { FaFacebook, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
 import { Reveal } from "@/hooks/use-reveal";
 
 const quickLinks: { label: string; to: string }[] = [
@@ -37,9 +38,20 @@ export function Footer() {
               Ignite Vascular Center is a specialized vascular surgery and endovascular care center in Vijayawada, providing advanced treatment with compassion and excellence.
             </p>
             <div className="mt-6 flex items-center gap-3">
-              {[Facebook, Instagram, Youtube, MessageCircle].map((I, i) => (
-                <a key={i} href="#" aria-label="Social link" className="grid h-10 w-10 place-items-center rounded-full bg-gradient-brand transition-transform hover:scale-110">
-                  <I className="h-4 w-4" />
+              {[
+                { Icon: FaFacebook, label: "Facebook", href: "#", color: "#1877F2" },
+                { Icon: FaInstagram, label: "Instagram", href: "#", color: "#E4405F", gradient: "linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4)" },
+                { Icon: FaYoutube, label: "YouTube", href: "#", color: "#FF0000" },
+                { Icon: FaWhatsapp, label: "WhatsApp", href: "#", color: "#25D366" },
+              ].map(({ Icon, label, href, color, gradient }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="grid h-10 w-10 place-items-center rounded-full bg-white shadow-sm transition-transform hover:scale-110"
+                  style={gradient ? { background: gradient } : undefined}
+                >
+                  <Icon className="h-5 w-5" style={{ color: gradient ? "#ffffff" : color }} />
                 </a>
               ))}
             </div>
