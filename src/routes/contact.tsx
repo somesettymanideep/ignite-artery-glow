@@ -261,10 +261,6 @@ function AppointmentBanner() {
     <section className="py-8 lg:py-10">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal variant="zoom" className="relative overflow-hidden rounded-[7px] bg-gradient-cta p-8 shadow-lift lg:p-10">
-          <svg className="pointer-events-none absolute inset-y-0 left-0 h-full w-64 opacity-30" viewBox="0 0 200 200" fill="none" aria-hidden>
-            <path d="M20 100 Q 60 40 100 100 T 180 100" stroke="white" strokeWidth="2" className="heartbeat-line" />
-            <path d="M10 140 Q 50 80 90 140 T 190 140" stroke="white" strokeWidth="2" className="heartbeat-line" />
-          </svg>
           <div className="relative grid gap-6 md:grid-cols-[auto_1fr_auto] md:items-center">
             <Reveal variant="left">
               <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white text-primary shadow-lift animate-pulse-glow">
