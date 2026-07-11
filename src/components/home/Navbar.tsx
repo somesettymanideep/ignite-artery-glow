@@ -12,7 +12,7 @@ const NAV: NavItem[] = [
   { label: "Home", hash: "home", route: "/" },
   { label: "About", hash: "doctor", route: "/about" },
   { label: "Our Treatments", hash: "services", route: "/treatments" },
-  { label: "Second Opinion", hash: "cta", route: "/" },
+  { label: "Second Opinion", hash: "", route: "/second-opinion" },
   { label: "Contact", hash: "contact", route: "/contact" },
 ];
 
