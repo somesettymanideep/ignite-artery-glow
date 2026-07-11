@@ -112,8 +112,8 @@ export function Footer() {
           </div>
         </Reveal>
       </div>
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-5 py-5 text-xs text-primary-foreground/70 sm:flex-row lg:px-8">
+      <div className="border-t border-white/10" style={{ backgroundColor: "#d92c2d" }}>
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-5 py-5 text-xs text-white/90 sm:flex-row lg:px-8">
           <p>© {new Date().getFullYear()} Ignite Vascular Center. All Rights Reserved.</p>
           <p className="flex items-center gap-1.5">Designed with <Heart className="h-3.5 w-3.5 fill-primary text-primary" /> for Better Health</p>
         </div>
