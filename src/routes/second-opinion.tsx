@@ -685,8 +685,8 @@ function CTABanner() {
                 <CalendarCheck className="h-7 w-7" />
               </span>
               <div className="min-w-0 text-white">
-                <h3 className="font-display text-xl font-extrabold sm:text-2xl">Ready to Take the Next Step Towards Better Care?</h3>
-                <p className="mt-1 text-[13px] text-white/85">Request your second opinion from our expert vascular specialists today.</p>
+                <h3 className="font-display text-xl font-extrabold sm:text-2xl">Take the Next Step Towards Better Health</h3>
+                <p className="mt-1 text-[13px] text-white/85">Get clarity, confidence, and the best treatment options with a second opinion from our vascular experts.</p>
               </div>
               <a href="#request" className="inline-flex items-center justify-center gap-2 rounded-[6px] bg-white px-5 py-3 text-sm font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-105">
                 Request Second Opinion
