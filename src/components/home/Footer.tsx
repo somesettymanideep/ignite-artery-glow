@@ -2,7 +2,14 @@ import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Youtube, MessageCircle, MapPin, Phone, Mail, Clock, Heart } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 
-const quickLinks = ["Home", "About Us", "Services", "Treatments", "Our Doctor", "Testimonials", "Blog", "Contact Us"];
+const quickLinks: { label: string; to: string }[] = [
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "Our Treatments", to: "/treatments" },
+  { label: "Second Opinion", to: "/second-opinion" },
+  { label: "Gallery", to: "/gallery" },
+  { label: "Contact", to: "/contact" },
+];
 const serviceLinks = [
   "Varicose Veins Treatment",
   "Endovascular Procedures",
@@ -13,19 +20,6 @@ const serviceLinks = [
   "Balloon Angioplasty",
   "Arterial Bypass Surgery",
 ];
-
-const quickLinkTo = (label: string) => {
-  switch (label) {
-    case "Home": return "/";
-    case "About Us": return "/about";
-    case "Contact Us": return "/contact";
-    case "Services":
-    case "Treatments": return "/#services";
-    case "Our Doctor": return "/about";
-    case "Testimonials": return "/#testimonials";
-    default: return "#";
-  }
-};
 
 export function Footer() {
   return (
@@ -57,9 +51,9 @@ export function Footer() {
             <h4 className="font-display text-base font-bold">Quick Links</h4>
             <ul className="mt-5 space-y-2.5 text-sm text-primary-foreground/75">
               {quickLinks.map((q) => (
-                <li key={q}>
-                  <Link to={quickLinkTo(q)} className="hover:text-primary-foreground">
-                    {q}
+                <li key={q.label}>
+                  <Link to={q.to} className="hover:text-primary-foreground">
+                    {q.label}
                   </Link>
                 </li>
               ))}
