@@ -122,58 +122,74 @@ function ContactForm() {
       <div className="mx-auto grid max-w-7xl items-start gap-8 px-5 lg:grid-cols-[1fr_minmax(320px,420px)] lg:px-8">
         <div className="space-y-8">
           <Reveal variant="left" className="rounded-[2rem] bg-card p-8 shadow-soft lg:p-10">
-            <h2 className="font-display text-2xl font-extrabold text-secondary sm:text-3xl">Send Us a Message</h2>
-            <div className="mt-3 h-0.5 w-14 rounded-full bg-gradient-brand" />
-            <p className="mt-3 text-[14px] text-muted-foreground">Fill out the form below and our team will get back to you shortly.</p>
+            <Reveal variant="up">
+              <h2 className="font-display text-2xl font-extrabold text-secondary sm:text-3xl">Send Us a Message</h2>
+              <div className="mt-3 h-0.5 w-14 rounded-full bg-gradient-brand" />
+              <p className="mt-3 text-[14px] text-muted-foreground">Fill out the form below and our team will get back to you shortly.</p>
+            </Reveal>
 
             <form onSubmit={submit} className="mt-7 space-y-4" aria-label="Contact form">
               <div className="grid gap-4 sm:grid-cols-2">
-                <div className="relative">
-                  <User className="pointer-events-none absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted-foreground" />
-                  <input required maxLength={100} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={input} placeholder="Your Name" aria-label="Your name" />
-                </div>
-                <div className="relative">
-                  <Phone className="pointer-events-none absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted-foreground" />
-                  <input type="tel" maxLength={20} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={input} placeholder="Phone Number" aria-label="Phone number" />
-                </div>
-                <div className="relative">
-                  <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted-foreground" />
-                  <input required type="email" maxLength={255} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={input} placeholder="Email Address" aria-label="Email address" />
-                </div>
-                <div className="relative">
-                  <MessageCircle className="pointer-events-none absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted-foreground" />
-                  <input maxLength={150} value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} className={input} placeholder="Subject" aria-label="Subject" />
-                </div>
+                {[
+                  { icon: User, key: "name", type: "text", placeholder: "Your Name", label: "Your name", required: true },
+                  { icon: Phone, key: "phone", type: "tel", placeholder: "Phone Number", label: "Phone number", required: false },
+                  { icon: Mail, key: "email", type: "email", placeholder: "Email Address", label: "Email address", required: true },
+                  { icon: MessageCircle, key: "subject", type: "text", placeholder: "Subject", label: "Subject", required: false },
+                ].map((field, i) => (
+                  <Reveal key={field.key} variant="up" delay={0.06 + i * 0.05}>
+                    <div className="relative">
+                      <field.icon className="pointer-events-none absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted-foreground" />
+                      <input
+                        type={field.type}
+                        required={field.required}
+                        maxLength={field.key === "email" ? 255 : field.key === "message" ? 1000 : field.key === "subject" ? 150 : 100}
+                        value={form[field.key as keyof typeof form] as string}
+                        onChange={(e) => setForm({ ...form, [field.key]: e.target.value })}
+                        className={input}
+                        placeholder={field.placeholder}
+                        aria-label={field.label}
+                      />
+                    </div>
+                  </Reveal>
+                ))}
               </div>
 
-              <div className="relative">
-                <MessageCircleHeart className="pointer-events-none absolute left-3.5 top-4 h-4.5 w-4.5 text-muted-foreground" />
-                <textarea required maxLength={1000} rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${input} min-h-32 resize-y pt-4`} placeholder="Your Message" aria-label="Your message" />
-              </div>
+              <Reveal variant="up" delay={0.26}>
+                <div className="relative">
+                  <MessageCircleHeart className="pointer-events-none absolute left-3.5 top-4 h-4.5 w-4.5 text-muted-foreground" />
+                  <textarea required maxLength={1000} rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${input} min-h-32 resize-y pt-4`} placeholder="Your Message" aria-label="Your message" />
+                </div>
+              </Reveal>
 
-              <label className="flex items-start gap-3 rounded-2xl border border-border/60 bg-surface/60 p-3.5 text-sm">
-                <input type="checkbox" required checked={form.agree} onChange={(e) => setForm({ ...form, agree: e.target.checked })} className="mt-0.5 h-4 w-4 accent-primary" />
-                <span className="text-[13px] font-medium text-muted-foreground">
-                  I confirm the information above is correct and consent to be contacted by Ignite Vascular Center.
-                </span>
-              </label>
+              <Reveal variant="up" delay={0.32}>
+                <label className="flex items-start gap-3 rounded-2xl border border-border/60 bg-surface/60 p-3.5 text-sm">
+                  <input type="checkbox" required checked={form.agree} onChange={(e) => setForm({ ...form, agree: e.target.checked })} className="mt-0.5 h-4 w-4 accent-primary" />
+                  <span className="text-[13px] font-medium text-muted-foreground">
+                    I confirm the information above is correct and consent to be contacted by Ignite Vascular Center.
+                  </span>
+                </label>
+              </Reveal>
 
-              <button type="submit" className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-gradient-brand px-6 py-4 font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-[1.02]">
-                Send Message
-                <span className="grid h-7 w-7 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1">
-                  <Send className="h-3.5 w-3.5" />
-                </span>
-              </button>
+              <Reveal variant="up" delay={0.38}>
+                <button type="submit" className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-gradient-brand px-6 py-4 font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-[1.02]">
+                  Send Message
+                  <span className="grid h-7 w-7 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1">
+                    <Send className="h-3.5 w-3.5" />
+                  </span>
+                </button>
+              </Reveal>
 
               {status === "ok" && (
-                <p className="rounded-2xl bg-primary/10 px-4 py-3 text-sm font-semibold text-primary" role="status">
-                  Thank you — your message has been received. We'll be in touch shortly.
-                </p>
+                <Reveal variant="zoom">
+                  <p className="rounded-2xl bg-primary/10 px-4 py-3 text-sm font-semibold text-primary" role="status">
+                    Thank you — your message has been received. We'll be in touch shortly.
+                  </p>
+                </Reveal>
               )}
             </form>
           </Reveal>
 
-          <Reveal variant="up" className="relative overflow-hidden rounded-[2rem] shadow-soft">
+          <Reveal variant="up" delay={0.1} className="relative overflow-hidden rounded-[2rem] shadow-soft">
             <div className="relative min-h-[360px] lg:min-h-[420px]">
               <iframe
                 title="Ignite Vascular Center — Kasturibai Peta, Vijayawada"
@@ -198,35 +214,41 @@ function ContactForm() {
           </Reveal>
         </div>
 
-        <Reveal variant="right" className="lg:sticky lg:top-28">
+        <Reveal variant="right" delay={0.12} className="lg:sticky lg:top-28">
           <div className="rounded-[2rem] bg-card p-7 shadow-soft lg:p-9">
-            <h3 className="font-display text-xl font-extrabold text-secondary sm:text-2xl">Contact Information</h3>
-            <div className="mt-3 h-0.5 w-14 rounded-full bg-gradient-brand" />
-            <p className="mt-3 text-[14px] text-muted-foreground">Reach us directly through any of the channels below.</p>
+            <Reveal variant="up">
+              <h3 className="font-display text-xl font-extrabold text-secondary sm:text-2xl">Contact Information</h3>
+              <div className="mt-3 h-0.5 w-14 rounded-full bg-gradient-brand" />
+              <p className="mt-3 text-[14px] text-muted-foreground">Reach us directly through any of the channels below.</p>
+            </Reveal>
 
             <div className="mt-7 space-y-5">
               {INFO.map((info, i) => (
-                <div key={info.title} className="flex gap-4">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-brand text-primary-foreground shadow-glow-red">
-                    <info.icon className="h-5 w-5" />
-                  </span>
-                  <div className="min-w-0">
-                    <h4 className="font-display text-[15px] font-bold text-secondary">{info.title}</h4>
-                    <div className="mt-1.5 space-y-0.5 text-[13px] leading-relaxed text-muted-foreground">
-                      {info.lines.map((l) => <p key={l}>{l}</p>)}
+                <Reveal key={info.title} variant="right" delay={0.08 + i * 0.07}>
+                  <div className="flex gap-4">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-brand text-primary-foreground shadow-glow-red">
+                      <info.icon className="h-5 w-5" />
+                    </span>
+                    <div className="min-w-0">
+                      <h4 className="font-display text-[15px] font-bold text-secondary">{info.title}</h4>
+                      <div className="mt-1.5 space-y-0.5 text-[13px] leading-relaxed text-muted-foreground">
+                        {info.lines.map((l) => <p key={l}>{l}</p>)}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Reveal>
               ))}
             </div>
 
-            <div className="mt-8 rounded-2xl bg-gradient-to-br from-primary/10 to-indigo-500/10 p-5">
-              <p className="font-display text-sm font-extrabold text-secondary">Emergency Contact</p>
-              <p className="mt-1 text-[13px] text-muted-foreground">For urgent vascular care, call us directly.</p>
-              <a href="tel:+919966117292" className="mt-3 inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105">
-                <Phone className="h-4 w-4" /> +91 99661 17292
-              </a>
-            </div>
+            <Reveal variant="zoom" delay={0.4}>
+              <div className="mt-8 rounded-2xl bg-gradient-to-br from-primary/10 to-indigo-500/10 p-5">
+                <p className="font-display text-sm font-extrabold text-secondary">Emergency Contact</p>
+                <p className="mt-1 text-[13px] text-muted-foreground">For urgent vascular care, call us directly.</p>
+                <a href="tel:+919966117292" className="mt-3 inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105">
+                  <Phone className="h-4 w-4" /> +91 99661 17292
+                </a>
+              </div>
+            </Reveal>
           </div>
         </Reveal>
       </div>
