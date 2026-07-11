@@ -103,7 +103,7 @@ function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#f5f6f8] pt-28 lg:pt-32">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pb-16 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:px-8 lg:pb-24">
-        <Reveal className="reveal">
+        <Reveal className="reveal" variant="left">
           <span className="inline-block text-xs font-bold uppercase tracking-[0.28em] text-primary">About Us</span>
           <h1 className="mt-4 font-display text-4xl font-black leading-[1.05] tracking-tight text-secondary sm:text-5xl lg:text-6xl">
             Advanced Vascular Care.<br />
@@ -126,7 +126,7 @@ function Hero() {
           </div>
         </Reveal>
 
-        <Reveal className="reveal" delay={0.12}>
+        <Reveal className="reveal" variant="right" delay={0.14}>
           <div className="relative">
             {/* gradient arc frame */}
             <div className="absolute -left-4 -top-4 -bottom-4 w-40 rounded-l-[220px] bg-gradient-to-b from-primary via-primary/70 to-secondary opacity-90 blur-[0.5px]" aria-hidden />
@@ -158,16 +158,18 @@ function MissionVision() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal className="reveal rounded-3xl bg-[#f6f4f9] p-6 sm:p-10">
           <div className="grid gap-8 sm:grid-cols-2 sm:divide-x sm:divide-secondary/15">
-            {items.map((it) => (
-              <div key={it.title} className="flex items-start gap-5 sm:px-4 lg:px-8">
-                <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white shadow-soft">
-                  <it.icon strokeWidth={1.75} className="h-7 w-7 text-primary" />
-                </span>
-                <div>
-                  <h3 className="font-display text-sm font-extrabold uppercase tracking-[0.22em] text-secondary">{it.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{it.body}</p>
+            {items.map((it, i) => (
+              <Reveal key={it.title} className="reveal" variant="up" delay={i * 0.1}>
+                <div className="flex items-start gap-5 sm:px-4 lg:px-8">
+                  <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white shadow-soft">
+                    <it.icon strokeWidth={1.75} className="h-7 w-7 text-primary" />
+                  </span>
+                  <div>
+                    <h3 className="font-display text-sm font-extrabold uppercase tracking-[0.22em] text-secondary">{it.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{it.body}</p>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </Reveal>
@@ -216,12 +218,11 @@ function WhyChoose() {
 }
 
 function Doctor() {
-  const left = ["Expert in Endovascular Procedures", "Varicose Veins Specialist", "Peripheral Arterial Disease Expert"];
-  const right = ["Diabetic Foot Care Specialist", "Deep Vein Thrombosis Expert", "Vascular Ultrasound Expert"];
+  const bullets = ["Expert in Endovascular Procedures", "Varicose Veins Specialist", "Peripheral Arterial Disease Expert", "Diabetic Foot Care Specialist", "Deep Vein Thrombosis Expert", "Vascular Ultrasound Expert"];
   return (
     <section className="bg-white py-16 lg:py-20">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 lg:grid-cols-[minmax(0,260px)_1fr_minmax(0,280px)] lg:gap-12 lg:px-8">
-        <Reveal className="reveal">
+        <Reveal className="reveal" variant="left">
           <div className="relative">
             <div className="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-[radial-gradient(circle,theme(colors.secondary/20)_1px,transparent_1.5px)] bg-[length:10px_10px]" aria-hidden />
             <div className="relative overflow-hidden rounded-3xl bg-secondary shadow-lift">
@@ -230,7 +231,7 @@ function Doctor() {
           </div>
         </Reveal>
 
-        <Reveal className="reveal" delay={0.1}>
+        <Reveal className="reveal" variant="up" delay={0.1}>
           <span className="text-xs font-bold uppercase tracking-[0.28em] text-primary">Our Doctor</span>
           <h2 className="mt-2 font-display text-3xl font-black tracking-tight text-secondary sm:text-4xl">
             Meet Our Vascular Specialist
@@ -245,11 +246,13 @@ function Doctor() {
           </p>
 
           <div className="mt-6 grid gap-2.5 sm:grid-cols-2">
-            {[...left, ...right].map((b) => (
-              <div key={b} className="flex items-start gap-2.5">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                <span className="text-sm text-secondary/85">{b}</span>
-              </div>
+            {bullets.map((b, i) => (
+              <Reveal key={b} className="reveal" variant="up" delay={0.22 + i * 0.06}>
+                <div className="flex items-start gap-2.5">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                  <span className="text-sm text-secondary/85">{b}</span>
+                </div>
+              </Reveal>
             ))}
           </div>
 
@@ -261,7 +264,7 @@ function Doctor() {
           </Link>
         </Reveal>
 
-        <Reveal className="reveal" delay={0.18}>
+        <Reveal className="reveal" variant="right" delay={0.18}>
           <img src={vascularImg} alt="Vascular anatomy illustration" width={900} height={1100} loading="lazy" className="mx-auto h-[360px] w-auto object-contain" />
         </Reveal>
       </div>
@@ -284,20 +287,31 @@ function Stat({ end, suffix, label, icon: Icon }: { end: number; suffix: string;
 }
 
 function StatsBar() {
+  const stats = [
+    { icon: Users, end: 10, suffix: "+", label: "Years of Experience" },
+    { icon: ShieldIcon, end: 2000, suffix: "+", label: "Successful Procedures" },
+    { icon: Smile, end: 1500, suffix: "+", label: "Happy Patients" },
+    { icon: Activity, end: 25, suffix: "+", label: "Advanced Treatments" },
+    { icon: Clock, end: 0, suffix: "", label: "Emergency Support", text: "24/7" },
+  ];
   return (
     <section className="bg-white pb-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal className="reveal rounded-[5px] bg-gradient-to-r from-primary via-[oklch(0.55_0.18_10)] to-secondary p-6 shadow-lift sm:p-8">
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5 lg:divide-x lg:divide-white/15">
-            <Stat icon={Users} end={10} suffix="+" label="Years of Experience" />
-            <Stat icon={ShieldIcon} end={2000} suffix="+" label="Successful Procedures" />
-            <Stat icon={Smile} end={1500} suffix="+" label="Happy Patients" />
-            <Stat icon={Activity} end={25} suffix="+" label="Advanced Treatments" />
-            <div className="text-center text-primary-foreground">
-              <Clock className="mx-auto h-7 w-7 opacity-90" />
-              <div className="mt-2 font-display text-3xl font-black tracking-tight sm:text-4xl">24/7</div>
-              <div className="mt-1 text-xs font-semibold uppercase tracking-wider text-primary-foreground/85">Emergency Support</div>
-            </div>
+            {stats.map((s, i) => (
+              <Reveal key={s.label} className="reveal" variant="zoom" delay={i * 0.08}>
+                {s.text ? (
+                  <div className="text-center text-primary-foreground">
+                    <s.icon className="mx-auto h-7 w-7 opacity-90" />
+                    <div className="mt-2 font-display text-3xl font-black tracking-tight sm:text-4xl">{s.text}</div>
+                    <div className="mt-1 text-xs font-semibold uppercase tracking-wider text-primary-foreground/85">{s.label}</div>
+                  </div>
+                ) : (
+                  <Stat icon={s.icon} end={s.end} suffix={s.suffix} label={s.label} />
+                )}
+              </Reveal>
+            ))}
           </div>
         </Reveal>
       </div>
@@ -315,12 +329,12 @@ function Commitment() {
   return (
     <section className="bg-white pb-20">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 lg:grid-cols-2 lg:gap-14 lg:px-8">
-        <Reveal className="reveal">
+        <Reveal className="reveal" variant="left">
           <div className="overflow-hidden rounded-[7px] shadow-lift">
             <img src={surgeryImg} alt="Vascular surgery team" width={1200} height={900} loading="lazy" className="h-[340px] w-full object-cover" />
           </div>
         </Reveal>
-        <Reveal className="reveal" delay={0.12}>
+        <Reveal className="reveal" variant="right" delay={0.12}>
           <h2 className="font-display text-3xl font-black tracking-tight text-primary sm:text-4xl">
             Our Commitment to You
           </h2>
@@ -330,13 +344,15 @@ function Commitment() {
             well-being are at the heart of everything we do.
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {items.map((it) => (
-              <div key={it.title} className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-soft">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-                  <it.icon className="h-5 w-5" />
-                </span>
-                <span className="text-sm font-bold text-secondary">{it.title}</span>
-              </div>
+            {items.map((it, i) => (
+              <Reveal key={it.title} className="reveal" variant="up" delay={0.18 + i * 0.08}>
+                <div className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-soft">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
+                    <it.icon className="h-5 w-5" />
+                  </span>
+                  <span className="text-sm font-bold text-secondary">{it.title}</span>
+                </div>
+              </Reveal>
             ))}
           </div>
         </Reveal>
@@ -351,16 +367,20 @@ function CTA() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal className="reveal relative overflow-hidden rounded-[5px] bg-gradient-to-r from-secondary via-[oklch(0.35_0.14_340)] to-primary p-8 shadow-lift sm:p-10">
           <div className="grid items-center gap-6 sm:grid-cols-[1fr_auto]">
-            <div className="text-primary-foreground">
-              <h3 className="font-display text-2xl font-black sm:text-3xl">Take the First Step Towards Better Circulation</h3>
-              <p className="mt-2 text-sm text-primary-foreground/85">Our team is here to help you live a healthier, pain-free life.</p>
-            </div>
-            <Link to="/contact" className="inline-flex items-center gap-3 self-start rounded-full bg-white px-6 py-3 text-sm font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-[1.03] sm:self-auto">
-              Book Appointment
-              <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-primary-foreground">
-                <ArrowRight className="h-3.5 w-3.5" />
-              </span>
-            </Link>
+            <Reveal className="reveal" variant="left">
+              <div className="text-primary-foreground">
+                <h3 className="font-display text-2xl font-black sm:text-3xl">Take the First Step Towards Better Circulation</h3>
+                <p className="mt-2 text-sm text-primary-foreground/85">Our team is here to help you live a healthier, pain-free life.</p>
+              </div>
+            </Reveal>
+            <Reveal className="reveal" variant="zoom" delay={0.14}>
+              <Link to="/contact" className="inline-flex items-center gap-3 self-start rounded-full bg-white px-6 py-3 text-sm font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-[1.03] sm:self-auto">
+                Book Appointment
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-primary-foreground">
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </Link>
+            </Reveal>
           </div>
           <div className="pointer-events-none absolute -right-6 -top-8 h-56 w-56 rounded-full bg-white/10 blur-2xl" aria-hidden />
         </Reveal>
@@ -384,60 +404,68 @@ function Footer() {
   return (
     <footer className="bg-secondary text-primary-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-[1.1fr_0.8fr_1fr_1.1fr] lg:px-8">
-        <div>
-          <Link to="/" className="flex items-center gap-2.5">
-            <span className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-brand font-display text-sm font-bold shadow-glow-red">IV</span>
-            <span className="font-display text-lg font-extrabold">
-              Ignite <span className="text-primary">Vascular</span> Center
-            </span>
-          </Link>
-          <p className="mt-5 text-sm leading-relaxed text-primary-foreground/75">
-            Ignite Vascular Center is a specialized vascular surgery and endovascular care center in Vijayawada, providing advanced treatment with compassion and excellence.
-          </p>
-          <div className="mt-6 flex items-center gap-3">
-            {[Facebook, Instagram, Youtube, MessageCircle].map((I, i) => (
-              <a key={i} href="#" aria-label="Social link" className="grid h-10 w-10 place-items-center rounded-full bg-gradient-brand transition-transform hover:scale-110">
-                <I className="h-4 w-4" />
-              </a>
-            ))}
+        <Reveal className="reveal" variant="up" delay={0}>
+          <div>
+            <Link to="/" className="flex items-center gap-2.5">
+              <span className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-brand font-display text-sm font-bold shadow-glow-red">IV</span>
+              <span className="font-display text-lg font-extrabold">
+                Ignite <span className="text-primary">Vascular</span> Center
+              </span>
+            </Link>
+            <p className="mt-5 text-sm leading-relaxed text-primary-foreground/75">
+              Ignite Vascular Center is a specialized vascular surgery and endovascular care center in Vijayawada, providing advanced treatment with compassion and excellence.
+            </p>
+            <div className="mt-6 flex items-center gap-3">
+              {[Facebook, Instagram, Youtube, MessageCircle].map((I, i) => (
+                <a key={i} href="#" aria-label="Social link" className="grid h-10 w-10 place-items-center rounded-full bg-gradient-brand transition-transform hover:scale-110">
+                  <I className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
+        </Reveal>
 
-        <div>
-          <h4 className="font-display text-base font-bold">Quick Links</h4>
-          <ul className="mt-5 space-y-2.5 text-sm text-primary-foreground/75">
-            {quick.map((q) => (<li key={q}><a href="#" className="hover:text-primary-foreground">{q}</a></li>))}
-          </ul>
-        </div>
+        <Reveal className="reveal" variant="up" delay={0.08}>
+          <div>
+            <h4 className="font-display text-base font-bold">Quick Links</h4>
+            <ul className="mt-5 space-y-2.5 text-sm text-primary-foreground/75">
+              {quick.map((q) => (<li key={q}><a href="#" className="hover:text-primary-foreground">{q}</a></li>))}
+            </ul>
+          </div>
+        </Reveal>
 
-        <div>
-          <h4 className="font-display text-base font-bold">Our Services</h4>
-          <ul className="mt-5 space-y-2.5 text-sm text-primary-foreground/75">
-            {services.map((s) => (<li key={s}><a href="#" className="hover:text-primary-foreground">{s}</a></li>))}
-          </ul>
-        </div>
+        <Reveal className="reveal" variant="up" delay={0.16}>
+          <div>
+            <h4 className="font-display text-base font-bold">Our Services</h4>
+            <ul className="mt-5 space-y-2.5 text-sm text-primary-foreground/75">
+              {services.map((s) => (<li key={s}><a href="#" className="hover:text-primary-foreground">{s}</a></li>))}
+            </ul>
+          </div>
+        </Reveal>
 
-        <div>
-          <h4 className="font-display text-base font-bold">Contact Information</h4>
-          <ul className="mt-5 space-y-4 text-sm text-primary-foreground/80">
-            <li className="flex items-start gap-3">
-              <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand"><MapPin className="h-4 w-4" /></span>
-              <span>Opp. Brahmanandam Orthopaedic Center,<br />Bellapu Sobhanadri Street, Kasturibai Peta,<br />Vijayawada, Andhra Pradesh – 520002</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand"><Phone className="h-4 w-4" /></span>
-              <a href="tel:+919966117292" className="hover:text-primary-foreground">+91 99661 17292</a>
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand"><Mail className="h-4 w-4" /></span>
-              <a href="mailto:info@ignitevascularcenter.com" className="hover:text-primary-foreground">info@ignitevascularcenter.com</a>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand"><Clock className="h-4 w-4" /></span>
-              <span>Mon – Sat : 9:00 AM – 8:00 PM<br />Sunday: By Appointment</span>
-            </li>
-          </ul>
-        </div>
+        <Reveal className="reveal" variant="up" delay={0.24}>
+          <div>
+            <h4 className="font-display text-base font-bold">Contact Information</h4>
+            <ul className="mt-5 space-y-4 text-sm text-primary-foreground/80">
+              <li className="flex items-start gap-3">
+                <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand"><MapPin className="h-4 w-4" /></span>
+                <span>Opp. Brahmanandam Orthopaedic Center,<br />Bellapu Sobhanadri Street, Kasturibai Peta,<br />Vijayawada, Andhra Pradesh – 520002</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand"><Phone className="h-4 w-4" /></span>
+                <a href="tel:+919966117292" className="hover:text-primary-foreground">+91 99661 17292</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand"><Mail className="h-4 w-4" /></span>
+                <a href="mailto:info@ignitevascularcenter.com" className="hover:text-primary-foreground">info@ignitevascularcenter.com</a>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand"><Clock className="h-4 w-4" /></span>
+                <span>Mon – Sat : 9:00 AM – 8:00 PM<br />Sunday: By Appointment</span>
+              </li>
+            </ul>
+          </div>
+        </Reveal>
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-5 py-5 text-xs text-primary-foreground/70 sm:flex-row lg:px-8">
