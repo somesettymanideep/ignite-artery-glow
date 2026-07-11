@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import {
-  ChevronRight, ShieldCheck, FileText, HeartHandshake, Lock,
+  ChevronRight, ChevronDown, ShieldCheck, FileText, HeartHandshake, Lock,
   ArrowRight, PlayCircle, Activity, Stethoscope, Users, HeartPulse,
   UploadCloud, UserRound, ClipboardCheck, MessagesSquare, ClipboardList,
   User, Phone, Mail, MessageCircle, Send, CalendarCheck,
-  Award, Search, Sparkles, HeartHandshake as HeartCare,
+  Award, Search, Sparkles, HeartHandshake as HeartCare, HelpCircle,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
