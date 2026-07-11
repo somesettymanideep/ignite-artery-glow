@@ -316,9 +316,12 @@ function GalleryTwoPage() {
                     <span className="text-[10px] font-semibold uppercase tracking-widest text-white/70">{img.cat}</span>
                     <p className="mt-1 font-display text-base font-bold">{img.alt}</p>
 
-                </figcaption>
-              </figure>
+                  </figcaption>
+                </figure>
+              </button>
             </Reveal>
+          ))}
+
           ))}
         </div>
       </section>
