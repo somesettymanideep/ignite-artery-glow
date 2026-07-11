@@ -270,20 +270,79 @@ function HowItWorks() {
 }
 
 function RequestSection() {
-  const [status, setStatus] = useState<null | "ok">(null);
+  const [status, setStatus] = useState<null | "ok" | "error">(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({
     name: "", phone: "", email: "", age: "", gender: "", concern: "", message: "", file: "",
   });
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [touched, setTouched] = useState<Partial<Record<keyof FormData, boolean>>>({});
 
-  function submit(e: FormEvent) {
-    e.preventDefault();
-    if (!form.name.trim() || !form.phone.trim() || !form.email.trim()) return;
-    setStatus("ok");
-    setForm({ name: "", phone: "", email: "", age: "", gender: "", concern: "", message: "", file: "" });
+  function validateField<K extends keyof FormData>(key: K, value: FormData[K]) {
+    const partial = { [key]: value } as Record<K, FormData[K]>;
+    const result = secondOpinionSchema.safeParse({ ...form, ...partial });
+    if (!result.success) {
+      const fieldError = result.error.issues.find((issue) => issue.path[0] === key);
+      return fieldError?.message ?? "";
+    }
+    return "";
   }
 
-  const input =
-    "w-full rounded-xl border border-border/70 bg-card px-4 py-3 pl-10 text-[13.5px] font-medium text-secondary placeholder:text-muted-foreground/70 outline-none transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/10";
+  function validateAll(): FormErrors {
+    const result = secondOpinionSchema.safeParse(form);
+    if (!result.success) {
+      const next: FormErrors = {};
+      result.error.issues.forEach((issue) => {
+        const key = issue.path[0] as keyof FormData;
+        if (!next[key]) next[key] = issue.message;
+      });
+      return next;
+    }
+    return {};
+  }
+
+  function updateField<K extends keyof FormData>(key: K, value: FormData[K]) {
+    setForm((prev) => ({ ...prev, [key]: value }));
+    if (touched[key]) {
+      setErrors((prev) => ({ ...prev, [key]: validateField(key, value) }));
+    }
+  }
+
+  function blurField<K extends keyof FormData>(key: K) {
+    setTouched((prev) => ({ ...prev, [key]: true }));
+    setErrors((prev) => ({ ...prev, [key]: validateField(key, form[key]) }));
+  }
+
+  async function submit(e: FormEvent) {
+    e.preventDefault();
+    setTouched({ name: true, phone: true, email: true, age: true, gender: true, concern: true, message: true, file: true });
+    const validationErrors = validateAll();
+    setErrors(validationErrors);
+    if (Object.keys(validationErrors).length > 0) return;
+
+    setIsSubmitting(true);
+    setStatus(null);
+
+    // Simulate async submission for UX demo; replace with server function when backend is wired.
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    setIsSubmitting(false);
+    setStatus("ok");
+    setForm({ name: "", phone: "", email: "", age: "", gender: "", concern: "", message: "", file: "" });
+    setErrors({});
+    setTouched({});
+  }
+
+  const inputBase =
+    "w-full rounded-xl border bg-card px-4 py-3 pl-10 text-[13.5px] font-medium text-secondary placeholder:text-muted-foreground/70 outline-none transition-all duration-300 focus:ring-4";
+  const inputNormal = `${inputBase} border-border/70 focus:border-primary focus:ring-primary/10`;
+  const inputError = `${inputBase} border-red-400 focus:border-red-500 focus:ring-red-100`;
+
+  const FieldError = ({ name }: { name: keyof FormData }) => {
+    const msg = errors[name];
+    if (!msg) return null;
+    return <p className="mt-1.5 flex items-center gap-1.5 text-[11.5px] font-semibold text-red-500" role="alert"><span className="h-1 w-1 rounded-full bg-red-500" />{msg}</p>;
+  };
 
   return (
     <section id="request" className="bg-background pb-16 lg:pb-20">
@@ -292,77 +351,206 @@ function RequestSection() {
           <div className="rounded-[18px] bg-card p-7 shadow-soft ring-1 ring-border/60 lg:p-8">
             <h2 className="font-display text-2xl font-extrabold text-secondary">Request Your Second Opinion</h2>
             <div className="mt-3 h-0.5 w-14 rounded-full bg-gradient-brand" />
+            <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">
+              Fill in the details below. Our team will review your case and reach out within 24–48 hours.
+            </p>
 
-            <form onSubmit={submit} className="mt-6 space-y-4" aria-label="Second opinion form">
+            <form onSubmit={submit} className="mt-5 space-y-4" aria-label="Second opinion form" noValidate>
               <div className="grid gap-4 sm:grid-cols-2">
-                <div className="relative">
-                  <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <input required maxLength={100} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={input} placeholder="Full Name" aria-label="Full name" />
+                <div>
+                  <div className="relative">
+                    <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <input
+                      maxLength={100}
+                      value={form.name}
+                      onChange={(e) => updateField("name", e.target.value)}
+                      onBlur={() => blurField("name")}
+                      className={errors.name ? inputError : inputNormal}
+                      placeholder="Full Name"
+                      aria-label="Full name"
+                      aria-invalid={!!errors.name}
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                  <FieldError name="name" />
                 </div>
-                <div className="relative">
-                  <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <input required type="tel" maxLength={20} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={input} placeholder="Phone Number" aria-label="Phone number" />
+                <div>
+                  <div className="relative">
+                    <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <input
+                      type="tel"
+                      maxLength={20}
+                      value={form.phone}
+                      onChange={(e) => updateField("phone", e.target.value)}
+                      onBlur={() => blurField("phone")}
+                      className={errors.phone ? inputError : inputNormal}
+                      placeholder="Phone Number"
+                      aria-label="Phone number"
+                      aria-invalid={!!errors.phone}
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                  <FieldError name="phone" />
                 </div>
               </div>
+
               <div className="grid gap-4 sm:grid-cols-3">
-                <div className="relative sm:col-span-1">
-                  <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <input required type="email" maxLength={255} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={input} placeholder="Email Address" aria-label="Email address" />
+                <div className="sm:col-span-1">
+                  <div className="relative">
+                    <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <input
+                      type="email"
+                      maxLength={255}
+                      value={form.email}
+                      onChange={(e) => updateField("email", e.target.value)}
+                      onBlur={() => blurField("email")}
+                      className={errors.email ? inputError : inputNormal}
+                      placeholder="Email Address"
+                      aria-label="Email address"
+                      aria-invalid={!!errors.email}
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                  <FieldError name="email" />
                 </div>
-                <div className="relative">
-                  <ClipboardList className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <input type="number" min="0" max="120" value={form.age} onChange={(e) => setForm({ ...form, age: e.target.value })} className={input} placeholder="Age" aria-label="Age" />
+                <div>
+                  <div className="relative">
+                    <ClipboardList className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <input
+                      type="number"
+                      min="0"
+                      max="120"
+                      value={form.age}
+                      onChange={(e) => updateField("age", e.target.value)}
+                      onBlur={() => blurField("age")}
+                      className={errors.age ? inputError : inputNormal}
+                      placeholder="Age"
+                      aria-label="Age"
+                      aria-invalid={!!errors.age}
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                  <FieldError name="age" />
                 </div>
-                <div className="relative">
-                  <UserRound className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <select value={form.gender} onChange={(e) => setForm({ ...form, gender: e.target.value })} className={`${input} appearance-none pr-8`} aria-label="Gender">
-                    <option value="">Gender</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other</option>
-                  </select>
+                <div>
+                  <div className="relative">
+                    <UserRound className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <select
+                      value={form.gender}
+                      onChange={(e) => updateField("gender", e.target.value)}
+                      onBlur={() => blurField("gender")}
+                      className={`${errors.gender ? inputError : inputNormal} appearance-none pr-8`}
+                      aria-label="Gender"
+                      aria-invalid={!!errors.gender}
+                      disabled={isSubmitting}
+                    >
+                      <option value="">Gender</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <FieldError name="gender" />
                 </div>
               </div>
 
               <div>
                 <label className="mb-1.5 block text-[12.5px] font-semibold text-secondary">What is your concern?</label>
-                <select value={form.concern} onChange={(e) => setForm({ ...form, concern: e.target.value })} className="w-full rounded-xl border border-border/70 bg-card px-4 py-3 text-[13.5px] font-medium text-secondary outline-none transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/10">
+                <select
+                  value={form.concern}
+                  onChange={(e) => updateField("concern", e.target.value)}
+                  onBlur={() => blurField("concern")}
+                  className={`w-full rounded-xl border bg-card px-4 py-3 text-[13.5px] font-medium text-secondary outline-none transition-all duration-300 focus:ring-4 disabled:opacity-60 ${errors.concern ? "border-red-400 focus:border-red-500 focus:ring-red-100" : "border-border/70 focus:border-primary focus:ring-primary/10"}`}
+                  aria-label="Primary concern"
+                  aria-invalid={!!errors.concern}
+                  disabled={isSubmitting}
+                >
                   <option value="">Select Concern</option>
                   {CONCERNS.map((c) => <option key={c}>{c}</option>)}
                 </select>
+                <FieldError name="concern" />
               </div>
 
               <div>
                 <label className="mb-1.5 block text-[12.5px] font-semibold text-secondary">Briefly describe your condition</label>
                 <div className="relative">
                   <MessageCircle className="pointer-events-none absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
-                  <textarea maxLength={1000} rows={4} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${input} min-h-28 resize-y pt-3.5`} placeholder="Write your message..." aria-label="Condition description" />
+                  <textarea
+                    maxLength={1000}
+                    rows={4}
+                    value={form.message}
+                    onChange={(e) => updateField("message", e.target.value)}
+                    onBlur={() => blurField("message")}
+                    className={`${errors.message ? inputError : inputNormal} min-h-28 resize-y pt-3.5`}
+                    placeholder="Write your message..."
+                    aria-label="Condition description"
+                    aria-invalid={!!errors.message}
+                    disabled={isSubmitting}
+                  />
                 </div>
+                <FieldError name="message" />
               </div>
 
               <div>
                 <label className="mb-1.5 block text-[12.5px] font-semibold text-secondary">Upload Medical Reports (PDF, JPG, PNG)</label>
-                <label className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-border bg-surface/40 px-5 py-8 text-center transition-colors hover:border-primary hover:bg-primary/5">
+                <label className={`flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed bg-surface/40 px-5 py-8 text-center transition-colors hover:bg-primary/5 ${errors.file ? "border-red-300 hover:border-red-400" : "border-border hover:border-primary"}`}>
                   <span className="grid h-11 w-11 place-items-center rounded-full bg-white text-primary shadow-soft">
                     <UploadCloud className="h-5 w-5" />
                   </span>
                   <span className="text-[13px] font-semibold text-secondary">Click to upload or drag and drop</span>
                   <span className="text-[11.5px] text-muted-foreground">( Max file size: 10MB )</span>
-                  <input type="file" accept=".pdf,.jpg,.jpeg,.png" className="hidden" onChange={(e) => setForm({ ...form, file: e.target.files?.[0]?.name ?? "" })} />
+                  <input
+                    type="file"
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    className="hidden"
+                    onChange={(e) => updateField("file", e.target.files?.[0]?.name ?? "")}
+                    disabled={isSubmitting}
+                  />
                   {form.file && <span className="text-[11.5px] font-semibold text-primary">{form.file}</span>}
                 </label>
+                <FieldError name="file" />
               </div>
 
-              <button type="submit" className="group inline-flex w-full items-center justify-center gap-2.5 rounded-[6px] bg-[linear-gradient(90deg,#3a2a75,#c62347)] px-6 py-3.5 font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-[1.01]">
-                Submit Request
-                <span className="grid h-6 w-6 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1">
-                  <Send className="h-3.5 w-3.5" />
-                </span>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="group inline-flex w-full items-center justify-center gap-2.5 rounded-[6px] bg-[linear-gradient(90deg,#3a2a75,#c62347)] px-6 py-3.5 font-bold text-primary-foreground shadow-glow-red transition-all duration-300 hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Submitting Request...
+                  </>
+                ) : (
+                  <>
+                    Submit Request
+                    <span className="grid h-6 w-6 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1">
+                      <Send className="h-3.5 w-3.5" />
+                    </span>
+                  </>
+                )}
               </button>
+
+              <div className="flex items-start gap-3 rounded-xl bg-indigo-50/70 p-4 ring-1 ring-indigo-100">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-indigo-600 shadow-soft">
+                  <Lock className="h-4 w-4" strokeWidth={1.8} />
+                </span>
+                <div>
+                  <p className="font-display text-[13px] font-bold text-secondary">Your information is private and secure</p>
+                  <p className="mt-0.5 text-[12px] leading-relaxed text-muted-foreground">
+                    We treat every submission with strict medical confidentiality. Your records are only reviewed by authorized vascular specialists and are never shared with third parties.
+                  </p>
+                </div>
+              </div>
 
               {status === "ok" && (
                 <p className="rounded-xl bg-primary/10 px-4 py-3 text-sm font-semibold text-primary" role="status">
                   Thank you — your request has been received. Our team will reach out shortly.
+                </p>
+              )}
+              {status === "error" && (
+                <p className="rounded-xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-600" role="alert">
+                  Something went wrong. Please try again or contact us directly.
                 </p>
               )}
             </form>
