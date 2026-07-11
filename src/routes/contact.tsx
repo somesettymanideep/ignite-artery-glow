@@ -260,14 +260,6 @@ function ContactForm() {
                 <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
                   Opp. Brahmanandam Orthopaedic Center, Bellapu Sobhanadri St, Kasturibai Peta, Vijayawada, Andhra Pradesh 520002
                 </p>
-                <a
-                  href="https://www.google.com/maps?q=Kasturibai+Peta,+Vijayawada"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-bold text-primary transition-all hover:gap-2.5"
-                >
-                  View on Google Maps <ArrowRight className="h-3.5 w-3.5" />
-                </a>
               </div>
             </div>
           </Reveal>
