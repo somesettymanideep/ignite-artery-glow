@@ -78,20 +78,27 @@ function Hero() {
       </div>
 
       <div className="relative mx-auto w-full max-w-7xl px-5 lg:px-8">
-        <Reveal variant="up" className="text-center sm:text-left">
-          <nav aria-label="Breadcrumb" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur-sm">
-            <Link to="/" className="font-semibold text-white/80 transition-colors hover:text-white">Home</Link>
-            <ChevronRight className="h-4 w-4 text-white/60" />
-            <span className="font-semibold text-primary-foreground">Contact Us</span>
-          </nav>
+        <div className="text-center sm:text-left">
+          <Reveal variant="up">
+            <nav aria-label="Breadcrumb" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur-sm">
+              <Link to="/" className="font-semibold text-white/80 transition-colors hover:text-white">Home</Link>
+              <ChevronRight className="h-4 w-4 text-white/60" />
+              <span className="font-semibold text-primary-foreground">Contact Us</span>
+            </nav>
+          </Reveal>
 
-          <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Contact Us
-          </h1>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/85 sm:mx-0 sm:text-lg">
-            Have questions or need expert vascular care? Our team in Vijayawada is ready to assist you with appointments and consultations.
-          </p>
-        </Reveal>
+          <Reveal variant="up" delay={0.08}>
+            <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Contact Us
+            </h1>
+          </Reveal>
+
+          <Reveal variant="up" delay={0.16}>
+            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/85 sm:mx-0 sm:text-lg">
+              Have questions or need expert vascular care? Our team in Vijayawada is ready to assist you with appointments and consultations.
+            </p>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
