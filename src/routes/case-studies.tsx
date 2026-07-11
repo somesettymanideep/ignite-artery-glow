@@ -204,14 +204,14 @@ function CaseStudiesPage() {
 
         <div className="mx-auto max-w-7xl px-5 py-5 lg:px-8">
           <Reveal variant="up">
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-2 overflow-x-auto flex-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {CATEGORIES.map((c) => {
                 const isActive = c.label === active;
                 return (
                   <button
                     key={c.label}
                     onClick={() => setActive(c.label)}
-                    className={`inline-flex items-center gap-2 rounded-md px-4 py-2.5 text-[13px] font-semibold transition-all ${
+                    className={`inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-md px-4 py-2.5 text-[13px] font-semibold transition-all ${
                       isActive
                         ? "bg-gradient-brand text-primary-foreground shadow-glow-red"
                         : "text-secondary/80 hover:bg-accent"
@@ -222,7 +222,7 @@ function CaseStudiesPage() {
                   </button>
                 );
               })}
-              <button className="ml-auto inline-flex items-center gap-2 rounded-md border border-border/70 bg-white px-4 py-2.5 text-[13px] font-semibold text-secondary/80 hover:bg-accent">
+              <button className="ml-auto inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-md border border-border/70 bg-white px-4 py-2.5 text-[13px] font-semibold text-secondary/80 hover:bg-accent">
                 Filter
                 <Filter className="h-4 w-4" strokeWidth={1.75} />
               </button>
