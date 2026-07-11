@@ -109,7 +109,8 @@ function Hero() {
             Advanced Vascular Care.<br />
             <span className="text-primary">Compassionate</span> Hearts.
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
+          <span className="mt-5 block h-[3px] w-16 rounded-full bg-secondary/70" />
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
             Ignite Vascular Center is a specialized vascular surgery and endovascular
             care center in Kasturibai Peta, Vijayawada. We diagnose and treat diseases
             affecting arteries, veins, and blood vessels using advanced technology and
