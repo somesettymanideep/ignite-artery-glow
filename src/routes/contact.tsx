@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import {
-  Phone, MapPin, Mail, Clock, MessageCircleHeart, CalendarCheck,
-  ChevronRight, User, Send, ArrowRight, MessageCircle,
+  Phone, MapPin, Mail, Clock, MessageCircleHeart,
+  ChevronRight, User, Send, MessageCircle,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
@@ -80,7 +80,7 @@ function Hero() {
       <div className="relative mx-auto w-full max-w-7xl px-5 lg:px-8">
         <div className="text-center sm:text-left">
           <Reveal variant="up">
-            <nav aria-label="Breadcrumb" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur-sm">
+            <nav aria-label="Breadcrumb" className="inline-flex items-center gap-2 rounded-full border-0 bg-white/10 px-4 py-2 text-sm backdrop-blur-sm">
               <Link to="/" className="font-semibold text-white/80 transition-colors hover:text-white">Home</Link>
               <ChevronRight className="h-4 w-4 text-white/60" />
               <span className="font-semibold text-primary-foreground">Contact Us</span>
@@ -256,44 +256,6 @@ function ContactForm() {
   );
 }
 
-function AppointmentBanner() {
-  return (
-    <section className="py-8 lg:py-10">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal variant="zoom" className="relative overflow-hidden rounded-[7px] bg-gradient-cta p-8 shadow-lift lg:p-10">
-          <svg className="pointer-events-none absolute inset-y-0 left-0 h-full w-64 opacity-30" viewBox="0 0 200 200" fill="none" aria-hidden>
-            <path d="M20 100 Q 60 40 100 100 T 180 100" stroke="white" strokeWidth="2" className="heartbeat-line" />
-            <path d="M10 140 Q 50 80 90 140 T 190 140" stroke="white" strokeWidth="2" className="heartbeat-line" />
-          </svg>
-          <div className="relative grid gap-6 md:grid-cols-[auto_1fr_auto] md:items-center">
-            <Reveal variant="left">
-              <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white text-primary shadow-lift animate-pulse-glow">
-                <CalendarCheck className="h-8 w-8" />
-              </span>
-            </Reveal>
-            <Reveal variant="up" delay={0.08}>
-              <div className="min-w-0 text-primary-foreground">
-                <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary-foreground/75">Need Immediate Assistance?</p>
-                <h3 className="mt-2 font-display text-2xl font-extrabold sm:text-3xl">Book Your Appointment Today!</h3>
-                <p className="mt-1.5 text-sm text-primary-foreground/85">Take the first step towards healthy circulation and a better life.</p>
-              </div>
-            </Reveal>
-            <Reveal variant="right" delay={0.16}>
-              <a href="tel:+919966117292" className="inline-flex items-center justify-center gap-2.5 rounded-full bg-white px-6 py-3.5 font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-105">
-                Book Appointment
-                <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-brand text-primary-foreground">
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </span>
-              </a>
-            </Reveal>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-
 function ContactPage() {
   return (
     <div className="min-h-screen bg-background">
@@ -301,7 +263,6 @@ function ContactPage() {
       <main>
         <Hero />
         <ContactForm />
-        <AppointmentBanner />
       </main>
       <Footer />
     </div>
