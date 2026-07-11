@@ -328,12 +328,12 @@ function Commitment() {
   return (
     <section className="bg-white pb-20">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 lg:grid-cols-2 lg:gap-14 lg:px-8">
-        <Reveal className="reveal">
+        <Reveal className="reveal" variant="left">
           <div className="overflow-hidden rounded-[7px] shadow-lift">
             <img src={surgeryImg} alt="Vascular surgery team" width={1200} height={900} loading="lazy" className="h-[340px] w-full object-cover" />
           </div>
         </Reveal>
-        <Reveal className="reveal" delay={0.12}>
+        <Reveal className="reveal" variant="right" delay={0.12}>
           <h2 className="font-display text-3xl font-black tracking-tight text-primary sm:text-4xl">
             Our Commitment to You
           </h2>
@@ -343,13 +343,15 @@ function Commitment() {
             well-being are at the heart of everything we do.
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {items.map((it) => (
-              <div key={it.title} className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-soft">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-                  <it.icon className="h-5 w-5" />
-                </span>
-                <span className="text-sm font-bold text-secondary">{it.title}</span>
-              </div>
+            {items.map((it, i) => (
+              <Reveal key={it.title} className="reveal" variant="up" delay={0.18 + i * 0.08}>
+                <div className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-soft">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
+                    <it.icon className="h-5 w-5" />
+                  </span>
+                  <span className="text-sm font-bold text-secondary">{it.title}</span>
+                </div>
+              </Reveal>
             ))}
           </div>
         </Reveal>
