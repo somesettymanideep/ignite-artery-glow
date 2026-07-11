@@ -110,7 +110,7 @@ const FAQS = [
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#f7f8fc] pt-28 lg:pt-32">
-      <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 pb-14 lg:grid-cols-[1fr_1.05fr] lg:gap-6 lg:pb-20 lg:px-8">
+      <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 pb-14 lg:grid-cols-[1.05fr_1fr] lg:gap-8 lg:pb-20 lg:px-8">
         {/* Left content */}
         <Reveal variant="left" className="z-10">
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -119,7 +119,7 @@ function Hero() {
             <span className="font-semibold text-secondary">Second Opinion</span>
           </nav>
 
-          <h1 className="mt-6 font-display text-[2.1rem] font-extrabold leading-[1.12] tracking-tight text-secondary sm:text-4xl lg:text-[2.85rem] xl:text-[3.1rem]">
+          <h1 className="mt-6 font-display text-[2.1rem] font-extrabold leading-[1.12] tracking-tight text-secondary sm:text-4xl lg:text-[2.55rem] xl:text-[2.85rem]">
             <span className="block lg:inline">Get Clarity. Get Confidence.</span>
             <span className="mt-2 block text-primary">Get a Second Opinion.</span>
           </h1>
@@ -131,15 +131,15 @@ function Hero() {
             confidence and peace of mind.
           </p>
 
-          <div className="mt-9 grid grid-cols-2 gap-x-6 gap-y-8 sm:flex sm:flex-wrap sm:items-start sm:gap-8 lg:gap-7">
+          <div className="mt-9 grid grid-cols-2 gap-x-4 gap-y-8 sm:flex sm:flex-nowrap sm:items-start sm:gap-6 lg:gap-7">
             {BADGES.map((b, i) => (
               <Reveal key={b.title} variant="up" delay={0.05 + i * 0.05} className="flex justify-center">
-                <div className="text-center w-[130px]">
-                  <span className="mx-auto grid h-[58px] w-[58px] place-items-center rounded-full bg-[#ede9f6] text-[#4a3b6b]">
-                    <b.icon className="h-6 w-6" strokeWidth={1.6} />
+                <div className="text-center w-[120px] sm:w-[124px]">
+                  <span className="mx-auto grid h-[54px] w-[54px] place-items-center rounded-full bg-[#ede9f6] text-[#4a3b6b]">
+                    <b.icon className="h-5 w-5" strokeWidth={1.6} />
                   </span>
-                  <p className="mt-3 font-display text-[13px] font-bold text-secondary">{b.title}</p>
-                  <p className="mt-1 text-[11.5px] leading-snug text-muted-foreground">{b.desc}</p>
+                  <p className="mt-3 font-display text-[12.5px] font-bold text-secondary">{b.title}</p>
+                  <p className="mt-1 text-[11px] leading-snug text-muted-foreground">{b.desc}</p>
                 </div>
               </Reveal>
             ))}
