@@ -76,6 +76,15 @@ function GalleryTwoPage() {
   const filtered = active === "All" ? IMAGES : IMAGES.filter((i) => i.cat === active);
   const [lightbox, setLightbox] = useState<number | null>(null);
 
+  const triggerRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const dialogRef = useRef<HTMLDivElement | null>(null);
+  const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+  const lastTriggerIndex = useRef<number | null>(null);
+
+  const open = useCallback((i: number) => {
+    lastTriggerIndex.current = i;
+    setLightbox(i);
+  }, []);
   const close = useCallback(() => setLightbox(null), []);
   const next = useCallback(
     () => setLightbox((i) => (i === null ? i : (i + 1) % filtered.length)),
@@ -86,26 +95,83 @@ function GalleryTwoPage() {
     [filtered.length],
   );
 
+  // Keyboard + body scroll lock + focus trap
   useEffect(() => {
     if (lightbox === null) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-      else if (e.key === "ArrowRight") next();
-      else if (e.key === "ArrowLeft") prev();
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+
+    const getFocusable = () => {
+      const root = dialogRef.current;
+      if (!root) return [] as HTMLElement[];
+      return Array.from(
+        root.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((el) => !el.hasAttribute("disabled"));
     };
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        close();
+      } else if (e.key === "ArrowRight") {
+        next();
+      } else if (e.key === "ArrowLeft") {
+        prev();
+      } else if (e.key === "Tab") {
+        const focusables = getFocusable();
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        const activeEl = document.activeElement as HTMLElement | null;
+        if (e.shiftKey && activeEl === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && activeEl === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
     window.addEventListener("keydown", onKey);
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+
+    // Move focus into the dialog on next frame (after mount)
+    const raf = requestAnimationFrame(() => {
+      closeBtnRef.current?.focus();
+    });
+
     return () => {
+      cancelAnimationFrame(raf);
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = prevOverflow;
+      // Return focus to the trigger that opened the lightbox
+      const idx = lastTriggerIndex.current;
+      const trigger = idx !== null ? triggerRefs.current[idx] : null;
+      (trigger ?? previouslyFocused)?.focus?.();
     };
   }, [lightbox, close, next, prev]);
+
+  // Preload neighbours for snappier transitions
+  useEffect(() => {
+    if (lightbox === null || filtered.length === 0) return;
+    const nextIdx = (lightbox + 1) % filtered.length;
+    const prevIdx = (lightbox - 1 + filtered.length) % filtered.length;
+    [nextIdx, prevIdx].forEach((i) => {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = filtered[i].src;
+    });
+  }, [lightbox, filtered]);
 
   // Reset lightbox when filter changes to avoid stale index
   useEffect(() => {
     setLightbox(null);
+    triggerRefs.current = [];
   }, [active]);
+
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background">
