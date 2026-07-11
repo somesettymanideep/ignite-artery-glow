@@ -706,6 +706,7 @@ function SecondOpinionPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+      <SubBanner title="Second Opinion" crumb="Second Opinion" image={secondOpinionBanner} />
       <main>
         <Hero />
         <HelpRibbon />
