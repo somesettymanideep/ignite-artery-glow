@@ -104,12 +104,22 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-body);
+    font-size: 1.075rem;
+    font-weight: 500;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+  }
+
+  p {
+    font-size: 1.075rem;
+    font-weight: 500;
+    line-height: 1.75;
   }
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
   }
+
 }
 
 /* ---------- Utilities ---------- */
