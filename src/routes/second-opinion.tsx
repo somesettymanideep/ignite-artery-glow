@@ -245,7 +245,7 @@ function HelpRibbon() {
 }
 
 function HowItWorks() {
-  const colors = ["bg-primary", "bg-primary", "bg-indigo-600", "bg-primary", "bg-indigo-600"];
+  const colors = ["bg-indigo-600", "bg-primary", "bg-indigo-600", "bg-primary", "bg-indigo-600"];
   return (
     <section id="how-it-works" className="bg-background py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
@@ -575,7 +575,10 @@ function RequestSection() {
 
         <Reveal variant="right">
           <div className="relative overflow-hidden rounded-[18px] bg-card p-7 shadow-soft ring-1 ring-border/60 lg:p-9">
-            <img src={whyImg} alt="" aria-hidden loading="lazy" width={800} height={800} className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.08]" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/2 overflow-hidden">
+              <img src={whyImg} alt="" aria-hidden loading="lazy" width={600} height={800} className="h-full w-full object-cover opacity-[0.18]" />
+              <div className="absolute inset-0 bg-gradient-to-r from-card via-card/70 to-transparent" />
+            </div>
             <div className="relative">
               <h2 className="font-display text-2xl font-extrabold text-indigo-700">
                 Why Choose a Second Opinion<br />at Ignite Vascular Center?
@@ -675,9 +678,6 @@ function CTABanner() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal variant="zoom">
           <div className="relative overflow-hidden rounded-[14px] bg-[linear-gradient(115deg,#3a2a75_0%,#5a2585_50%,#c62347_100%)] p-6 shadow-lift sm:p-8">
-            <svg className="pointer-events-none absolute inset-y-0 right-0 h-full w-72 opacity-30" viewBox="0 0 300 200" fill="none" aria-hidden>
-              <path d="M0 100 L60 100 L80 40 L100 160 L120 80 L140 100 L200 100 L220 60 L240 140 L260 100 L320 100" stroke="white" strokeWidth="2" className="heartbeat-line" />
-            </svg>
             <div className="relative grid items-center gap-5 md:grid-cols-[auto_1fr_auto]">
               <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-white text-primary shadow-lift animate-pulse-glow">
                 <CalendarCheck className="h-7 w-7" />
