@@ -110,7 +110,7 @@ const FAQS = [
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#f7f8fc] pt-28 lg:pt-32">
-      <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 pb-14 lg:grid-cols-[1.1fr_1fr] lg:gap-0 lg:pb-20 lg:px-8">
+      <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 pb-14 lg:grid-cols-[1fr_1.05fr] lg:gap-6 lg:pb-20 lg:px-8">
         {/* Left content */}
         <Reveal variant="left" className="z-10">
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -119,8 +119,8 @@ function Hero() {
             <span className="font-semibold text-secondary">Second Opinion</span>
           </nav>
 
-          <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.12] tracking-tight text-secondary sm:text-5xl lg:text-[3.1rem]">
-            Get Clarity. Get Confidence.
+          <h1 className="mt-6 font-display text-[2.1rem] font-extrabold leading-[1.12] tracking-tight text-secondary sm:text-4xl lg:text-[2.85rem] xl:text-[3.1rem]">
+            <span className="block lg:inline">Get Clarity. Get Confidence.</span>
             <span className="mt-2 block text-primary">Get a Second Opinion.</span>
           </h1>
           <div className="mt-4 h-[3px] w-12 rounded-full bg-primary" />
@@ -131,10 +131,10 @@ function Hero() {
             confidence and peace of mind.
           </p>
 
-          <div className="mt-9 flex flex-wrap gap-8 sm:gap-10 lg:gap-8">
+          <div className="mt-9 grid grid-cols-2 gap-x-6 gap-y-8 sm:flex sm:flex-wrap sm:items-start sm:gap-8 lg:gap-7">
             {BADGES.map((b, i) => (
-              <Reveal key={b.title} variant="up" delay={0.08 + i * 0.06} className="w-[calc(50%-1rem)] sm:w-auto">
-                <div className="text-center sm:w-[120px]">
+              <Reveal key={b.title} variant="up" delay={0.05 + i * 0.05} className="flex justify-center">
+                <div className="text-center w-[130px]">
                   <span className="mx-auto grid h-[58px] w-[58px] place-items-center rounded-full bg-[#ede9f6] text-[#4a3b6b]">
                     <b.icon className="h-6 w-6" strokeWidth={1.6} />
                   </span>
@@ -160,20 +160,20 @@ function Hero() {
         </Reveal>
 
         {/* Right image */}
-        <Reveal variant="right" delay={0.15} className="relative lg:-mr-8 xl:-mr-12">
+        <Reveal variant="right" delay={0.12} className="relative lg:-mr-[max(2rem,calc((100vw-1280px)/2))]">
           <div className="relative h-[420px] sm:h-[520px] lg:h-[600px]">
             {/* Curved divider SVG */}
             <svg
-              className="absolute top-0 -left-1 z-10 h-full w-20 lg:w-28"
+              className="absolute top-0 left-0 z-10 h-full w-16 lg:w-24"
               viewBox="0 0 120 600"
               preserveAspectRatio="none"
               fill="none"
               aria-hidden="true"
             >
               <path
-                d="M120,0 C20,120 20,480 120,600"
+                d="M120,0 C30,120 30,480 120,600"
                 stroke="#453660"
-                strokeWidth="18"
+                strokeWidth="12"
                 strokeLinecap="round"
               />
             </svg>
@@ -188,21 +188,19 @@ function Hero() {
               />
             </div>
 
-            <Reveal variant="up" delay={0.35}>
-              <div className="absolute -bottom-5 left-4 right-4 z-20 rounded-xl bg-white p-5 shadow-lift sm:left-6 sm:right-auto sm:max-w-[340px]">
-                <div className="flex items-start gap-4">
-                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-red-50 text-primary">
-                    <ShieldCheck className="h-5 w-5" strokeWidth={1.8} />
-                  </span>
-                  <div>
-                    <p className="font-display text-[14px] font-extrabold text-secondary">Not Sure About Your Diagnosis or Treatment?</p>
-                    <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">
-                      A second opinion can help you explore better options and ensure the right care for your vascular health.
-                    </p>
-                  </div>
+            <div className="absolute -bottom-5 left-4 right-4 z-20 rounded-xl bg-white p-5 shadow-lift sm:left-6 sm:right-auto sm:max-w-[340px]">
+              <div className="flex items-start gap-4">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-red-50 text-primary">
+                  <ShieldCheck className="h-5 w-5" strokeWidth={1.8} />
+                </span>
+                <div>
+                  <p className="font-display text-[14px] font-extrabold text-secondary">Not Sure About Your Diagnosis or Treatment?</p>
+                  <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">
+                    A second opinion can help you explore better options and ensure the right care for your vascular health.
+                  </p>
                 </div>
               </div>
-            </Reveal>
+            </div>
           </div>
         </Reveal>
       </div>
