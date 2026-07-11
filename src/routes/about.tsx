@@ -367,16 +367,20 @@ function CTA() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal className="reveal relative overflow-hidden rounded-[5px] bg-gradient-to-r from-secondary via-[oklch(0.35_0.14_340)] to-primary p-8 shadow-lift sm:p-10">
           <div className="grid items-center gap-6 sm:grid-cols-[1fr_auto]">
-            <div className="text-primary-foreground">
-              <h3 className="font-display text-2xl font-black sm:text-3xl">Take the First Step Towards Better Circulation</h3>
-              <p className="mt-2 text-sm text-primary-foreground/85">Our team is here to help you live a healthier, pain-free life.</p>
-            </div>
-            <Link to="/contact" className="inline-flex items-center gap-3 self-start rounded-full bg-white px-6 py-3 text-sm font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-[1.03] sm:self-auto">
-              Book Appointment
-              <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-primary-foreground">
-                <ArrowRight className="h-3.5 w-3.5" />
-              </span>
-            </Link>
+            <Reveal className="reveal" variant="left">
+              <div className="text-primary-foreground">
+                <h3 className="font-display text-2xl font-black sm:text-3xl">Take the First Step Towards Better Circulation</h3>
+                <p className="mt-2 text-sm text-primary-foreground/85">Our team is here to help you live a healthier, pain-free life.</p>
+              </div>
+            </Reveal>
+            <Reveal className="reveal" variant="zoom" delay={0.14}>
+              <Link to="/contact" className="inline-flex items-center gap-3 self-start rounded-full bg-white px-6 py-3 text-sm font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-[1.03] sm:self-auto">
+                Book Appointment
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-primary-foreground">
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </Link>
+            </Reveal>
           </div>
           <div className="pointer-events-none absolute -right-6 -top-8 h-56 w-56 rounded-full bg-white/10 blur-2xl" aria-hidden />
         </Reveal>
