@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import {
-  Phone, Menu, X, MapPin, Mail, Clock, MessageCircleHeart, CalendarCheck,
+  Phone, MapPin, Mail, Clock, MessageCircleHeart, CalendarCheck,
   ChevronRight, User, Send, ArrowRight, Facebook, Instagram,
   Youtube, MessageCircle, Heart,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
+import { Navbar } from "@/components/home/Navbar";
 import servicesImg from "@/assets/contact-services.jpg";
 
 export const Route = createFileRoute("/contact")({
