@@ -238,7 +238,7 @@ function CaseStudiesPage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((c, i) => (
               <Reveal key={c.title} variant="up" delay={(i % 3) * 0.08}>
-                <article className="group flex h-full flex-col overflow-hidden rounded-[7px] bg-white shadow-soft ring-1 ring-border/60 transition-all duration-500 hover:-translate-y-1 hover:shadow-lift">
+                <article className="group flex h-full flex-col overflow-hidden rounded-[7px] bg-white shadow-lift ring-1 ring-border/60 transition-all duration-500 hover:-translate-y-1 hover:shadow-glow-indigo">
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <img
                       src={c.image}
