@@ -73,9 +73,42 @@ const IMAGES: { src: string; alt: string; cat: string }[] = [
 function GalleryTwoPage() {
   const [active, setActive] = useState("All");
   const filtered = active === "All" ? IMAGES : IMAGES.filter((i) => i.cat === active);
+  const [lightbox, setLightbox] = useState<number | null>(null);
+
+  const close = useCallback(() => setLightbox(null), []);
+  const next = useCallback(
+    () => setLightbox((i) => (i === null ? i : (i + 1) % filtered.length)),
+    [filtered.length],
+  );
+  const prev = useCallback(
+    () => setLightbox((i) => (i === null ? i : (i - 1 + filtered.length) % filtered.length)),
+    [filtered.length],
+  );
+
+  useEffect(() => {
+    if (lightbox === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowRight") next();
+      else if (e.key === "ArrowLeft") prev();
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [lightbox, close, next, prev]);
+
+  // Reset lightbox when filter changes to avoid stale index
+  useEffect(() => {
+    setLightbox(null);
+  }, [active]);
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background">
+
       <Navbar />
       <SubBanner title="Gallery" crumb="Gallery" image={galleryBanner} />
 
