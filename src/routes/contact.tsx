@@ -350,7 +350,7 @@ function ContactFooter() {
 function ContactPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Nav />
+      <Navbar />
       <main>
         <Hero />
         <ContactForm />
