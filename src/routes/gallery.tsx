@@ -228,7 +228,10 @@ function GalleryTwoPage() {
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((img, i) => (
             <Reveal key={`${img.alt}-${i}`} variant="up" delay={(i % 3) * 0.08}>
-              <figure className="group relative h-56 overflow-hidden rounded-[14px] shadow-soft sm:h-60 lg:h-64">
+              <figure
+                onClick={() => setLightbox(i)}
+                className="group relative h-56 cursor-zoom-in overflow-hidden rounded-[14px] shadow-soft sm:h-60 lg:h-64"
+              >
                 <img
                   src={img.src}
                   alt={img.alt}
@@ -244,6 +247,7 @@ function GalleryTwoPage() {
           ))}
         </div>
       </section>
+
 
       {/* CTA banner */}
       <section className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
