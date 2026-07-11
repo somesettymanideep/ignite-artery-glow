@@ -110,58 +110,75 @@ const FAQS = [
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#f7f8fc] pt-28 lg:pt-32">
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pb-12 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:pb-16 lg:px-8">
-        <Reveal variant="left">
+      <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 pb-14 lg:grid-cols-[1.1fr_1fr] lg:gap-0 lg:pb-20 lg:px-8">
+        {/* Left content */}
+        <Reveal variant="left" className="z-10">
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-muted-foreground">
             <Link to="/" className="font-semibold hover:text-primary">Home</Link>
             <ChevronRight className="h-3.5 w-3.5" />
             <span className="font-semibold text-secondary">Second Opinion</span>
           </nav>
 
-          <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-secondary sm:text-5xl lg:text-[3.25rem]">
+          <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.12] tracking-tight text-secondary sm:text-5xl lg:text-[3.1rem]">
             Get Clarity. Get Confidence.
             <span className="mt-2 block text-primary">Get a Second Opinion.</span>
           </h1>
-          <div className="mt-4 h-1 w-16 rounded-full bg-primary/70" />
+          <div className="mt-4 h-[3px] w-12 rounded-full bg-primary" />
 
-          <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
+          <p className="mt-5 max-w-lg text-[15px] leading-[1.75] text-muted-foreground">
             Your health decisions matter. Our expert vascular specialists provide a thorough
             review of your diagnosis and treatment plan so you can move forward with
             confidence and peace of mind.
           </p>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-9 flex flex-wrap gap-8 sm:gap-10 lg:gap-8">
             {BADGES.map((b, i) => (
-              <Reveal key={b.title} variant="up" delay={0.08 + i * 0.06}>
-                <div className="text-center">
-                  <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100">
-                    <b.icon className="h-6 w-6" strokeWidth={1.75} />
+              <Reveal key={b.title} variant="up" delay={0.08 + i * 0.06} className="w-[calc(50%-1rem)] sm:w-auto">
+                <div className="text-center sm:w-[120px]">
+                  <span className="mx-auto grid h-[58px] w-[58px] place-items-center rounded-full bg-[#ede9f6] text-[#4a3b6b]">
+                    <b.icon className="h-6 w-6" strokeWidth={1.6} />
                   </span>
-                  <p className="mt-3 font-display text-[13.5px] font-bold text-secondary">{b.title}</p>
+                  <p className="mt-3 font-display text-[13px] font-bold text-secondary">{b.title}</p>
                   <p className="mt-1 text-[11.5px] leading-snug text-muted-foreground">{b.desc}</p>
                 </div>
               </Reveal>
             ))}
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <a href="#request" className="group inline-flex items-center gap-2 rounded-[6px] bg-gradient-brand px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-[1.02]">
+          <div className="mt-9 flex flex-wrap items-center gap-4">
+            <a href="#request" className="group inline-flex items-center gap-3 rounded-lg bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-glow-red transition-transform duration-300 hover:scale-[1.02]">
               Request Second Opinion
               <span className="grid h-6 w-6 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1">
                 <ArrowRight className="h-3.5 w-3.5" />
               </span>
             </a>
-            <a href="#how-it-works" className="inline-flex items-center gap-2 rounded-[6px] border-2 border-secondary/15 bg-white px-6 py-3.5 text-sm font-bold text-secondary transition-colors hover:border-primary hover:text-primary">
+            <a href="#how-it-works" className="inline-flex items-center gap-2 rounded-lg border-2 border-secondary/15 bg-white px-6 py-3.5 text-sm font-bold text-secondary transition-colors hover:border-primary hover:text-primary">
               How It Works
               <PlayCircle className="h-4 w-4" />
             </a>
           </div>
         </Reveal>
 
-        <Reveal variant="right" delay={0.15}>
-          <div className="relative">
-            <div className="absolute -left-6 top-8 hidden h-[85%] w-24 rounded-r-[80%] bg-primary/10 lg:block" aria-hidden />
-            <div className="relative overflow-hidden rounded-[24px]">
+        {/* Right image */}
+        <Reveal variant="right" delay={0.15} className="relative lg:-mr-8 xl:-mr-12">
+          <div className="relative h-[420px] sm:h-[520px] lg:h-[600px]">
+            {/* Curved divider SVG */}
+            <svg
+              className="absolute top-0 -left-1 z-10 h-full w-20 lg:w-28"
+              viewBox="0 0 120 600"
+              preserveAspectRatio="none"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M120,0 C20,120 20,480 120,600"
+                stroke="#453660"
+                strokeWidth="18"
+                strokeLinecap="round"
+              />
+            </svg>
+
+            <div className="absolute inset-0 overflow-hidden rounded-l-[60px] sm:rounded-l-[80px] lg:rounded-l-[120px]">
               <img
                 src={heroImg}
                 alt="Anatomical illustration of the vascular tree"
@@ -170,14 +187,15 @@ function Hero() {
                 className="h-full w-full object-cover"
               />
             </div>
+
             <Reveal variant="up" delay={0.35}>
-              <div className="glass-card absolute -bottom-6 left-4 right-4 rounded-2xl bg-white/95 p-5 shadow-lift sm:left-8 sm:right-auto sm:max-w-sm">
-                <div className="flex items-start gap-3">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-primary/10 text-primary">
-                    <ShieldCheck className="h-5 w-5" />
+              <div className="absolute -bottom-5 left-4 right-4 z-20 rounded-xl bg-white p-5 shadow-lift sm:left-6 sm:right-auto sm:max-w-[340px]">
+                <div className="flex items-start gap-4">
+                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-red-50 text-primary">
+                    <ShieldCheck className="h-5 w-5" strokeWidth={1.8} />
                   </span>
                   <div>
-                    <p className="font-display text-sm font-extrabold text-secondary">Not Sure About Your Diagnosis or Treatment?</p>
+                    <p className="font-display text-[14px] font-extrabold text-secondary">Not Sure About Your Diagnosis or Treatment?</p>
                     <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">
                       A second opinion can help you explore better options and ensure the right care for your vascular health.
                     </p>
