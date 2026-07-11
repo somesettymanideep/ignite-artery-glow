@@ -409,7 +409,7 @@ function AboutPage() {
   useEffect(() => { window.scrollTo({ top: 0 }); }, []);
   return (
     <div className="bg-white">
-      <Nav />
+      <Navbar />
       <Hero />
       <MissionVision />
       <WhyChoose />
