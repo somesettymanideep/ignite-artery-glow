@@ -13,6 +13,7 @@ import { Route as TreatmentsRouteImport } from './routes/treatments'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SecondOpinionRouteImport } from './routes/second-opinion'
 import { Route as Home2RouteImport } from './routes/home-2'
+import { Route as Gallery2RouteImport } from './routes/gallery-2'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
@@ -36,6 +37,11 @@ const SecondOpinionRoute = SecondOpinionRouteImport.update({
 const Home2Route = Home2RouteImport.update({
   id: '/home-2',
   path: '/home-2',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Gallery2Route = Gallery2RouteImport.update({
+  id: '/gallery-2',
+  path: '/gallery-2',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
+  '/gallery-2': typeof Gallery2Route
   '/home-2': typeof Home2Route
   '/second-opinion': typeof SecondOpinionRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
+  '/gallery-2': typeof Gallery2Route
   '/home-2': typeof Home2Route
   '/second-opinion': typeof SecondOpinionRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
+  '/gallery-2': typeof Gallery2Route
   '/home-2': typeof Home2Route
   '/second-opinion': typeof SecondOpinionRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/gallery'
+    | '/gallery-2'
     | '/home-2'
     | '/second-opinion'
     | '/sitemap.xml'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/gallery'
+    | '/gallery-2'
     | '/home-2'
     | '/second-opinion'
     | '/sitemap.xml'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/gallery'
+    | '/gallery-2'
     | '/home-2'
     | '/second-opinion'
     | '/sitemap.xml'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   GalleryRoute: typeof GalleryRoute
+  Gallery2Route: typeof Gallery2Route
   Home2Route: typeof Home2Route
   SecondOpinionRoute: typeof SecondOpinionRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -162,6 +175,13 @@ declare module '@tanstack/react-router' {
       path: '/home-2'
       fullPath: '/home-2'
       preLoaderRoute: typeof Home2RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery-2': {
+      id: '/gallery-2'
+      path: '/gallery-2'
+      fullPath: '/gallery-2'
+      preLoaderRoute: typeof Gallery2RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   GalleryRoute: GalleryRoute,
+  Gallery2Route: Gallery2Route,
   Home2Route: Home2Route,
   SecondOpinionRoute: SecondOpinionRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
