@@ -7,7 +7,9 @@ import {
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
+import { SubBanner } from "@/components/home/SubBanner";
 import servicesImg from "@/assets/contact-services.jpg";
+import treatmentsBanner from "@/assets/about-surgery.jpg";
 
 export const Route = createFileRoute("/treatments")({
   head: () => ({
