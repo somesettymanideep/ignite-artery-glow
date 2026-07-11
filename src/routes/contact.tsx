@@ -68,8 +68,8 @@ function Hero() {
       </div>
 
       {/* Decorative bottom curve */}
-      <div className="absolute bottom-0 left-0 right-0" aria-hidden>
-        <svg className="h-12 w-full text-background sm:h-16 lg:h-20" viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <div className="absolute -bottom-px left-0 right-0" aria-hidden>
+        <svg className="block h-12 w-full text-background sm:h-16 lg:h-20" viewBox="0 0 1440 120" preserveAspectRatio="none">
           <path
             fill="currentColor"
             d="M0,64 C480,120 960,0 1440,64 L1440,120 L0,120 Z"
