@@ -4,8 +4,9 @@ import {
   Phone, Target, Eye, UserCheck, Sparkles, Scissors, HeartHandshake,
   ShieldCheck, Siren, CheckCircle2, ArrowRight, Users, ShieldCheck as ShieldIcon,
   Smile, Activity, Clock, Microscope, Lightbulb, BookOpenCheck, MessagesSquare,
-  Stethoscope,
+  Stethoscope, ChevronRight,
 } from "lucide-react";
+import servicesImg from "@/assets/contact-services.jpg";
 import { Reveal, useCountUp } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
