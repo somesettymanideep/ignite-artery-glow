@@ -55,7 +55,7 @@
   --secondary: oklch(0.35 0.075 300);
   --secondary-foreground: oklch(1 0 0);
   --muted: oklch(0.965 0.005 260);
-  --muted-foreground: oklch(0 0 0);
+  --muted-foreground: oklch(0.5 0.015 280);
   --accent: oklch(0.95 0.02 300);
   --accent-foreground: oklch(0.35 0.075 300);
   --destructive: oklch(0.577 0.245 27.325);
@@ -109,16 +109,6 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-  }
-
-  p {
-    color: #000;
-    font-weight: 500;
-  }
-
-  .text-muted-foreground {
-    color: #000 !important;
-    font-weight: 500;
   }
 }
 
