@@ -103,7 +103,7 @@ function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#f5f6f8] pt-28 lg:pt-32">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pb-16 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:px-8 lg:pb-24">
-        <Reveal className="reveal">
+        <Reveal className="reveal" variant="left">
           <span className="inline-block text-xs font-bold uppercase tracking-[0.28em] text-primary">About Us</span>
           <h1 className="mt-4 font-display text-4xl font-black leading-[1.05] tracking-tight text-secondary sm:text-5xl lg:text-6xl">
             Advanced Vascular Care.<br />
@@ -126,7 +126,7 @@ function Hero() {
           </div>
         </Reveal>
 
-        <Reveal className="reveal" delay={0.12}>
+        <Reveal className="reveal" variant="right" delay={0.14}>
           <div className="relative">
             {/* gradient arc frame */}
             <div className="absolute -left-4 -top-4 -bottom-4 w-40 rounded-l-[220px] bg-gradient-to-b from-primary via-primary/70 to-secondary opacity-90 blur-[0.5px]" aria-hidden />
