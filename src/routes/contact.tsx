@@ -189,7 +189,7 @@ function ContactForm() {
             </form>
           </Reveal>
 
-          <Reveal variant="up" delay={0.1} className="relative overflow-hidden rounded-[2rem] shadow-soft">
+          <Reveal variant="up" delay={0.1} className="relative overflow-hidden rounded-[7px] shadow-soft">
             <div className="relative min-h-[360px] lg:min-h-[420px]">
               <iframe
                 title="Ignite Vascular Center — Kasturibai Peta, Vijayawada"
@@ -260,7 +260,7 @@ function AppointmentBanner() {
   return (
     <section className="py-8 lg:py-10">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal variant="zoom" className="relative overflow-hidden rounded-[2rem] bg-gradient-cta p-8 shadow-lift lg:p-10">
+        <Reveal variant="zoom" className="relative overflow-hidden rounded-[7px] bg-gradient-cta p-8 shadow-lift lg:p-10">
           <svg className="pointer-events-none absolute inset-y-0 left-0 h-full w-64 opacity-30" viewBox="0 0 200 200" fill="none" aria-hidden>
             <path d="M20 100 Q 60 40 100 100 T 180 100" stroke="white" strokeWidth="2" className="heartbeat-line" />
             <path d="M10 140 Q 50 80 90 140 T 190 140" stroke="white" strokeWidth="2" className="heartbeat-line" />
