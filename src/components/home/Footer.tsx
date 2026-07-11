@@ -34,7 +34,7 @@ export function Footer() {
                 Ignite <span className="text-primary">Vascular</span> Center
               </span>
             </Link>
-            <p className="mt-5 text-sm font-semibold leading-relaxed text-black">
+            <p className="mt-5 text-sm leading-relaxed text-primary-foreground/75">
               Ignite Vascular Center is a specialized vascular surgery and endovascular care center in Vijayawada, providing advanced treatment with compassion and excellence.
             </p>
             <div className="mt-6 flex items-center gap-3">
