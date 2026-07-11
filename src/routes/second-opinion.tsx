@@ -589,7 +589,7 @@ function RequestSection() {
                 {WHY.map((w, i) => (
                   <Reveal key={w.title} variant="up" delay={0.08 + i * 0.08}>
                     <div className="flex items-start gap-4">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white text-indigo-600 shadow-soft ring-1 ring-border/60">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#ede9f6] text-[#4a3b6b] ring-1 ring-[#e3ddf1]">
                         <w.icon className="h-5 w-5" strokeWidth={1.75} />
                       </span>
                       <div>
