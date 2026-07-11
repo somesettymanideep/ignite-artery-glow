@@ -153,7 +153,7 @@ function Hero() {
 
       <div className="relative mx-auto w-full max-w-7xl px-5 lg:px-8">
         <Reveal variant="up" className="text-center sm:text-left">
-          <nav aria-label="Breadcrumb" className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm backdrop-blur-sm">
+          <nav aria-label="Breadcrumb" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur-sm">
             <Link to="/" className="font-semibold text-white/80 transition-colors hover:text-white">Home</Link>
             <ChevronRight className="h-4 w-4 text-white/60" />
             <span className="font-semibold text-primary-foreground">Contact Us</span>
