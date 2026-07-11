@@ -288,6 +288,62 @@ function GalleryTwoPage() {
 
       <Footer />
       <FloatingEmergency />
+
+      {/* Lightbox */}
+      {lightbox !== null && filtered[lightbox] && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={filtered[lightbox].alt}
+          onClick={close}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm animate-fade-in"
+        >
+          <button
+            onClick={(e) => { e.stopPropagation(); close(); }}
+            aria-label="Close"
+            className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+          >
+            <X className="h-5 w-5" />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); prev(); }}
+            aria-label="Previous image"
+            className="absolute left-3 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:left-6"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); next(); }}
+            aria-label="Next image"
+            className="absolute right-3 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:right-6"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+
+          <figure
+            onClick={(e) => e.stopPropagation()}
+            className="relative flex max-h-[90vh] max-w-[92vw] flex-col items-center gap-4 animate-scale-in"
+          >
+            <img
+              src={filtered[lightbox].src}
+              alt={filtered[lightbox].alt}
+              className="max-h-[78vh] max-w-full rounded-[10px] object-contain shadow-lift"
+            />
+            <figcaption className="w-full max-w-2xl text-center">
+              <span className="text-[10px] font-semibold uppercase tracking-widest text-white/60">
+                {filtered[lightbox].cat}
+              </span>
+              <p className="mt-1 font-display text-lg font-bold text-white">
+                {filtered[lightbox].alt}
+              </p>
+              <p className="mt-1 text-xs text-white/50">
+                {lightbox + 1} / {filtered.length}
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      )}
     </div>
   );
 }
+
