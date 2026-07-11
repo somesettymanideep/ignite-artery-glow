@@ -146,7 +146,7 @@ function Hero() {
           </div>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a href="#request" className="group inline-flex items-center gap-3 rounded-lg bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-glow-red transition-transform duration-300 hover:scale-[1.02]">
+            <a href="#request" className="group inline-flex items-center gap-3 rounded-[6px] bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-glow-red transition-transform duration-300 hover:scale-[1.02]">
               Request Second Opinion
               <span className="grid h-6 w-6 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1">
                 <ArrowRight className="h-3.5 w-3.5" />
