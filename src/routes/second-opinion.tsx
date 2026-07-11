@@ -120,8 +120,8 @@ function Hero() {
           </nav>
 
           <h1 className="mt-6 font-display text-[2.1rem] font-extrabold leading-[1.12] tracking-tight text-secondary sm:text-4xl lg:text-[2.4rem] xl:text-[2.65rem]">
-            <span className="block lg:inline lg:whitespace-nowrap">Get Clarity. Get Confidence.</span>
-            <span className="mt-2 block text-primary">Get a Second Opinion.</span>
+            <span className="block">Get a Second Opinion.</span>
+            <span className="mt-2 block text-primary">Make the Right Decision</span>
           </h1>
           <div className="mt-4 h-[3px] w-12 rounded-full bg-primary" />
 
