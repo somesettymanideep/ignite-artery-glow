@@ -336,12 +336,16 @@ function MetaCell({
   value: string;
 }) {
   return (
-    <div className="flex flex-col items-center gap-1 text-center">
-      <Icon className="h-4 w-4 text-primary" strokeWidth={1.75} />
-      <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-        {label}
+    <div className="flex items-start gap-2">
+      <Icon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" strokeWidth={1.75} />
+      <div className="min-w-0">
+        <div className="text-[9.5px] font-semibold uppercase tracking-wider text-muted-foreground">
+          {label}
+        </div>
+        <div className="mt-0.5 text-[12px] font-bold text-secondary">{value}</div>
       </div>
-      <div className="text-xs font-bold text-secondary">{value}</div>
     </div>
   );
+}
+
 }
