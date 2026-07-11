@@ -325,7 +325,7 @@ function SubBanner() {
     <section className="relative h-[300px] overflow-hidden pt-20">
       <div className="absolute inset-0">
         <img
-          src={servicesImg}
+          src={aboutBanner}
           alt="About Ignite Vascular Center"
           className="h-full w-full object-cover"
         />
