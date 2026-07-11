@@ -158,16 +158,18 @@ function MissionVision() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal className="reveal rounded-3xl bg-[#f6f4f9] p-6 sm:p-10">
           <div className="grid gap-8 sm:grid-cols-2 sm:divide-x sm:divide-secondary/15">
-            {items.map((it) => (
-              <div key={it.title} className="flex items-start gap-5 sm:px-4 lg:px-8">
-                <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white shadow-soft">
-                  <it.icon strokeWidth={1.75} className="h-7 w-7 text-primary" />
-                </span>
-                <div>
-                  <h3 className="font-display text-sm font-extrabold uppercase tracking-[0.22em] text-secondary">{it.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{it.body}</p>
+            {items.map((it, i) => (
+              <Reveal key={it.title} className="reveal" variant="up" delay={i * 0.1}>
+                <div className="flex items-start gap-5 sm:px-4 lg:px-8">
+                  <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white shadow-soft">
+                    <it.icon strokeWidth={1.75} className="h-7 w-7 text-primary" />
+                  </span>
+                  <div>
+                    <h3 className="font-display text-sm font-extrabold uppercase tracking-[0.22em] text-secondary">{it.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{it.body}</p>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </Reveal>
