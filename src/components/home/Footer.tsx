@@ -51,9 +51,9 @@ export function Footer() {
             <h4 className="font-display text-base font-bold">Quick Links</h4>
             <ul className="mt-5 space-y-2.5 text-sm text-primary-foreground/75">
               {quickLinks.map((q) => (
-                <li key={q}>
-                  <Link to={quickLinkTo(q)} className="hover:text-primary-foreground">
-                    {q}
+                <li key={q.label}>
+                  <Link to={q.to} className="hover:text-primary-foreground">
+                    {q.label}
                   </Link>
                 </li>
               ))}
