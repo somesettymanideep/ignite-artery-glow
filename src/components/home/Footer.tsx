@@ -84,7 +84,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact + newsletter */}
+          {/* Contact */}
           <div>
             <h3 className="font-display text-base font-bold">Contact Us</h3>
             <ul className="mt-5 space-y-3.5 text-sm text-secondary-foreground/70">
@@ -105,28 +105,6 @@ export function Footer() {
                 Mon – Sat · 9:00 AM – 8:00 PM
               </li>
             </ul>
-
-            <div className="glass-dark mt-6 rounded-2xl p-2">
-              <form
-                className="flex items-center gap-2"
-                onSubmit={(e) => e.preventDefault()}
-                aria-label="Newsletter signup"
-              >
-                <input
-                  type="email"
-                  required
-                  placeholder="Your email for health tips"
-                  className="w-full min-w-0 bg-transparent px-3 py-2 text-sm text-secondary-foreground placeholder:text-secondary-foreground/50 focus:outline-none"
-                />
-                <button
-                  type="submit"
-                  aria-label="Subscribe"
-                  className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-brand transition-transform duration-300 hover:scale-110"
-                >
-                  <Send className="h-4 w-4" />
-                </button>
-              </form>
-            </div>
           </div>
         </div>
 
