@@ -316,7 +316,7 @@ function Commitment() {
     <section className="bg-white pb-20">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 lg:grid-cols-2 lg:gap-14 lg:px-8">
         <Reveal className="reveal">
-          <div className="overflow-hidden rounded-3xl shadow-lift">
+          <div className="overflow-hidden rounded-[7px] shadow-lift">
             <img src={surgeryImg} alt="Vascular surgery team" width={1200} height={900} loading="lazy" className="h-[340px] w-full object-cover" />
           </div>
         </Reveal>
