@@ -1,130 +1,123 @@
-import { useEffect, useState } from "react";
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube, ArrowUp } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { Facebook, Instagram, Youtube, MessageCircle, MapPin, Phone, Mail, Clock, Heart } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 
-const quickLinks = ["Home", "About", "Services", "Why Us", "Testimonials", "Contact"];
+const quickLinks = ["Home", "About Us", "Services", "Treatments", "Our Doctor", "Testimonials", "Blog", "Contact Us"];
 const serviceLinks = [
-  "Varicose Vein Treatment",
-  "Peripheral Artery Disease",
-  "Diabetic Foot Care",
+  "Varicose Veins Treatment",
   "Endovascular Procedures",
-  "Carotid Artery Disease",
-  "Dialysis Access Surgery",
+  "Peripheral Arterial Disease (PAD)",
+  "Deep Vein Thrombosis (DVT)",
+  "Diabetic Foot Care",
+  "Vascular Ultrasound & Diagnosis",
+  "Balloon Angioplasty",
+  "Arterial Bypass Surgery",
 ];
 
+const quickLinkTo = (label: string) => {
+  switch (label) {
+    case "Home": return "/";
+    case "About Us": return "/about";
+    case "Contact Us": return "/contact";
+    case "Services":
+    case "Treatments": return "/#services";
+    case "Our Doctor": return "/about";
+    case "Testimonials": return "/#testimonials";
+    default: return "#";
+  }
+};
 
 export function Footer() {
-  const [showTop, setShowTop] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setShowTop(window.scrollY > 600);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <footer id="contact" className="relative overflow-hidden bg-indigo-deep text-secondary-foreground">
-      <Reveal variant="up" className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
+    <footer className="bg-secondary text-primary-foreground">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-[1.1fr_0.8fr_1fr_1.1fr] lg:px-8">
+        <Reveal className="reveal" variant="up" delay={0}>
           <div>
-            <div className="flex items-center gap-3">
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-brand text-lg font-bold text-primary-foreground">
-                IV
+            <Link to="/" className="flex items-center gap-2.5">
+              <span className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-brand font-display text-sm font-bold shadow-glow-red">IV</span>
+              <span className="font-display text-lg font-extrabold">
+                Ignite <span className="text-primary">Vascular</span> Center
               </span>
-              <span className="leading-tight">
-                <span className="block font-display text-lg font-bold">Ignite Vascular</span>
-                <span className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-secondary-foreground/60">
-                  Center · Vijayawada
-                </span>
-              </span>
-            </div>
-            <p className="mt-5 text-sm leading-relaxed text-secondary-foreground/70">
-              Specialized Vascular Surgery &amp; Endovascular Care Center providing advanced,
-              compassionate treatment for arteries, veins and blood vessels.
+            </Link>
+            <p className="mt-5 text-sm leading-relaxed text-primary-foreground/75">
+              Ignite Vascular Center is a specialized vascular surgery and endovascular care center in Vijayawada, providing advanced treatment with compassion and excellence.
             </p>
-            <div className="mt-6 flex gap-3">
-              {[Facebook, Instagram, Youtube].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#contact"
-                  aria-label="Social media"
-                  className="glass-dark grid h-10 w-10 place-items-center rounded-xl transition-transform duration-300 hover:scale-110 hover:bg-primary"
-                >
-                  <Icon className="h-4.5 w-4.5" />
+            <div className="mt-6 flex items-center gap-3">
+              {[Facebook, Instagram, Youtube, MessageCircle].map((I, i) => (
+                <a key={i} href="#" aria-label="Social link" className="grid h-10 w-10 place-items-center rounded-full bg-gradient-brand transition-transform hover:scale-110">
+                  <I className="h-4 w-4" />
                 </a>
               ))}
             </div>
           </div>
+        </Reveal>
 
-          {/* Quick links + services */}
+        <Reveal className="reveal" variant="up" delay={0.08}>
           <div>
-            <h3 className="font-display text-base font-bold">Quick Links</h3>
-            <ul className="mt-5 space-y-2.5 text-sm">
-              {quickLinks.map((l) => (
-                <li key={l}>
-                  <a href={`#${l.toLowerCase().replace(" ", "-")}`} className="text-secondary-foreground/70 transition-colors hover:text-primary-foreground">
-                    {l}
-                  </a>
+            <h4 className="font-display text-base font-bold">Quick Links</h4>
+            <ul className="mt-5 space-y-2.5 text-sm text-primary-foreground/75">
+              {quickLinks.map((q) => (
+                <li key={q}>
+                  <Link to={quickLinkTo(q)} className="hover:text-primary-foreground">
+                    {q}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
+        </Reveal>
 
+        <Reveal className="reveal" variant="up" delay={0.16}>
           <div>
-            <h3 className="font-display text-base font-bold">Our Services</h3>
-            <ul className="mt-5 space-y-2.5 text-sm">
-              {serviceLinks.map((l) => (
-                <li key={l}>
-                  <a href="#services" className="text-secondary-foreground/70 transition-colors hover:text-primary-foreground">
-                    {l}
-                  </a>
+            <h4 className="font-display text-base font-bold">Our Services</h4>
+            <ul className="mt-5 space-y-2.5 text-sm text-primary-foreground/75">
+              {serviceLinks.map((s) => (
+                <li key={s}>
+                  <Link to="/#services" className="hover:text-primary-foreground">{s}</Link>
                 </li>
               ))}
             </ul>
           </div>
+        </Reveal>
 
-          {/* Contact */}
+        <Reveal className="reveal" variant="up" delay={0.24}>
           <div>
-            <h3 className="font-display text-base font-bold">Contact Us</h3>
-            <ul className="mt-5 space-y-3.5 text-sm text-secondary-foreground/70">
-              <li className="flex gap-3">
-                <MapPin className="mt-0.5 h-4.5 w-4.5 shrink-0 text-primary" />
-                Kasturibai Peta, Vijayawada, Andhra Pradesh
+            <h4 className="font-display text-base font-bold">Contact Information</h4>
+            <ul className="mt-5 space-y-4 text-sm text-primary-foreground/80">
+              <li className="flex items-start gap-3">
+                <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand">
+                  <MapPin className="h-4 w-4" />
+                </span>
+                <span>Opp. Brahmanandam Orthopaedic Center,<br />Bellapu Sobhanadri Street, Kasturibai Peta,<br />Vijayawada, Andhra Pradesh – 520002</span>
               </li>
-              <li className="flex gap-3">
-                <Phone className="mt-0.5 h-4.5 w-4.5 shrink-0 text-primary" />
-                <a href="tel:+919999999999" className="hover:text-primary-foreground">+91 99999 99999</a>
+              <li className="flex items-center gap-3">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand">
+                  <Phone className="h-4 w-4" />
+                </span>
+                <a href="tel:+919966117292" className="hover:text-primary-foreground">+91 99661 17292</a>
               </li>
-              <li className="flex gap-3">
-                <Mail className="mt-0.5 h-4.5 w-4.5 shrink-0 text-primary" />
-                <a href="mailto:care@ignitevascular.in" className="hover:text-primary-foreground">care@ignitevascular.in</a>
+              <li className="flex items-center gap-3">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand">
+                  <Mail className="h-4 w-4" />
+                </span>
+                <a href="mailto:info@ignitevascularcenter.com" className="hover:text-primary-foreground">info@ignitevascularcenter.com</a>
               </li>
-              <li className="flex gap-3">
-                <Clock className="mt-0.5 h-4.5 w-4.5 shrink-0 text-primary" />
-                Mon – Sat · 9:00 AM – 8:00 PM
+              <li className="flex items-start gap-3">
+                <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand">
+                  <Clock className="h-4 w-4" />
+                </span>
+                <span>Mon – Sat : 9:00 AM – 8:00 PM<br />Sunday: By Appointment</span>
               </li>
             </ul>
           </div>
+        </Reveal>
+      </div>
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-5 py-5 text-xs text-primary-foreground/70 sm:flex-row lg:px-8">
+          <p>© {new Date().getFullYear()} Ignite Vascular Center. All Rights Reserved.</p>
+          <p className="flex items-center gap-1.5">Designed with <Heart className="h-3.5 w-3.5 fill-primary text-primary" /> for Better Health</p>
         </div>
-
-
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-secondary-foreground/10 pt-8 text-sm text-secondary-foreground/60 sm:flex-row">
-          <p>© {new Date().getFullYear()} Ignite Vascular Center, Vijayawada. All rights reserved.</p>
-          <p>Vascular Surgery &amp; Endovascular Care</p>
-        </div>
-      </Reveal>
-
-      {/* Back to top */}
-      <button
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        aria-label="Back to top"
-        className={`fixed bottom-6 right-6 z-50 grid h-12 w-12 place-items-center rounded-full bg-gradient-brand text-primary-foreground shadow-glow-red transition-all duration-500 hover:scale-110 ${
-          showTop ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"
-        }`}
-      >
-        <ArrowUp className="h-5 w-5" />
-      </button>
+      </div>
     </footer>
   );
 }
