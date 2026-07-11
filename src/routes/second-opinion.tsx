@@ -582,7 +582,7 @@ function RequestSection() {
               <div className="absolute inset-0 bg-gradient-to-r from-card via-card/70 to-transparent" />
             </div>
             <div className="relative">
-              <h2 className="font-display text-2xl font-extrabold text-indigo-700">
+              <h2 className="font-display text-2xl font-extrabold text-secondary">
                 Why Choose a Second Opinion<br />at Ignite Vascular Center?
               </h2>
               <div className="mt-3 h-0.5 w-14 rounded-full bg-gradient-brand" />
