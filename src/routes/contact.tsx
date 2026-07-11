@@ -121,7 +121,7 @@ function ContactForm() {
     <section className="py-8 lg:py-14">
       <div className="mx-auto grid max-w-7xl items-start gap-8 px-5 lg:grid-cols-[1fr_minmax(320px,420px)] lg:px-8">
         <div className="space-y-8">
-          <Reveal variant="left" className="rounded-[2rem] bg-card p-8 shadow-soft lg:p-10">
+          <Reveal variant="left" className="rounded-[2rem] border border-border/70 bg-card p-8 shadow-soft lg:p-10">
             <Reveal variant="up">
               <h2 className="font-display text-2xl font-extrabold text-secondary sm:text-3xl">Send Us a Message</h2>
               <div className="mt-3 h-0.5 w-14 rounded-full bg-gradient-brand" />
@@ -215,7 +215,7 @@ function ContactForm() {
         </div>
 
         <Reveal variant="right" delay={0.12} className="lg:sticky lg:top-28">
-          <div className="rounded-[2rem] bg-card p-7 shadow-soft lg:p-9">
+          <div className="rounded-[2rem] border border-border/70 bg-card p-7 shadow-soft lg:p-9">
             <Reveal variant="up">
               <h3 className="font-display text-xl font-extrabold text-secondary sm:text-2xl">Contact Information</h3>
               <div className="mt-3 h-0.5 w-14 rounded-full bg-gradient-brand" />
