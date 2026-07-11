@@ -451,7 +451,7 @@ function Home2() {
 
   return (
     <main className="bg-background [&_section]:scroll-mt-24">
-      <Nav />
+      <Navbar />
       <Hero />
       <Trust />
       <Doctor />
