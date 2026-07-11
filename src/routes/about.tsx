@@ -352,10 +352,11 @@ function SubBanner() {
 function AboutPage() {
   useEffect(() => { window.scrollTo({ top: 0 }); }, []);
   return (
-    <div className="bg-white">
+    <div className="bg-white [overflow-x:clip]">
       <Navbar />
       <SubBanner />
       <Hero />
+      <div className="h-10 lg:h-16 bg-white" aria-hidden />
       <MissionVision />
       <WhyChoose />
       <Doctor />
