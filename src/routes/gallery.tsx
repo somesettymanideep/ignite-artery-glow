@@ -20,18 +20,18 @@ import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 import { SubBanner } from "@/components/home/SubBanner";
 import heroReception from "@/assets/about-reception.jpg";
 import galleryBanner from "@/assets/why-choose.jpg";
-import g1 from "@/assets/contact-building.jpg";
-import g2 from "@/assets/about-surgery.jpg";
-import g3 from "@/assets/doctor-portrait.jpg";
-import g4 from "@/assets/about-vascular.jpg";
-import g5 from "@/assets/contact-services.jpg";
-import g6 from "@/assets/why-choose.jpg";
-import g7 from "@/assets/home2-doctor.jpg";
-import g8 from "@/assets/hero-surgeon.jpg";
-import g9 from "@/assets/home2-hero.jpg";
-import g10 from "@/assets/second-opinion-hero.jpg";
-import g11 from "@/assets/about-reception.jpg";
-import g12 from "@/assets/about-surgery.jpg";
+import gFacilityExterior from "@/assets/gallery/facility-exterior.jpg";
+import gFacilityReception from "@/assets/gallery/facility-reception.jpg";
+import gFacilityCathlab from "@/assets/gallery/facility-cathlab.jpg";
+import gFacilityRoom from "@/assets/gallery/facility-room.jpg";
+import gTeamGroup from "@/assets/gallery/team-group.jpg";
+import gTeamSurgeon from "@/assets/gallery/team-surgeon.jpg";
+import gProcedureSurgery from "@/assets/gallery/procedure-surgery.jpg";
+import gProcedureAngio from "@/assets/gallery/procedure-angio.jpg";
+import gEventCamp from "@/assets/gallery/event-camp.jpg";
+import gEventInauguration from "@/assets/gallery/event-inauguration.jpg";
+import gPatientConsult from "@/assets/gallery/patient-consult.jpg";
+import gPatientCare from "@/assets/gallery/patient-care.jpg";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -57,18 +57,18 @@ const FEATURES = [
 const CATEGORIES = ["All", "Center & Facilities", "Our Team", "Procedures", "Events & Camps", "Patient Care"];
 
 const IMAGES: { src: string; alt: string; cat: string }[] = [
-  { src: g1, alt: "Hospital Exterior", cat: "Center & Facilities" },
-  { src: g2, alt: "Operation Theatre", cat: "Procedures" },
-  { src: g3, alt: "Doctor Consulting Patient", cat: "Patient Care" },
-  { src: g4, alt: "Cath Lab Equipment", cat: "Center & Facilities" },
-  { src: g5, alt: "Reception Desk", cat: "Center & Facilities" },
-  { src: g6, alt: "Patient Room", cat: "Patient Care" },
-  { src: g7, alt: "Medical Team", cat: "Our Team" },
-  { src: g8, alt: "Surgeon Operating", cat: "Procedures" },
-  { src: g9, alt: "Waiting Lounge", cat: "Center & Facilities" },
-  { src: g10, alt: "Doctor Consultation", cat: "Patient Care" },
-  { src: g11, alt: "Hospital Inauguration", cat: "Events & Camps" },
-  { src: g12, alt: "Cath Lab Interior", cat: "Center & Facilities" },
+  { src: gFacilityExterior, alt: "Hospital Exterior", cat: "Center & Facilities" },
+  { src: gFacilityReception, alt: "Reception & Waiting Lounge", cat: "Center & Facilities" },
+  { src: gFacilityCathlab, alt: "Advanced Cath Lab", cat: "Center & Facilities" },
+  { src: gFacilityRoom, alt: "Patient Recovery Room", cat: "Center & Facilities" },
+  { src: gTeamGroup, alt: "Our Medical Team", cat: "Our Team" },
+  { src: gTeamSurgeon, alt: "Vascular Surgeon", cat: "Our Team" },
+  { src: gProcedureSurgery, alt: "Endovascular Surgery", cat: "Procedures" },
+  { src: gProcedureAngio, alt: "Angiography Procedure", cat: "Procedures" },
+  { src: gEventCamp, alt: "Free Health Check-up Camp", cat: "Events & Camps" },
+  { src: gEventInauguration, alt: "Hospital Inauguration", cat: "Events & Camps" },
+  { src: gPatientConsult, alt: "Doctor Consultation", cat: "Patient Care" },
+  { src: gPatientCare, alt: "Compassionate Bedside Care", cat: "Patient Care" },
 ];
 
 function GalleryTwoPage() {
