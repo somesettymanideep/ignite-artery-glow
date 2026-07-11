@@ -146,13 +146,13 @@ function Hero() {
           </div>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a href="#request" className="group inline-flex items-center gap-3 rounded-lg bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-glow-red transition-transform duration-300 hover:scale-[1.02]">
+            <a href="#request" className="group inline-flex items-center gap-3 rounded-[6px] bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-glow-red transition-transform duration-300 hover:scale-[1.02]">
               Request Second Opinion
               <span className="grid h-6 w-6 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1">
                 <ArrowRight className="h-3.5 w-3.5" />
               </span>
             </a>
-            <a href="#how-it-works" className="inline-flex items-center gap-2 rounded-lg border-2 border-secondary/15 bg-white px-6 py-3.5 text-sm font-bold text-secondary transition-colors hover:border-primary hover:text-primary">
+            <a href="#how-it-works" className="inline-flex items-center gap-2 rounded-[6px] border-2 border-secondary/15 bg-white px-6 py-3.5 text-sm font-bold text-secondary transition-colors hover:border-primary hover:text-primary">
               How It Works
               <PlayCircle className="h-4 w-4" />
             </a>
@@ -589,7 +589,7 @@ function RequestSection() {
                 {WHY.map((w, i) => (
                   <Reveal key={w.title} variant="up" delay={0.08 + i * 0.08}>
                     <div className="flex items-start gap-4">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white text-indigo-600 shadow-soft ring-1 ring-border/60">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#ede9f6] text-[#4a3b6b] ring-1 ring-[#e3ddf1]">
                         <w.icon className="h-5 w-5" strokeWidth={1.75} />
                       </span>
                       <div>
