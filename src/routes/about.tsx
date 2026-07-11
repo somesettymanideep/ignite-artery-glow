@@ -218,12 +218,11 @@ function WhyChoose() {
 }
 
 function Doctor() {
-  const left = ["Expert in Endovascular Procedures", "Varicose Veins Specialist", "Peripheral Arterial Disease Expert"];
-  const right = ["Diabetic Foot Care Specialist", "Deep Vein Thrombosis Expert", "Vascular Ultrasound Expert"];
+  const bullets = ["Expert in Endovascular Procedures", "Varicose Veins Specialist", "Peripheral Arterial Disease Expert", "Diabetic Foot Care Specialist", "Deep Vein Thrombosis Expert", "Vascular Ultrasound Expert"];
   return (
     <section className="bg-white py-16 lg:py-20">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 lg:grid-cols-[minmax(0,260px)_1fr_minmax(0,280px)] lg:gap-12 lg:px-8">
-        <Reveal className="reveal">
+        <Reveal className="reveal" variant="left">
           <div className="relative">
             <div className="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-[radial-gradient(circle,theme(colors.secondary/20)_1px,transparent_1.5px)] bg-[length:10px_10px]" aria-hidden />
             <div className="relative overflow-hidden rounded-3xl bg-secondary shadow-lift">
@@ -232,7 +231,7 @@ function Doctor() {
           </div>
         </Reveal>
 
-        <Reveal className="reveal" delay={0.1}>
+        <Reveal className="reveal" variant="up" delay={0.1}>
           <span className="text-xs font-bold uppercase tracking-[0.28em] text-primary">Our Doctor</span>
           <h2 className="mt-2 font-display text-3xl font-black tracking-tight text-secondary sm:text-4xl">
             Meet Our Vascular Specialist
@@ -247,11 +246,13 @@ function Doctor() {
           </p>
 
           <div className="mt-6 grid gap-2.5 sm:grid-cols-2">
-            {[...left, ...right].map((b) => (
-              <div key={b} className="flex items-start gap-2.5">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                <span className="text-sm text-secondary/85">{b}</span>
-              </div>
+            {bullets.map((b, i) => (
+              <Reveal key={b} className="reveal" variant="up" delay={0.22 + i * 0.06}>
+                <div className="flex items-start gap-2.5">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                  <span className="text-sm text-secondary/85">{b}</span>
+                </div>
+              </Reveal>
             ))}
           </div>
 
@@ -263,7 +264,7 @@ function Doctor() {
           </Link>
         </Reveal>
 
-        <Reveal className="reveal" delay={0.18}>
+        <Reveal className="reveal" variant="right" delay={0.18}>
           <img src={vascularImg} alt="Vascular anatomy illustration" width={900} height={1100} loading="lazy" className="mx-auto h-[360px] w-auto object-contain" />
         </Reveal>
       </div>
