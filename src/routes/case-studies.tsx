@@ -200,9 +200,8 @@ function CaseStudiesPage() {
 
 
       {/* Category filter bar */}
-      <section className="border-y border-border/60 bg-white">
-      {/* Category filter bar */}
       <section className="bg-white">
+
         <div className="mx-auto max-w-7xl px-5 py-5 lg:px-8">
           <Reveal variant="up">
             <div className="flex flex-wrap items-center gap-2">
