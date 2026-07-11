@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   Image as ImageIcon,
   Users,
@@ -8,6 +8,9 @@ import {
   Download,
   Calendar,
   ArrowRight,
+  X,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
