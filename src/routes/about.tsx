@@ -286,7 +286,7 @@ function StatsBar() {
   return (
     <section className="bg-white pb-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal className="reveal rounded-3xl bg-gradient-to-r from-primary via-[oklch(0.55_0.18_10)] to-secondary p-6 shadow-lift sm:p-8">
+        <Reveal className="reveal rounded-[5px] bg-gradient-to-r from-primary via-[oklch(0.55_0.18_10)] to-secondary p-6 shadow-lift sm:p-8">
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5 lg:divide-x lg:divide-white/15">
             <Stat icon={Users} end={10} suffix="+" label="Years of Experience" />
             <Stat icon={ShieldIcon} end={2000} suffix="+" label="Successful Procedures" />
@@ -348,7 +348,7 @@ function CTA() {
   return (
     <section className="bg-white pb-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal className="reveal relative overflow-hidden rounded-3xl bg-gradient-to-r from-secondary via-[oklch(0.35_0.14_340)] to-primary p-8 shadow-lift sm:p-10">
+        <Reveal className="reveal relative overflow-hidden rounded-[5px] bg-gradient-to-r from-secondary via-[oklch(0.35_0.14_340)] to-primary p-8 shadow-lift sm:p-10">
           <div className="grid items-center gap-6 sm:grid-cols-[1fr_auto]">
             <div className="text-primary-foreground">
               <h3 className="font-display text-2xl font-black sm:text-3xl">Take the First Step Towards Better Circulation</h3>
