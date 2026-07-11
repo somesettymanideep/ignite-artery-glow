@@ -80,11 +80,17 @@ function Hero() {
       <div className="relative mx-auto w-full max-w-7xl px-5 lg:px-8">
         <div className="text-center sm:text-left">
           <Reveal variant="up">
-            <nav aria-label="Breadcrumb" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur-sm">
-              <Link to="/" className="font-semibold text-white/80 transition-colors hover:text-white">Home</Link>
-              <ChevronRight className="h-4 w-4 text-white/60" />
-              <span className="font-semibold text-primary-foreground">Contact Us</span>
+            <nav aria-label="Breadcrumb" className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/10 px-5 py-2.5 text-[13px] font-semibold uppercase tracking-[0.14em] backdrop-blur-md shadow-soft">
+              <Link
+                to="/"
+                className="rounded-full text-white/75 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+              >
+                Home
+              </Link>
+              <ChevronRight className="h-3.5 w-3.5 text-white/50" aria-hidden />
+              <span className="text-primary-foreground" aria-current="page">Contact Us</span>
             </nav>
+
           </Reveal>
 
           <Reveal variant="up" delay={0.08}>
