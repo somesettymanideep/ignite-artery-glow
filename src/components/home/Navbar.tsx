@@ -4,7 +4,7 @@ import { Phone, Menu, X } from "lucide-react";
 
 type NavItem = {
   label: string;
-  route: "/" | "/about" | "/treatments" | "/second-opinion" | "/contact";
+  route: "/" | "/about" | "/treatments" | "/second-opinion" | "/gallery" | "/contact";
 };
 
 const NAV: NavItem[] = [
@@ -12,8 +12,10 @@ const NAV: NavItem[] = [
   { label: "About", route: "/about" },
   { label: "Our Treatments", route: "/treatments" },
   { label: "Second Opinion", route: "/second-opinion" },
+  { label: "Gallery", route: "/gallery" },
   { label: "Contact", route: "/contact" },
 ];
+
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
