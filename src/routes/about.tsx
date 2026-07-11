@@ -101,7 +101,7 @@ function Nav() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white pt-28 lg:pt-32">
+    <section className="relative overflow-hidden bg-[#f5f6f8] pt-28 lg:pt-32">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pb-16 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:px-8 lg:pb-24">
         <Reveal className="reveal">
           <span className="inline-block text-xs font-bold uppercase tracking-[0.28em] text-primary">About Us</span>
