@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
+import { z } from "zod";
 import {
   ChevronRight, ChevronDown, ShieldCheck, FileText, HeartHandshake, Lock,
   ArrowRight, PlayCircle, Activity, Stethoscope, Users, HeartPulse,
   UploadCloud, UserRound, ClipboardCheck, MessagesSquare, ClipboardList,
-  User, Phone, Mail, MessageCircle, Send, CalendarCheck,
+  User, Phone, Mail, MessageCircle, Send, CalendarCheck, Loader2,
   Award, Search, Sparkles, HeartHandshake as HeartCare, HelpCircle,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
@@ -14,6 +15,22 @@ import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 import heroImg from "@/assets/second-opinion-hero.jpg";
 import doctorImg from "@/assets/doctor-portrait.jpg";
 import whyImg from "@/assets/why-choose.jpg";
+
+const secondOpinionSchema = z.object({
+  name: z.string().trim().min(2, "Full name is required").max(100, "Name is too long"),
+  phone: z.string().trim().min(6, "Phone number is required").max(20, "Phone number is too long"),
+  email: z.string().trim().email("Please enter a valid email address").max(255, "Email is too long"),
+  age: z.string().refine((val) => !val || (Number(val) >= 0 && Number(val) <= 120), {
+    message: "Age must be between 0 and 120",
+  }),
+  gender: z.string().optional(),
+  concern: z.string().min(1, "Please select a concern"),
+  message: z.string().max(1000, "Message must be less than 1000 characters").optional(),
+  file: z.string().optional(),
+});
+
+type FormData = z.infer<typeof secondOpinionSchema>;
+type FormErrors = Partial<Record<keyof FormData, string>>;
 
 export const Route = createFileRoute("/second-opinion")({
   head: () => ({
