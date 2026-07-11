@@ -201,7 +201,9 @@ function CaseStudiesPage() {
 
       {/* Category filter bar */}
       <section className="border-y border-border/60 bg-white">
-        <div className="mx-auto max-w-7xl px-5 py-4 lg:px-8">
+      {/* Category filter bar */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-5 py-5 lg:px-8">
           <Reveal variant="up">
             <div className="flex flex-wrap items-center gap-2">
               {CATEGORIES.map((c) => {
@@ -222,13 +224,14 @@ function CaseStudiesPage() {
                 );
               })}
               <button className="ml-auto inline-flex items-center gap-2 rounded-md border border-border/70 bg-white px-4 py-2.5 text-[13px] font-semibold text-secondary/80 hover:bg-accent">
-                <Filter className="h-4 w-4" strokeWidth={1.75} />
                 Filter
+                <Filter className="h-4 w-4" strokeWidth={1.75} />
               </button>
             </div>
           </Reveal>
         </div>
       </section>
+
 
       {/* Case grid */}
       <section className="py-14 lg:py-20">
