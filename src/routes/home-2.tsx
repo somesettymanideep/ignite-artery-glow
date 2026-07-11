@@ -1,12 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  Phone, Menu, X, ArrowRight, Calendar, Check, ShieldCheck, Cpu, UserCheck, Heart,
+  Phone, ArrowRight, Calendar, Check, ShieldCheck, Cpu, UserCheck, Heart,
   GraduationCap, Award, Users, Stethoscope, Activity, Waves, Syringe, Footprints,
   Scan, CircleDot, HeartPulse, MonitorPlay, Droplets, Star, Quote, ChevronLeft,
   ChevronRight, MapPin, Mail, Clock, Facebook, Instagram, Youtube, Send,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
+import { Navbar } from "@/components/home/Navbar";
 import heroImg from "@/assets/home2-hero.jpg";
 import doctorImg from "@/assets/home2-doctor.jpg";
 
