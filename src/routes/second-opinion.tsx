@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import {
-  ChevronRight, ShieldCheck, FileText, HeartHandshake, Lock,
+  ChevronRight, ChevronDown, ShieldCheck, FileText, HeartHandshake, Lock,
   ArrowRight, PlayCircle, Activity, Stethoscope, Users, HeartPulse,
   UploadCloud, UserRound, ClipboardCheck, MessagesSquare, ClipboardList,
   User, Phone, Mail, MessageCircle, Send, CalendarCheck,
-  Award, Search, Sparkles, HeartHandshake as HeartCare,
+  Award, Search, Sparkles, HeartHandshake as HeartCare, HelpCircle,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
@@ -61,6 +61,33 @@ const WHY = [
 const CONCERNS = [
   "Varicose Veins", "Deep Vein Thrombosis (DVT)", "Peripheral Arterial Disease",
   "Diabetic Foot", "Aortic Aneurysm", "Dialysis Access", "Other",
+];
+
+const FAQS = [
+  {
+    question: "What is a vascular second opinion?",
+    answer: "A vascular second opinion is a confidential review of your diagnosis, imaging, and treatment plan by an experienced vascular specialist. It helps confirm your current path or explore alternative, less invasive options tailored to your condition.",
+  },
+  {
+    question: "Who should request a second opinion?",
+    answer: "Patients facing complex vascular conditions, recommended surgery, unclear diagnoses, recurring symptoms, or simply wanting reassurance before a major procedure can benefit greatly from a second opinion.",
+  },
+  {
+    question: "What medical reports do I need to share?",
+    answer: "Please upload recent scans (CT, MRI, Doppler ultrasound), blood reports, prescriptions, prior procedure notes, and a brief summary of your symptoms. The more complete your records, the more accurate our review.",
+  },
+  {
+    question: "Is the second opinion service confidential?",
+    answer: "Absolutely. Your information is handled with strict medical privacy standards and is only reviewed by authorized vascular specialists involved in your case.",
+  },
+  {
+    question: "How long does it take to receive the opinion?",
+    answer: "Most reviews are completed within 24–48 hours after we receive your complete records. Urgent cases are prioritized and handled as quickly as possible.",
+  },
+  {
+    question: "Will this replace my current doctor?",
+    answer: "No. A second opinion is meant to support and inform your decision-making. You remain under the care of your primary physician unless you choose to consult with us further.",
+  },
 ];
 
 function Hero() {
@@ -357,6 +384,70 @@ function RequestSection() {
   );
 }
 
+function FAQSection() {
+  const [open, setOpen] = useState<number | null>(0);
+
+  return (
+    <section id="faq" className="bg-background py-16 lg:py-20">
+      <div className="mx-auto max-w-4xl px-5 lg:px-8">
+        <Reveal variant="up" className="text-center">
+          <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-primary">Frequently Asked Questions</p>
+          <h2 className="mt-3 font-display text-3xl font-extrabold text-secondary sm:text-4xl">
+            Understanding the Second Opinion Process
+          </h2>
+          <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-primary/70" />
+          <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+            Get quick answers about eligibility, reports, confidentiality, and how our specialists review your case.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 space-y-4">
+          {FAQS.map((item, i) => {
+            const isOpen = open === i;
+            return (
+              <Reveal key={item.question} variant="up" delay={0.06 + i * 0.06}>
+                <div
+                  className={`overflow-hidden rounded-[14px] bg-card shadow-soft ring-1 ring-border/60 transition-all duration-300 ${isOpen ? "ring-primary/20" : ""}`}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    className="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="flex items-center gap-3">
+                      <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition-colors duration-300 ${isOpen ? "bg-primary text-white" : "bg-indigo-50 text-primary"}`}>
+                        <HelpCircle className="h-4 w-4" strokeWidth={1.8} />
+                      </span>
+                      <span className="font-display text-[15px] font-extrabold text-secondary sm:text-base">{item.question}</span>
+                    </span>
+                    <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-full bg-surface/60 text-muted-foreground transition-transform duration-300 ${isOpen ? "rotate-180 bg-primary/10 text-primary" : ""}`}>
+                      <ChevronDown className="h-4 w-4" strokeWidth={2} />
+                    </span>
+                  </button>
+                  <div
+                    className="grid transition-all duration-300 ease-out"
+                    style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                    aria-hidden={!isOpen}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="border-t border-border/60 px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
+                        <p className="max-w-3xl text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
+                          {item.answer}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CTABanner() {
   return (
     <section className="pb-16">
@@ -397,6 +488,7 @@ function SecondOpinionPage() {
         <HelpRibbon />
         <HowItWorks />
         <RequestSection />
+        <FAQSection />
         <CTABanner />
       </main>
       <Footer />
