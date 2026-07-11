@@ -322,7 +322,6 @@ function GalleryTwoPage() {
             </Reveal>
           ))}
 
-          ))}
         </div>
       </section>
 
