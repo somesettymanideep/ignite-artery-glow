@@ -287,7 +287,7 @@ function AppointmentBanner() {
 
 function ContactPage() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background">
+    <div className="min-h-screen [overflow-x:clip] bg-background">
       <Navbar />
       <main>
         <Hero />
