@@ -4,16 +4,15 @@ import { Phone, Menu, X } from "lucide-react";
 
 type NavItem = {
   label: string;
-  hash: string;
-  route: string;
+  route: "/" | "/about" | "/treatments" | "/second-opinion" | "/contact";
 };
 
 const NAV: NavItem[] = [
-  { label: "Home", hash: "home", route: "/" },
-  { label: "About", hash: "doctor", route: "/about" },
-  { label: "Our Treatments", hash: "services", route: "/treatments" },
-  { label: "Second Opinion", hash: "", route: "/second-opinion" },
-  { label: "Contact", hash: "contact", route: "/contact" },
+  { label: "Home", route: "/" },
+  { label: "About", route: "/about" },
+  { label: "Our Treatments", route: "/treatments" },
+  { label: "Second Opinion", route: "/second-opinion" },
+  { label: "Contact", route: "/contact" },
 ];
 
 export function Navbar() {
@@ -21,9 +20,6 @@ export function Navbar() {
   const [progress, setProgress] = useState(0);
 
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const hash = useRouterState({ select: (s) => s.location.hash });
-  const isHome = pathname === "/";
-  const currentHash = (hash ?? "").replace(/^#/, "") || "home";
 
   useEffect(() => {
     const onScroll = () => {
@@ -35,46 +31,15 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const linkBase =
-    "relative text-[13px] font-semibold transition-colors";
-
-  const isActive = (item: NavItem) =>
-    isHome ? currentHash === item.hash : pathname === item.route;
+  const linkBase = "relative text-[13px] font-semibold transition-colors";
 
   const renderLink = (item: NavItem, closeOnClick = true) => {
-    const active = isActive(item);
+    const active = pathname === item.route;
     const cls = `${linkBase} ${
       active
         ? "text-primary after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-primary"
         : "text-secondary/80 hover:text-primary"
     }`;
-
-    if (isHome) {
-      return (
-        <a
-          key={item.label}
-          href={`#${item.hash}`}
-          className={cls}
-          onClick={closeOnClick ? () => setOpen(false) : undefined}
-        >
-          {item.label}
-        </a>
-      );
-    }
-
-    if (item.route === "/" && item.hash) {
-      return (
-        <Link
-          key={item.label}
-          to={item.route}
-          hash={item.hash}
-          className={cls}
-          onClick={closeOnClick ? () => setOpen(false) : undefined}
-        >
-          {item.label}
-        </Link>
-      );
-    }
 
     return (
       <Link
@@ -87,6 +52,8 @@ export function Navbar() {
       </Link>
     );
   };
+
+  const isHome = pathname === "/";
 
   const cta = isHome ? (
     <a
