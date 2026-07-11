@@ -304,10 +304,14 @@ function CaseStudiesPage() {
                 </div>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 rounded-md bg-white px-6 py-3 text-sm font-bold text-secondary transition-transform hover:scale-105"
+                  className="group inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-bold text-secondary transition-transform hover:scale-105"
                 >
-                  Book an Appointment <ArrowRight className="h-4 w-4" />
+                  Book an Appointment
+                  <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-white transition-transform group-hover:translate-x-0.5">
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
                 </Link>
+
               </div>
               <div className="pointer-events-none absolute -right-10 -top-10 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
               <div className="pointer-events-none absolute -bottom-14 right-24 h-40 w-40 rounded-full bg-primary/40 blur-3xl" />
