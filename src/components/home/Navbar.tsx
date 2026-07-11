@@ -11,7 +11,7 @@ type NavItem = {
 const NAV: NavItem[] = [
   { label: "Home", hash: "home", route: "/" },
   { label: "About", hash: "doctor", route: "/about" },
-  { label: "Our Treatments", hash: "services", route: "/" },
+  { label: "Our Treatments", hash: "services", route: "/treatments" },
   { label: "Second Opinion", hash: "cta", route: "/" },
   { label: "Contact", hash: "contact", route: "/contact" },
 ];
