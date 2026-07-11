@@ -200,14 +200,19 @@ function GalleryTwoPage() {
                   <button
                     key={c}
                     onClick={() => setActive(c)}
-                    className={`shrink-0 rounded-[8px] px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
+                    aria-pressed={on}
+                    className={`relative shrink-0 rounded-[8px] px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
                       on
-                        ? "bg-primary text-primary-foreground shadow-glow-red"
-                        : "bg-transparent text-secondary hover:text-primary"
+                        ? "bg-primary text-primary-foreground shadow-glow-red ring-2 ring-primary/40 ring-offset-2 ring-offset-background scale-[1.03]"
+                        : "bg-transparent text-secondary hover:bg-primary/10 hover:text-primary"
                     }`}
                   >
                     {c}
+                    {on && (
+                      <span className="pointer-events-none absolute -bottom-1.5 left-1/2 h-1 w-8 -translate-x-1/2 rounded-full bg-primary" />
+                    )}
                   </button>
+
                 );
               })}
             </div>
