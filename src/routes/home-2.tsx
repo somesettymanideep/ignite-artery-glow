@@ -1,12 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  Phone, Menu, X, ArrowRight, Calendar, Check, ShieldCheck, Cpu, UserCheck, Heart,
+  Phone, ArrowRight, Calendar, Check, ShieldCheck, Cpu, UserCheck, Heart,
   GraduationCap, Award, Users, Stethoscope, Activity, Waves, Syringe, Footprints,
   Scan, CircleDot, HeartPulse, MonitorPlay, Droplets, Star, Quote, ChevronLeft,
   ChevronRight, MapPin, Mail, Clock, Facebook, Instagram, Youtube, Send,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
+import { Navbar } from "@/components/home/Navbar";
 import heroImg from "@/assets/home2-hero.jpg";
 import doctorImg from "@/assets/home2-doctor.jpg";
 
@@ -23,61 +24,6 @@ export const Route = createFileRoute("/home-2")({
   }),
   component: Home2,
 });
-
-/* ---------------- Navbar ---------------- */
-const NAV = [
-  { label: "Home", href: "#top" },
-  { label: "About", href: "#about" },
-  { label: "Our Treatments", href: "#services" },
-  { label: "Second Opinion", href: "#cta" },
-  { label: "Contact", href: "#contact" },
-];
-
-function Nav() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-soft transition-all duration-500">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3.5 lg:px-8">
-        <a href="#top" className="flex min-w-0 items-center gap-2.5">
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-brand font-display text-sm font-bold text-primary-foreground shadow-glow-red">IV</span>
-          <span className="min-w-0 leading-tight">
-            <span className="block truncate font-display text-[15px] font-extrabold tracking-tight text-secondary">
-              Ignite <span className="text-primary">Vascular</span> Center
-            </span>
-            <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">We Ignite The Hope</span>
-          </span>
-        </a>
-
-        <ul className="hidden items-center gap-7 xl:flex">
-          {NAV.map((n, i) => (
-            <li key={n.label}>
-              <a href={n.href} className={`text-[13px] font-semibold transition-colors ${i === 0 ? "text-primary" : "text-secondary/80 hover:text-primary"}`}>{n.label}</a>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex items-center gap-3">
-          <a href="tel:+919966117292" className="hidden items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105 sm:inline-flex">
-            <Phone className="h-4 w-4" /> +91 99661 17292
-          </a>
-          <button className="grid h-10 w-10 place-items-center rounded-xl border xl:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu">
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-      </nav>
-      {open && (
-        <div className="border-t bg-white xl:hidden">
-          <ul className="space-y-1 px-5 py-3">
-            {NAV.map((n) => (
-              <li key={n.label}><a href={n.href} onClick={() => setOpen(false)} className="block rounded-xl px-3 py-2.5 text-sm font-semibold hover:bg-accent">{n.label}</a></li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </header>
-  );
-}
 
 /* ---------------- Hero ---------------- */
 const HERO_FEATURES = [
@@ -505,7 +451,7 @@ function Home2() {
 
   return (
     <main className="bg-background [&_section]:scroll-mt-24">
-      <Nav />
+      <Navbar />
       <Hero />
       <Trust />
       <Doctor />

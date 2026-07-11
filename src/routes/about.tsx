@@ -1,12 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
-  Phone, Menu, X, Target, Eye, UserCheck, Sparkles, Scissors, HeartHandshake,
+  Phone, Target, Eye, UserCheck, Sparkles, Scissors, HeartHandshake,
   ShieldCheck, Siren, CheckCircle2, ArrowRight, Users, ShieldCheck as ShieldIcon,
   Smile, Activity, Clock, Microscope, Lightbulb, BookOpenCheck, MessagesSquare,
   MapPin, Mail, Facebook, Instagram, Youtube, MessageCircle, Heart, Stethoscope,
 } from "lucide-react";
 import { Reveal, useCountUp } from "@/hooks/use-reveal";
+import { Navbar } from "@/components/home/Navbar";
 import receptionImg from "@/assets/about-reception.jpg";
 import doctorImg from "@/assets/home2-doctor.jpg";
 import vascularImg from "@/assets/about-vascular.jpg";
@@ -25,79 +26,6 @@ export const Route = createFileRoute("/about")({
   }),
   component: AboutPage,
 });
-
-const NAV = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "/about", active: true },
-  { label: "Services", href: "/#services" },
-  { label: "Treatments", href: "/#services" },
-  { label: "Our Doctor", href: "/#doctor" },
-  { label: "Testimonials", href: "/#testimonials" },
-  { label: "Blog", href: "/" },
-  { label: "Contact Us", href: "/contact" },
-];
-
-function Nav() {
-  const [open, setOpen] = useState(false);
-  return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-white shadow-soft">
-      <nav className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-3.5 lg:px-8 xl:flex xl:justify-between">
-        <Link to="/" className="flex min-w-0 items-center gap-2.5">
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-brand font-display text-sm font-bold text-primary-foreground shadow-glow-red">IV</span>
-          <span className="min-w-0 leading-tight">
-            <span className="block truncate font-display text-[15px] font-extrabold tracking-tight text-secondary">
-              Ignite <span className="text-primary">Vascular</span> Center
-            </span>
-            <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">We Ignite The Hope</span>
-          </span>
-        </Link>
-
-        <ul className="hidden items-center gap-7 xl:flex">
-          {NAV.map((n) => (
-            <li key={n.label}>
-              <a
-                href={n.href}
-                className={`relative text-[13px] font-semibold transition-colors ${
-                  n.active
-                    ? "text-primary after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-primary"
-                    : "text-secondary/80 hover:text-primary"
-                }`}
-              >
-                {n.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex items-center gap-3">
-          <a href="tel:+919966117292" className="hidden items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105 sm:inline-flex">
-            <Phone className="h-4 w-4" /> +91 99661 17292
-          </a>
-          <button
-            aria-label="Toggle menu"
-            onClick={() => setOpen((o) => !o)}
-            className="grid h-11 w-11 place-items-center rounded-xl bg-secondary/5 text-secondary xl:hidden"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-      </nav>
-      {open && (
-        <div className="border-t border-border/60 bg-white xl:hidden">
-          <ul className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-3">
-            {NAV.map((n) => (
-              <li key={n.label}>
-                <a href={n.href} onClick={() => setOpen(false)} className={`block rounded-xl px-3 py-2.5 text-sm font-semibold ${n.active ? "bg-primary/10 text-primary" : "text-secondary/80 hover:bg-secondary/5"}`}>
-                  {n.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </header>
-  );
-}
 
 function Hero() {
   return (
@@ -481,7 +409,7 @@ function AboutPage() {
   useEffect(() => { window.scrollTo({ top: 0 }); }, []);
   return (
     <div className="bg-white">
-      <Nav />
+      <Navbar />
       <Hero />
       <MissionVision />
       <WhyChoose />
