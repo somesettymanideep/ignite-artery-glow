@@ -199,17 +199,6 @@ function ContactForm() {
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
               />
-              <div className="glass-card pointer-events-auto absolute left-5 top-5 max-w-xs rounded-2xl p-5 shadow-lift lg:left-6 lg:top-6">
-                <div className="flex items-center gap-2">
-                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-brand text-primary-foreground">
-                    <MapPin className="h-4 w-4" />
-                  </span>
-                  <p className="font-display text-sm font-extrabold text-secondary">Ignite Vascular Center</p>
-                </div>
-                <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
-                  Opp. Brahmanandam Orthopaedic Center, Bellapu Sobhanadri St, Kasturibai Peta, Vijayawada, Andhra Pradesh 520002
-                </p>
-              </div>
             </div>
           </Reveal>
         </div>
