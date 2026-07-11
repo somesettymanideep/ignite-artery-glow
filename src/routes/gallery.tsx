@@ -13,7 +13,9 @@ import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
+import { SubBanner } from "@/components/home/SubBanner";
 import heroReception from "@/assets/about-reception.jpg";
+import galleryBanner from "@/assets/why-choose.jpg";
 import g1 from "@/assets/contact-building.jpg";
 import g2 from "@/assets/about-surgery.jpg";
 import g3 from "@/assets/doctor-portrait.jpg";
@@ -72,9 +74,10 @@ function GalleryTwoPage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-background">
       <Navbar />
+      <SubBanner title="Gallery" crumb="Gallery" image={galleryBanner} />
 
       {/* Hero with curved arc divider */}
-      <section className="relative pt-24 lg:pt-28">
+      <section className="relative pt-12 lg:pt-16">
         <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
           <div className="relative overflow-hidden rounded-[20px] bg-[#f5f6f8]">
             <div className="grid items-center gap-0 lg:grid-cols-2">
