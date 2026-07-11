@@ -63,6 +63,33 @@ const CONCERNS = [
   "Diabetic Foot", "Aortic Aneurysm", "Dialysis Access", "Other",
 ];
 
+const FAQS = [
+  {
+    question: "What is a vascular second opinion?",
+    answer: "A vascular second opinion is a confidential review of your diagnosis, imaging, and treatment plan by an experienced vascular specialist. It helps confirm your current path or explore alternative, less invasive options tailored to your condition.",
+  },
+  {
+    question: "Who should request a second opinion?",
+    answer: "Patients facing complex vascular conditions, recommended surgery, unclear diagnoses, recurring symptoms, or simply wanting reassurance before a major procedure can benefit greatly from a second opinion.",
+  },
+  {
+    question: "What medical reports do I need to share?",
+    answer: "Please upload recent scans (CT, MRI, Doppler ultrasound), blood reports, prescriptions, prior procedure notes, and a brief summary of your symptoms. The more complete your records, the more accurate our review.",
+  },
+  {
+    question: "Is the second opinion service confidential?",
+    answer: "Absolutely. Your information is handled with strict medical privacy standards and is only reviewed by authorized vascular specialists involved in your case.",
+  },
+  {
+    question: "How long does it take to receive the opinion?",
+    answer: "Most reviews are completed within 24–48 hours after we receive your complete records. Urgent cases are prioritized and handled as quickly as possible.",
+  },
+  {
+    question: "Will this replace my current doctor?",
+    answer: "No. A second opinion is meant to support and inform your decision-making. You remain under the care of your primary physician unless you choose to consult with us further.",
+  },
+];
+
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#f7f8fc] pt-28 lg:pt-32">
