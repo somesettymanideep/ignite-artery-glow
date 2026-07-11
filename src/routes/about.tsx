@@ -6,7 +6,7 @@ import {
   Smile, Activity, Clock, Microscope, Lightbulb, BookOpenCheck, MessagesSquare,
   Stethoscope, ChevronRight,
 } from "lucide-react";
-import servicesImg from "@/assets/contact-services.jpg";
+import aboutBanner from "@/assets/hero-surgeon.jpg";
 import { Reveal, useCountUp } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
@@ -325,7 +325,7 @@ function SubBanner() {
     <section className="relative h-[300px] overflow-hidden pt-20">
       <div className="absolute inset-0">
         <img
-          src={servicesImg}
+          src={aboutBanner}
           alt="About Ignite Vascular Center"
           className="h-full w-full object-cover"
         />

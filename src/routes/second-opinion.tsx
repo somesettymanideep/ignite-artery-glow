@@ -12,9 +12,11 @@ import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
+import { SubBanner } from "@/components/home/SubBanner";
 import heroImg from "@/assets/second-opinion-hero.jpg";
 import doctorImg from "@/assets/doctor-portrait.jpg";
 import whyImg from "@/assets/why-choose.jpg";
+import secondOpinionBanner from "@/assets/about-vascular.jpg";
 
 const secondOpinionSchema = z.object({
   name: z.string().trim().min(2, "Full name is required").max(100, "Name is too long"),
@@ -706,6 +708,7 @@ function SecondOpinionPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+      <SubBanner title="Second Opinion" crumb="Second Opinion" image={secondOpinionBanner} />
       <main>
         <Hero />
         <HelpRibbon />
