@@ -120,8 +120,8 @@ function Hero() {
           </nav>
 
           <h1 className="mt-6 font-display text-[2.1rem] font-extrabold leading-[1.12] tracking-tight text-secondary sm:text-4xl lg:text-[2.4rem] xl:text-[2.65rem]">
-            <span className="block lg:inline lg:whitespace-nowrap">Get Clarity. Get Confidence.</span>
-            <span className="mt-2 block text-primary">Get a Second Opinion.</span>
+            <span className="block">Get a Second Opinion.</span>
+            <span className="mt-2 block text-primary">Make the Right Decision</span>
           </h1>
           <div className="mt-4 h-[3px] w-12 rounded-full bg-primary" />
 
@@ -210,31 +210,33 @@ function Hero() {
 
 function HelpRibbon() {
   return (
-    <section className="bg-[#f7f8fc] pb-16 pt-10 lg:pb-20">
+    <section className="bg-[#f7f8fc] pb-16 pt-14 lg:pb-20 lg:pt-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal variant="up">
-          <div className="relative overflow-hidden rounded-[18px] bg-[linear-gradient(115deg,#3a2a75_0%,#5a2585_45%,#c62347_100%)] p-6 shadow-lift sm:p-8">
-            <div className="grid items-center gap-6 md:grid-cols-[220px_1fr]">
-              <div className="relative hidden overflow-hidden rounded-2xl bg-white/10 md:block">
-                <img src={doctorImg} alt="Vascular specialist" loading="lazy" width={400} height={280} className="h-40 w-full object-cover md:h-44" />
-              </div>
+          <div className="relative overflow-visible rounded-[18px] bg-[linear-gradient(115deg,#3a2a75_0%,#5a2585_45%,#c62347_100%)] px-6 py-8 shadow-lift sm:px-10 sm:py-9 sm:pl-[180px] lg:pl-[220px]">
+            {/* Circular doctor photo overlapping on the left */}
+            <div className="absolute left-6 top-1/2 hidden h-[170px] w-[170px] -translate-y-1/2 overflow-hidden rounded-full ring-4 ring-white shadow-lift sm:block lg:left-10 lg:h-[190px] lg:w-[190px]">
+              <img src={doctorImg} alt="Vascular specialist" loading="lazy" width={400} height={400} className="h-full w-full object-cover" />
+            </div>
+
+            <div className="grid items-center gap-6 md:grid-cols-[1fr_1.05fr]">
               <div>
-                <h3 className="font-display text-2xl font-extrabold text-white sm:text-[26px]">You're Not Alone. We're Here to Help.</h3>
-                <p className="mt-2 max-w-2xl text-[13.5px] leading-relaxed text-white/85">
+                <h3 className="font-display text-2xl font-extrabold text-white sm:text-[26px]">Your Health. Our Expertise.</h3>
+                <p className="mt-2 max-w-md text-[13.5px] leading-relaxed text-white/85">
                   A second opinion can provide reassurance, confirm your diagnosis, or present alternative treatment options tailored to your condition.
                 </p>
-                <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                  {HELP_ITEMS.map((h, i) => (
-                    <Reveal key={h.label} variant="up" delay={0.08 + i * 0.06}>
-                      <div className="flex items-center gap-3 text-white">
-                        <span className="grid h-9 w-9 place-items-center rounded-full bg-white/15 ring-1 ring-white/25">
-                          <h.icon className="h-4 w-4" strokeWidth={1.9} />
-                        </span>
-                        <span className="text-[13.5px] font-semibold">{h.label}</span>
-                      </div>
-                    </Reveal>
-                  ))}
-                </div>
+              </div>
+              <div className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+                {HELP_ITEMS.map((h, i) => (
+                  <Reveal key={h.label} variant="up" delay={0.08 + i * 0.06}>
+                    <div className="flex items-center gap-3 text-white">
+                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white text-emerald-500">
+                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                      </span>
+                      <span className="text-[13.5px] font-semibold">{h.label}</span>
+                    </div>
+                  </Reveal>
+                ))}
               </div>
             </div>
           </div>
@@ -580,7 +582,7 @@ function RequestSection() {
               <div className="absolute inset-0 bg-gradient-to-r from-card via-card/70 to-transparent" />
             </div>
             <div className="relative">
-              <h2 className="font-display text-2xl font-extrabold text-indigo-700">
+              <h2 className="font-display text-2xl font-extrabold text-secondary">
                 Why Choose a Second Opinion<br />at Ignite Vascular Center?
               </h2>
               <div className="mt-3 h-0.5 w-14 rounded-full bg-gradient-brand" />
@@ -683,8 +685,8 @@ function CTABanner() {
                 <CalendarCheck className="h-7 w-7" />
               </span>
               <div className="min-w-0 text-white">
-                <h3 className="font-display text-xl font-extrabold sm:text-2xl">Ready to Take the Next Step Towards Better Care?</h3>
-                <p className="mt-1 text-[13px] text-white/85">Request your second opinion from our expert vascular specialists today.</p>
+                <h3 className="font-display text-xl font-extrabold sm:text-2xl">Take the Next Step Towards Better Health</h3>
+                <p className="mt-1 text-[13px] text-white/85">Get clarity, confidence, and the best treatment options with a second opinion from our vascular experts.</p>
               </div>
               <a href="#request" className="inline-flex items-center justify-center gap-2 rounded-[6px] bg-white px-5 py-3 text-sm font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-105">
                 Request Second Opinion
