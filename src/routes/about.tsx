@@ -109,7 +109,8 @@ function Hero() {
             Advanced Vascular Care.<br />
             <span className="text-primary">Compassionate</span> Hearts.
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
+          <span className="mt-5 block h-[3px] w-16 rounded-full bg-secondary/70" />
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
             Ignite Vascular Center is a specialized vascular surgery and endovascular
             care center in Kasturibai Peta, Vijayawada. We diagnose and treat diseases
             affecting arteries, veins, and blood vessels using advanced technology and
@@ -155,12 +156,12 @@ function MissionVision() {
   return (
     <section className="bg-white pb-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal className="reveal rounded-3xl bg-[oklch(0.96_0.03_320)] p-6 sm:p-10">
+        <Reveal className="reveal rounded-3xl bg-[oklch(0.972_0.018_305)] p-6 sm:p-10">
           <div className="grid gap-8 sm:grid-cols-2 sm:divide-x sm:divide-secondary/15">
             {items.map((it) => (
               <div key={it.title} className="flex items-start gap-5 sm:px-4 lg:px-8">
                 <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white shadow-soft">
-                  <it.icon className="h-7 w-7 text-primary" />
+                  <it.icon strokeWidth={1.75} className="h-7 w-7 text-primary" />
                 </span>
                 <div>
                   <h3 className="font-display text-sm font-extrabold uppercase tracking-[0.22em] text-secondary">{it.title}</h3>
