@@ -2,11 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import {
   Phone, MapPin, Mail, Clock, MessageCircleHeart, CalendarCheck,
-  ChevronRight, User, Send, ArrowRight, Facebook, Instagram,
-  Youtube, MessageCircle, Heart,
+  ChevronRight, User, Send, ArrowRight,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
+import { Footer } from "@/components/home/Footer";
 import servicesImg from "@/assets/contact-services.jpg";
 
 export const Route = createFileRoute("/contact")({
@@ -258,94 +258,6 @@ function AppointmentBanner() {
   );
 }
 
-const FOOTER_LINKS = ["Home", "About Us", "Services", "Treatments", "Our Doctor", "Testimonials", "Blog", "Contact Us"];
-const FOOTER_SERVICES = [
-  "Varicose Veins Treatment",
-  "Endovascular Procedures",
-  "Peripheral Arterial Disease (PAD)",
-  "Deep Vein Thrombosis (DVT)",
-  "Diabetic Foot Care",
-  "Vascular Ultrasound & Diagnosis",
-  "Balloon Angioplasty",
-  "Arterial Bypass Surgery",
-];
-
-function ContactFooter() {
-  return (
-    <footer className="relative mt-6 bg-card">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-4 lg:px-8">
-        <div>
-          <div className="flex items-center gap-2.5">
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-brand font-display text-sm font-bold text-primary-foreground">IV</span>
-            <span className="leading-tight">
-              <span className="block font-display text-[15px] font-extrabold text-secondary">Ignite <span className="text-primary">Vascular</span> Center</span>
-              <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">We Ignite The Hope</span>
-            </span>
-          </div>
-          <p className="mt-5 text-[13px] leading-relaxed text-muted-foreground">
-            Ignite Vascular Center is a specialized vascular surgery and endovascular care center in Vijayawada, providing advanced treatment with compassion and excellence.
-          </p>
-          <div className="mt-6 flex gap-2.5">
-            {[
-              { Icon: Facebook, cls: "bg-[#1877F2]" },
-              { Icon: Instagram, cls: "bg-gradient-to-br from-[#F58529] via-[#DD2A7B] to-[#8134AF]" },
-              { Icon: Youtube, cls: "bg-[#FF0000]" },
-              { Icon: MessageCircle, cls: "bg-[#25D366]" },
-            ].map(({ Icon, cls }, i) => (
-              <a key={i} href="#" aria-label="Social" className={`grid h-10 w-10 place-items-center rounded-full text-white transition-transform duration-300 hover:scale-110 ${cls}`}>
-                <Icon className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h4 className="font-display text-base font-extrabold text-secondary">Quick Links</h4>
-          <div className="mt-2 h-0.5 w-10 rounded-full bg-gradient-brand" />
-          <ul className="mt-5 space-y-2.5 text-[13px]">
-            {FOOTER_LINKS.map((l) => (
-              <li key={l}>
-                <a href="#" className="flex items-center justify-between text-muted-foreground transition-colors hover:text-primary">
-                  {l} <ChevronRight className="h-3.5 w-3.5" />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-display text-base font-extrabold text-secondary">Our Services</h4>
-          <div className="mt-2 h-0.5 w-10 rounded-full bg-gradient-brand" />
-          <ul className="mt-5 space-y-2.5 text-[13px]">
-            {FOOTER_SERVICES.map((s) => (
-              <li key={s}><a href="/#services" className="text-muted-foreground transition-colors hover:text-primary">{s}</a></li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-display text-base font-extrabold text-secondary">Get in Touch</h4>
-          <div className="mt-2 h-0.5 w-10 rounded-full bg-gradient-brand" />
-          <ul className="mt-5 space-y-3.5 text-[13px] text-muted-foreground">
-            <li className="flex gap-3"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> Opp. Brahmanandam Orthopaedic Center, Bellapu Sobhanadri Street, Kasturibai Peta, Vijayawada, Andhra Pradesh – 520002</li>
-            <li className="flex gap-3"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> +91 99661 17292</li>
-            <li className="flex gap-3"><Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> info@ignitevascularcenter.com</li>
-            <li className="flex gap-3"><Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> <span>Mon - Sat: 9:00 AM – 8:00 PM<br />Sunday: By Appointment</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="bg-indigo-deep">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-5 py-2 text-[12px] text-white/80 sm:flex-row lg:px-8">
-          <p>© {new Date().getFullYear()} Ignite Vascular Center. All Rights Reserved.</p>
-          <p className="inline-flex items-center gap-1.5">
-            Designed with <Heart className="h-3.5 w-3.5 fill-primary text-primary" /> for Better Health
-          </p>
-        </div>
-      </div>
-    </footer>
-  );
-}
 
 function ContactPage() {
   return (
@@ -356,7 +268,7 @@ function ContactPage() {
         <ContactForm />
         <AppointmentBanner />
       </main>
-      <ContactFooter />
+      <Footer />
     </div>
   );
 }

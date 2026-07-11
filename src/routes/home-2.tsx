@@ -4,10 +4,11 @@ import {
   Phone, ArrowRight, Calendar, Check, ShieldCheck, Cpu, UserCheck, Heart,
   GraduationCap, Award, Users, Stethoscope, Activity, Waves, Syringe, Footprints,
   Scan, CircleDot, HeartPulse, MonitorPlay, Droplets, Star, Quote, ChevronLeft,
-  ChevronRight, MapPin, Mail, Clock, Facebook, Instagram, Youtube, Send,
+  ChevronRight,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
+import { Footer } from "@/components/home/Footer";
 import heroImg from "@/assets/home2-hero.jpg";
 import doctorImg from "@/assets/home2-doctor.jpg";
 
@@ -342,70 +343,6 @@ function CTASection() {
   );
 }
 
-/* ---------------- Footer ---------------- */
-function Footer() {
-  return (
-    <footer id="contact" className="bg-white pt-16">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 pb-12 lg:grid-cols-4 lg:px-8">
-        <Reveal variant="up">
-          <div className="flex items-center gap-2.5">
-            <span className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-brand font-display text-sm font-bold text-primary-foreground">IV</span>
-            <span className="leading-tight">
-              <span className="block font-display text-[15px] font-extrabold text-secondary">Ignite <span className="text-primary">Vascular</span> Center</span>
-              <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">We Ignite The Hope</span>
-            </span>
-          </div>
-          <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-            Advanced vascular and endovascular care center in Kasturibai Peta, Vijayawada. We are
-            committed to providing world-class treatment with compassion and excellence.
-          </p>
-          <div className="mt-5 flex gap-2">
-            {[Facebook, Instagram, Youtube, Send].map((Icon, i) => (
-              <a key={i} href="#contact" aria-label="social" className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-brand text-primary-foreground transition-transform hover:scale-110">
-                <Icon className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
-        </Reveal>
-
-        <Reveal variant="up" delay={0.1}>
-          <h3 className="font-display text-base font-extrabold text-secondary">Quick Links</h3>
-          <div className="mt-3 h-0.5 w-8 bg-primary" />
-          <ul className="mt-5 space-y-2.5 text-sm text-muted-foreground">
-            {["Home", "About Us", "Services", "Treatments", "Our Doctor", "Testimonials", "Blog", "Contact Us"].map((l) => (
-              <li key={l}><a href="#top" className="transition-colors hover:text-primary">{l}</a></li>
-            ))}
-          </ul>
-        </Reveal>
-
-        <Reveal variant="up" delay={0.2}>
-          <h3 className="font-display text-base font-extrabold text-secondary">Services</h3>
-          <div className="mt-3 h-0.5 w-8 bg-primary" />
-          <ul className="mt-5 space-y-2.5 text-sm text-muted-foreground">
-            {SERVICES.slice(0, 7).map((s) => (
-              <li key={s.title}><a href="#services" className="transition-colors hover:text-primary">{s.title}</a></li>
-            ))}
-          </ul>
-        </Reveal>
-
-        <Reveal variant="up" delay={0.3}>
-          <h3 className="font-display text-base font-extrabold text-secondary">Contact Us</h3>
-          <div className="mt-3 h-0.5 w-8 bg-primary" />
-          <ul className="mt-5 space-y-4 text-sm text-muted-foreground">
-            <li className="flex gap-3"><span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><MapPin className="h-4 w-4" /></span>Opp. Brahmanandam Orthopaedic Center, Bellapu Sobhanadri Street, Kasturibai Peta, Vijayawada, Andhra Pradesh — 520002</li>
-            <li className="flex items-center gap-3"><span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><Phone className="h-4 w-4" /></span><a href="tel:+919966117292" className="hover:text-primary">+91 99661 17292</a></li>
-            <li className="flex items-center gap-3"><span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><Mail className="h-4 w-4" /></span><a href="mailto:info@ignitevascularcenter.com" className="hover:text-primary">info@ignitevascularcenter.com</a></li>
-            <li className="flex items-center gap-3"><span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><Clock className="h-4 w-4" /></span>Mon - Sat: 9:00 AM - 8:00 PM</li>
-          </ul>
-        </Reveal>
-      </div>
-      <div className="bg-secondary py-4 text-center text-xs text-secondary-foreground/80 sm:flex sm:justify-between sm:px-8">
-        <p>© 2025 Ignite Vascular Center. All Rights Reserved.</p>
-        <p className="mt-1 sm:mt-0">Designed with <span className="text-primary">♥</span> for Better Health</p>
-      </div>
-    </footer>
-  );
-}
 
 /* ---------------- Stats strip (light) ---------------- */
 function Trust() {
