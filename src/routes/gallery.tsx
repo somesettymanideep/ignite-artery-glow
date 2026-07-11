@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   Image as ImageIcon,
   Users,
@@ -8,6 +8,9 @@ import {
   Download,
   Calendar,
   ArrowRight,
+  X,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
@@ -70,9 +73,42 @@ const IMAGES: { src: string; alt: string; cat: string }[] = [
 function GalleryTwoPage() {
   const [active, setActive] = useState("All");
   const filtered = active === "All" ? IMAGES : IMAGES.filter((i) => i.cat === active);
+  const [lightbox, setLightbox] = useState<number | null>(null);
+
+  const close = useCallback(() => setLightbox(null), []);
+  const next = useCallback(
+    () => setLightbox((i) => (i === null ? i : (i + 1) % filtered.length)),
+    [filtered.length],
+  );
+  const prev = useCallback(
+    () => setLightbox((i) => (i === null ? i : (i - 1 + filtered.length) % filtered.length)),
+    [filtered.length],
+  );
+
+  useEffect(() => {
+    if (lightbox === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowRight") next();
+      else if (e.key === "ArrowLeft") prev();
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [lightbox, close, next, prev]);
+
+  // Reset lightbox when filter changes to avoid stale index
+  useEffect(() => {
+    setLightbox(null);
+  }, [active]);
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background">
+
       <Navbar />
       <SubBanner title="Gallery" crumb="Gallery" image={galleryBanner} />
 
@@ -164,14 +200,19 @@ function GalleryTwoPage() {
                   <button
                     key={c}
                     onClick={() => setActive(c)}
-                    className={`shrink-0 rounded-[8px] px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
+                    aria-pressed={on}
+                    className={`relative shrink-0 rounded-[8px] px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
                       on
-                        ? "bg-primary text-primary-foreground shadow-glow-red"
-                        : "bg-transparent text-secondary hover:text-primary"
+                        ? "bg-primary text-primary-foreground shadow-glow-red ring-2 ring-primary/40 ring-offset-2 ring-offset-background scale-[1.03]"
+                        : "bg-transparent text-secondary hover:bg-primary/10 hover:text-primary"
                     }`}
                   >
                     {c}
+                    {on && (
+                      <span className="pointer-events-none absolute -bottom-1.5 left-1/2 h-1 w-8 -translate-x-1/2 rounded-full bg-primary" />
+                    )}
                   </button>
+
                 );
               })}
             </div>
@@ -187,7 +228,10 @@ function GalleryTwoPage() {
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((img, i) => (
             <Reveal key={`${img.alt}-${i}`} variant="up" delay={(i % 3) * 0.08}>
-              <figure className="group relative h-56 overflow-hidden rounded-[14px] shadow-soft sm:h-60 lg:h-64">
+              <figure
+                onClick={() => setLightbox(i)}
+                className="group relative h-56 cursor-zoom-in overflow-hidden rounded-[14px] shadow-soft sm:h-60 lg:h-64"
+              >
                 <img
                   src={img.src}
                   alt={img.alt}
@@ -203,6 +247,7 @@ function GalleryTwoPage() {
           ))}
         </div>
       </section>
+
 
       {/* CTA banner */}
       <section className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
@@ -243,6 +288,62 @@ function GalleryTwoPage() {
 
       <Footer />
       <FloatingEmergency />
+
+      {/* Lightbox */}
+      {lightbox !== null && filtered[lightbox] && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={filtered[lightbox].alt}
+          onClick={close}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm animate-fade-in"
+        >
+          <button
+            onClick={(e) => { e.stopPropagation(); close(); }}
+            aria-label="Close"
+            className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+          >
+            <X className="h-5 w-5" />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); prev(); }}
+            aria-label="Previous image"
+            className="absolute left-3 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:left-6"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); next(); }}
+            aria-label="Next image"
+            className="absolute right-3 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/20 sm:right-6"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+
+          <figure
+            onClick={(e) => e.stopPropagation()}
+            className="relative flex max-h-[90vh] max-w-[92vw] flex-col items-center gap-4 animate-scale-in"
+          >
+            <img
+              src={filtered[lightbox].src}
+              alt={filtered[lightbox].alt}
+              className="max-h-[78vh] max-w-full rounded-[10px] object-contain shadow-lift"
+            />
+            <figcaption className="w-full max-w-2xl text-center">
+              <span className="text-[10px] font-semibold uppercase tracking-widest text-white/60">
+                {filtered[lightbox].cat}
+              </span>
+              <p className="mt-1 font-display text-lg font-bold text-white">
+                {filtered[lightbox].alt}
+              </p>
+              <p className="mt-1 text-xs text-white/50">
+                {lightbox + 1} / {filtered.length}
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      )}
     </div>
   );
 }
+
