@@ -248,33 +248,34 @@ function CaseStudiesPage() {
                     />
                   </div>
 
-                  <div className="flex flex-1 flex-col p-6">
+                  <div className="flex flex-1 flex-col p-5">
                     <span
-                      className={`inline-flex w-fit items-center rounded-md px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-primary-foreground ${
+                      className={`inline-flex w-fit items-center rounded-md px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground ${
                         c.badgeColor === "red" ? "bg-primary" : "bg-secondary"
                       }`}
                     >
                       {c.category}
                     </span>
 
-                    <h3 className="mt-4 font-display text-lg font-extrabold leading-snug text-secondary">
+                    <h3 className="mt-3 font-display text-[17px] font-extrabold leading-snug text-secondary">
                       {c.title}
                     </h3>
 
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    <p className="mt-2.5 text-[13.5px] leading-relaxed text-muted-foreground">
                       {c.description}
                     </p>
 
-                    <div className="mt-5 grid grid-cols-3 gap-3 rounded-md bg-accent/50 p-3">
+                    <div className="mt-5 grid grid-cols-3 gap-2 border-t border-border/60 pt-4">
                       <MetaCell icon={Clock} label="Treatment Time" value={c.treatmentTime} />
-                      <MetaCell icon={CalendarDays} label="Recovery" value={c.recovery} />
+                      <MetaCell icon={CalendarDays} label="Recovery Time" value={c.recovery} />
                       <MetaCell icon={Award} label="Outcome" value={c.outcome} />
                     </div>
 
-                    <button className="mt-5 inline-flex w-fit items-center gap-1.5 text-sm font-bold text-primary transition-transform hover:translate-x-0.5">
-                      Read More <ArrowRight className="h-4 w-4" />
+                    <button className="mt-4 inline-flex w-fit items-center gap-1.5 text-[13px] font-bold text-primary transition-transform hover:translate-x-0.5">
+                      Read More <ArrowRight className="h-3.5 w-3.5" />
                     </button>
                   </div>
+
                 </article>
               </Reveal>
             ))}
