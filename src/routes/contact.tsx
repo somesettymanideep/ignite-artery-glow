@@ -266,20 +266,26 @@ function AppointmentBanner() {
             <path d="M10 140 Q 50 80 90 140 T 190 140" stroke="white" strokeWidth="2" className="heartbeat-line" />
           </svg>
           <div className="relative grid gap-6 md:grid-cols-[auto_1fr_auto] md:items-center">
-            <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white text-primary shadow-lift animate-pulse-glow">
-              <CalendarCheck className="h-8 w-8" />
-            </span>
-            <div className="min-w-0 text-primary-foreground">
-              <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary-foreground/75">Need Immediate Assistance?</p>
-              <h3 className="mt-2 font-display text-2xl font-extrabold sm:text-3xl">Book Your Appointment Today!</h3>
-              <p className="mt-1.5 text-sm text-primary-foreground/85">Take the first step towards healthy circulation and a better life.</p>
-            </div>
-            <a href="tel:+919966117292" className="inline-flex items-center justify-center gap-2.5 rounded-full bg-white px-6 py-3.5 font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-105">
-              Book Appointment
-              <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-brand text-primary-foreground">
-                <ArrowRight className="h-3.5 w-3.5" />
+            <Reveal variant="left">
+              <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white text-primary shadow-lift animate-pulse-glow">
+                <CalendarCheck className="h-8 w-8" />
               </span>
-            </a>
+            </Reveal>
+            <Reveal variant="up" delay={0.08}>
+              <div className="min-w-0 text-primary-foreground">
+                <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary-foreground/75">Need Immediate Assistance?</p>
+                <h3 className="mt-2 font-display text-2xl font-extrabold sm:text-3xl">Book Your Appointment Today!</h3>
+                <p className="mt-1.5 text-sm text-primary-foreground/85">Take the first step towards healthy circulation and a better life.</p>
+              </div>
+            </Reveal>
+            <Reveal variant="right" delay={0.16}>
+              <a href="tel:+919966117292" className="inline-flex items-center justify-center gap-2.5 rounded-full bg-white px-6 py-3.5 font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-105">
+                Book Appointment
+                <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-brand text-primary-foreground">
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </a>
+            </Reveal>
           </div>
         </Reveal>
       </div>
