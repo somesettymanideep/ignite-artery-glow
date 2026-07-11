@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import {
   Phone, MapPin, Mail, Clock, MessageCircleHeart, CalendarCheck,
-  ChevronRight, User, Send, ArrowRight,
+  ChevronRight, User, Send, ArrowRight, MessageCircle,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
