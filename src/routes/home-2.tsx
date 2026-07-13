@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   Phone, ArrowRight, Calendar, Check, ShieldCheck, Cpu, UserCheck, Heart,
-  GraduationCap, Award, Users, Stethoscope, Activity, Waves, Syringe, Footprints,
+  Stethoscope, Activity, Waves, Syringe, Footprints,
   Scan, CircleDot, HeartPulse, MonitorPlay, Droplets, Star, Quote, ChevronLeft,
   ChevronRight,
 } from "lucide-react";
