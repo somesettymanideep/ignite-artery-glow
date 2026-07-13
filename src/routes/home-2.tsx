@@ -12,6 +12,7 @@ import { Footer } from "@/components/home/Footer";
 import { GoogleReviews } from "@/components/home/GoogleReviews";
 import heroImg from "@/assets/home2-hero.jpg";
 import doctorImg from "@/assets/home2-doctor.jpg";
+import hero3dImg from "@/assets/home2-3d-hero.jpg";
 
 export const Route = createFileRoute("/home-2")({
   head: () => ({
