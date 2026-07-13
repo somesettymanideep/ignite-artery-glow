@@ -6,6 +6,8 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
+import { SubBanner } from "@/components/home/SubBanner";
+import caseBanner from "@/assets/case-studies-banner.webp.asset.json";
 import { Footer } from "@/components/home/Footer";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 
@@ -140,6 +142,9 @@ function CaseStudiesPage() {
   return (
     <main className="min-h-screen bg-background [overflow-x:clip]">
       <Navbar />
+      <SubBanner title="Case Studies" image={caseBanner.url} crumb="Case Studies" />
+
+
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-[#f5f6f8] pt-24 lg:pt-28">
