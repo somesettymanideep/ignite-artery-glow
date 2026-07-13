@@ -283,10 +283,6 @@ function CertificationsCarousel() {
     </div>
   );
 }
-      </div>
-    </section>
-  );
-}
 
 function Stat({ end, suffix, label, icon: Icon }: { end: number; suffix: string; label: string; icon: React.ComponentType<{ className?: string }> }) {
   const { ref, value } = useCountUp(end, 1600);
