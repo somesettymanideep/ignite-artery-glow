@@ -4,19 +4,27 @@ import { Reveal } from "@/hooks/use-reveal";
 export function CTA() {
   return (
     <section id="cta" className="relative overflow-hidden bg-gradient-cta py-20 lg:py-28">
-      {/* Animated heartbeat line */}
+      {/* Animated flowing line */}
       <svg
-        className="pointer-events-none absolute inset-0 h-full w-full opacity-20"
+        className="pointer-events-none absolute inset-0 h-full w-full opacity-25"
         viewBox="0 0 1440 400"
         fill="none"
         preserveAspectRatio="xMidYMid slice"
         aria-hidden
       >
         <path
-          d="M-20 200 H 300 L 340 200 L 370 120 L 400 280 L 430 160 L 460 200 H 700 L 740 200 L 770 110 L 800 290 L 830 170 L 860 200 H 1100 L 1140 200 L 1170 130 L 1200 270 L 1230 180 L 1260 200 H 1500"
+          d="M-20 220 C 240 120, 480 320, 720 200 S 1200 80, 1500 240"
           stroke="white"
-          strokeWidth="3"
-          className="heartbeat-line"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          className="draw-line"
+        />
+        <path
+          d="M-20 260 C 260 360, 520 160, 780 260 S 1240 340, 1500 200"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          className="draw-line draw-line-delayed"
         />
       </svg>
 

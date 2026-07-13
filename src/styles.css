@@ -259,6 +259,22 @@
   to { stroke-dashoffset: -600; }
 }
 
+@keyframes draw-line {
+  0% { stroke-dashoffset: 3200; }
+  60% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -3200; }
+}
+
+@utility draw-line {
+  stroke-dasharray: 3200;
+  stroke-dashoffset: 3200;
+  animation: draw-line 8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@utility draw-line-delayed {
+  animation-delay: 1.5s;
+}
+
 @utility animate-float {
   animation: float-slow 5s ease-in-out infinite;
 }
