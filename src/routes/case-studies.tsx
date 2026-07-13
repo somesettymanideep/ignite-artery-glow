@@ -217,8 +217,9 @@ function CaseStudiesPage() {
                         : "text-secondary/80 hover:bg-accent"
                     }`}
                   >
-                    <c.icon className="h-4 w-4" strokeWidth={1.75} />
-                    {c.label}
+                    <c.icon className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                    <span className="sm:hidden">{c.short}</span>
+                    <span className="hidden sm:inline">{c.label}</span>
                   </button>
                 );
               })}
