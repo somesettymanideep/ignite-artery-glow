@@ -29,6 +29,7 @@ function Index() {
       <Process />
       <Testimonials />
       <GoogleReviews />
+      <InstagramFeed />
       <CTA />
       <Footer />
       <FloatingEmergency />
