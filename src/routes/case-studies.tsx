@@ -144,60 +144,14 @@ function CaseStudiesPage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-[#f5f6f8] pt-24 lg:pt-28">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-5 pb-14 lg:grid-cols-[1.05fr_1fr] lg:gap-4 lg:pb-16 lg:pl-8 lg:pr-0">
-          <div className="lg:py-10">
-            <Reveal variant="left">
-              <span className="text-[11px] font-extrabold uppercase tracking-[0.3em] text-primary">
-                Case Studies
-              </span>
-            </Reveal>
-            <Reveal variant="up" delay={0.06}>
-              <h1 className="mt-4 font-display text-[40px] font-extrabold leading-[1.05] tracking-tight text-secondary sm:text-5xl lg:text-[56px]">
-                Real Patients.
-                <br />
-                <span className="text-primary">Real Results.</span>
-              </h1>
-            </Reveal>
-            <Reveal variant="left" delay={0.14}>
-              <div className="mt-3 h-[3px] w-20 rounded-full bg-primary/80" />
-            </Reveal>
-            <Reveal variant="up" delay={0.2}>
-              <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted-foreground">
-                Explore our case studies to see how advanced vascular care and personalized treatment have transformed lives.
-              </p>
-            </Reveal>
-
-            <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-4">
-              {STATS.map((s, i) => (
-                <Reveal key={s.label} variant="up" delay={0.28 + i * 0.06}>
-                  <div className="flex items-center gap-3">
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-accent text-secondary">
-                      <s.icon className="h-4 w-4" strokeWidth={1.75} />
-                    </span>
-                    <div>
-                      <div className="font-display text-lg font-extrabold leading-none text-secondary">{s.value}</div>
-                      <div className="mt-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                        {s.label}
-                      </div>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-
-          <Reveal variant="right" delay={0.1}>
-            <div className="relative -mr-5 lg:mr-0">
-              <img
-                src={heroVessels}
-                alt="Illustration of vascular blood vessels"
-                className="ml-auto block h-auto w-full max-w-[560px] object-cover lg:max-w-none"
-                loading="eager"
-              />
-            </div>
-          </Reveal>
-
-        </div>
+        <Reveal variant="up">
+          <img
+            src={heroVessels}
+            alt="Case studies — real patients, real results"
+            className="block h-auto w-full object-cover"
+            loading="eager"
+          />
+        </Reveal>
       </section>
 
 
