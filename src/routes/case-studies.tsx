@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import {
   Activity, Users, Stethoscope, Award, Clock, CalendarDays,
   ShieldCheck, ArrowRight, Filter, Calendar, LayoutGrid,
+  HeartHandshake, Trophy, HandHeart,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
