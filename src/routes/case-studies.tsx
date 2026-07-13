@@ -326,25 +326,25 @@ function CaseStudiesPage() {
             <div className="relative overflow-hidden rounded-[7px] bg-gradient-cta p-6 sm:p-8 lg:p-10">
               <div className="relative z-10 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
                 <div className="flex items-center gap-5">
-                  <Reveal variant="left" delay={0.15}>
+                  <Reveal variant="left" delay={0.1}>
                     <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-white text-secondary shadow-lift">
                       <Calendar className="h-6 w-6" strokeWidth={1.75} />
                     </span>
                   </Reveal>
                   <div>
-                    <Reveal variant="up" delay={0.22}>
+                    <Reveal variant="up" delay={0.16}>
                       <h3 className="font-display text-xl font-extrabold text-white sm:text-2xl">
                         Need Expert Care for Vascular Conditions?
                       </h3>
                     </Reveal>
-                    <Reveal variant="up" delay={0.3}>
+                    <Reveal variant="up" delay={0.22}>
                       <p className="mt-1 text-sm text-white/85">
                         Our specialists are here to help you every step of the way.
                       </p>
                     </Reveal>
                   </div>
                 </div>
-                <Reveal variant="right" delay={0.38}>
+                <Reveal variant="right" delay={0.28}>
                   <Link
                     to="/contact"
                     className="group inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-bold text-secondary transition-transform hover:scale-105"
@@ -355,6 +355,7 @@ function CaseStudiesPage() {
                     </span>
                   </Link>
                 </Reveal>
+
 
               </div>
               <div className="pointer-events-none absolute -right-10 -top-10 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
