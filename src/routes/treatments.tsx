@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   HeartPulse, Droplets, Stethoscope, Syringe, ChevronRight,
-  CheckCircle2, ArrowRight, Phone,
+  ArrowRight, Phone,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
@@ -142,7 +142,7 @@ function Hero() {
   );
 }
 
-function ServiceCard({
+function CategoryRow({
   category,
   isActive,
   onActivate,
@@ -152,66 +152,103 @@ function ServiceCard({
   onActivate: () => void;
 }) {
   const Icon = category.icon;
+
+  if (isActive) {
+    return (
+      <div className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-xl shadow-secondary/10 ring-1 ring-secondary/5 transition-all duration-500">
+        <button
+          type="button"
+          onClick={onActivate}
+          className="flex w-full items-center justify-between bg-gradient-brand p-5 text-left sm:px-6"
+          aria-expanded="true"
+        >
+          <div className="flex min-w-0 items-center gap-3">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white/15 text-primary-foreground">
+              <Icon className="h-5 w-5" strokeWidth={1.75} />
+            </span>
+            <h3 className="truncate font-display text-lg font-bold text-primary-foreground sm:text-xl">
+              {category.title}
+            </h3>
+          </div>
+          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-white/20 text-primary-foreground">
+            <ChevronRight className="h-4 w-4 rotate-90" />
+          </span>
+        </button>
+        <div className="bg-card p-5 sm:p-6">
+          <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
+            {category.items.map((item) => (
+              <li key={item} className="group flex items-start gap-3">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary transition-transform duration-300 group-hover:scale-150" />
+                <span className="text-sm font-medium leading-snug text-secondary sm:text-[15px]">
+                  {item}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <Link
+            to="/contact"
+            className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl border-2 border-secondary/10 py-3 text-xs font-bold uppercase tracking-[0.2em] text-secondary transition-colors duration-300 hover:bg-secondary/5"
+          >
+            View all {category.title.toLowerCase()} services
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <button
       type="button"
-      onMouseEnter={onActivate}
       onClick={onActivate}
+      onMouseEnter={onActivate}
       onFocus={onActivate}
-      className={`group relative w-full rounded-[5px] p-6 text-left transition-all duration-500 sm:p-8 lg:p-10 ${
-        isActive
-          ? "bg-gradient-brand text-primary-foreground shadow-glow-red"
-          : "bg-card text-card-foreground shadow-soft hover:-translate-y-1 hover:shadow-lift"
-      }`}
-      aria-expanded={isActive}
+      className="group flex w-full items-center justify-between rounded-2xl border border-border/60 bg-card p-5 text-left transition-all duration-300 hover:-translate-y-0.5 hover:border-secondary/25 hover:shadow-soft sm:px-6"
+      aria-expanded="false"
     >
-      <div className={`mb-5 inline-flex items-center justify-center rounded-2xl p-3.5 transition-colors duration-500 ${
-        isActive ? "bg-white/20" : "bg-gradient-brand-soft text-secondary"
-      }`}>
-        <Icon className="h-7 w-7 sm:h-8 sm:w-8" strokeWidth={1.75} />
+      <div className="flex min-w-0 items-center gap-3">
+        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-brand-soft text-secondary transition-colors duration-300 group-hover:text-primary">
+          <Icon className="h-5 w-5" strokeWidth={1.75} />
+        </span>
+        <div className="min-w-0">
+          <h3 className="truncate font-display text-lg font-semibold text-secondary transition-colors duration-300 group-hover:text-primary">
+            {category.title}
+          </h3>
+          <p className="mt-0.5 truncate text-xs text-muted-foreground">
+            {category.short}
+          </p>
+        </div>
       </div>
-
-      <h3 className="font-display text-xl font-bold tracking-tight sm:text-2xl">
-        {category.title}
-      </h3>
-      <p className={`mt-3 text-sm leading-relaxed sm:text-[15px] ${isActive ? "text-white/85" : "text-muted-foreground"}`}>
-        {category.short}
-      </p>
-
-      <span className={`mt-5 inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 ${
-        isActive ? "text-white" : "text-primary group-hover:gap-3"
-      }`}>
-        {isActive ? "Showing treatments" : "View treatments"}
-        <ChevronRight className={`h-4 w-4 transition-transform duration-300 ${isActive ? "rotate-90" : ""}`} />
-      </span>
-
-      {/* Active indicator line */}
-      <span className={`absolute left-0 top-0 h-1 w-full rounded-t-[5px] bg-white transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-0"}`} aria-hidden />
+      <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground transition-all duration-300 group-hover:translate-x-1 group-hover:text-primary" />
     </button>
   );
 }
 
 function TreatmentsGrid() {
   const [activeId, setActiveId] = useState<string>("arterial");
-  const activeCategory = CATEGORIES.find((c) => c.id === activeId) ?? CATEGORIES[0];
 
   return (
     <section className="py-16 lg:py-24">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal variant="up" className="mx-auto max-w-2xl text-center">
-          <span className="inline-block text-xs font-bold uppercase tracking-[0.28em] text-primary">What We Treat</span>
-          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-secondary sm:text-4xl lg:text-5xl">
-            Specialized Vascular &<br className="hidden sm:block" /> Endovascular Services
+      <div className="mx-auto max-w-4xl px-5 lg:px-8">
+        <Reveal variant="up" className="mb-10 text-center sm:text-left">
+          <span className="block text-xs font-bold uppercase tracking-[0.28em] text-primary">
+            Specialized Care
+          </span>
+          <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight tracking-tight text-secondary sm:text-4xl lg:text-5xl">
+            What We{" "}
+            <span className="bg-gradient-brand bg-clip-text text-transparent">
+              Treat
+            </span>
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Hover or tap a category to explore the full range of procedures and conditions we manage at Ignite Vascular Center.
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:mx-0 sm:text-base">
+            Comprehensive vascular and endovascular services tailored to your health and recovery.
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:gap-6">
+        <div className="space-y-3">
           {CATEGORIES.map((category, i) => (
             <Reveal key={category.id} variant="up" delay={i * 0.08}>
-              <ServiceCard
+              <CategoryRow
                 category={category}
                 isActive={activeId === category.id}
                 onActivate={() => setActiveId(category.id)}
@@ -220,25 +257,17 @@ function TreatmentsGrid() {
           ))}
         </div>
 
-        {/* Expanded sub-services panel */}
-        <Reveal variant="up" delay={0.2}>
-          <div className="mt-6 overflow-hidden rounded-[5px] border border-border/60 bg-card shadow-soft transition-all duration-500">
-            <div className="bg-gradient-brand px-6 py-4 sm:px-8">
-              <h3 className="font-display text-lg font-bold text-primary-foreground sm:text-xl">
-                {activeCategory.title} — Treatment List
-              </h3>
-            </div>
-            <div className="p-6 sm:p-8">
-              <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
-                {activeCategory.items.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm font-medium text-secondary sm:text-[15px]">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+        <Reveal variant="up" delay={0.2} className="mt-12 text-center">
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+            Not seeing your condition?
+          </p>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 rounded-full bg-secondary px-8 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-secondary/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-secondary/40"
+          >
+            <Phone className="h-4 w-4" />
+            Contact Specialist
+          </Link>
         </Reveal>
       </div>
     </section>
