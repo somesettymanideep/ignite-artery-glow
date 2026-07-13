@@ -101,7 +101,7 @@ export function InstagramFeed() {
 
         <div
           ref={trackRef}
-          className="scrollbar-none mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4"
+          className="scrollbar-none mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto overflow-y-hidden pb-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           role="list"
           aria-label="Instagram reels"
         >
