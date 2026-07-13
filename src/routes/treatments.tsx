@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   HeartPulse, Droplets, Stethoscope, Syringe, ChevronRight,
-  CheckCircle2, ArrowRight, Phone,
+  ArrowRight, Phone,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
