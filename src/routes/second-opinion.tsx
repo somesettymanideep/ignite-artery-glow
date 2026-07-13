@@ -404,9 +404,6 @@ function RequestSection() {
                     Free & Confidential
                   </span>
                   <h2 className="mt-2 font-display text-[22px] font-extrabold leading-tight text-white sm:text-2xl">Request Your Second Opinion</h2>
-                  <p className="mt-1.5 text-[12.5px] leading-relaxed text-white/85">
-                    Fill in the details below. Our team reviews your case and reaches out within 24–48 hours.
-                  </p>
                 </div>
               </div>
             </div>
