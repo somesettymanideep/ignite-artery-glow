@@ -4,11 +4,10 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
-  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, useLayoutEffect, type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -135,25 +134,46 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const hash = useRouterState({ select: (s) => s.location.hash });
+  const router = useRouter();
 
-  const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
-  useIsoLayoutEffect(() => {
-    if (hash) return; // let in-page anchors scroll themselves
+  useEffect(() => {
     if (typeof window === "undefined") return;
-    // Temporarily disable CSS smooth scrolling so route changes jump instantly to the top
-    const root = document.documentElement;
-    const prev = root.style.scrollBehavior;
-    root.style.scrollBehavior = "auto";
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-    root.scrollTop = 0;
-    // Restore on next frame
-    requestAnimationFrame(() => {
-      root.style.scrollBehavior = prev;
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    let raf = 0;
+    let active = false;
+    let stopAt = 0;
+    const forceTop = () => {
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    };
+    const loop = () => {
+      forceTop();
+      if (performance.now() < stopAt) {
+        raf = requestAnimationFrame(loop);
+      } else {
+        active = false;
+      }
+    };
+    const start = () => {
+      stopAt = performance.now() + 400;
+      if (!active) {
+        active = true;
+        raf = requestAnimationFrame(loop);
+      }
+    };
+    const unsub = router.subscribe("onResolved", ({ toLocation, fromLocation }) => {
+      if (toLocation.hash) return;
+      if (fromLocation && fromLocation.pathname === toLocation.pathname && !fromLocation.hash) return;
+      start();
     });
-  }, [pathname, hash]);
+    return () => {
+      unsub();
+      cancelAnimationFrame(raf);
+    };
+  }, [router]);
 
   return (
     <QueryClientProvider client={queryClient}>
