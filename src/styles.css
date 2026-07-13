@@ -292,3 +292,89 @@
   stroke-dasharray: 6 10;
   animation: vein-dash 30s linear infinite;
 }
+
+/* ---------- Hero3D holographic animations ---------- */
+
+@keyframes hologram-scan {
+  0% { transform: translateY(-110%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(110%); opacity: 0; }
+}
+
+@keyframes hologram-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.95; transform: scale(1.04); }
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.55); }
+  70% { box-shadow: 0 0 0 14px rgba(229, 57, 53, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); }
+}
+
+@keyframes heart-beat {
+  0%, 60%, 100% { transform: scale(1); }
+  20% { transform: scale(1.18); }
+  40% { transform: scale(0.94); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.55; }
+}
+
+@utility hologram-scan {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 194, 255, 0) 40%,
+    rgba(0, 194, 255, 0.35) 50%,
+    rgba(0, 194, 255, 0) 60%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+  animation: hologram-scan 4.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@utility hologram-grid {
+  background-image:
+    linear-gradient(rgba(15, 108, 189, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 108, 189, 0.18) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mix-blend-mode: overlay;
+}
+
+@utility hologram-pulse {
+  animation: hologram-pulse 6s ease-in-out infinite;
+}
+
+@utility pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@utility heart-beat {
+  animation: heart-beat 1.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@utility pulse-dot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hologram-scan,
+  .hologram-grid,
+  .hologram-pulse,
+  .pulse-ring,
+  .heart-beat,
+  .pulse-dot,
+  .animate-float,
+  .animate-float-slower,
+  .animate-pulse-glow,
+  .heartbeat-line,
+  .vein-line,
+  .draw-line {
+    animation: none !important;
+  }
+}
