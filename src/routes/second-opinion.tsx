@@ -356,7 +356,15 @@ function RequestSection() {
   const FieldError = ({ name }: { name: keyof FormData }) => {
     const msg = errors[name];
     if (!msg) return null;
-    return <p className="mt-1.5 flex items-center gap-1.5 text-[11.5px] font-semibold text-red-500" role="alert"><span className="h-1 w-1 rounded-full bg-red-500" />{msg}</p>;
+    return <p id={`${name}-error`} className="mt-1.5 flex items-center gap-1.5 text-[11.5px] font-semibold text-red-500" role="alert"><span className="h-1 w-1 rounded-full bg-red-500" aria-hidden />{msg}</p>;
+  };
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const handleUploadKey = (e: React.KeyboardEvent<HTMLLabelElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      fileInputRef.current?.click();
+    }
   };
 
   return (
