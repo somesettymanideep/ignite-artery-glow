@@ -28,7 +28,7 @@ function Index() {
       <WhyChoose />
       <Process />
       <Testimonials />
-      <GoogleReviews />
+      
       <InstagramFeed />
       <CTA />
       <Footer />
