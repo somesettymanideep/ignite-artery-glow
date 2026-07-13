@@ -1,6 +1,7 @@
 import { Calendar, Phone } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
-import ctaBg from "@/assets/cta-vascular-bg.jpg";
+import ctaBgAsset from "@/assets/cta-vascular-bg.webp.asset.json";
+const ctaBg = ctaBgAsset.url;
 
 export function CTA() {
   return (
