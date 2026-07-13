@@ -116,21 +116,27 @@ function Hero() {
         {/* Left content */}
         <Reveal variant="left" className="z-10">
 
-          <h1 className="mt-6 font-display text-[2.1rem] font-extrabold leading-[1.12] tracking-tight text-secondary sm:text-4xl lg:text-[2.4rem] xl:text-[2.65rem]">
-            <span className="block">Get a Second Opinion.</span>
-            <span className="mt-2 block text-primary">Make the Right Decision</span>
-          </h1>
-          <div className="mt-4 h-[3px] w-12 rounded-full bg-primary" />
+          <Reveal variant="up" delay={0.05}>
+            <h1 className="mt-6 font-display text-[2.1rem] font-extrabold leading-[1.12] tracking-tight text-secondary sm:text-4xl lg:text-[2.4rem] xl:text-[2.65rem]">
+              <span className="block">Get a Second Opinion.</span>
+              <span className="mt-2 block text-primary">Make the Right Decision</span>
+            </h1>
+          </Reveal>
+          <Reveal variant="up" delay={0.15}>
+            <div className="mt-4 h-[3px] w-12 rounded-full bg-primary" />
+          </Reveal>
 
-          <p className="mt-5 max-w-lg text-[15px] leading-[1.75] text-muted-foreground">
-            Your health decisions matter. Our expert vascular specialists provide a thorough
-            review of your diagnosis and treatment plan so you can move forward with
-            confidence and peace of mind.
-          </p>
+          <Reveal variant="up" delay={0.2}>
+            <p className="mt-5 max-w-lg text-[15px] leading-[1.75] text-muted-foreground">
+              Your health decisions matter. Our expert vascular specialists provide a thorough
+              review of your diagnosis and treatment plan so you can move forward with
+              confidence and peace of mind.
+            </p>
+          </Reveal>
 
           <div className="mt-9 grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-5 lg:gap-6">
             {BADGES.map((b, i) => (
-              <Reveal key={b.title} variant="up" delay={0.05 + i * 0.05} className="flex justify-center">
+              <Reveal key={b.title} variant="zoom" delay={0.3 + i * 0.1} className="flex justify-center">
                 <div className="text-center w-[120px]">
                   <span className="mx-auto grid h-[54px] w-[54px] place-items-center rounded-full bg-[#ede9f6] text-[#311261]">
                     <b.icon className="h-5 w-5" strokeWidth={1.6} />
@@ -142,19 +148,22 @@ function Hero() {
             ))}
           </div>
 
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a href="#request" className="group inline-flex items-center gap-3 rounded-[6px] bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-glow-red transition-transform duration-300 hover:scale-[1.02]">
-              Request Second Opinion
-              <span className="grid h-6 w-6 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1">
-                <ArrowRight className="h-3.5 w-3.5" />
-              </span>
-            </a>
-            <a href="#how-it-works" className="inline-flex items-center gap-2 rounded-[6px] border-2 border-secondary/15 bg-white px-6 py-3.5 text-sm font-bold text-secondary transition-colors hover:border-primary hover:text-primary">
-              How It Works
-              <PlayCircle className="h-4 w-4" />
-            </a>
-          </div>
+          <Reveal variant="up" delay={0.7}>
+            <div className="mt-9 flex flex-wrap items-center gap-4">
+              <a href="#request" className="group inline-flex items-center gap-3 rounded-[6px] bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-glow-red transition-transform duration-300 hover:scale-[1.02]">
+                Request Second Opinion
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1">
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </a>
+              <a href="#how-it-works" className="inline-flex items-center gap-2 rounded-[6px] border-2 border-secondary/15 bg-white px-6 py-3.5 text-sm font-bold text-secondary transition-colors hover:border-primary hover:text-primary">
+                How It Works
+                <PlayCircle className="h-4 w-4" />
+              </a>
+            </div>
+          </Reveal>
         </Reveal>
+
 
         {/* Right image */}
         <Reveal variant="right" delay={0.12} className="relative lg:-mr-[max(2rem,calc((100vw-1280px)/2))]">
@@ -258,17 +267,23 @@ function HowItWorks() {
   return (
     <section id="how-it-works" className="bg-background py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal variant="up" className="text-center">
-          <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-primary">How It Works</p>
-          <h2 className="mt-3 font-display text-3xl font-extrabold text-secondary sm:text-4xl">
-            Simple Steps to Get Your Second Opinion
-          </h2>
-          <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-primary/70" />
-        </Reveal>
+        <div className="text-center">
+          <Reveal variant="up">
+            <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-primary">How It Works</p>
+          </Reveal>
+          <Reveal variant="up" delay={0.1}>
+            <h2 className="mt-3 font-display text-3xl font-extrabold text-secondary sm:text-4xl">
+              Simple Steps to Get Your Second Opinion
+            </h2>
+          </Reveal>
+          <Reveal variant="zoom" delay={0.2}>
+            <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-primary/70" />
+          </Reveal>
+        </div>
 
         <div className="relative mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
           {STEPS.map((s, i) => (
-            <Reveal key={s.title} variant="up" delay={0.08 + i * 0.08} className="relative">
+            <Reveal key={s.title} variant="up" delay={0.15 + i * 0.12} className="relative">
               <div className="flex flex-col items-center text-center">
                 <div className="relative">
                   <span className={`absolute -top-2 -right-2 z-10 grid h-7 w-7 place-items-center rounded-full ${colors[i]} text-[12px] font-bold text-white shadow-lift`}>
@@ -297,6 +312,7 @@ function HowItWorks() {
             </Reveal>
           ))}
         </div>
+
       </div>
     </section>
   );
@@ -824,9 +840,10 @@ function SecondOpinionPage() {
         <HelpRibbon />
         <HowItWorks />
         <RequestSection />
-        
+        <FAQSection />
         <CTABanner />
       </main>
+
       <Footer />
       <FloatingEmergency />
     </div>
