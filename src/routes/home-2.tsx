@@ -887,6 +887,7 @@ function Home2() {
       <Navbar />
       <Hero />
       <Trust />
+      <HeroPremium />
       <Hero3D />
       <Doctor />
       <Services />
