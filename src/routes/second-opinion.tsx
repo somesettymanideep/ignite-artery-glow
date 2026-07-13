@@ -349,8 +349,8 @@ function RequestSection() {
   }
 
   const inputBase =
-    "w-full rounded-xl border bg-card px-4 py-3 pl-10 text-[13.5px] font-medium text-secondary placeholder:text-muted-foreground/70 outline-none transition-all duration-300 focus:ring-4";
-  const inputNormal = `${inputBase} border-border/70 focus:border-primary focus:ring-primary/10`;
+    "w-full rounded-[10px] border bg-white px-4 py-3.5 pl-11 text-[14px] font-medium text-secondary placeholder:text-muted-foreground/60 outline-none transition-all duration-300 focus:ring-4 hover:border-[#311261]/40 disabled:opacity-60";
+  const inputNormal = `${inputBase} border-border/70 focus:border-[#311261] focus:ring-[#311261]/10`;
   const inputError = `${inputBase} border-red-400 focus:border-red-500 focus:ring-red-100`;
 
   const FieldError = ({ name }: { name: keyof FormData }) => {
@@ -363,12 +363,30 @@ function RequestSection() {
     <section id="request" className="bg-background pb-16 lg:pb-20">
       <div className="mx-auto grid max-w-7xl items-start gap-8 px-5 lg:grid-cols-2 lg:px-8">
         <Reveal variant="left">
-          <div className="rounded-[18px] bg-card p-7 shadow-soft ring-1 ring-border/60 lg:p-8">
-            <h2 className="font-display text-2xl font-extrabold text-secondary">Request Your Second Opinion</h2>
-            <div className="mt-3 h-0.5 w-14 rounded-full bg-gradient-brand" />
-            <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">
-              Fill in the details below. Our team will review your case and reach out within 24–48 hours.
-            </p>
+          <div className="relative overflow-hidden rounded-[20px] bg-card shadow-lift ring-1 ring-border/60">
+            {/* Gradient accent header */}
+            <div className="relative overflow-hidden bg-[linear-gradient(115deg,#311261,#4a1f7a_55%,#c62347)] px-7 py-6 lg:px-9">
+              <div className="absolute -right-8 -top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl" aria-hidden />
+              <div className="absolute -bottom-14 -left-6 h-32 w-32 rounded-full bg-white/10 blur-2xl" aria-hidden />
+              <div className="relative flex items-start gap-4">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white/15 text-white ring-1 ring-white/25 backdrop-blur-sm">
+                  <ClipboardCheck className="h-5 w-5" strokeWidth={1.9} />
+                </span>
+                <div className="min-w-0">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[0.18em] text-white/95 ring-1 ring-white/25 backdrop-blur-sm">
+                    <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
+                    Free & Confidential
+                  </span>
+                  <h2 className="mt-2 font-display text-[22px] font-extrabold leading-tight text-white sm:text-2xl">Request Your Second Opinion</h2>
+                  <p className="mt-1.5 text-[12.5px] leading-relaxed text-white/85">
+                    Fill in the details below. Our team reviews your case and reaches out within 24–48 hours.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-7 lg:p-9">
+
 
             <form onSubmit={submit} className="mt-5 space-y-4" aria-label="Second opinion form" noValidate>
               <div className="grid gap-4 sm:grid-cols-2">
