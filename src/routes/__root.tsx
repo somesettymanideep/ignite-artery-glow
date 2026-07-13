@@ -135,33 +135,35 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const hash = useRouterState({ select: (s) => s.location.hash });
+  const router = useRouter();
 
-  const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
-  useIsoLayoutEffect(() => {
-    if (hash) return; // let in-page anchors scroll themselves
+  useEffect(() => {
     if (typeof window === "undefined") return;
-    const root = document.documentElement;
-    const prev = root.style.scrollBehavior;
-    root.style.scrollBehavior = "auto";
     const jump = () => {
+      const root = document.documentElement;
+      const prev = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
       window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
       document.body.scrollTop = 0;
       root.scrollTop = 0;
-    };
-    jump();
-    // Router scroll-restoration may run after us — re-assert on the next two frames.
-    const r1 = requestAnimationFrame(() => {
-      jump();
-      const r2 = requestAnimationFrame(() => {
-        jump();
+      requestAnimationFrame(() => {
         root.style.scrollBehavior = prev;
       });
-      (jump as unknown as { r2: number }).r2 = r2;
+    };
+    const unsub = router.subscribe("onResolved", ({ toLocation, fromLocation }) => {
+      // Skip hash-only navigation so in-page anchors keep working.
+      if (toLocation.hash) return;
+      if (fromLocation && fromLocation.pathname === toLocation.pathname && !fromLocation.hash) return;
+      jump();
+      // Re-assert across the next few frames in case streamed/suspended content
+      // shifts the scroll position after the initial jump.
+      requestAnimationFrame(jump);
+      setTimeout(jump, 50);
+      setTimeout(jump, 150);
+      setTimeout(jump, 300);
     });
-    return () => cancelAnimationFrame(r1);
-  }, [pathname, hash]);
+    return unsub;
+  }, [router]);
 
   return (
     <QueryClientProvider client={queryClient}>
