@@ -203,6 +203,91 @@ function Doctor() {
   );
 }
 
+const CERTIFICATIONS = [
+  { icon: Award, title: "Board Certified", subtitle: "Vascular & Endovascular Surgery", issuer: "National Board of Examinations", year: "2018", accent: "from-primary to-[oklch(0.55_0.18_10)]" },
+  { icon: GradCap, title: "DrNB Vascular Surgery", subtitle: "Super-Specialty Fellowship", issuer: "NIMS, Hyderabad", year: "2017", accent: "from-secondary to-[oklch(0.35_0.14_340)]" },
+  { icon: ScrollText, title: "DNB General Surgery", subtitle: "Diplomate of National Board", issuer: "NBE, New Delhi", year: "2014", accent: "from-primary to-secondary" },
+  { icon: BadgeCheck, title: "Fellowship — Endovascular", subtitle: "Advanced Peripheral Interventions", issuer: "Vascular Society of India", year: "2019", accent: "from-[oklch(0.55_0.18_10)] to-secondary" },
+  { icon: Trophy, title: "Excellence in Patient Care", subtitle: "Clinical Outcomes Award", issuer: "AP Medical Association", year: "2022", accent: "from-secondary to-primary" },
+  { icon: ShieldCert, title: "Member — ISVS", subtitle: "Indian Society for Vascular Surgery", issuer: "Lifetime Membership", year: "2018", accent: "from-primary to-[oklch(0.35_0.14_340)]" },
+];
+
+function CertificationsCarousel() {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % CERTIFICATIONS.length);
+    }, 3200);
+    return () => window.clearInterval(id);
+  }, [paused]);
+
+  return (
+    <div
+      className="relative mx-auto w-full max-w-[320px]"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      role="region"
+      aria-label="Doctor certifications carousel"
+    >
+      <div className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 blur-2xl" aria-hidden />
+      <div className="relative h-[360px] overflow-hidden rounded-3xl border border-border/70 bg-white shadow-lift">
+        <div className="absolute inset-x-0 top-0 flex items-center justify-between px-5 pt-4">
+          <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-primary">Credentials</span>
+          <span className="text-[10px] font-semibold text-muted-foreground">
+            {index + 1} / {CERTIFICATIONS.length}
+          </span>
+        </div>
+
+        {CERTIFICATIONS.map((c, i) => {
+          const active = i === index;
+          const Icon = c.icon;
+          return (
+            <div
+              key={c.title}
+              aria-hidden={!active}
+              className={`absolute inset-0 flex flex-col items-center justify-center px-6 text-center transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                active ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+              }`}
+            >
+              <div className={`relative grid h-24 w-24 place-items-center rounded-full bg-gradient-to-br ${c.accent} shadow-glow-red`}>
+                <div className="absolute inset-1.5 rounded-full bg-white/95" />
+                <Icon className="relative h-10 w-10 text-secondary" strokeWidth={1.6} />
+              </div>
+              <h4 className="mt-5 font-display text-base font-extrabold text-secondary">{c.title}</h4>
+              <p className="mt-1 text-xs font-semibold text-primary">{c.subtitle}</p>
+              <p className="mt-3 text-xs text-muted-foreground">{c.issuer}</p>
+              <span className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-secondary">
+                <BadgeCheck className="h-3 w-3 text-primary" /> Verified · {c.year}
+              </span>
+            </div>
+          );
+        })}
+
+        <div className="absolute inset-x-0 bottom-4 flex items-center justify-center gap-1.5">
+          {CERTIFICATIONS.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setIndex(i)}
+              aria-label={`Show certification ${i + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === index ? "w-6 bg-primary" : "w-1.5 bg-secondary/25 hover:bg-secondary/50"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+      </div>
+    </section>
+  );
+}
+
 function Stat({ end, suffix, label, icon: Icon }: { end: number; suffix: string; label: string; icon: React.ComponentType<{ className?: string }> }) {
   const { ref, value } = useCountUp(end, 1600);
   return (
