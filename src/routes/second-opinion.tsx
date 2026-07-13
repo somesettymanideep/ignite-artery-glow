@@ -274,8 +274,16 @@ function HowItWorks() {
                   <span className={`absolute -top-2 -right-2 z-10 grid h-7 w-7 place-items-center rounded-full ${colors[i]} text-[12px] font-bold text-white shadow-lift`}>
                     {i + 1}
                   </span>
-                  <span className="grid h-24 w-24 place-items-center rounded-full bg-white shadow-soft ring-1 ring-border/60">
-                    <s.icon className="h-9 w-9 text-primary" strokeWidth={1.6} />
+                  <span
+                    className="grid h-24 w-24 place-items-center rounded-full text-white shadow-glow-indigo ring-4 ring-white"
+                    style={{
+                      background:
+                        i % 2 === 0
+                          ? "linear-gradient(135deg, #311261, #5b3a9e)"
+                          : "linear-gradient(135deg, var(--red-brand), #b91c1c)",
+                    }}
+                  >
+                    <s.icon className="h-10 w-10" strokeWidth={1.75} />
                   </span>
                 </div>
                 <h3 className="mt-5 font-display text-[15px] font-extrabold text-secondary">{s.title}</h3>
