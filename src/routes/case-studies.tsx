@@ -6,6 +6,8 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
+import { SubBanner } from "@/components/home/SubBanner";
+import caseBanner from "@/assets/case-studies-banner.webp.asset.json";
 import { Footer } from "@/components/home/Footer";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 
