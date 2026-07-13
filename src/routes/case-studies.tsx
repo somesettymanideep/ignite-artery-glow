@@ -384,10 +384,14 @@ function MetaCell({
   return (
     <div className="flex items-start gap-2.5">
       <span
-        className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full text-white shadow-sm"
-        style={{ background: "linear-gradient(135deg, #ef4444 0%, #d92c2d 55%, #b91c1c 100%)" }}
+        className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full text-white ring-1 ring-white/60 shadow-[0_6px_16px_-4px_rgba(217,44,45,0.55)]"
+        style={{
+          background:
+            "linear-gradient(135deg, #ff6b6b 0%, #ef4444 45%, #d92c2d 75%, #b91c1c 100%)",
+        }}
+        aria-hidden="true"
       >
-        <Icon className="h-4 w-4" strokeWidth={2} />
+        <Icon className="h-[18px] w-[18px]" strokeWidth={2.25} />
       </span>
       <div className="min-w-0">
         <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
@@ -396,7 +400,7 @@ function MetaCell({
         <div className="mt-0.5 text-[13px] font-bold text-secondary">{value}</div>
       </div>
     </div>
-
   );
 }
+
 
