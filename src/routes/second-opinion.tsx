@@ -213,7 +213,7 @@ function HelpRibbon() {
           <div className="relative overflow-visible rounded-[18px] bg-[linear-gradient(115deg,#311261_0%,#311261_45%,#c62347_100%)] px-6 py-8 shadow-lift sm:px-10 sm:py-9 sm:pl-[180px] lg:pl-[220px]">
             {/* Circular doctor photo overlapping on the left */}
             <div className="absolute left-6 top-1/2 hidden h-[170px] w-[170px] -translate-y-1/2 overflow-hidden rounded-full ring-4 ring-white shadow-lift sm:block lg:left-10 lg:h-[190px] lg:w-[190px]">
-              <img src={doctorImg} alt="Vascular specialist" loading="lazy" width={400} height={400} className="h-full w-full object-cover" />
+              <img src={doctorImg} alt="Vascular specialist" loading="lazy" width={400} height={400} className="h-full w-full object-cover object-top" />
             </div>
 
             <div className="grid items-center gap-6 md:grid-cols-[1fr_1.05fr]">
