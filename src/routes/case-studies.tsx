@@ -145,31 +145,31 @@ function CaseStudiesPage() {
       <section className="relative overflow-hidden bg-[#f5f6f8] pt-24 lg:pt-28">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-5 pb-14 lg:grid-cols-[1.05fr_1fr] lg:gap-4 lg:pb-16 lg:pl-8 lg:pr-0">
           <div className="lg:py-10">
-            <Reveal variant="up">
+            <Reveal variant="left">
               <span className="text-[11px] font-extrabold uppercase tracking-[0.3em] text-primary">
                 Case Studies
               </span>
             </Reveal>
-            <Reveal variant="up" delay={0.06}>
+            <Reveal variant="up" delay={0.08}>
               <h1 className="mt-4 font-display text-[40px] font-extrabold leading-[1.05] tracking-tight text-secondary sm:text-5xl lg:text-[56px]">
                 Real Patients.
                 <br />
                 <span className="text-primary">Real Results.</span>
               </h1>
             </Reveal>
-            <Reveal variant="up" delay={0.12}>
+            <Reveal variant="left" delay={0.18}>
               <div className="mt-3 h-[3px] w-20 rounded-full bg-primary/80" />
             </Reveal>
-            <Reveal variant="up" delay={0.18}>
+            <Reveal variant="up" delay={0.26}>
               <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted-foreground">
                 Explore our case studies to see how advanced vascular care and personalized treatment have transformed lives.
               </p>
             </Reveal>
 
-            <Reveal variant="up" delay={0.24}>
-              <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-4">
-                {STATS.map((s) => (
-                  <div key={s.label} className="flex items-center gap-3">
+            <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-4">
+              {STATS.map((s, i) => (
+                <Reveal key={s.label} variant="up" delay={0.36 + i * 0.08}>
+                  <div className="flex items-center gap-3">
                     <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-accent text-secondary">
                       <s.icon className="h-4 w-4" strokeWidth={1.75} />
                     </span>
@@ -180,12 +180,12 @@ function CaseStudiesPage() {
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
-            </Reveal>
+                </Reveal>
+              ))}
+            </div>
           </div>
 
-          <Reveal variant="zoom" delay={0.1}>
+          <Reveal variant="right" delay={0.15}>
             <div className="relative -mr-5 lg:mr-0">
               <img
                 src={heroVessels}
@@ -197,6 +197,7 @@ function CaseStudiesPage() {
           </Reveal>
         </div>
       </section>
+
 
 
       {/* Category filter bar */}
@@ -254,43 +255,59 @@ function CaseStudiesPage() {
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {filtered.slice(0, 3).map((c, i) => (
-              <Reveal key={c.title} variant="up" delay={(i % 3) * 0.08}>
+              <Reveal key={c.title} variant="up" delay={0.1 + i * 0.14}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-[7px] bg-white shadow-soft ring-1 ring-border/60 transition-all duration-500 hover:-translate-y-1 hover:shadow-lift">
                   <div className="relative aspect-[16/10] overflow-hidden">
-                    <img
-                      src={c.image}
-                      alt={c.title}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+                    <Reveal variant="zoom" delay={0.18 + i * 0.14}>
+                      <img
+                        src={c.image}
+                        alt={c.title}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </Reveal>
                   </div>
 
                   <div className="flex flex-1 flex-col p-5">
-                    <span
-                      className={`inline-flex w-fit items-center rounded-md px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground ${
-                        c.badgeColor === "red" ? "bg-primary" : "bg-secondary"
-                      }`}
-                    >
-                      {c.category}
-                    </span>
+                    <Reveal variant="left" delay={0.24 + i * 0.14}>
+                      <span
+                        className={`inline-flex w-fit items-center rounded-md px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground ${
+                          c.badgeColor === "red" ? "bg-primary" : "bg-secondary"
+                        }`}
+                      >
+                        {c.category}
+                      </span>
+                    </Reveal>
 
-                    <h3 className="mt-3 font-display text-[17px] font-extrabold leading-snug text-secondary">
-                      {c.title}
-                    </h3>
+                    <Reveal variant="up" delay={0.3 + i * 0.14}>
+                      <h3 className="mt-3 font-display text-[17px] font-extrabold leading-snug text-secondary">
+                        {c.title}
+                      </h3>
+                    </Reveal>
 
-                    <p className="mt-2.5 text-[13.5px] leading-relaxed text-muted-foreground">
-                      {c.description}
-                    </p>
+                    <Reveal variant="up" delay={0.36 + i * 0.14}>
+                      <p className="mt-2.5 text-[13.5px] leading-relaxed text-muted-foreground">
+                        {c.description}
+                      </p>
+                    </Reveal>
 
                     <div className="mt-5 grid grid-cols-3 gap-2 border-t border-border/60 pt-4">
-                      <MetaCell icon={Clock} label="Treatment Time" value={c.treatmentTime} />
-                      <MetaCell icon={CalendarDays} label="Recovery Time" value={c.recovery} />
-                      <MetaCell icon={Award} label="Outcome" value={c.outcome} />
+                      {[
+                        { icon: Clock, label: "Treatment Time", value: c.treatmentTime },
+                        { icon: CalendarDays, label: "Recovery Time", value: c.recovery },
+                        { icon: Award, label: "Outcome", value: c.outcome },
+                      ].map((m, j) => (
+                        <Reveal key={m.label} variant="up" delay={0.44 + i * 0.14 + j * 0.06}>
+                          <MetaCell icon={m.icon} label={m.label} value={m.value} />
+                        </Reveal>
+                      ))}
                     </div>
 
-                    <button className="mt-4 inline-flex w-fit items-center gap-1.5 text-[13px] font-bold text-primary transition-transform hover:translate-x-0.5">
-                      Read More <ArrowRight className="h-3.5 w-3.5" />
-                    </button>
+                    <Reveal variant="left" delay={0.62 + i * 0.14}>
+                      <button className="mt-4 inline-flex w-fit items-center gap-1.5 text-[13px] font-bold text-primary transition-transform hover:translate-x-0.5">
+                        Read More <ArrowRight className="h-3.5 w-3.5" />
+                      </button>
+                    </Reveal>
                   </div>
 
                 </article>
@@ -303,31 +320,39 @@ function CaseStudiesPage() {
       {/* CTA banner */}
       <section className="pb-16 lg:pb-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <Reveal variant="up">
+          <Reveal variant="zoom">
             <div className="relative overflow-hidden rounded-[7px] bg-gradient-cta p-6 sm:p-8 lg:p-10">
               <div className="relative z-10 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
                 <div className="flex items-center gap-5">
-                  <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-white text-secondary shadow-lift">
-                    <Calendar className="h-6 w-6" strokeWidth={1.75} />
-                  </span>
+                  <Reveal variant="left" delay={0.15}>
+                    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-white text-secondary shadow-lift">
+                      <Calendar className="h-6 w-6" strokeWidth={1.75} />
+                    </span>
+                  </Reveal>
                   <div>
-                    <h3 className="font-display text-xl font-extrabold text-white sm:text-2xl">
-                      Need Expert Care for Vascular Conditions?
-                    </h3>
-                    <p className="mt-1 text-sm text-white/85">
-                      Our specialists are here to help you every step of the way.
-                    </p>
+                    <Reveal variant="up" delay={0.22}>
+                      <h3 className="font-display text-xl font-extrabold text-white sm:text-2xl">
+                        Need Expert Care for Vascular Conditions?
+                      </h3>
+                    </Reveal>
+                    <Reveal variant="up" delay={0.3}>
+                      <p className="mt-1 text-sm text-white/85">
+                        Our specialists are here to help you every step of the way.
+                      </p>
+                    </Reveal>
                   </div>
                 </div>
-                <Link
-                  to="/contact"
-                  className="group inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-bold text-secondary transition-transform hover:scale-105"
-                >
-                  Book an Appointment
-                  <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-white transition-transform group-hover:translate-x-0.5">
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </span>
-                </Link>
+                <Reveal variant="right" delay={0.38}>
+                  <Link
+                    to="/contact"
+                    className="group inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-bold text-secondary transition-transform hover:scale-105"
+                  >
+                    Book an Appointment
+                    <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-white transition-transform group-hover:translate-x-0.5">
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
+                  </Link>
+                </Reveal>
 
               </div>
               <div className="pointer-events-none absolute -right-10 -top-10 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
@@ -336,6 +361,7 @@ function CaseStudiesPage() {
           </Reveal>
         </div>
       </section>
+
 
       <Footer />
       <FloatingEmergency />
