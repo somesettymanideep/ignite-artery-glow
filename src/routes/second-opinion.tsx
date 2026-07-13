@@ -527,14 +527,18 @@ function RequestSection() {
 
 
               <div>
-                <label className="mb-1.5 block text-[12.5px] font-semibold text-secondary">What is your concern?</label>
+                <label htmlFor="so-concern" className="mb-1.5 block text-[12.5px] font-semibold text-secondary">What is your concern?</label>
                 <select
+                  id="so-concern"
+                  name="concern"
                   value={form.concern}
                   onChange={(e) => updateField("concern", e.target.value)}
                   onBlur={() => blurField("concern")}
                   className={`w-full rounded-xl border bg-card px-4 py-3 text-[13.5px] font-medium text-secondary outline-none transition-all duration-300 focus:ring-4 disabled:opacity-60 ${errors.concern ? "border-red-400 focus:border-red-500 focus:ring-red-100" : "border-border/70 focus:border-primary focus:ring-primary/10"}`}
-                  aria-label="Primary concern"
                   aria-invalid={!!errors.concern}
+                  aria-describedby={errors.concern ? "concern-error" : undefined}
+                  aria-required="true"
+                  required
                   disabled={isSubmitting}
                 >
                   <option value="">Select Concern</option>
@@ -544,10 +548,12 @@ function RequestSection() {
               </div>
 
               <div>
-                <label className="mb-1.5 block text-[12.5px] font-semibold text-secondary">Briefly describe your condition</label>
+                <label htmlFor="so-message" className="mb-1.5 block text-[12.5px] font-semibold text-secondary">Briefly describe your condition</label>
                 <div className="relative">
-                  <MessageCircle className="pointer-events-none absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" />
+                  <MessageCircle className="pointer-events-none absolute left-3 top-3.5 h-4 w-4 text-muted-foreground" aria-hidden />
                   <textarea
+                    id="so-message"
+                    name="message"
                     maxLength={1000}
                     rows={4}
                     value={form.message}
@@ -555,8 +561,10 @@ function RequestSection() {
                     onBlur={() => blurField("message")}
                     className={`${errors.message ? inputError : inputNormal} min-h-28 resize-y pt-3.5`}
                     placeholder="Write your message..."
-                    aria-label="Condition description"
                     aria-invalid={!!errors.message}
+                    aria-describedby={errors.message ? "message-error" : undefined}
+                    aria-required="true"
+                    required
                     disabled={isSubmitting}
                   />
                 </div>
@@ -564,26 +572,38 @@ function RequestSection() {
               </div>
 
               <div>
-                <label className="mb-1.5 block text-[12.5px] font-semibold text-secondary">Upload Medical Reports (PDF, JPG, PNG)</label>
-                <label className={`group relative flex cursor-pointer flex-col items-center justify-center gap-2 overflow-hidden rounded-[12px] border-2 border-dashed bg-gradient-to-br from-[#311261]/[0.03] to-[#c62347]/[0.03] px-5 py-9 text-center transition-all duration-300 hover:from-[#311261]/[0.06] hover:to-[#c62347]/[0.06] hover:shadow-soft ${errors.file ? "border-red-300 hover:border-red-400" : "border-[#311261]/25 hover:border-[#311261]/60"}`}>
-                  <span className="grid h-12 w-12 place-items-center rounded-full bg-white text-[#311261] shadow-soft ring-1 ring-[#311261]/10 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-105">
+                <span id="so-file-label" className="mb-1.5 block text-[12.5px] font-semibold text-secondary">Upload Medical Reports (PDF, JPG, PNG)</span>
+                <label
+                  htmlFor="so-file"
+                  role="button"
+                  tabIndex={isSubmitting ? -1 : 0}
+                  onKeyDown={handleUploadKey}
+                  aria-labelledby="so-file-label"
+                  aria-describedby={`so-file-help${errors.file ? " file-error" : ""}`}
+                  className={`group relative flex cursor-pointer flex-col items-center justify-center gap-2 overflow-hidden rounded-[12px] border-2 border-dashed bg-gradient-to-br from-[#311261]/[0.03] to-[#c62347]/[0.03] px-5 py-9 text-center transition-all duration-300 hover:from-[#311261]/[0.06] hover:to-[#c62347]/[0.06] hover:shadow-soft focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#311261]/20 focus-visible:border-[#311261] ${errors.file ? "border-red-300 hover:border-red-400" : "border-[#311261]/25 hover:border-[#311261]/60"}`}
+                >
+                  <span className="grid h-12 w-12 place-items-center rounded-full bg-white text-[#311261] shadow-soft ring-1 ring-[#311261]/10 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-105" aria-hidden>
                     <UploadCloud className="h-5 w-5" strokeWidth={1.9} />
                   </span>
                   <span className="text-[13.5px] font-semibold text-secondary">
                     <span className="text-[#311261] underline decoration-dotted underline-offset-4">Click to upload</span> or drag and drop
                   </span>
-                  <span className="text-[11.5px] text-muted-foreground">PDF, JPG or PNG · Max 10MB</span>
+                  <span id="so-file-help" className="text-[11.5px] text-muted-foreground">PDF, JPG or PNG · Max 10MB</span>
                   <input
+                    id="so-file"
+                    ref={fileInputRef}
+                    name="file"
                     type="file"
                     accept=".pdf,.jpg,.jpeg,.png"
-                    className="hidden"
+                    className="sr-only"
                     onChange={(e) => updateField("file", e.target.files?.[0]?.name ?? "")}
                     disabled={isSubmitting}
+                    aria-describedby="so-file-help"
                   />
                   {form.file && (
-                    <span className="mt-1 inline-flex max-w-full items-center gap-1.5 rounded-full bg-[#311261]/10 px-3 py-1 text-[11.5px] font-semibold text-[#311261]">
-                      <ClipboardCheck className="h-3 w-3 shrink-0" />
-                      <span className="truncate">{form.file}</span>
+                    <span className="mt-1 inline-flex max-w-full items-center gap-1.5 rounded-full bg-[#311261]/10 px-3 py-1 text-[11.5px] font-semibold text-[#311261]" aria-live="polite">
+                      <ClipboardCheck className="h-3 w-3 shrink-0" aria-hidden />
+                      <span className="truncate">Selected file: {form.file}</span>
                     </span>
                   )}
                 </label>
@@ -593,31 +613,26 @@ function RequestSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="group relative inline-flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-[10px] bg-[linear-gradient(90deg,#311261,#4a1f7a_50%,#c62347)] px-6 py-4 text-[14.5px] font-bold text-primary-foreground shadow-glow-red transition-all duration-300 hover:shadow-lift hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+                aria-busy={isSubmitting}
+                aria-label={isSubmitting ? "Submitting your second opinion request" : "Submit second opinion request"}
+                className="group relative inline-flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-[10px] bg-[linear-gradient(90deg,#311261,#4a1f7a_50%,#c62347)] px-6 py-4 text-[14.5px] font-bold text-primary-foreground shadow-glow-red transition-all duration-300 hover:shadow-lift hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#311261]/30 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
               >
                 <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" aria-hidden />
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
                     Submitting Request...
                   </>
                 ) : (
                   <>
                     Submit Request
-                    <span className="relative grid h-7 w-7 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1">
+                    <span className="relative grid h-7 w-7 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1" aria-hidden>
                       <Send className="h-3.5 w-3.5" />
                     </span>
                   </>
                 )}
               </button>
 
-
-              <div className="flex items-start gap-3 rounded-xl bg-[#311261]/5 p-4 ring-1 ring-[#311261]/15">
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-[#311261] shadow-soft">
-                  <Lock className="h-4 w-4" strokeWidth={1.8} />
-                </span>
-                <div>
-                  <p className="font-display text-[13px] font-bold text-secondary">Your information is private and secure</p>
                   <p className="mt-0.5 text-[12px] leading-relaxed text-muted-foreground">
                     We treat every submission with strict medical confidentiality. Your records are only reviewed by authorized vascular specialists and are never shared with third parties.
                   </p>
