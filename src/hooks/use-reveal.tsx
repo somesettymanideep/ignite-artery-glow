@@ -42,14 +42,15 @@ export function Reveal({
     }
 
     // If the element is already above/in the viewport at mount (e.g. hero,
-    // or when the user reloads mid-page), reveal it on the next frame so
-    // nothing stays invisible above the fold.
+    // or when the user reloads mid-page), reveal it immediately so nothing
+    // stays invisible above the fold.
     const rect = el.getBoundingClientRect();
     const vh = window.innerHeight || document.documentElement.clientHeight;
-    if (rect.top < vh * 0.92) {
-      const raf = requestAnimationFrame(() => setVisible(true));
-      return () => cancelAnimationFrame(raf);
+    if (rect.top < vh * 0.95) {
+      setVisible(true);
+      return;
     }
+
 
     const io = new IntersectionObserver(
       (entries) => {
