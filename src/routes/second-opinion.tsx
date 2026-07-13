@@ -275,7 +275,7 @@ function HowItWorks() {
                     {i + 1}
                   </span>
                   <span
-                    className="grid h-24 w-24 place-items-center rounded-full text-white shadow-glow-indigo ring-4 ring-white"
+                    className="group grid h-20 w-20 sm:h-24 sm:w-24 place-items-center rounded-full text-white shadow-glow-indigo ring-4 ring-white transition-all duration-300 ease-out hover:scale-105 hover:shadow-lift hover:ring-white/90 active:scale-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
                     style={{
                       background:
                         i % 2 === 0
@@ -283,7 +283,7 @@ function HowItWorks() {
                           : "linear-gradient(135deg, var(--red-brand), #b91c1c)",
                     }}
                   >
-                    <s.icon className="h-10 w-10" strokeWidth={1.75} />
+                    <s.icon className="h-8 w-8 sm:h-10 sm:w-10 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.75} />
                   </span>
                 </div>
                 <h3 className="mt-5 font-display text-[15px] font-extrabold text-secondary">{s.title}</h3>
