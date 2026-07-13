@@ -144,15 +144,128 @@ function CaseStudiesPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-[#f5f6f8] pt-24 lg:pt-28">
-        <Reveal variant="up">
-          <img
-            src={heroVessels}
-            alt="Case studies — real patients, real results"
-            className="block h-auto w-full object-cover"
-            loading="eager"
-          />
-        </Reveal>
+      <section className="relative overflow-hidden bg-white pt-24 lg:pt-28">
+        {/* dotted decorations */}
+        <div
+          className="pointer-events-none absolute left-6 top-24 h-16 w-24 opacity-40"
+          style={{
+            backgroundImage: "radial-gradient(circle, #cbd5e1 1.2px, transparent 1.6px)",
+            backgroundSize: "10px 10px",
+          }}
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute bottom-24 right-8 hidden h-16 w-24 opacity-40 lg:block"
+          style={{
+            backgroundImage: "radial-gradient(circle, #cbd5e1 1.2px, transparent 1.6px)",
+            backgroundSize: "10px 10px",
+          }}
+          aria-hidden
+        />
+
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-5 pb-32 lg:grid-cols-[1.05fr_1fr] lg:gap-8 lg:pb-40 lg:px-8">
+          {/* Left column */}
+          <div className="relative z-10">
+            <Reveal variant="left">
+              <div className="flex items-center gap-1.5">
+                <span className="h-[3px] w-6 rounded-full bg-primary" />
+                <span className="h-[3px] w-10 rounded-full bg-[#0a2f7a]" />
+              </div>
+            </Reveal>
+
+            <Reveal variant="up" delay={0.06}>
+              <h1 className="mt-5 font-display text-[44px] font-extrabold leading-[1.02] tracking-tight sm:text-6xl lg:text-[76px]">
+                <span className="text-[#0a2f7a]">Case</span>{" "}
+                <span className="text-primary">Studies</span>
+              </h1>
+            </Reveal>
+
+            <Reveal variant="up" delay={0.14}>
+              <p className="mt-5 font-display text-2xl font-bold text-secondary sm:text-[28px]">
+                Real Stories. Real Impact.
+              </p>
+            </Reveal>
+
+            <Reveal variant="left" delay={0.2}>
+              <div className="mt-3 h-[3px] w-16 rounded-full bg-primary/80" />
+            </Reveal>
+
+            <Reveal variant="up" delay={0.24}>
+              <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted-foreground">
+                Explore how our advanced vascular treatments and compassionate care have transformed lives and restored hope.
+              </p>
+            </Reveal>
+
+            <div className="mt-9 grid grid-cols-4 gap-4 sm:gap-6 max-w-lg">
+              {[
+                { icon: HandHeart, label: "Patient Focused" },
+                { icon: ShieldCheck, label: "Advanced Care" },
+                { icon: HeartHandshake, label: "Proven Outcomes" },
+                { icon: Trophy, label: "Trusted Expertise" },
+              ].map((f, i) => (
+                <Reveal key={f.label} variant="up" delay={0.3 + i * 0.06}>
+                  <div className="flex flex-col items-center text-center">
+                    <span className="grid h-14 w-14 place-items-center rounded-full bg-primary/10 text-primary transition-transform duration-300 hover:scale-110">
+                      <f.icon className="h-6 w-6" strokeWidth={2} />
+                    </span>
+                    <span className="mt-3 text-[12px] font-bold leading-tight text-secondary">
+                      {f.label}
+                    </span>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          {/* Right column — doctors image */}
+          <Reveal variant="right" delay={0.1}>
+            <div className="relative">
+              <img
+                src={doctorsImg}
+                alt="Vascular specialists reviewing a patient case on a tablet"
+                className="ml-auto block h-[420px] w-full max-w-[560px] rounded-[7px] object-cover shadow-lift sm:h-[500px] lg:h-[560px]"
+                loading="eager"
+              />
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Curved wave bottom band */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 sm:h-28 lg:h-32">
+          <svg
+            viewBox="0 0 1440 140"
+            preserveAspectRatio="none"
+            className="absolute inset-0 h-full w-full"
+            aria-hidden
+          >
+            <path
+              d="M0,60 C240,10 520,120 780,70 C1040,20 1260,90 1440,50 L1440,140 L0,140 Z"
+              fill="#0a2f7a"
+            />
+            <path
+              d="M0,52 C240,2 520,112 780,62 C1040,12 1260,82 1440,42"
+              fill="none"
+              stroke="#d92c2d"
+              strokeWidth="2"
+              opacity="0.9"
+            />
+          </svg>
+
+          {/* Compassionate badge card */}
+          <div className="absolute bottom-4 right-4 z-10 sm:right-8 lg:right-10">
+            <Reveal variant="right" delay={0.2}>
+              <div className="flex items-center gap-3 rounded-[7px] bg-[#0a2f7a] px-4 py-3 pr-5 shadow-lift ring-1 ring-white/10 sm:px-5 sm:py-4">
+                <span className="grid h-10 w-10 place-items-center rounded-full ring-1 ring-white/30 text-white sm:h-11 sm:w-11">
+                  <HandHeart className="h-5 w-5" strokeWidth={2} />
+                </span>
+                <div className="text-white">
+                  <div className="text-[12px] font-bold leading-tight sm:text-[13px]">Compassionate Hearts.</div>
+                  <div className="text-[12px] font-bold leading-tight text-white/90 sm:text-[13px]">Advanced Vascular Care.</div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
       </section>
 
 
