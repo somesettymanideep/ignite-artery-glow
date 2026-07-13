@@ -386,9 +386,8 @@ function RequestSection() {
             </div>
 
             <div className="p-7 lg:p-9">
+            <form onSubmit={submit} className="space-y-4" aria-label="Second opinion form" noValidate>
 
-
-            <form onSubmit={submit} className="mt-5 space-y-4" aria-label="Second opinion form" noValidate>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <div className="relative">
