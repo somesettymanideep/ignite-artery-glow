@@ -142,6 +142,9 @@ function CaseStudiesPage() {
   return (
     <main className="min-h-screen bg-background [overflow-x:clip]">
       <Navbar />
+      <SubBanner title="Case Studies" image={caseBanner.url} crumb="Case Studies" />
+
+
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-[#f5f6f8] pt-24 lg:pt-28">
