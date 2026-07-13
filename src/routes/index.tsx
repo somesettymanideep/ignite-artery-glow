@@ -32,7 +32,7 @@ function Index() {
       <InstagramFeed />
       <CTA />
       <Footer />
-      <FloatingEmergency />
+      
     </main>
   );
 }
