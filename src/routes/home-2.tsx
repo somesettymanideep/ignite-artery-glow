@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   Phone, ArrowRight, Calendar, Check, ShieldCheck, Cpu, UserCheck, Heart,
   GraduationCap, Award, Users, Stethoscope, Activity, Waves, Syringe, Footprints,
