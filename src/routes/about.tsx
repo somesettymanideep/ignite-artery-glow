@@ -196,7 +196,7 @@ function Doctor() {
         </Reveal>
 
         <Reveal className="reveal" variant="right" delay={0.18}>
-          <img src={vascularImg} alt="Vascular anatomy illustration" width={900} height={1100} loading="lazy" className="mx-auto h-[360px] w-auto object-contain" />
+          <CertificationsCarousel />
         </Reveal>
       </div>
     </section>
