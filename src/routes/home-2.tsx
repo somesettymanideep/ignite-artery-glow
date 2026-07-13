@@ -395,6 +395,7 @@ function Home2() {
       <Doctor />
       <Services />
       <Testimonials />
+      <GoogleReviews />
       <CTASection />
       <Footer />
 
