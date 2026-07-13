@@ -138,30 +138,41 @@ function RootComponent() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const jump = () => {
-      const root = document.documentElement;
-      const prev = root.style.scrollBehavior;
-      root.style.scrollBehavior = "auto";
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    let raf = 0;
+    let active = false;
+    let stopAt = 0;
+    const forceTop = () => {
+      window.scrollTo(0, 0);
       document.body.scrollTop = 0;
-      root.scrollTop = 0;
-      requestAnimationFrame(() => {
-        root.style.scrollBehavior = prev;
-      });
+      document.documentElement.scrollTop = 0;
+    };
+    const loop = () => {
+      forceTop();
+      if (performance.now() < stopAt) {
+        raf = requestAnimationFrame(loop);
+      } else {
+        active = false;
+      }
+    };
+    const start = () => {
+      stopAt = performance.now() + 400;
+      if (!active) {
+        active = true;
+        raf = requestAnimationFrame(loop);
+      }
     };
     const unsub = router.subscribe("onResolved", ({ toLocation, fromLocation }) => {
-      // Skip hash-only navigation so in-page anchors keep working.
       if (toLocation.hash) return;
       if (fromLocation && fromLocation.pathname === toLocation.pathname && !fromLocation.hash) return;
-      jump();
-      // Re-assert across the next few frames in case streamed/suspended content
-      // shifts the scroll position after the initial jump.
-      requestAnimationFrame(jump);
-      setTimeout(jump, 50);
-      setTimeout(jump, 150);
-      setTimeout(jump, 300);
+      start();
     });
-    return unsub;
+    return () => {
+      unsub();
+      cancelAnimationFrame(raf);
+    };
   }, [router]);
 
   return (
