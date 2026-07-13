@@ -1,0 +1,161 @@
+import { useEffect, useRef, useState } from "react";
+import { Instagram, Play, Heart, MessageCircle, Send, Volume2, VolumeX } from "lucide-react";
+import { Reveal } from "@/hooks/use-reveal";
+import reel1 from "@/assets/about-surgery.jpg";
+import reel2 from "@/assets/home2-doctor.jpg";
+import reel3 from "@/assets/about-vascular.jpg";
+import reel4 from "@/assets/hero-surgeon.jpg";
+import reel5 from "@/assets/case-hero-vessels.jpg";
+
+const REELS = [
+  { poster: reel1, caption: "Inside our advanced vascular OT — precision endovascular procedure", likes: "12.4k", comments: 218, views: "84k", tag: "#Endovascular" },
+  { poster: reel2, caption: "Dr. Narasimha Sai on early signs of varicose veins you shouldn't ignore", likes: "9.1k", comments: 342, views: "62k", tag: "#VaricoseVeins" },
+  { poster: reel3, caption: "3D walkthrough — how a diabetic foot ulcer heals with vascular care", likes: "7.6k", comments: 154, views: "48k", tag: "#DiabeticFoot" },
+  { poster: reel4, caption: "Live patient story: back to walking pain-free after PAD treatment", likes: "15.2k", comments: 487, views: "1.1M", tag: "#PatientStory" },
+  { poster: reel5, caption: "Understanding DVT — the silent clot that travels", likes: "6.3k", comments: 92, views: "39k", tag: "#DVT" },
+];
+
+export function InstagramFeed() {
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const [muted, setMuted] = useState(true);
+
+  // Subtle auto-scroll on desktop
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = 0;
+    let paused = false;
+    const step = () => {
+      if (!paused && el) {
+        el.scrollLeft += 0.35;
+        if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 1) {
+          el.scrollLeft = 0;
+        }
+      }
+      raf = requestAnimationFrame(step);
+    };
+    const onEnter = () => (paused = true);
+    const onLeave = () => (paused = false);
+    el.addEventListener("mouseenter", onEnter);
+    el.addEventListener("mouseleave", onLeave);
+    el.addEventListener("touchstart", onEnter, { passive: true });
+    el.addEventListener("touchend", onLeave, { passive: true });
+    raf = requestAnimationFrame(step);
+    return () => {
+      cancelAnimationFrame(raf);
+      el.removeEventListener("mouseenter", onEnter);
+      el.removeEventListener("mouseleave", onLeave);
+      el.removeEventListener("touchstart", onEnter);
+      el.removeEventListener("touchend", onLeave);
+    };
+  }, []);
+
+  return (
+    <section id="instagram" className="relative overflow-hidden bg-white py-20 lg:py-28">
+      <div
+        className="pointer-events-none absolute -top-40 right-0 h-96 w-96 rounded-full bg-gradient-to-br from-[#F58529]/15 via-[#DD2A7B]/15 to-[#8134AF]/15 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -bottom-40 left-0 h-96 w-96 rounded-full bg-gradient-to-br from-[#515BD4]/15 via-[#DD2A7B]/10 to-[#F58529]/10 blur-3xl"
+        aria-hidden
+      />
+
+      <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
+        <Reveal variant="up" className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left">
+          <div>
+            <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.28em] text-primary">
+              <span className="grid h-8 w-8 place-items-center rounded-xl bg-[linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4)] text-white shadow-glow-red">
+                <Instagram className="h-4 w-4" strokeWidth={2} />
+              </span>
+              @ignitevascular
+            </span>
+            <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-secondary sm:text-4xl">
+              Follow Our <span className="bg-[linear-gradient(90deg,#F58529,#DD2A7B,#8134AF)] bg-clip-text text-transparent">Instagram</span> Reels
+            </h2>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
+              Real procedures, patient stories, doctor tips and behind-the-scenes moments from Ignite Vascular Center.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setMuted((m) => !m)}
+              aria-label={muted ? "Unmute preview" : "Mute preview"}
+              className="grid h-11 w-11 place-items-center rounded-full border border-border/70 bg-white text-secondary shadow-soft transition-transform hover:-translate-y-0.5"
+            >
+              {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+            </button>
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4)] px-5 py-3 text-sm font-bold text-white shadow-glow-red transition-transform duration-300 hover:scale-[1.03]"
+            >
+              <Instagram className="h-4 w-4" /> Follow Us
+            </a>
+          </div>
+        </Reveal>
+
+        <div
+          ref={trackRef}
+          className="scrollbar-none mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4"
+          role="list"
+          aria-label="Instagram reels"
+        >
+          {REELS.concat(REELS).map((r, i) => (
+            <Reveal
+              key={i}
+              variant="up"
+              delay={(i % 5) * 0.06}
+              className="reveal shrink-0 snap-start"
+            >
+              <article
+                role="listitem"
+                className="group relative aspect-[9/16] w-[220px] overflow-hidden rounded-[1.5rem] border border-border/60 bg-secondary shadow-lift transition-all duration-500 hover:-translate-y-1 hover:shadow-glow-red sm:w-[240px]"
+              >
+                <img
+                  src={r.poster}
+                  alt={r.caption}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/85" aria-hidden />
+
+                {/* Top row */}
+                <div className="absolute inset-x-0 top-0 flex items-center justify-between px-3 pt-3">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Reel
+                  </span>
+                  <span className="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-semibold text-white backdrop-blur">
+                    {r.views}
+                  </span>
+                </div>
+
+                {/* Play button */}
+                <div className="absolute inset-0 grid place-items-center">
+                  <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-secondary shadow-lift transition-transform duration-500 group-hover:scale-110">
+                    <Play className="ml-0.5 h-5 w-5 fill-current" />
+                  </span>
+                </div>
+
+                {/* Bottom info */}
+                <div className="absolute inset-x-0 bottom-0 space-y-2 p-3 text-white">
+                  <p className="line-clamp-2 text-[11px] font-semibold leading-snug">{r.caption}</p>
+                  <div className="flex items-center gap-3 text-[10px] font-bold text-white/90">
+                    <span className="inline-flex items-center gap-1"><Heart className="h-3 w-3" /> {r.likes}</span>
+                    <span className="inline-flex items-center gap-1"><MessageCircle className="h-3 w-3" /> {r.comments}</span>
+                    <span className="inline-flex items-center gap-1"><Send className="h-3 w-3" /></span>
+                    <span className="ml-auto rounded-full bg-white/20 px-1.5 py-0.5 backdrop-blur">{r.tag}</span>
+                  </div>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
