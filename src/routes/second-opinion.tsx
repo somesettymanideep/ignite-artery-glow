@@ -398,35 +398,48 @@ function RequestSection() {
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
+                  <label htmlFor="so-name" className="sr-only">Full name</label>
                   <div className="relative">
-                    <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
                     <input
+                      id="so-name"
+                      name="name"
+                      autoComplete="name"
                       maxLength={100}
                       value={form.name}
                       onChange={(e) => updateField("name", e.target.value)}
                       onBlur={() => blurField("name")}
                       className={errors.name ? inputError : inputNormal}
                       placeholder="Full Name"
-                      aria-label="Full name"
                       aria-invalid={!!errors.name}
+                      aria-describedby={errors.name ? "name-error" : undefined}
+                      aria-required="true"
+                      required
                       disabled={isSubmitting}
                     />
                   </div>
                   <FieldError name="name" />
                 </div>
                 <div>
+                  <label htmlFor="so-phone" className="sr-only">Phone number</label>
                   <div className="relative">
-                    <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
                     <input
+                      id="so-phone"
+                      name="phone"
                       type="tel"
+                      autoComplete="tel"
+                      inputMode="tel"
                       maxLength={20}
                       value={form.phone}
                       onChange={(e) => updateField("phone", e.target.value)}
                       onBlur={() => blurField("phone")}
                       className={errors.phone ? inputError : inputNormal}
                       placeholder="Phone Number"
-                      aria-label="Phone number"
                       aria-invalid={!!errors.phone}
+                      aria-describedby={errors.phone ? "phone-error" : undefined}
+                      aria-required="true"
+                      required
                       disabled={isSubmitting}
                     />
                   </div>
@@ -436,28 +449,39 @@ function RequestSection() {
 
               <div className="grid gap-4 sm:grid-cols-3">
                 <div className="sm:col-span-1">
+                  <label htmlFor="so-email" className="sr-only">Email address</label>
                   <div className="relative">
-                    <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
                     <input
+                      id="so-email"
+                      name="email"
                       type="email"
+                      autoComplete="email"
+                      inputMode="email"
                       maxLength={255}
                       value={form.email}
                       onChange={(e) => updateField("email", e.target.value)}
                       onBlur={() => blurField("email")}
                       className={errors.email ? inputError : inputNormal}
                       placeholder="Email Address"
-                      aria-label="Email address"
                       aria-invalid={!!errors.email}
+                      aria-describedby={errors.email ? "email-error" : undefined}
+                      aria-required="true"
+                      required
                       disabled={isSubmitting}
                     />
                   </div>
                   <FieldError name="email" />
                 </div>
                 <div>
+                  <label htmlFor="so-age" className="sr-only">Age</label>
                   <div className="relative">
-                    <ClipboardList className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <ClipboardList className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
                     <input
+                      id="so-age"
+                      name="age"
                       type="number"
+                      inputMode="numeric"
                       min="0"
                       max="120"
                       value={form.age}
@@ -465,23 +489,30 @@ function RequestSection() {
                       onBlur={() => blurField("age")}
                       className={errors.age ? inputError : inputNormal}
                       placeholder="Age"
-                      aria-label="Age"
                       aria-invalid={!!errors.age}
+                      aria-describedby={errors.age ? "age-error" : undefined}
+                      aria-required="true"
+                      required
                       disabled={isSubmitting}
                     />
                   </div>
                   <FieldError name="age" />
                 </div>
                 <div>
+                  <label htmlFor="so-gender" className="sr-only">Gender</label>
                   <div className="relative">
-                    <UserRound className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <UserRound className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
                     <select
+                      id="so-gender"
+                      name="gender"
                       value={form.gender}
                       onChange={(e) => updateField("gender", e.target.value)}
                       onBlur={() => blurField("gender")}
                       className={`${errors.gender ? inputError : inputNormal} appearance-none pr-8`}
-                      aria-label="Gender"
                       aria-invalid={!!errors.gender}
+                      aria-describedby={errors.gender ? "gender-error" : undefined}
+                      aria-required="true"
+                      required
                       disabled={isSubmitting}
                     >
                       <option value="">Gender</option>
@@ -493,6 +524,7 @@ function RequestSection() {
                   <FieldError name="gender" />
                 </div>
               </div>
+
 
               <div>
                 <label className="mb-1.5 block text-[12.5px] font-semibold text-secondary">What is your concern?</label>
