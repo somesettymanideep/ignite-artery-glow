@@ -244,7 +244,7 @@ function HelpRibbon() {
 }
 
 function HowItWorks() {
-  const colors = ["bg-indigo-600", "bg-primary", "bg-indigo-600", "bg-primary", "bg-indigo-600"];
+  const colors = ["bg-[#311261]", "bg-primary", "bg-[#311261]", "bg-primary", "bg-[#311261]"];
   return (
     <section id="how-it-works" className="bg-background py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
@@ -547,7 +547,7 @@ function RequestSection() {
               </button>
 
               <div className="flex items-start gap-3 rounded-xl bg-indigo-50/70 p-4 ring-1 ring-indigo-100">
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-indigo-600 shadow-soft">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-[#311261] shadow-soft">
                   <Lock className="h-4 w-4" strokeWidth={1.8} />
                 </span>
                 <div>
