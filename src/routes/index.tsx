@@ -11,7 +11,7 @@ import { GoogleReviews } from "@/components/home/GoogleReviews";
 import { InstagramFeed } from "@/components/home/InstagramFeed";
 import { CTA } from "@/components/home/CTA";
 import { Footer } from "@/components/home/Footer";
-import { FloatingEmergency } from "@/components/home/FloatingEmergency";
+
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -32,7 +32,7 @@ function Index() {
       <InstagramFeed />
       <CTA />
       <Footer />
-      <FloatingEmergency />
+      
     </main>
   );
 }
