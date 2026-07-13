@@ -115,11 +115,6 @@ function Hero() {
       <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 pb-14 lg:grid-cols-[1.15fr_0.95fr] lg:gap-8 lg:pb-20 lg:px-8">
         {/* Left content */}
         <Reveal variant="left" className="z-10">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Link to="/" className="font-semibold hover:text-primary">Home</Link>
-            <ChevronRight className="h-3.5 w-3.5" />
-            <span className="font-semibold text-secondary">Second Opinion</span>
-          </nav>
 
           <h1 className="mt-6 font-display text-[2.1rem] font-extrabold leading-[1.12] tracking-tight text-secondary sm:text-4xl lg:text-[2.4rem] xl:text-[2.65rem]">
             <span className="block">Get a Second Opinion.</span>
