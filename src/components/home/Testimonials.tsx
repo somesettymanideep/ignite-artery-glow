@@ -1,25 +1,27 @@
 import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import handsHeart from "@/assets/testimonial-hands-heart.jpg";
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { Reveal } from "@/hooks/use-reveal";
 
 const testimonials = [
   {
     name: "Ramesh Babu",
-    role: "Patient",
-    text:
-      "Dr. Narasimha Sai garu explained my condition clearly and treated me with great care. The varicose vein laser procedure was painless and the results are amazing. Highly recommended!",
+    location: "Vijayawada",
+    text: "I suffered from painful varicose veins for years. The laser treatment at Ignite Vascular was quick and almost painless — I walked home the same day. Truly world-class care.",
   },
   {
     name: "Lakshmi Devi",
-    role: "Patient",
-    text:
-      "My father's diabetic foot ulcer was healing nowhere for months. The team here saved his leg with expert vascular care and constant follow-up. We are forever grateful.",
+    location: "Guntur",
+    text: "My father's diabetic foot ulcer was healing nowhere for months. The team here saved his leg with expert vascular care and constant follow-up. We are forever grateful.",
   },
   {
     name: "Suresh Chandra",
-    role: "Patient",
-    text:
-      "The angioplasty for my blocked leg artery was done with such precision. The doctor explained everything patiently. I can walk without pain again after 3 years.",
+    location: "Eluru",
+    text: "The angioplasty for my blocked leg artery was done with such precision. The doctor explained everything patiently. I can walk without pain again after 3 years.",
+  },
+  {
+    name: "Padmavathi K",
+    location: "Machilipatnam",
+    text: "For my dialysis fistula, I was nervous, but the procedure went smoothly and the access works perfectly. The staff treated me like family throughout.",
   },
 ];
 
@@ -27,136 +29,81 @@ export function Testimonials() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(
-      () => setIndex((i) => (i + 1) % testimonials.length),
-      6000,
-    );
+    const id = setInterval(() => setIndex((i) => (i + 1) % testimonials.length), 6000);
     return () => clearInterval(id);
   }, []);
 
-  const prev = () =>
-    setIndex((i) => (i - 1 + testimonials.length) % testimonials.length);
-  const next = () => setIndex((i) => (i + 1) % testimonials.length);
-
-  const active = testimonials[index];
-
   return (
-    <section
-      id="testimonials"
-      className="relative overflow-hidden bg-background"
-    >
-      {/* Top gradient strip */}
-      <div
-        aria-hidden
-        className="h-2 w-full"
-        style={{
-          background:
-            "linear-gradient(90deg, #d92c2d 0%, #a02466 50%, #311261 100%)",
-        }}
-      />
+    <section id="testimonials" className="relative overflow-hidden py-20 lg:py-28">
+      <div className="pointer-events-none absolute -left-32 bottom-0 h-96 w-96 rounded-full bg-primary/8 blur-3xl" aria-hidden />
+      <div className="mx-auto max-w-5xl px-5 lg:px-8">
+        <Reveal variant="up" className="mx-auto max-w-2xl text-center">
+          <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">Testimonials</span>
+          <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
+            What Our <span className="text-gradient">Patients Say</span>
+          </h2>
+        </Reveal>
 
-      <div className="relative py-14 sm:py-20">
-        {/* Right-side hands & heart image */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute right-0 top-1/2 hidden -translate-y-1/2 md:block"
-        >
-          <img
-            src={handsHeart}
-            alt=""
-            loading="lazy"
-            width={1024}
-            height={1024}
-            className="h-56 w-56 object-contain lg:h-72 lg:w-72"
-          />
-        </div>
-
-        <div className="mx-auto max-w-5xl px-5 lg:px-8">
-          {/* Heading */}
-          <div className="text-center">
-            <h2 className="font-display text-2xl font-extrabold tracking-tight text-secondary sm:text-3xl">
-              What Our Patients Say
-            </h2>
-            <span
-              aria-hidden
-              className="mx-auto mt-3 block h-[3px] w-14 rounded-full bg-primary"
-            />
+        <Reveal variant="up" className="relative mt-14">
+          <div className="overflow-hidden rounded-[1.75rem]">
+            <div
+              className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              style={{ transform: `translateX(-${index * 100}%)` }}
+            >
+              {testimonials.map((t) => (
+                <figure key={t.name} className="w-full shrink-0 px-1 py-2">
+                  <div className="glass-card animate-float-slower relative mx-auto max-w-3xl rounded-[1.75rem] p-8 text-center sm:p-12">
+                    <Quote className="mx-auto h-10 w-10 text-primary/30" aria-hidden />
+                    <div className="mt-4 flex justify-center gap-1" aria-label="5 out of 5 stars">
+                      {Array.from({ length: 5 }).map((_, s) => (
+                        <Star key={s} className="h-5 w-5 fill-primary text-primary" />
+                      ))}
+                    </div>
+                    <blockquote className="mt-5 text-lg leading-relaxed text-foreground">
+                      “{t.text}”
+                    </blockquote>
+                    <figcaption className="mt-6">
+                      <span className="mx-auto mb-3 grid h-14 w-14 place-items-center rounded-full bg-gradient-brand font-display text-lg font-bold text-primary-foreground">
+                        {t.name.charAt(0)}
+                      </span>
+                      <p className="font-display font-bold">{t.name}</p>
+                      <p className="text-sm font-semibold text-muted-foreground">{t.location}</p>
+                    </figcaption>
+                  </div>
+                </figure>
+              ))}
+            </div>
           </div>
 
-          {/* Carousel */}
-          <div className="relative mt-10 flex items-center justify-center gap-3 sm:gap-6">
+          <div className="mt-8 flex items-center justify-center gap-4">
             <button
-              type="button"
-              onClick={prev}
+              onClick={() => setIndex((index - 1 + testimonials.length) % testimonials.length)}
+              className="glass-card grid h-11 w-11 place-items-center rounded-full transition-transform duration-300 hover:scale-110"
               aria-label="Previous testimonial"
-              className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-muted/60 text-secondary transition-all duration-300 hover:-translate-x-0.5 hover:bg-muted"
             >
-              <ChevronLeft className="h-5 w-5" strokeWidth={2.25} />
+              <ChevronLeft className="h-5 w-5" />
             </button>
-
-            <figure className="relative w-full max-w-2xl">
-              <div className="relative rounded-2xl bg-muted/40 px-6 py-8 shadow-sm ring-1 ring-border/60 sm:px-10 sm:py-10">
-                {/* Opening quote */}
-                <span
-                  aria-hidden
-                  className="absolute left-5 top-4 font-display text-5xl font-black leading-none text-primary sm:left-6 sm:top-5"
-                >
-                  &#8220;
-                </span>
-
-                <blockquote
-                  key={active.name}
-                  className="animate-fade-in text-center text-sm leading-relaxed text-secondary sm:text-base sm:leading-[1.75]"
-                >
-                  {active.text}
-                  <footer className="mt-4 text-left text-sm font-medium text-muted-foreground">
-                    – {active.role}
-                  </footer>
-                </blockquote>
-
-                {/* Closing quote */}
-                <span
-                  aria-hidden
-                  className="absolute bottom-2 right-5 font-display text-5xl font-black leading-none text-primary sm:bottom-3 sm:right-6"
-                >
-                  &#8221;
-                </span>
-              </div>
-
-              {/* Dots */}
-              <div
-                className="mt-6 flex items-center justify-center gap-2"
-                role="tablist"
-                aria-label="Testimonials pagination"
-              >
-                {testimonials.map((_, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => setIndex(i)}
-                    role="tab"
-                    aria-selected={i === index}
-                    aria-label={`Show testimonial ${i + 1}`}
-                    className={`h-2.5 rounded-full transition-all duration-300 ${
-                      i === index
-                        ? "w-6 bg-primary"
-                        : "w-2.5 bg-border hover:bg-muted-foreground/40"
-                    }`}
-                  />
-                ))}
-              </div>
-            </figure>
-
+            <div className="flex gap-2">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setIndex(i)}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    i === index ? "w-8 bg-gradient-brand" : "w-2.5 bg-border"
+                  }`}
+                />
+              ))}
+            </div>
             <button
-              type="button"
-              onClick={next}
+              onClick={() => setIndex((index + 1) % testimonials.length)}
+              className="glass-card grid h-11 w-11 place-items-center rounded-full transition-transform duration-300 hover:scale-110"
               aria-label="Next testimonial"
-              className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-muted/60 text-secondary transition-all duration-300 hover:translate-x-0.5 hover:bg-muted"
             >
-              <ChevronRight className="h-5 w-5" strokeWidth={2.25} />
+              <ChevronRight className="h-5 w-5" />
             </button>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
