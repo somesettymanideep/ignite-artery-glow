@@ -9,6 +9,7 @@ import {
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
+import { GoogleReviews } from "@/components/home/GoogleReviews";
 import heroImg from "@/assets/home2-hero.jpg";
 import doctorImg from "@/assets/home2-doctor.jpg";
 
@@ -394,6 +395,7 @@ function Home2() {
       <Doctor />
       <Services />
       <Testimonials />
+      <GoogleReviews />
       <CTASection />
       <Footer />
 
