@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Award, BadgeCheck, ScrollText, GraduationCap as GradCap, Trophy, ShieldCheck as ShieldCert } from "lucide-react";
 import {
   Phone, Target, Eye, UserCheck, Sparkles, Scissors, HeartHandshake,
   ShieldCheck, Siren, CheckCircle2, ArrowRight, Users, ShieldCheck as ShieldIcon,
