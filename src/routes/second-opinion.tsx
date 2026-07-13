@@ -824,9 +824,10 @@ function SecondOpinionPage() {
         <HelpRibbon />
         <HowItWorks />
         <RequestSection />
-        
+        <FAQSection />
         <CTABanner />
       </main>
+
       <Footer />
       <FloatingEmergency />
     </div>
