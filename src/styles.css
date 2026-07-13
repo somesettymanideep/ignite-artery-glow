@@ -221,6 +221,10 @@
   transform: scale(0.96);
 }
 
+@utility reveal-fade {
+  transform: none;
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   .reveal {
