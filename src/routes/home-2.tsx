@@ -368,6 +368,248 @@ function Trust() {
   );
 }
 
+/* ---------------- Premium Doctor Hero (v2) ---------------- */
+const HERO_STATS = [
+  { icon: Activity, num: "400+", label: "AV Fistula Surgeries" },
+  { icon: Waves, num: "100+", label: "Laser Varicose Procedures" },
+  { icon: Footprints, num: "50+", label: "Limb Salvage Cases" },
+];
+const EXPERTISE_CHIPS = [
+  "AV Fistula Creation", "Complex AV Access", "Varicose Veins", "Laser Treatment",
+  "Peripheral Artery Disease", "Diabetic Foot Care", "Non-Healing Ulcers",
+  "Limb Salvage", "Endovascular Procedures",
+];
+const HERO_TRUST = [
+  "Experienced Vascular Specialist",
+  "Advanced Endovascular Procedures",
+  "Minimally Invasive Treatments",
+  "Patient-Centered Care",
+];
+
+function HeroPremium() {
+  return (
+    <section
+      className="relative overflow-hidden py-20 lg:py-28"
+      style={{ background: "linear-gradient(160deg,#FFFFFF 0%,#FFF7F7 55%,#F8F6FD 100%)" }}
+    >
+      {/* Ambient decor */}
+      <div aria-hidden className="pointer-events-none absolute -top-24 -left-24 h-[520px] w-[520px] rounded-full blur-3xl animate-float"
+        style={{ background: "radial-gradient(closest-side, rgba(218,50,52,0.18), transparent)" }} />
+      <div aria-hidden className="pointer-events-none absolute -bottom-32 -right-24 h-[560px] w-[560px] rounded-full blur-3xl animate-float-slower"
+        style={{ background: "radial-gradient(closest-side, rgba(69,54,96,0.22), transparent)" }} />
+      <svg aria-hidden viewBox="0 0 1200 400" preserveAspectRatio="none"
+        className="pointer-events-none absolute inset-x-0 top-1/3 h-[300px] w-full opacity-[0.08]">
+        <path d="M0 200 C 200 80, 400 320, 600 200 S 1000 80, 1200 220" stroke="#DA3234" strokeWidth="2" fill="none" className="vein-line" />
+        <path d="M0 260 C 220 160, 420 360, 620 260 S 1020 180, 1200 300" stroke="#453660" strokeWidth="1.5" fill="none" className="vein-line" />
+      </svg>
+
+      <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-[45fr_55fr] lg:gap-16 lg:px-8">
+        {/* LEFT — 45% */}
+        <div>
+          <Reveal variant="up">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#DA3234]/20 bg-white/80 px-4 py-1.5 text-xs font-bold backdrop-blur"
+              style={{ color: "#DA3234" }}>
+              <span className="h-1.5 w-1.5 rounded-full animate-pulse" style={{ background: "#DA3234" }} />
+              Ignite Vascular Center · Vijayawada
+            </div>
+          </Reveal>
+
+          <Reveal variant="up" delay={0.2}>
+            <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl xl:text-[3.4rem]"
+              style={{ color: "#1E293B" }}>
+              Expert Vascular Care.<br />
+              <span style={{ color: "#DA3234" }}>Better Circulation.</span><br />
+              <span style={{ color: "#453660" }}>Brighter Life.</span>
+            </h1>
+          </Reveal>
+
+          <Reveal variant="up" delay={0.4}>
+            <p className="mt-6 max-w-xl text-[15px] leading-relaxed" style={{ color: "#1E293BCC" }}>
+              Ignite Vascular Center is a leading vascular surgery and endovascular care center in
+              Kasturibai Peta, Vijayawada, delivering advanced diagnosis and minimally invasive
+              treatments for artery, vein and blood-vessel disorders.
+            </p>
+          </Reveal>
+
+          {/* Doctor card */}
+          <Reveal variant="up" delay={0.5}>
+            <div className="mt-7 flex items-center gap-4 rounded-3xl border border-white/60 bg-white/85 p-4 backdrop-blur-xl"
+              style={{ boxShadow: "0 16px 40px -18px rgba(69,54,96,0.35)" }}>
+              <img
+                src={doctorImg}
+                alt="Dr. G. Narasimha Sai"
+                width={120}
+                height={120}
+                loading="lazy"
+                className="h-16 w-16 rounded-2xl object-cover"
+              />
+              <div className="min-w-0">
+                <p className="font-display text-base font-extrabold" style={{ color: "#1E293B" }}>
+                  Dr. G. Narasimha Sai
+                </p>
+                <p className="text-[11px] font-semibold leading-snug" style={{ color: "#1E293B99" }}>
+                  MBBS, DNB (Gen Surgery), DrNB (Vascular Surgery — NIMS)
+                </p>
+                <p className="mt-1 inline-flex rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider"
+                  style={{ background: "rgba(69,54,96,0.1)", color: "#453660" }}>
+                  Vascular &amp; Endovascular Surgeon
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Experience stats */}
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {HERO_STATS.map((s, i) => (
+              <Reveal key={s.label} variant="up" delay={0.55 + i * 0.1}>
+                <div className="group h-full rounded-2xl border border-white/60 bg-white/80 p-4 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1"
+                  style={{ boxShadow: "0 10px 28px -14px rgba(30,41,59,0.18)" }}>
+                  <span className="grid h-9 w-9 place-items-center rounded-xl text-white"
+                    style={{ background: "linear-gradient(135deg,#DA3234,#453660)" }}>
+                    <s.icon className="h-4 w-4" />
+                  </span>
+                  <p className="mt-3 font-display text-xl font-black" style={{ color: "#DA3234" }}>{s.num}</p>
+                  <p className="text-[11px] font-semibold leading-tight" style={{ color: "#1E293B99" }}>{s.label}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Expertise chips */}
+          <Reveal variant="up" delay={0.75}>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {EXPERTISE_CHIPS.map((c) => (
+                <span key={c}
+                  className="rounded-full border px-3 py-1.5 text-[11px] font-bold transition-all duration-300 hover:-translate-y-0.5"
+                  style={{
+                    borderColor: "rgba(69,54,96,0.18)",
+                    color: "#453660",
+                    background: "white",
+                  }}>
+                  {c}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* CTAs */}
+          <Reveal variant="zoom" delay={0.85}>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#cta"
+                className="group inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:scale-105"
+                style={{
+                  background: "#DA3234",
+                  boxShadow: "0 14px 32px -10px rgba(218,50,52,0.55)",
+                }}
+                onMouseOver={(e) => (e.currentTarget.style.background = "#B41F28")}
+                onMouseOut={(e) => (e.currentTarget.style.background = "#DA3234")}>
+                <Calendar className="h-4 w-4" /> Book Appointment
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-white/25 transition-transform group-hover:translate-x-0.5">
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </a>
+              <Link to="/second-opinion"
+                className="inline-flex items-center gap-2 rounded-full border-2 bg-white px-7 py-3.5 text-sm font-bold transition-all duration-300 hover:-translate-y-0.5"
+                style={{ borderColor: "#453660", color: "#453660" }}>
+                Get Second Opinion <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </Reveal>
+
+          {/* Trust badges */}
+          <Reveal variant="up" delay={0.95}>
+            <ul className="mt-7 grid gap-2 sm:grid-cols-2">
+              {HERO_TRUST.map((t) => (
+                <li key={t} className="flex items-center gap-2 text-[13px] font-semibold" style={{ color: "#1E293B" }}>
+                  <span className="grid h-5 w-5 place-items-center rounded-full" style={{ background: "#DA3234" }}>
+                    <Check className="h-3 w-3 text-white" />
+                  </span>
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+
+        {/* RIGHT — 55% doctor portrait + floating cards */}
+        <Reveal variant="right" delay={0.2} className="relative">
+          <div className="relative mx-auto max-w-[560px]">
+            {/* Circular gradient behind */}
+            <div aria-hidden className="absolute inset-0 -z-10 rounded-full blur-3xl animate-float-slower"
+              style={{
+                background: "radial-gradient(circle at 50% 40%, rgba(218,50,52,0.22), transparent 65%)",
+              }} />
+            {/* Vascular illustration */}
+            <svg aria-hidden viewBox="0 0 400 500" className="pointer-events-none absolute -inset-6 -z-10 h-[110%] w-[110%] opacity-40">
+              <defs>
+                <linearGradient id="vasc" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stopColor="#DA3234" stopOpacity="0.5" />
+                  <stop offset="1" stopColor="#453660" stopOpacity="0.35" />
+                </linearGradient>
+              </defs>
+              <path d="M200 20 C 240 120, 140 180, 200 260 S 260 380, 210 480" stroke="url(#vasc)" strokeWidth="3" fill="none" className="vein-line" />
+              <path d="M120 60 C 80 160, 180 200, 120 300 S 60 420, 140 490" stroke="url(#vasc)" strokeWidth="2" fill="none" className="vein-line" />
+              <path d="M300 40 C 340 160, 260 220, 320 320 S 360 440, 280 500" stroke="url(#vasc)" strokeWidth="2" fill="none" className="vein-line" />
+            </svg>
+
+            {/* Portrait frame */}
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/40 p-2 backdrop-blur-xl"
+              style={{ boxShadow: "0 30px 60px -20px rgba(69,54,96,0.4)" }}>
+              <img
+                src={doctorImg}
+                alt="Dr. G. Narasimha Sai — Vascular & Endovascular Surgeon"
+                width={1000}
+                height={1250}
+                className="w-full rounded-[1.6rem] object-cover"
+                style={{ aspectRatio: "4 / 5" }}
+              />
+              <div aria-hidden className="pointer-events-none absolute inset-2 rounded-[1.6rem]"
+                style={{ background: "linear-gradient(180deg, transparent 55%, rgba(69,54,96,0.35))" }} />
+            </div>
+
+            {/* Floating cards */}
+            <div className="animate-float absolute -left-4 top-16 flex items-center gap-3 rounded-2xl border border-white/70 bg-white/85 px-4 py-3 backdrop-blur-xl sm:-left-10"
+              style={{ boxShadow: "0 16px 40px -18px rgba(218,50,52,0.35)" }}>
+              <span className="grid h-10 w-10 place-items-center rounded-xl text-white"
+                style={{ background: "#DA3234" }}>
+                <Activity className="h-5 w-5" />
+              </span>
+              <span className="text-xs font-bold leading-tight" style={{ color: "#1E293B" }}>
+                400+<br />
+                <span className="text-[10px] font-semibold" style={{ color: "#1E293B99" }}>AV Fistula Surgeries</span>
+              </span>
+            </div>
+
+            <div className="animate-float-slower absolute -right-4 top-1/2 flex items-center gap-3 rounded-2xl border border-white/70 bg-white/85 px-4 py-3 backdrop-blur-xl sm:-right-10"
+              style={{ boxShadow: "0 16px 40px -18px rgba(69,54,96,0.35)" }}>
+              <span className="grid h-10 w-10 place-items-center rounded-xl text-white"
+                style={{ background: "#453660" }}>
+                <Waves className="h-5 w-5" />
+              </span>
+              <span className="text-xs font-bold leading-tight" style={{ color: "#1E293B" }}>
+                100+<br />
+                <span className="text-[10px] font-semibold" style={{ color: "#1E293B99" }}>Laser Varicose</span>
+              </span>
+            </div>
+
+            <div className="animate-float absolute -bottom-4 left-8 flex items-center gap-3 rounded-2xl border border-white/70 bg-white/85 px-4 py-3 backdrop-blur-xl [animation-delay:0.6s]"
+              style={{ boxShadow: "0 16px 40px -18px rgba(30,41,59,0.3)" }}>
+              <span className="grid h-10 w-10 place-items-center rounded-xl text-white"
+                style={{ background: "linear-gradient(135deg,#DA3234,#453660)" }}>
+                <Footprints className="h-5 w-5" />
+              </span>
+              <span className="text-xs font-bold leading-tight" style={{ color: "#1E293B" }}>
+                50+<br />
+                <span className="text-[10px] font-semibold" style={{ color: "#1E293B99" }}>Limb Salvage Cases</span>
+              </span>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 /* ---------------- 3D Holographic Hero Section ---------------- */
 const HERO3D_BADGES = [
   { icon: HeartPulse, label: "AI Diagnostics" },
@@ -645,6 +887,7 @@ function Home2() {
       <Navbar />
       <Hero />
       <Trust />
+      <HeroPremium />
       <Hero3D />
       <Doctor />
       <Services />
