@@ -633,11 +633,7 @@ function RequestSection() {
                 )}
               </button>
 
-                  <p className="mt-0.5 text-[12px] leading-relaxed text-muted-foreground">
-                    We treat every submission with strict medical confidentiality. Your records are only reviewed by authorized vascular specialists and are never shared with third parties.
-                  </p>
-                </div>
-              </div>
+
 
               {status === "ok" && (
                 <p className="rounded-xl bg-primary/10 px-4 py-3 text-sm font-semibold text-primary" role="status">
