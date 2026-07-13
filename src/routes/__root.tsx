@@ -8,7 +8,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -138,10 +138,21 @@ function RootComponent() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const hash = useRouterState({ select: (s) => s.location.hash });
 
-  useEffect(() => {
+  const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+  useIsoLayoutEffect(() => {
     if (hash) return; // let in-page anchors scroll themselves
     if (typeof window === "undefined") return;
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    // Temporarily disable CSS smooth scrolling so route changes jump instantly to the top
+    const root = document.documentElement;
+    const prev = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+    root.scrollTop = 0;
+    // Restore on next frame
+    requestAnimationFrame(() => {
+      root.style.scrollBehavior = prev;
+    });
   }, [pathname, hash]);
 
   return (
