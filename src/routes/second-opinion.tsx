@@ -6,7 +6,7 @@ import {
   ArrowRight, PlayCircle, Activity, Stethoscope, Users, HeartPulse,
   UploadCloud, UserRound, ClipboardCheck, MessagesSquare, ClipboardList,
   User, Phone, Mail, MessageCircle, Send, CalendarCheck, Loader2,
-  Award, Search, Sparkles, HeartHandshake as HeartCare, HelpCircle,
+  Award, Search, Sparkles, Microscope, HeartHandshake as HeartCare, HelpCircle,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
