@@ -368,6 +368,171 @@ function Trust() {
   );
 }
 
+/* ---------------- 3D Holographic Hero Section ---------------- */
+const HERO3D_BADGES = [
+  { icon: HeartPulse, label: "AI Diagnostics" },
+  { icon: ShieldCheck, label: "Certified Safety" },
+  { icon: Activity, label: "Live Monitoring" },
+  { icon: Cpu, label: "Smart Imaging" },
+];
+
+function Hero3D() {
+  return (
+    <section
+      id="innovation"
+      className="relative overflow-hidden py-24 lg:py-32"
+      style={{
+        background:
+          "linear-gradient(135deg, #FFFFFF 0%, #F5F9FC 45%, #E8F4FD 100%)",
+      }}
+    >
+      {/* Ambient glows */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-24 -left-24 h-[520px] w-[520px] rounded-full blur-3xl"
+        style={{ background: "radial-gradient(closest-side, rgba(0,194,255,0.28), transparent)" }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-24 -right-24 h-[560px] w-[560px] rounded-full blur-3xl"
+        style={{ background: "radial-gradient(closest-side, rgba(15,108,189,0.22), transparent)" }}
+      />
+      {/* Soft floating particles */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <span className="animate-float absolute left-[8%] top-[18%] h-2 w-2 rounded-full bg-[#00C2FF]/70" />
+        <span className="animate-float-slower absolute left-[22%] top-[62%] h-1.5 w-1.5 rounded-full bg-[#0F6CBD]/60" />
+        <span className="animate-float absolute right-[18%] top-[26%] h-2.5 w-2.5 rounded-full bg-[#10B981]/60 [animation-delay:0.8s]" />
+        <span className="animate-float-slower absolute right-[10%] bottom-[18%] h-2 w-2 rounded-full bg-[#E53935]/60 [animation-delay:1.4s]" />
+      </div>
+
+      <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16 lg:px-8">
+        {/* Left copy — 40% */}
+        <Reveal variant="left">
+          <div
+            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold"
+            style={{ background: "rgba(15,108,189,0.1)", color: "#0F6CBD" }}
+          >
+            <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#00C2FF" }} />
+            Next-Gen Vascular Intelligence
+          </div>
+
+          <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl xl:text-[3.25rem]" style={{ color: "#153E75" }}>
+            Expert Vascular Care.<br />
+            <span style={{ color: "#0F6CBD" }}>Better Circulation.</span><br />
+            <span style={{ color: "#E53935" }}>Brighter Life.</span>
+          </h2>
+
+          <div className="mt-5 h-1 w-20 rounded-full" style={{ background: "linear-gradient(90deg,#0F6CBD,#00C2FF)" }} />
+
+          <p className="mt-6 max-w-lg text-[15px] leading-relaxed" style={{ color: "#153E75CC" }}>
+            Ignite Vascular Center is a leading vascular surgery and endovascular care center in
+            Kasturibai Peta, Vijayawada. We diagnose and treat diseases of arteries, veins, and
+            blood vessels with advanced technology and compassionate care.
+          </p>
+
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+            {HERO3D_BADGES.map((b, i) => (
+              <Reveal
+                key={b.label}
+                as="li"
+                variant="up"
+                delay={0.1 + i * 0.08}
+                className="flex items-center gap-3 rounded-2xl border border-white/60 bg-white/70 px-4 py-3 backdrop-blur-md shadow-soft"
+              >
+                <span
+                  className="grid h-10 w-10 place-items-center rounded-xl text-white shadow-soft"
+                  style={{ background: "linear-gradient(135deg,#0F6CBD,#00C2FF)" }}
+                >
+                  <b.icon className="h-5 w-5" />
+                </span>
+                <span className="text-sm font-bold" style={{ color: "#153E75" }}>{b.label}</span>
+              </Reveal>
+            ))}
+          </ul>
+
+          <div className="mt-9 flex flex-wrap gap-3">
+            <a
+              href="#cta"
+              className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold text-white transition-transform duration-300 hover:scale-105"
+              style={{
+                background: "linear-gradient(135deg,#0F6CBD,#153E75)",
+                boxShadow: "0 12px 32px -8px rgba(15,108,189,0.55)",
+              }}
+            >
+              <Calendar className="h-4 w-4" /> Book Consultation
+            </a>
+            <a
+              href="#services"
+              className="inline-flex items-center gap-2 rounded-full border-2 bg-white/80 px-7 py-3.5 text-sm font-bold backdrop-blur transition-colors duration-300 hover:bg-white"
+              style={{ color: "#0F6CBD", borderColor: "rgba(15,108,189,0.25)" }}
+            >
+              Explore Treatments <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+        </Reveal>
+
+        {/* Right illustration — 60% */}
+        <Reveal variant="right" className="relative">
+          <div className="relative mx-auto max-w-2xl">
+            {/* Glow halo */}
+            <div
+              aria-hidden
+              className="absolute -inset-6 rounded-[2.75rem] blur-2xl"
+              style={{ background: "linear-gradient(135deg, rgba(0,194,255,0.35), rgba(15,108,189,0.25))" }}
+            />
+            {/* Glass frame */}
+            <div
+              className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/60 p-2 backdrop-blur-xl"
+              style={{ boxShadow: "0 30px 60px -20px rgba(21,62,117,0.35)" }}
+            >
+              <img
+                src={hero3dImg}
+                alt="3D holographic vascular illustration with surgeon and AI diagnostic dashboard"
+                width={1536}
+                height={1280}
+                loading="lazy"
+                className="w-full rounded-[1.6rem] object-cover"
+              />
+            </div>
+
+            {/* Floating glass stat cards */}
+            <div
+              className="animate-float absolute -left-4 top-10 flex items-center gap-3 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 backdrop-blur-xl shadow-lift sm:-left-8"
+            >
+              <span
+                className="grid h-10 w-10 place-items-center rounded-xl text-white"
+                style={{ background: "linear-gradient(135deg,#E53935,#B71C1C)" }}
+              >
+                <HeartPulse className="h-5 w-5" />
+              </span>
+              <span className="text-xs font-bold leading-tight" style={{ color: "#153E75" }}>
+                72 BPM<br />
+                <span className="text-[10px] font-semibold" style={{ color: "#0F6CBD" }}>Live Vitals</span>
+              </span>
+            </div>
+
+            <div
+              className="animate-float-slower absolute -right-4 bottom-16 flex items-center gap-3 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 backdrop-blur-xl shadow-lift sm:-right-6 [animation-delay:0.6s]"
+            >
+              <span
+                className="grid h-10 w-10 place-items-center rounded-xl text-white"
+                style={{ background: "linear-gradient(135deg,#10B981,#059669)" }}
+              >
+                <ShieldCheck className="h-5 w-5" />
+              </span>
+              <span className="text-xs font-bold leading-tight" style={{ color: "#153E75" }}>
+                Analysis Complete<br />
+                <span className="text-[10px] font-semibold" style={{ color: "#10B981" }}>All Clear</span>
+              </span>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+
 function Home2() {
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
