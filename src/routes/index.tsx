@@ -27,6 +27,7 @@ function Index() {
       <WhyChoose />
       <Process />
       <Testimonials />
+      <GoogleReviews />
       <CTA />
       <Footer />
       <FloatingEmergency />
