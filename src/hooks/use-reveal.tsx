@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
-type Variant = "up" | "left" | "right" | "zoom";
+type Variant = "up" | "left" | "right" | "zoom" | "fade";
 
 const variantClass: Record<Variant, string> = {
   up: "reveal-up",
   left: "reveal-left",
   right: "reveal-right",
   zoom: "reveal-zoom",
+  fade: "reveal-fade",
 };
 
 function prefersReducedMotion() {

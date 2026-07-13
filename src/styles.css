@@ -92,6 +92,7 @@
 
   html {
     scroll-padding-top: 88px;
+    scroll-behavior: smooth;
   }
 
 
@@ -218,6 +219,10 @@
 
 @utility reveal-zoom {
   transform: scale(0.96);
+}
+
+@utility reveal-fade {
+  transform: none;
 }
 
 
