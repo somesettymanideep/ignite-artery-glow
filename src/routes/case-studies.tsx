@@ -237,7 +237,7 @@ function CaseStudiesPage() {
       <section className="py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((c, i) => (
+            {filtered.slice(0, 3).map((c, i) => (
               <Reveal key={c.title} variant="up" delay={(i % 3) * 0.08}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-[7px] bg-white shadow-soft ring-1 ring-border/60 transition-all duration-500 hover:-translate-y-1 hover:shadow-lift">
                   <div className="relative aspect-[16/10] overflow-hidden">
