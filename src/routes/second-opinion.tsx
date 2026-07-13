@@ -210,23 +210,33 @@ function HelpRibbon() {
     <section className="bg-[#f7f8fc] pb-16 pt-14 lg:pb-20 lg:pt-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal variant="up">
-          <div className="relative overflow-visible rounded-[18px] bg-[linear-gradient(115deg,#311261_0%,#311261_45%,#c62347_100%)] px-6 py-8 shadow-lift sm:px-10 sm:py-9 sm:pl-[180px] lg:pl-[220px]">
-            {/* Circular doctor photo overlapping on the left */}
-            <div className="absolute left-6 top-1/2 hidden h-[170px] w-[170px] -translate-y-1/2 overflow-hidden rounded-full ring-4 ring-white shadow-lift sm:block lg:left-10 lg:h-[190px] lg:w-[190px]">
-              <img src={doctorImg} alt="Vascular specialist" loading="lazy" width={400} height={400} className="h-full w-full object-cover object-top" />
+          <div className="relative rounded-[18px] bg-[linear-gradient(115deg,#311261_0%,#311261_45%,#c62347_100%)] px-6 pb-8 pt-24 shadow-lift sm:overflow-visible sm:px-10 sm:py-9 sm:pl-[200px] lg:pl-[240px]">
+            {/* Circular doctor photo — centered above on mobile, overlapping left from sm+ */}
+            <div
+              tabIndex={-1}
+              className="absolute left-1/2 top-0 z-10 aspect-square w-[140px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full bg-white ring-4 ring-white shadow-lift focus-visible:outline-none focus-visible:ring-[6px] focus-visible:ring-primary sm:left-6 sm:top-1/2 sm:w-[170px] sm:-translate-x-0 sm:-translate-y-1/2 lg:left-10 lg:w-[190px]"
+            >
+              <img
+                src={doctorImg}
+                alt="Dr. Vascular Specialist, Ignite Vascular Center"
+                loading="lazy"
+                width={400}
+                height={400}
+                className="h-full w-full object-cover object-top"
+              />
             </div>
 
-            <div className="grid items-center gap-6 md:grid-cols-[1fr_1.05fr]">
+            <div className="grid items-center gap-6 text-center sm:text-left md:grid-cols-[1fr_1.05fr]">
               <div>
                 <h3 className="font-display text-2xl font-extrabold text-white sm:text-[26px]">Your Health. Our Expertise.</h3>
-                <p className="mt-2 max-w-md text-[13.5px] leading-relaxed text-white/85">
+                <p className="mt-2 mx-auto max-w-md text-[13.5px] leading-relaxed text-white/85 sm:mx-0">
                   A second opinion can provide reassurance, confirm your diagnosis, or present alternative treatment options tailored to your condition.
                 </p>
               </div>
               <div className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
                 {HELP_ITEMS.map((h, i) => (
                   <Reveal key={h.label} variant="up" delay={0.08 + i * 0.06}>
-                    <div className="flex items-center gap-3 text-white">
+                    <div className="flex items-center justify-center gap-3 text-white sm:justify-start">
                       <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white text-emerald-500">
                         <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                       </span>
