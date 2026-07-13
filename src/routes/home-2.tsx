@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   Phone, ArrowRight, Calendar, Check, ShieldCheck, Cpu, UserCheck, Heart,
   GraduationCap, Award, Users, Stethoscope, Activity, Waves, Syringe, Footprints,
@@ -377,6 +377,76 @@ const HERO3D_BADGES = [
 ];
 
 function Hero3D() {
+  const sceneRef = useRef<HTMLDivElement | null>(null);
+  const frameRef = useRef<HTMLDivElement | null>(null);
+  const card1Ref = useRef<HTMLDivElement | null>(null);
+  const card2Ref = useRef<HTMLDivElement | null>(null);
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduced(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  // Mouse + scroll parallax. Skipped when reduced motion is requested,
+  // and disabled on coarse pointers (touch) where mouse tracking is noise.
+  useEffect(() => {
+    if (reduced) return;
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
+    const scene = sceneRef.current;
+    const frame = frameRef.current;
+    const c1 = card1Ref.current;
+    const c2 = card2Ref.current;
+    if (!scene || !frame) return;
+
+    let mx = 0, my = 0, sy = 0;
+    let raf = 0;
+
+    const apply = () => {
+      raf = 0;
+      const rx = (my * -6).toFixed(2);
+      const ry = (mx * 8).toFixed(2);
+      const tz = (sy * -20).toFixed(2);
+      frame.style.transform = `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) translate3d(0, ${tz}px, 0)`;
+      if (c1) c1.style.transform = `translate3d(${mx * -18}px, ${my * -14 + sy * -14}px, 0)`;
+      if (c2) c2.style.transform = `translate3d(${mx * 22}px, ${my * 16 + sy * 18}px, 0)`;
+    };
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(apply); };
+
+    const onMove = (e: PointerEvent) => {
+      const r = scene.getBoundingClientRect();
+      mx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      my = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      schedule();
+    };
+    const onLeave = () => { mx = 0; my = 0; schedule(); };
+    const onScroll = () => {
+      const r = scene.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      sy = Math.max(-1, Math.min(1, (vh / 2 - (r.top + r.height / 2)) / vh));
+      schedule();
+    };
+
+    scene.addEventListener("pointermove", onMove);
+    scene.addEventListener("pointerleave", onLeave);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      scene.removeEventListener("pointermove", onMove);
+      scene.removeEventListener("pointerleave", onLeave);
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [reduced]);
+
+  const floatClass = reduced ? "" : "animate-float";
+  const floatSlowClass = reduced ? "" : "animate-float-slower";
+
   return (
     <section
       id="innovation"
@@ -389,20 +459,20 @@ function Hero3D() {
       {/* Ambient glows */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-24 -left-24 h-[520px] w-[520px] rounded-full blur-3xl"
+        className={`pointer-events-none absolute -top-24 -left-24 h-[520px] w-[520px] rounded-full blur-3xl ${reduced ? "" : "hologram-pulse"}`}
         style={{ background: "radial-gradient(closest-side, rgba(0,194,255,0.28), transparent)" }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-24 -right-24 h-[560px] w-[560px] rounded-full blur-3xl"
+        className={`pointer-events-none absolute -bottom-24 -right-24 h-[560px] w-[560px] rounded-full blur-3xl ${reduced ? "" : "hologram-pulse [animation-delay:1.2s]"}`}
         style={{ background: "radial-gradient(closest-side, rgba(15,108,189,0.22), transparent)" }}
       />
       {/* Soft floating particles */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <span className="animate-float absolute left-[8%] top-[18%] h-2 w-2 rounded-full bg-[#00C2FF]/70" />
-        <span className="animate-float-slower absolute left-[22%] top-[62%] h-1.5 w-1.5 rounded-full bg-[#0F6CBD]/60" />
-        <span className="animate-float absolute right-[18%] top-[26%] h-2.5 w-2.5 rounded-full bg-[#10B981]/60 [animation-delay:0.8s]" />
-        <span className="animate-float-slower absolute right-[10%] bottom-[18%] h-2 w-2 rounded-full bg-[#E53935]/60 [animation-delay:1.4s]" />
+        <span className={`${floatClass} absolute left-[8%] top-[18%] h-2 w-2 rounded-full bg-[#00C2FF]/70`} />
+        <span className={`${floatSlowClass} absolute left-[22%] top-[62%] h-1.5 w-1.5 rounded-full bg-[#0F6CBD]/60`} />
+        <span className={`${floatClass} absolute right-[18%] top-[26%] h-2.5 w-2.5 rounded-full bg-[#10B981]/60 [animation-delay:0.8s]`} />
+        <span className={`${floatSlowClass} absolute right-[10%] bottom-[18%] h-2 w-2 rounded-full bg-[#E53935]/60 [animation-delay:1.4s]`} />
       </div>
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16 lg:px-8">
@@ -412,7 +482,7 @@ function Hero3D() {
             className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold"
             style={{ background: "rgba(15,108,189,0.1)", color: "#0F6CBD" }}
           >
-            <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#00C2FF" }} />
+            <span className={`h-1.5 w-1.5 rounded-full ${reduced ? "" : "pulse-dot"}`} style={{ background: "#00C2FF" }} />
             Next-Gen Vascular Intelligence
           </div>
 
@@ -473,17 +543,26 @@ function Hero3D() {
 
         {/* Right illustration — 60% */}
         <Reveal variant="right" className="relative">
-          <div className="relative mx-auto max-w-2xl">
+          <div
+            ref={sceneRef}
+            className="relative mx-auto max-w-2xl"
+            style={{ perspective: "1200px" } as CSSProperties}
+          >
             {/* Glow halo */}
             <div
               aria-hidden
-              className="absolute -inset-6 rounded-[2.75rem] blur-2xl"
+              className={`absolute -inset-6 rounded-[2.75rem] blur-2xl ${reduced ? "" : "hologram-pulse"}`}
               style={{ background: "linear-gradient(135deg, rgba(0,194,255,0.35), rgba(15,108,189,0.25))" }}
             />
-            {/* Glass frame */}
+            {/* Glass frame with hologram scan overlay */}
             <div
-              className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/60 p-2 backdrop-blur-xl"
-              style={{ boxShadow: "0 30px 60px -20px rgba(21,62,117,0.35)" }}
+              ref={frameRef}
+              className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/60 p-2 backdrop-blur-xl will-change-transform"
+              style={{
+                boxShadow: "0 30px 60px -20px rgba(21,62,117,0.35)",
+                transformStyle: "preserve-3d",
+                transition: reduced ? undefined : "transform 0.35s cubic-bezier(0.22,1,0.36,1)",
+              }}
             >
               <img
                 src={hero3dImg}
@@ -493,17 +572,24 @@ function Hero3D() {
                 loading="lazy"
                 className="w-full rounded-[1.6rem] object-cover"
               />
+              {!reduced && (
+                <>
+                  <div aria-hidden className="pointer-events-none absolute inset-2 rounded-[1.6rem] hologram-scan" />
+                  <div aria-hidden className="pointer-events-none absolute inset-2 rounded-[1.6rem] hologram-grid opacity-40" />
+                </>
+              )}
             </div>
 
             {/* Floating glass stat cards */}
             <div
-              className="animate-float absolute -left-4 top-10 flex items-center gap-3 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 backdrop-blur-xl shadow-lift sm:-left-8"
+              ref={card1Ref}
+              className={`${floatClass} absolute -left-4 top-10 flex items-center gap-3 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 backdrop-blur-xl shadow-lift sm:-left-8 will-change-transform`}
             >
               <span
-                className="grid h-10 w-10 place-items-center rounded-xl text-white"
+                className={`relative grid h-10 w-10 place-items-center rounded-xl text-white ${reduced ? "" : "pulse-ring"}`}
                 style={{ background: "linear-gradient(135deg,#E53935,#B71C1C)" }}
               >
-                <HeartPulse className="h-5 w-5" />
+                <HeartPulse className={`h-5 w-5 ${reduced ? "" : "heart-beat"}`} />
               </span>
               <span className="text-xs font-bold leading-tight" style={{ color: "#153E75" }}>
                 72 BPM<br />
@@ -512,7 +598,8 @@ function Hero3D() {
             </div>
 
             <div
-              className="animate-float-slower absolute -right-4 bottom-16 flex items-center gap-3 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 backdrop-blur-xl shadow-lift sm:-right-6 [animation-delay:0.6s]"
+              ref={card2Ref}
+              className={`${floatSlowClass} absolute -right-4 bottom-16 flex items-center gap-3 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 backdrop-blur-xl shadow-lift sm:-right-6 [animation-delay:0.6s] will-change-transform`}
             >
               <span
                 className="grid h-10 w-10 place-items-center rounded-xl text-white"
