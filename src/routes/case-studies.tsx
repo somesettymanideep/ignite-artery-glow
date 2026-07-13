@@ -113,13 +113,13 @@ const CASES: CaseItem[] = [
   },
 ];
 
-const CATEGORIES: { label: Category; icon: React.ElementType }[] = [
-  { label: "All Cases", icon: LayoutGrid },
-  { label: "Varicose Veins", icon: Activity },
-  { label: "Peripheral Artery Disease (PAD)", icon: Stethoscope },
-  { label: "Deep Vein Thrombosis (DVT)", icon: Activity },
-  { label: "Endovascular Procedures", icon: Users },
-  { label: "Diabetic Foot Care", icon: ShieldCheck },
+const CATEGORIES: { label: Category; short: string; icon: React.ElementType }[] = [
+  { label: "All Cases", short: "All", icon: LayoutGrid },
+  { label: "Varicose Veins", short: "Varicose Veins", icon: Activity },
+  { label: "Peripheral Artery Disease (PAD)", short: "PAD", icon: Stethoscope },
+  { label: "Deep Vein Thrombosis (DVT)", short: "DVT", icon: Activity },
+  { label: "Endovascular Procedures", short: "Endovascular", icon: Users },
+  { label: "Diabetic Foot Care", short: "Diabetic Foot", icon: ShieldCheck },
 ];
 
 const STATS = [
@@ -217,8 +217,9 @@ function CaseStudiesPage() {
                         : "text-secondary/80 hover:bg-accent"
                     }`}
                   >
-                    <c.icon className="h-4 w-4" strokeWidth={1.75} />
-                    {c.label}
+                    <c.icon className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                    <span className="sm:hidden">{c.short}</span>
+                    <span className="hidden sm:inline">{c.label}</span>
                   </button>
                 );
               })}
@@ -236,7 +237,7 @@ function CaseStudiesPage() {
       <section className="py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((c, i) => (
+            {filtered.slice(0, 3).map((c, i) => (
               <Reveal key={c.title} variant="up" delay={(i % 3) * 0.08}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-[7px] bg-white shadow-soft ring-1 ring-border/60 transition-all duration-500 hover:-translate-y-1 hover:shadow-lift">
                   <div className="relative aspect-[16/10] overflow-hidden">
