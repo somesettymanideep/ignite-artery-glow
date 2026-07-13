@@ -9,8 +9,8 @@ import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 
-import heroVesselsAsset from "@/assets/case-studies-hero.webp.asset.json";
-const heroVessels = heroVesselsAsset.url;
+import doctorsAsset from "@/assets/case-studies-doctors.jpg.asset.json";
+const doctorsImg = doctorsAsset.url;
 import imgSurgery from "@/assets/gallery/procedure-surgery.jpg";
 import imgAngio from "@/assets/gallery/procedure-angio.jpg";
 import imgCathlab from "@/assets/gallery/facility-cathlab.jpg";
