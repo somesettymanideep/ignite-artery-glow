@@ -236,7 +236,7 @@ function TreatmentsGrid() {
           </span>
           <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight tracking-tight text-secondary sm:text-4xl lg:text-5xl">
             What We{" "}
-            <span className="bg-gradient-brand bg-clip-text text-transparent">
+            <span className="text-gradient">
               Treat
             </span>
           </h2>
