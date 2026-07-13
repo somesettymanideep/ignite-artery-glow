@@ -132,7 +132,7 @@ function Hero() {
             {BADGES.map((b, i) => (
               <Reveal key={b.title} variant="up" delay={0.05 + i * 0.05} className="flex justify-center">
                 <div className="text-center w-[120px]">
-                  <span className="mx-auto grid h-[54px] w-[54px] place-items-center rounded-full bg-[#ede9f6] text-[#4a3b6b]">
+                  <span className="mx-auto grid h-[54px] w-[54px] place-items-center rounded-full bg-[#ede9f6] text-[#311261]">
                     <b.icon className="h-5 w-5" strokeWidth={1.6} />
                   </span>
                   <p className="mt-3 font-display text-[12.5px] font-bold text-secondary">{b.title}</p>
@@ -169,7 +169,7 @@ function Hero() {
             >
               <path
                 d="M120,0 C30,120 30,480 120,600"
-                stroke="#453660"
+                stroke="#311261"
                 strokeWidth="12"
                 strokeLinecap="round"
               />
@@ -210,7 +210,7 @@ function HelpRibbon() {
     <section className="bg-[#f7f8fc] pb-16 pt-14 lg:pb-20 lg:pt-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal variant="up">
-          <div className="relative overflow-visible rounded-[18px] bg-[linear-gradient(115deg,#3a2a75_0%,#5a2585_45%,#c62347_100%)] px-6 py-8 shadow-lift sm:px-10 sm:py-9 sm:pl-[180px] lg:pl-[220px]">
+          <div className="relative overflow-visible rounded-[18px] bg-[linear-gradient(115deg,#311261_0%,#311261_45%,#c62347_100%)] px-6 py-8 shadow-lift sm:px-10 sm:py-9 sm:pl-[180px] lg:pl-[220px]">
             {/* Circular doctor photo overlapping on the left */}
             <div className="absolute left-6 top-1/2 hidden h-[170px] w-[170px] -translate-y-1/2 overflow-hidden rounded-full ring-4 ring-white shadow-lift sm:block lg:left-10 lg:h-[190px] lg:w-[190px]">
               <img src={doctorImg} alt="Vascular specialist" loading="lazy" width={400} height={400} className="h-full w-full object-cover" />
@@ -529,7 +529,7 @@ function RequestSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="group inline-flex w-full items-center justify-center gap-2.5 rounded-[6px] bg-[linear-gradient(90deg,#3a2a75,#c62347)] px-6 py-3.5 font-bold text-primary-foreground shadow-glow-red transition-all duration-300 hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-70"
+                className="group inline-flex w-full items-center justify-center gap-2.5 rounded-[6px] bg-[linear-gradient(90deg,#311261,#c62347)] px-6 py-3.5 font-bold text-primary-foreground shadow-glow-red transition-all duration-300 hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {isSubmitting ? (
                   <>
@@ -588,7 +588,7 @@ function RequestSection() {
                 {WHY.map((w, i) => (
                   <Reveal key={w.title} variant="up" delay={0.08 + i * 0.08}>
                     <div className="flex items-start gap-4">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#ede9f6] text-[#4a3b6b] ring-1 ring-[#e3ddf1]">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#ede9f6] text-[#311261] ring-1 ring-[#311261]/20">
                         <w.icon className="h-5 w-5" strokeWidth={1.75} />
                       </span>
                       <div>
@@ -676,7 +676,7 @@ function CTABanner() {
     <section className="pb-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal variant="zoom">
-          <div className="relative overflow-hidden rounded-[14px] bg-[linear-gradient(115deg,#3a2a75_0%,#5a2585_50%,#c62347_100%)] p-6 shadow-lift sm:p-8">
+          <div className="relative overflow-hidden rounded-[14px] bg-[linear-gradient(115deg,#311261_0%,#311261_50%,#c62347_100%)] p-6 shadow-lift sm:p-8">
             <div className="relative grid items-center gap-5 md:grid-cols-[auto_1fr_auto]">
               <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-white text-primary shadow-lift animate-pulse-glow">
                 <CalendarCheck className="h-7 w-7" />
