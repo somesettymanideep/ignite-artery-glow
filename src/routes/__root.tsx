@@ -142,17 +142,25 @@ function RootComponent() {
   useIsoLayoutEffect(() => {
     if (hash) return; // let in-page anchors scroll themselves
     if (typeof window === "undefined") return;
-    // Temporarily disable CSS smooth scrolling so route changes jump instantly to the top
     const root = document.documentElement;
     const prev = root.style.scrollBehavior;
     root.style.scrollBehavior = "auto";
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-    root.scrollTop = 0;
-    // Restore on next frame
-    requestAnimationFrame(() => {
-      root.style.scrollBehavior = prev;
+    const jump = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+      document.body.scrollTop = 0;
+      root.scrollTop = 0;
+    };
+    jump();
+    // Router scroll-restoration may run after us — re-assert on the next two frames.
+    const r1 = requestAnimationFrame(() => {
+      jump();
+      const r2 = requestAnimationFrame(() => {
+        jump();
+        root.style.scrollBehavior = prev;
+      });
+      (jump as unknown as { r2: number }).r2 = r2;
     });
+    return () => cancelAnimationFrame(r1);
   }, [pathname, hash]);
 
   return (
