@@ -200,37 +200,53 @@ function CaseStudiesPage() {
 
 
       {/* Category filter bar */}
-      <section className="bg-white">
-
-        <div className="mx-auto max-w-7xl px-5 py-5 lg:px-8">
+      <section className="bg-white border-y border-border/60">
+        <div className="mx-auto max-w-7xl px-5 py-4 lg:px-8">
           <Reveal variant="up">
-            <div className="flex items-center gap-2 overflow-x-auto flex-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {CATEGORIES.map((c) => {
-                const isActive = c.label === active;
-                return (
-                  <button
-                    key={c.label}
-                    onClick={() => setActive(c.label)}
-                    className={`inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-md px-4 py-2.5 text-[13px] font-semibold transition-all ${
-                      isActive
-                        ? "bg-gradient-brand text-primary-foreground shadow-glow-red"
-                        : "text-secondary/80 hover:bg-accent"
-                    }`}
-                  >
-                    <c.icon className="h-4 w-4 shrink-0" strokeWidth={1.75} />
-                    <span className="sm:hidden">{c.short}</span>
-                    <span className="hidden sm:inline">{c.label}</span>
-                  </button>
-                );
-              })}
-              <button className="ml-auto inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-md border border-border/70 bg-white px-4 py-2.5 text-[13px] font-semibold text-secondary/80 hover:bg-accent">
-                Filter
+            <div className="flex items-center gap-3">
+              {/* Scrollable pills — edge-faded, snap-aligned */}
+              <div className="relative min-w-0 flex-1">
+                <div
+                  className="flex items-center gap-2 overflow-x-auto flex-nowrap snap-x snap-mandatory scroll-px-1 pr-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                  role="tablist"
+                  aria-label="Case study categories"
+                >
+                  {CATEGORIES.map((c) => {
+                    const isActive = c.label === active;
+                    return (
+                      <button
+                        key={c.label}
+                        role="tab"
+                        aria-selected={isActive}
+                        onClick={() => setActive(c.label)}
+                        className={`snap-start inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-[13px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${
+                          isActive
+                            ? "bg-gradient-brand text-primary-foreground shadow-glow-red"
+                            : "bg-accent/60 text-secondary/80 hover:bg-accent"
+                        }`}
+                      >
+                        <c.icon className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                        <span className="sm:hidden">{c.short}</span>
+                        <span className="hidden sm:inline">{c.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+                {/* Edge fades hint scrollability */}
+                <div className="pointer-events-none absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-white to-transparent" />
+                <div className="pointer-events-none absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-white to-transparent" />
+              </div>
+
+              {/* Filter button — always visible, never scrolls */}
+              <button className="shrink-0 inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-border/70 bg-white px-4 py-2 text-[13px] font-semibold text-secondary/80 hover:bg-accent">
                 <Filter className="h-4 w-4" strokeWidth={1.75} />
+                <span className="hidden sm:inline">Filter</span>
               </button>
             </div>
           </Reveal>
         </div>
       </section>
+
 
 
       {/* Case grid */}
