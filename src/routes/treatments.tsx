@@ -284,7 +284,6 @@ function TreatmentsPage() {
       <Navbar />
       <SubBanner title="Our Treatments" crumb="Our Treatments" image={treatmentsBanner} />
       <main>
-        <Hero />
         <TreatmentsGrid />
         <CtaBanner />
       </main>
