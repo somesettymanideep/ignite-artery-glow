@@ -546,7 +546,7 @@ function RequestSection() {
                 )}
               </button>
 
-              <div className="flex items-start gap-3 rounded-xl bg-indigo-50/70 p-4 ring-1 ring-indigo-100">
+              <div className="flex items-start gap-3 rounded-xl bg-[#311261]/5 p-4 ring-1 ring-[#311261]/15">
                 <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-[#311261] shadow-soft">
                   <Lock className="h-4 w-4" strokeWidth={1.8} />
                 </span>
@@ -639,7 +639,7 @@ function FAQSection() {
                     aria-expanded={isOpen}
                   >
                     <span className="flex items-center gap-3">
-                      <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition-colors duration-300 ${isOpen ? "bg-primary text-white" : "bg-indigo-50 text-primary"}`}>
+                      <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition-colors duration-300 ${isOpen ? "bg-primary text-white" : "bg-[#311261]/10 text-[#311261]"}`}>
                         <HelpCircle className="h-4 w-4" strokeWidth={1.8} />
                       </span>
                       <span className="font-display text-[15px] font-extrabold text-secondary sm:text-base">{item.question}</span>
