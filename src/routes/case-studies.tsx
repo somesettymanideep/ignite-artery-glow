@@ -113,13 +113,13 @@ const CASES: CaseItem[] = [
   },
 ];
 
-const CATEGORIES: { label: Category; icon: React.ElementType }[] = [
-  { label: "All Cases", icon: LayoutGrid },
-  { label: "Varicose Veins", icon: Activity },
-  { label: "Peripheral Artery Disease (PAD)", icon: Stethoscope },
-  { label: "Deep Vein Thrombosis (DVT)", icon: Activity },
-  { label: "Endovascular Procedures", icon: Users },
-  { label: "Diabetic Foot Care", icon: ShieldCheck },
+const CATEGORIES: { label: Category; short: string; icon: React.ElementType }[] = [
+  { label: "All Cases", short: "All", icon: LayoutGrid },
+  { label: "Varicose Veins", short: "Varicose Veins", icon: Activity },
+  { label: "Peripheral Artery Disease (PAD)", short: "PAD", icon: Stethoscope },
+  { label: "Deep Vein Thrombosis (DVT)", short: "DVT", icon: Activity },
+  { label: "Endovascular Procedures", short: "Endovascular", icon: Users },
+  { label: "Diabetic Foot Care", short: "Diabetic Foot", icon: ShieldCheck },
 ];
 
 const STATS = [
