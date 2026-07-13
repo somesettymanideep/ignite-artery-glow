@@ -6,7 +6,7 @@ import {
   ArrowRight, PlayCircle, Activity, Stethoscope, Users, HeartPulse,
   UploadCloud, UserRound, ClipboardCheck, MessagesSquare, ClipboardList,
   User, Phone, Mail, MessageCircle, Send, CalendarCheck, Loader2,
-  Award, Search, Sparkles, HeartHandshake as HeartCare, HelpCircle,
+  Award, Search, Sparkles, Microscope, HeartHandshake as HeartCare, HelpCircle,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
@@ -693,6 +693,27 @@ function RequestSection() {
                   </Reveal>
                 ))}
               </div>
+
+              <Reveal variant="up" delay={0.15}>
+                <div className="mt-8 grid grid-cols-2 gap-2.5 border-t border-border/60 pt-6 sm:gap-3">
+                  {[
+                    { icon: Award, label: "15+ Yrs Experience" },
+                    { icon: Stethoscope, label: "Minimally Invasive" },
+                    { icon: Microscope, label: "Advanced Diagnostics" },
+                    { icon: HeartHandshake, label: "Compassionate Care" },
+                  ].map((t) => (
+                    <div
+                      key={t.label}
+                      className="flex items-center gap-2 rounded-full bg-[#311261]/[0.04] px-3 py-2 ring-1 ring-[#311261]/15 transition-all duration-300 hover:bg-[#311261]/[0.08] hover:ring-[#311261]/30"
+                    >
+                      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#311261] to-[#5b3a9e] text-white shadow-sm">
+                        <t.icon className="h-3.5 w-3.5" strokeWidth={2} />
+                      </span>
+                      <span className="truncate text-[11.5px] font-bold text-secondary sm:text-[12px]">{t.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
             </div>
           </div>
         </Reveal>
