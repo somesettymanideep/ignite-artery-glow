@@ -267,17 +267,23 @@ function HowItWorks() {
   return (
     <section id="how-it-works" className="bg-background py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal variant="up" className="text-center">
-          <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-primary">How It Works</p>
-          <h2 className="mt-3 font-display text-3xl font-extrabold text-secondary sm:text-4xl">
-            Simple Steps to Get Your Second Opinion
-          </h2>
-          <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-primary/70" />
-        </Reveal>
+        <div className="text-center">
+          <Reveal variant="up">
+            <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-primary">How It Works</p>
+          </Reveal>
+          <Reveal variant="up" delay={0.1}>
+            <h2 className="mt-3 font-display text-3xl font-extrabold text-secondary sm:text-4xl">
+              Simple Steps to Get Your Second Opinion
+            </h2>
+          </Reveal>
+          <Reveal variant="zoom" delay={0.2}>
+            <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-primary/70" />
+          </Reveal>
+        </div>
 
         <div className="relative mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
           {STEPS.map((s, i) => (
-            <Reveal key={s.title} variant="up" delay={0.08 + i * 0.08} className="relative">
+            <Reveal key={s.title} variant="up" delay={0.15 + i * 0.12} className="relative">
               <div className="flex flex-col items-center text-center">
                 <div className="relative">
                   <span className={`absolute -top-2 -right-2 z-10 grid h-7 w-7 place-items-center rounded-full ${colors[i]} text-[12px] font-bold text-white shadow-lift`}>
@@ -306,6 +312,7 @@ function HowItWorks() {
             </Reveal>
           ))}
         </div>
+
       </div>
     </section>
   );
