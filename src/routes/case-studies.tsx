@@ -256,10 +256,10 @@ function CaseStudiesPage() {
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {filtered.slice(0, 3).map((c, i) => (
-              <Reveal key={c.title} variant="up" delay={0.1 + i * 0.14}>
+              <Reveal key={c.title} variant="up" delay={i * 0.1}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-[7px] bg-white shadow-soft ring-1 ring-border/60 transition-all duration-500 hover:-translate-y-1 hover:shadow-lift">
                   <div className="relative aspect-[16/10] overflow-hidden">
-                    <Reveal variant="zoom" delay={0.18 + i * 0.14}>
+                    <Reveal variant="zoom" delay={0.06 + i * 0.1}>
                       <img
                         src={c.image}
                         alt={c.title}
@@ -270,7 +270,7 @@ function CaseStudiesPage() {
                   </div>
 
                   <div className="flex flex-1 flex-col p-5">
-                    <Reveal variant="left" delay={0.24 + i * 0.14}>
+                    <Reveal variant="left" delay={0.12 + i * 0.1}>
                       <span
                         className={`inline-flex w-fit items-center rounded-md px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground ${
                           c.badgeColor === "red" ? "bg-primary" : "bg-secondary"
@@ -280,13 +280,13 @@ function CaseStudiesPage() {
                       </span>
                     </Reveal>
 
-                    <Reveal variant="up" delay={0.3 + i * 0.14}>
+                    <Reveal variant="up" delay={0.17 + i * 0.1}>
                       <h3 className="mt-3 font-display text-[17px] font-extrabold leading-snug text-secondary">
                         {c.title}
                       </h3>
                     </Reveal>
 
-                    <Reveal variant="up" delay={0.36 + i * 0.14}>
+                    <Reveal variant="up" delay={0.22 + i * 0.1}>
                       <p className="mt-2.5 text-[13.5px] leading-relaxed text-muted-foreground">
                         {c.description}
                       </p>
@@ -298,13 +298,13 @@ function CaseStudiesPage() {
                         { icon: CalendarDays, label: "Recovery Time", value: c.recovery },
                         { icon: Award, label: "Outcome", value: c.outcome },
                       ].map((m, j) => (
-                        <Reveal key={m.label} variant="up" delay={0.44 + i * 0.14 + j * 0.06}>
+                        <Reveal key={m.label} variant="up" delay={0.28 + i * 0.1 + j * 0.05}>
                           <MetaCell icon={m.icon} label={m.label} value={m.value} />
                         </Reveal>
                       ))}
                     </div>
 
-                    <Reveal variant="left" delay={0.62 + i * 0.14}>
+                    <Reveal variant="left" delay={0.44 + i * 0.1}>
                       <button className="mt-4 inline-flex w-fit items-center gap-1.5 text-[13px] font-bold text-primary transition-transform hover:translate-x-0.5">
                         Read More <ArrowRight className="h-3.5 w-3.5" />
                       </button>
@@ -314,6 +314,7 @@ function CaseStudiesPage() {
                 </article>
               </Reveal>
             ))}
+
           </div>
         </div>
       </section>
