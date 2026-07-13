@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ScrollToTop } from "@/components/home/ScrollToTop";
+import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 
 function NotFoundComponent() {
   return (
