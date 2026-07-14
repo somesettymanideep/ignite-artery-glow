@@ -258,7 +258,7 @@ function CertificationsCarousel() {
               }`}
             >
               <div className={`relative grid h-24 w-24 place-items-center rounded-full bg-gradient-to-br ${c.accent} shadow-glow-red ring-1 ring-white/20`}>
-                <div className="absolute inset-1.5 rounded-full bg-[#1a0b3d]" />
+                <div className="absolute inset-1.5 rounded-full bg-[#41305c]" />
                 <Icon className="relative h-10 w-10 text-white" strokeWidth={1.6} />
               </div>
               <h4 className="mt-5 font-display text-base font-extrabold text-white">{c.title}</h4>
