@@ -219,12 +219,18 @@ function HelpRibbon() {
     <section className="bg-[#f7f8fc] pb-16 pt-14 lg:pb-20 lg:pt-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal variant="up">
-          <div className="relative overflow-hidden rounded-[18px] bg-[linear-gradient(115deg,#311261_0%,#311261_45%,#c62347_100%)] px-6 py-8 shadow-lift sm:px-8 sm:py-10 sm:pl-[220px] lg:pl-[260px]">
+          <div className="group/ribbon relative overflow-hidden rounded-[18px] bg-[linear-gradient(115deg,#311261_0%,#311261_45%,#c62347_100%)] px-6 py-8 shadow-lift transition-all duration-500 ease-out hover:-translate-y-0.5 hover:shadow-[0_20px_50px_-20px_rgba(49,18,97,0.55)] focus-within:-translate-y-0.5 focus-within:shadow-[0_20px_50px_-20px_rgba(49,18,97,0.55)] sm:px-8 sm:py-10 sm:pl-[220px] lg:pl-[260px]">
+            {/* Ambient sheen — sweeps across on hover */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-all duration-700 ease-out group-hover/ribbon:left-[110%] group-hover/ribbon:opacity-100 group-focus-within/ribbon:left-[110%] group-focus-within/ribbon:opacity-100"
+            />
             {/* Circular doctor photo — stacked above on mobile, inset left from sm+ (contained within card) */}
             <div
-              tabIndex={-1}
-              className="mx-auto mb-5 aspect-square w-[140px] overflow-hidden rounded-full bg-white ring-4 ring-white shadow-lift focus-visible:outline-none focus-visible:ring-[6px] focus-visible:ring-primary sm:absolute sm:left-8 sm:top-1/2 sm:mx-0 sm:mb-0 sm:w-[168px] sm:-translate-y-1/2 lg:left-10 lg:w-[188px]"
-
+              tabIndex={0}
+              role="img"
+              aria-label="Dr. Vascular Specialist, Ignite Vascular Center"
+              className="group/doc relative mx-auto mb-5 aspect-square w-[140px] cursor-pointer overflow-hidden rounded-full bg-white ring-4 ring-white shadow-lift transition-all duration-500 ease-out hover:scale-[1.04] hover:ring-white/90 hover:shadow-[0_18px_40px_-12px_rgba(198,35,71,0.55)] focus-visible:outline-none focus-visible:ring-[6px] focus-visible:ring-primary focus-visible:scale-[1.04] sm:absolute sm:left-8 sm:top-1/2 sm:mx-0 sm:mb-0 sm:w-[168px] sm:-translate-y-1/2 sm:hover:-translate-y-[calc(50%+3px)] sm:focus-visible:-translate-y-[calc(50%+3px)] lg:left-10 lg:w-[188px]"
             >
               <img
                 src={doctorImg}
@@ -232,9 +238,14 @@ function HelpRibbon() {
                 loading="lazy"
                 width={400}
                 height={400}
-                className="h-full w-full object-cover object-top"
+                className="h-full w-full object-cover object-top transition-transform duration-[900ms] ease-out group-hover/doc:scale-110 group-focus-visible/doc:scale-110"
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-white/0 transition-all duration-500 group-hover/doc:ring-white/60 group-focus-visible/doc:ring-white/60"
               />
             </div>
+
 
 
             <div className="grid items-center gap-6 text-center sm:text-left md:grid-cols-[1fr_1.05fr]">
