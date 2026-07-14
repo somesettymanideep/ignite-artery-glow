@@ -26,7 +26,7 @@ const REELS: Reel[] = [
   { video: igReel2.url, poster: reel2, caption: "Dr. Narasimha Sai on early signs of varicose veins you shouldn't ignore", likes: "9.1k", comments: 342, views: "62k", tag: "#VaricoseVeins" },
   { video: igReel3.url, poster: reel3, caption: "3D walkthrough — how a diabetic foot ulcer heals with vascular care", likes: "7.6k", comments: 154, views: "48k", tag: "#DiabeticFoot" },
   { video: igReel4.url, poster: reel4, caption: "Live patient story: back to walking pain-free after PAD treatment", likes: "15.2k", comments: 487, views: "1.1M", tag: "#PatientStory" },
-  { poster: reel5, caption: "Understanding DVT — the silent clot that travels", likes: "6.3k", comments: 92, views: "39k", tag: "#DVT" },
+  
 ];
 
 type ReelCardProps = {
