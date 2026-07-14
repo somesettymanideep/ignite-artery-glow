@@ -162,6 +162,7 @@ function MissionVision() {
                   ? "bg-[radial-gradient(circle_at_center,rgba(233,60,60,0.14),transparent_70%)]"
                   : "bg-[radial-gradient(circle_at_center,rgba(90,48,150,0.14),transparent_70%)]";
                 const isFirst = i === 0;
+                const headingId = `mv-${it.label.replace(/\s+/g, "-").toLowerCase()}`;
                 return (
                   <Reveal
                     key={it.label}
@@ -169,12 +170,16 @@ function MissionVision() {
                     variant={isFirst ? "left" : "right"}
                     delay={0.15 + i * 0.18}
                   >
-                    <div className={`flex flex-col items-start gap-5 sm:flex-row sm:gap-6 ${isFirst ? "sm:pr-8 lg:pr-12" : "sm:pl-8 lg:pl-12"}`}>
+                    <article
+                      tabIndex={0}
+                      aria-labelledby={headingId}
+                      className={`flex flex-col items-start gap-5 rounded-2xl outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:flex-row sm:gap-6 ${isFirst ? "sm:pr-8 lg:pr-12 focus-visible:ring-primary" : "sm:pl-8 lg:pl-12 focus-visible:ring-secondary"}`}
+                    >
                       <div className="relative shrink-0">
-                        <span className={`absolute -inset-3 rounded-full ${ringTint} transition-opacity duration-500 group-hover:opacity-80`} aria-hidden />
-                        <span className="relative grid h-20 w-20 place-items-center rounded-full bg-white shadow-[0_18px_40px_-18px_rgba(65,48,92,0.4)] ring-1 ring-secondary/15 transition-transform duration-500 group-hover:-translate-y-1 sm:h-24 sm:w-24">
+                        <span className={`absolute -inset-3 rounded-full ${ringTint} transition-opacity duration-500 group-hover:opacity-80 group-focus-within:opacity-80`} aria-hidden />
+                        <span className="relative grid h-20 w-20 place-items-center rounded-full bg-white shadow-[0_18px_40px_-18px_rgba(65,48,92,0.4)] ring-1 ring-secondary/15 transition-transform duration-500 group-hover:-translate-y-1 group-focus-within:-translate-y-1 sm:h-24 sm:w-24">
                           <span className="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-white to-[#faf4f7] ring-1 ring-secondary/10 sm:h-16 sm:w-16">
-                            <it.icon strokeWidth={2.25} className={`h-7 w-7 ${iconTint} sm:h-8 sm:w-8`} />
+                            <it.icon strokeWidth={2.25} aria-hidden className={`h-7 w-7 ${iconTint} sm:h-8 sm:w-8`} />
                           </span>
                         </span>
                       </div>
@@ -186,12 +191,12 @@ function MissionVision() {
                         <span className={`text-[11px] font-extrabold uppercase tracking-[0.28em] ${labelColor}`}>{it.label}</span>
                         <span className={`mt-2 block h-[3px] w-8 rounded-full ${dotColor}`} aria-hidden />
 
-                        <h3 className="mt-4 font-display text-xl font-black leading-[1.2] tracking-tight text-secondary sm:mt-5 sm:text-2xl lg:text-[28px] lg:leading-[1.15]">
+                        <h3 id={headingId} className="mt-4 font-display text-xl font-black leading-[1.2] tracking-tight text-secondary sm:mt-5 sm:text-2xl lg:text-[28px] lg:leading-[1.15]">
                           {it.headLead} <span className={accentColor}>{it.headAccent}</span>
                         </h3>
                         <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground sm:mt-4">{it.body}</p>
                       </div>
-                    </div>
+                    </article>
                   </Reveal>
                 );
               })}
