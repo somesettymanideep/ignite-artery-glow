@@ -39,9 +39,22 @@ type ReelCardProps = {
 
 function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: ReelCardProps) {
   const cardRef = useRef<HTMLElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [inView, setInView] = useState(false);
   const [posterLoaded, setPosterLoaded] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const togglePlay = useCallback(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      const p = v.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    } else {
+      v.pause();
+    }
+  }, []);
 
   // Lazy-mount videos only when card is near viewport
   useEffect(() => {
