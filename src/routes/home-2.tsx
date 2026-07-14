@@ -4,7 +4,7 @@ import {
   Phone, ArrowRight, Calendar, Check, ShieldCheck, Cpu, UserCheck, Heart,
   GraduationCap, Award, Users, Stethoscope, Activity, Waves, Syringe, Footprints,
   Scan, CircleDot, HeartPulse, MonitorPlay, Droplets, Star, Quote, ChevronLeft,
-  ChevronRight,
+  ChevronRight, MessageCircleHeart, BadgeCheck, MessageSquare, HandHeart,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
