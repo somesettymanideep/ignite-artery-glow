@@ -1,9 +1,9 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowRight, Phone, Check, Activity, Sparkles, Clock, ChevronRight, ChevronDown,
   Timer, Stethoscope, BedDouble, CalendarClock, UserCheck, ClipboardList,
-  HelpCircle, Plus, Minus,
+  HelpCircle, Plus, Minus, ListTree,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
@@ -62,6 +62,35 @@ function ServiceDetail() {
   const related = SERVICES.filter((s) => s.slug !== service.slug);
   const [factsOpen, setFactsOpen] = useState(false);
 
+  const sections = [
+    { id: "overview", label: "Overview" },
+    { id: "symptoms", label: "Signs & Symptoms" },
+    { id: "approach", label: "Our Approach" },
+    { id: "benefits", label: "Benefits" },
+    { id: "recovery", label: "Recovery & Follow-up" },
+  ];
+  const [activeSection, setActiveSection] = useState<string>(sections[0].id);
+
+  useEffect(() => {
+    const els = sections
+      .map((s) => document.getElementById(s.id))
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (!els.length) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]?.target.id) setActiveSection(visible[0].target.id);
+      },
+      { rootMargin: "-120px 0px -60% 0px", threshold: [0, 1] },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [service.slug]);
+
+
   return (
     <>
       <Navbar />
@@ -94,12 +123,14 @@ function ServiceDetail() {
           <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-12 lg:px-8">
             <div className="space-y-12 lg:col-span-8">
 
-              <Reveal variant="up">
+              <Reveal variant="up" as="section" className="scroll-mt-32" >
+                <div id="overview" />
                 <h2 className="font-display text-3xl font-extrabold text-secondary">Overview</h2>
                 <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">{service.overview}</p>
               </Reveal>
 
-              <Reveal variant="up">
+              <Reveal variant="up" as="section" className="scroll-mt-32">
+                <div id="symptoms" />
                 <h2 className="font-display text-3xl font-extrabold text-secondary">Signs & Symptoms</h2>
                 <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                   {service.symptoms.map((s) => (
@@ -113,7 +144,8 @@ function ServiceDetail() {
                 </ul>
               </Reveal>
 
-              <Reveal variant="up">
+              <Reveal variant="up" as="section" className="scroll-mt-32">
+                <div id="approach" />
                 <h2 className="font-display text-3xl font-extrabold text-secondary">Our Approach</h2>
                 <ol className="mt-5 space-y-3">
                   {service.procedure.map((p, i) => (
@@ -127,7 +159,8 @@ function ServiceDetail() {
                 </ol>
               </Reveal>
 
-              <Reveal variant="up">
+              <Reveal variant="up" as="section" className="scroll-mt-32">
+                <div id="benefits" />
                 <h2 className="font-display text-3xl font-extrabold text-secondary">Benefits</h2>
                 <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                   {service.benefits.map((b) => (
@@ -141,7 +174,8 @@ function ServiceDetail() {
                 </ul>
               </Reveal>
 
-              <Reveal variant="up">
+              <Reveal variant="up" as="section" className="scroll-mt-32">
+                <div id="recovery" />
                 <div className="rounded-3xl bg-secondary p-6 text-primary-foreground sm:p-8">
                   <div className="flex items-center gap-3">
                     <Clock className="h-6 w-6 text-primary" />
@@ -150,10 +184,51 @@ function ServiceDetail() {
                   <p className="mt-3 text-[15px] leading-relaxed text-white/85">{service.recovery}</p>
                 </div>
               </Reveal>
+
             </div>
 
             {/* Sidebar */}
             <aside className="space-y-6 lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
+              <Reveal variant="up" className="rounded-3xl border border-border/60 bg-white p-6 shadow-soft">
+                <div className="flex items-center gap-2 text-primary">
+                  <ListTree className="h-4 w-4" />
+                  <span className="text-[11px] font-black uppercase tracking-[0.22em]">On this page</span>
+                </div>
+                <nav aria-label="Section navigation" className="mt-4">
+                  <ul className="space-y-1">
+                    {sections.map((s) => {
+                      const active = activeSection === s.id;
+                      return (
+                        <li key={s.id}>
+                          <a
+                            href={`#${s.id}`}
+                            aria-current={active ? "true" : undefined}
+                            className={`group relative flex items-center gap-3 rounded-xl px-3 py-2 text-[13.5px] font-semibold transition-all ${
+                              active
+                                ? "bg-gradient-brand-soft text-secondary"
+                                : "text-muted-foreground hover:bg-primary/5 hover:text-secondary"
+                            }`}
+                          >
+                            <span
+                              className={`h-1.5 w-1.5 shrink-0 rounded-full transition-all ${
+                                active ? "bg-gradient-brand scale-125 shadow-glow-red" : "bg-border"
+                              }`}
+                              aria-hidden
+                            />
+                            <span className="truncate">{s.label}</span>
+                            {active && (
+                              <span className="ml-auto text-[10px] font-black uppercase tracking-[0.18em] text-primary">
+                                ●
+                              </span>
+                            )}
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </nav>
+              </Reveal>
+
               <Reveal variant="up" className="rounded-3xl bg-gradient-brand-soft p-6">
                 <div className="flex items-center gap-2 text-primary">
                   <Sparkles className="h-4 w-4" />
