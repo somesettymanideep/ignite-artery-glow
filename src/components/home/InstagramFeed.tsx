@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { Instagram, Play, Heart, MessageCircle, Send, Volume2, VolumeX } from "lucide-react";
+import { Instagram, Play, Pause, Heart, MessageCircle, Send, Volume2, VolumeX } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import reel1 from "@/assets/about-surgery.jpg";
 import reel2 from "@/assets/home2-doctor.jpg";
@@ -39,9 +39,22 @@ type ReelCardProps = {
 
 function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: ReelCardProps) {
   const cardRef = useRef<HTMLElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [inView, setInView] = useState(false);
   const [posterLoaded, setPosterLoaded] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const togglePlay = useCallback(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      const p = v.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    } else {
+      v.pause();
+    }
+  }, []);
 
   // Lazy-mount videos only when card is near viewport
   useEffect(() => {
@@ -95,7 +108,10 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
       {/* Video — mounted only after intersection; fades in once buffered */}
       {reel.video && inView && (
         <video
-          ref={(el) => registerVideo(index, el)}
+          ref={(el) => {
+            videoRef.current = el;
+            registerVideo(index, el);
+          }}
           src={reel.video}
           poster={reel.poster}
           autoPlay
@@ -105,6 +121,8 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
           preload="metadata"
           onLoadedData={() => setVideoReady(true)}
           onCanPlay={() => setVideoReady(true)}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
           className={`absolute inset-0 h-full w-full object-cover transition-all duration-[1400ms] ease-out group-hover:scale-105 ${
             videoReady ? "opacity-100" : "opacity-0"
           }`}
@@ -157,6 +175,30 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
             <Play className="ml-0.5 h-5 w-5 fill-current" />
           </span>
         </div>
+      )}
+
+      {/* Play/Pause button for videos */}
+      {reel.video && videoReady && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            togglePlay();
+          }}
+          aria-label={isPlaying ? "Pause video" : "Play video"}
+          aria-pressed={isPlaying}
+          className={`absolute inset-0 z-10 grid place-items-center transition-opacity duration-300 ${
+            isPlaying ? "opacity-0 hover:opacity-100 focus-visible:opacity-100" : "opacity-100"
+          }`}
+        >
+          <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-secondary shadow-lift backdrop-blur transition-transform duration-300 hover:scale-110">
+            {isPlaying ? (
+              <Pause className="h-5 w-5 fill-current" />
+            ) : (
+              <Play className="ml-0.5 h-5 w-5 fill-current" />
+            )}
+          </span>
+        </button>
       )}
 
       {/* Bottom info */}
