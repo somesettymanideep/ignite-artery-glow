@@ -60,9 +60,12 @@ function Hero() {
 
         <Reveal className="reveal" variant="right" delay={0.14}>
           <div className="relative">
-            {/* gradient arc frame */}
-            <div className="absolute -left-4 -top-4 -bottom-4 w-40 rounded-l-[220px] bg-gradient-to-b from-primary via-primary/70 to-secondary opacity-90 blur-[0.5px]" aria-hidden />
-            <div className="relative overflow-hidden rounded-[220px_28px_28px_220px] shadow-lift">
+            {/* soft brand glow */}
+            <div className="pointer-events-none absolute -inset-8 rounded-[240px_40px_40px_240px] bg-gradient-to-br from-primary/35 via-primary/10 to-secondary/35 blur-3xl opacity-80" aria-hidden />
+            {/* glassmorphism panel */}
+            <div className="absolute -left-6 -top-6 -bottom-6 w-48 rounded-l-[220px] bg-gradient-to-br from-primary/70 via-primary/40 to-secondary/70 backdrop-blur-xl border border-white/30 shadow-[0_20px_60px_-15px_rgba(217,44,45,0.45)]" aria-hidden />
+            <div className="pointer-events-none absolute -left-6 -top-6 -bottom-6 w-48 rounded-l-[220px] bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.35),transparent_55%)]" aria-hidden />
+            <div className="relative overflow-hidden rounded-[220px_28px_28px_220px] border border-white/40 shadow-lift">
               <img src={receptionImg} alt="Ignite Vascular Center reception" width={1400} height={900} className="h-[320px] w-full object-cover sm:h-[420px] lg:h-[460px]" />
             </div>
           </div>
