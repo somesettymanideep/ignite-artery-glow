@@ -94,12 +94,14 @@ function ServiceDetail() {
           <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-12 lg:px-8">
             <div className="space-y-12 lg:col-span-8">
 
-              <Reveal variant="up">
+              <Reveal variant="up" as="section" className="scroll-mt-32" >
+                <div id="overview" />
                 <h2 className="font-display text-3xl font-extrabold text-secondary">Overview</h2>
                 <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">{service.overview}</p>
               </Reveal>
 
-              <Reveal variant="up">
+              <Reveal variant="up" as="section" className="scroll-mt-32">
+                <div id="symptoms" />
                 <h2 className="font-display text-3xl font-extrabold text-secondary">Signs & Symptoms</h2>
                 <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                   {service.symptoms.map((s) => (
@@ -113,7 +115,8 @@ function ServiceDetail() {
                 </ul>
               </Reveal>
 
-              <Reveal variant="up">
+              <Reveal variant="up" as="section" className="scroll-mt-32">
+                <div id="approach" />
                 <h2 className="font-display text-3xl font-extrabold text-secondary">Our Approach</h2>
                 <ol className="mt-5 space-y-3">
                   {service.procedure.map((p, i) => (
@@ -127,7 +130,8 @@ function ServiceDetail() {
                 </ol>
               </Reveal>
 
-              <Reveal variant="up">
+              <Reveal variant="up" as="section" className="scroll-mt-32">
+                <div id="benefits" />
                 <h2 className="font-display text-3xl font-extrabold text-secondary">Benefits</h2>
                 <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                   {service.benefits.map((b) => (
@@ -141,7 +145,8 @@ function ServiceDetail() {
                 </ul>
               </Reveal>
 
-              <Reveal variant="up">
+              <Reveal variant="up" as="section" className="scroll-mt-32">
+                <div id="recovery" />
                 <div className="rounded-3xl bg-secondary p-6 text-primary-foreground sm:p-8">
                   <div className="flex items-center gap-3">
                     <Clock className="h-6 w-6 text-primary" />
@@ -150,6 +155,7 @@ function ServiceDetail() {
                   <p className="mt-3 text-[15px] leading-relaxed text-white/85">{service.recovery}</p>
                 </div>
               </Reveal>
+
             </div>
 
             {/* Sidebar */}
