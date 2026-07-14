@@ -79,11 +79,33 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
     return () => io.disconnect();
   }, []);
 
+  const onKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLElement>) => {
+      if (e.target !== e.currentTarget) return;
+      if (!reel.video) return;
+      const key = e.key.toLowerCase();
+      if (e.key === " " || e.key === "Spacebar" || key === "k" || key === "enter") {
+        e.preventDefault();
+        togglePlay();
+      } else if (key === "m") {
+        e.preventDefault();
+        onToggleSound(index);
+      }
+    },
+    [reel.video, togglePlay, onToggleSound, index],
+  );
+
+  const reelLabel = `Instagram reel ${index + 1}: ${reel.caption}. ${reel.views} views, ${reel.likes} likes, ${reel.comments} comments.${reel.video ? " Press Space or K to play or pause, M to toggle sound." : ""}`;
+
   return (
     <article
       ref={cardRef}
       role="listitem"
-      className="group relative aspect-[9/16] w-[220px] overflow-hidden rounded-[1.5rem] border border-border/60 bg-secondary shadow-lift transition-all duration-500 hover:-translate-y-1 hover:shadow-glow-red sm:w-[240px]"
+      tabIndex={reel.video ? 0 : -1}
+      onKeyDown={onKeyDown}
+      aria-label={reelLabel}
+      aria-roledescription="Instagram reel"
+      className="group relative aspect-[9/16] w-[220px] overflow-hidden rounded-[1.5rem] border border-border/60 bg-secondary shadow-lift transition-all duration-500 hover:-translate-y-1 hover:shadow-glow-red focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:w-[240px]"
     >
       {/* Shimmer skeleton — visible until poster (or video first frame) is ready */}
       <div
@@ -96,7 +118,8 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
       {/* Poster thumbnail — shown until video first frame is buffered */}
       <img
         src={reel.poster}
-        alt={reel.caption}
+        alt=""
+        aria-hidden="true"
         loading="lazy"
         decoding="async"
         onLoad={() => setPosterLoaded(true)}
@@ -119,6 +142,7 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
           muted
           playsInline
           preload="metadata"
+          aria-label={`Video: ${reel.caption}`}
           onLoadedData={() => setVideoReady(true)}
           onCanPlay={() => setVideoReady(true)}
           onPlay={() => setIsPlaying(true)}
@@ -133,17 +157,21 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
 
       {/* Buffering spinner while video prepares */}
       {reel.video && inView && !videoReady && (
-        <div className="absolute inset-0 grid place-items-center" aria-hidden>
-          <span className="h-8 w-8 animate-spin rounded-full border-2 border-white/30 border-t-white/90" />
+        <div className="absolute inset-0 grid place-items-center" role="status" aria-live="polite">
+          <span className="h-8 w-8 animate-spin rounded-full border-2 border-white/30 border-t-white/90" aria-hidden />
+          <span className="sr-only">Loading video</span>
         </div>
       )}
 
       {/* Top row */}
       <div className="absolute inset-x-0 top-0 flex items-center justify-between px-3 pt-3">
         <span className="inline-flex items-center gap-1.5 rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur">
-          <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Reel
+          <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden /> Reel
         </span>
-        <span className="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-semibold text-white backdrop-blur">
+        <span
+          className="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-semibold text-white backdrop-blur"
+          aria-label={`${reel.views} views`}
+        >
           {reel.views}
         </span>
       </div>
@@ -156,21 +184,22 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
             e.stopPropagation();
             onToggleSound(index);
           }}
-          aria-label={isUnmuted ? "Mute video" : "Unmute video"}
+          aria-label={isUnmuted ? `Mute reel ${index + 1}` : `Unmute reel ${index + 1}`}
           aria-pressed={isUnmuted}
-          className={`absolute right-3 top-12 z-10 grid h-9 w-9 place-items-center rounded-full backdrop-blur transition-all duration-300 hover:scale-110 ${
+          title={isUnmuted ? "Mute (M)" : "Unmute (M)"}
+          className={`absolute right-3 top-12 z-10 grid h-9 w-9 place-items-center rounded-full backdrop-blur transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 ${
             isUnmuted
               ? "bg-[linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)] text-white shadow-glow-red"
               : "bg-black/50 text-white hover:bg-black/70"
           }`}
         >
-          {isUnmuted ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+          {isUnmuted ? <Volume2 className="h-4 w-4" aria-hidden /> : <VolumeX className="h-4 w-4" aria-hidden />}
         </button>
       )}
 
       {/* Play button (only for image-only reels) */}
       {!reel.video && (
-        <div className="absolute inset-0 grid place-items-center">
+        <div className="absolute inset-0 grid place-items-center" aria-hidden>
           <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-secondary shadow-lift transition-transform duration-500 group-hover:scale-110">
             <Play className="ml-0.5 h-5 w-5 fill-current" />
           </span>
@@ -185,17 +214,18 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
             e.stopPropagation();
             togglePlay();
           }}
-          aria-label={isPlaying ? "Pause video" : "Play video"}
+          aria-label={isPlaying ? `Pause reel ${index + 1}` : `Play reel ${index + 1}`}
           aria-pressed={isPlaying}
-          className={`absolute inset-0 z-10 grid place-items-center transition-opacity duration-300 ${
-            isPlaying ? "opacity-0 hover:opacity-100 focus-visible:opacity-100" : "opacity-100"
+          title={isPlaying ? "Pause (Space / K)" : "Play (Space / K)"}
+          className={`absolute inset-0 z-10 grid place-items-center transition-opacity duration-300 focus:outline-none focus-visible:opacity-100 ${
+            isPlaying ? "opacity-0 hover:opacity-100" : "opacity-100"
           }`}
         >
           <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-secondary shadow-lift backdrop-blur transition-transform duration-300 hover:scale-110">
             {isPlaying ? (
-              <Pause className="h-5 w-5 fill-current" />
+              <Pause className="h-5 w-5 fill-current" aria-hidden />
             ) : (
-              <Play className="ml-0.5 h-5 w-5 fill-current" />
+              <Play className="ml-0.5 h-5 w-5 fill-current" aria-hidden />
             )}
           </span>
         </button>
@@ -205,9 +235,15 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
       <div className="absolute inset-x-0 bottom-0 space-y-2 p-3 text-white">
         <p className="line-clamp-2 text-[11px] font-semibold leading-snug">{reel.caption}</p>
         <div className="flex items-center gap-3 text-[10px] font-bold text-white/90">
-          <span className="inline-flex items-center gap-1"><Heart className="h-3 w-3" /> {reel.likes}</span>
-          <span className="inline-flex items-center gap-1"><MessageCircle className="h-3 w-3" /> {reel.comments}</span>
-          <span className="inline-flex items-center gap-1"><Send className="h-3 w-3" /></span>
+          <span className="inline-flex items-center gap-1" aria-label={`${reel.likes} likes`}>
+            <Heart className="h-3 w-3" aria-hidden /> {reel.likes}
+          </span>
+          <span className="inline-flex items-center gap-1" aria-label={`${reel.comments} comments`}>
+            <MessageCircle className="h-3 w-3" aria-hidden /> {reel.comments}
+          </span>
+          <span className="inline-flex items-center gap-1" aria-hidden>
+            <Send className="h-3 w-3" />
+          </span>
           <span className="ml-auto rounded-full bg-white/20 px-1.5 py-0.5 backdrop-blur">{reel.tag}</span>
         </div>
       </div>
