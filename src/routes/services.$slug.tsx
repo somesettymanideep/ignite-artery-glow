@@ -60,6 +60,7 @@ function ServiceDetail() {
   const { service } = Route.useLoaderData() as { service: (typeof SERVICES)[number] };
   const Icon = service.icon;
   const related = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3);
+  const [factsOpen, setFactsOpen] = useState(false);
 
   return (
     <>
