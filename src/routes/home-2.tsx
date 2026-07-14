@@ -445,81 +445,108 @@ function Trust() {
   return (
     <section aria-labelledby="trust-heading" className="relative px-5 pb-6 lg:px-8">
       <h2 id="trust-heading" className="sr-only">Clinic trust and patient satisfaction metrics</h2>
-      <Reveal
-        variant="up"
-        className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] p-6 sm:p-8"
-        style={{ background: "linear-gradient(135deg,#F3EEFA 0%,#EEE7F7 100%)", boxShadow: "0 24px 50px -30px rgba(69,54,96,0.35)" } as CSSProperties}
-      >
-        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
-          {TRUST_ITEMS.map((item, i) => {
-            const isPurple = item.tone === "purple";
-            const iconBg = isPurple ? "rgba(69,54,96,0.14)" : "rgba(218,50,52,0.12)";
-            const iconColor = isPurple ? "#453660" : "#DA3234";
-            return (
-              <Reveal
-                as="li"
-                key={item.label}
-                variant="up"
-                delay={i * 0.1}
-                className="relative flex items-center gap-4 lg:justify-center"
-              >
-                <span
-                  className="grid h-16 w-16 shrink-0 place-items-center rounded-full transition-transform duration-500 hover:scale-110"
-                  style={{ background: iconBg, color: iconColor }}
-                  aria-hidden
+      <Reveal variant="up" className="relative mx-auto max-w-7xl">
+        <div
+          className="overflow-hidden rounded-[2rem] p-6 sm:p-8"
+          style={{
+            background: "linear-gradient(135deg,#F3EEFA 0%,#EEE7F7 100%)",
+            boxShadow: "0 24px 50px -30px rgba(69,54,96,0.35)",
+          }}
+        >
+          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+            {TRUST_ITEMS.map((item, i) => {
+              const isPurple = item.tone === "purple";
+              const iconBg = isPurple ? "rgba(69,54,96,0.14)" : "rgba(218,50,52,0.12)";
+              const iconColor = isPurple ? "#453660" : "#DA3234";
+              return (
+                <Reveal
+                  as="li"
+                  key={item.label}
+                  variant="up"
+                  delay={i * 0.1}
+                  className="relative flex items-center gap-4 lg:justify-center"
                 >
-                  <item.icon className="h-7 w-7" strokeWidth={1.75} />
-                </span>
-                <div className="min-w-0">
-                  <p className="font-display text-2xl font-black leading-none" style={{ color: "#1E293B" }}>
-                    {item.value}
-                  </p>
-                  <p className="mt-1 text-[13px] font-extrabold" style={{ color: "#1E293B" }}>
-                    {item.label}
-                  </p>
-                  <p className="mt-0.5 text-[11px] font-medium leading-snug" style={{ color: "#1E293B99" }}>
-                    {item.sub}
-                  </p>
-                </div>
-                {i < TRUST_ITEMS.length - 1 && (
                   <span
+                    className="grid h-16 w-16 shrink-0 place-items-center rounded-full transition-transform duration-500 hover:scale-110"
+                    style={{ background: iconBg, color: iconColor }}
                     aria-hidden
-                    className="pointer-events-none absolute right-0 top-1/2 hidden h-12 w-px -translate-y-1/2 lg:block"
-                    style={{ background: "rgba(69,54,96,0.15)" }}
-                  />
-                )}
-              </Reveal>
-            );
-          })}
-        </ul>
+                  >
+                    <item.icon className="h-7 w-7" strokeWidth={1.75} />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="font-display text-2xl font-black leading-none" style={{ color: "#1E293B" }}>
+                      {item.value}
+                    </p>
+                    <p className="mt-1 text-[13px] font-extrabold" style={{ color: "#1E293B" }}>
+                      {item.label}
+                    </p>
+                    <p className="mt-0.5 text-[11px] font-medium leading-snug" style={{ color: "#1E293B99" }}>
+                      {item.sub}
+                    </p>
+                  </div>
+                  {i < TRUST_ITEMS.length - 1 && (
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute right-0 top-1/2 hidden h-12 w-px -translate-y-1/2 lg:block"
+                      style={{ background: "rgba(69,54,96,0.15)" }}
+                    />
+                  )}
+                </Reveal>
+              );
+            })}
+          </ul>
+        </div>
       </Reveal>
     </section>
   );
 }
 
+/* ---------------- CTA ---------------- */
+const CTA_ITEMS = [
+  { icon: Calendar, title: "Quick Appointment" },
+  { icon: UserCheck, title: "Expert Consultation" },
+  { icon: Activity, title: "Advanced Treatment" },
+];
 
-
-/* ---------------- Stats strip (light) ---------------- */
-function Trust() {
-  const items = [
-    { k: "10+", v: "Years of Excellence" },
-    { k: "5000+", v: "Successful Procedures" },
-    { k: "98%", v: "Patient Satisfaction" },
-    { k: "24/7", v: "Emergency Support" },
-  ];
+function CTASection() {
   return (
-    <section className="relative -mt-4">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-5 lg:grid-cols-4 lg:px-8">
-        {items.map((s, i) => (
-          <Reveal key={s.v} variant="up" delay={i * 0.1} className="rounded-2xl bg-card p-5 text-center shadow-soft">
-            <p className="font-display text-3xl font-extrabold text-gradient">{s.k}</p>
-            <p className="mt-1 text-xs font-semibold text-muted-foreground">{s.v}</p>
-          </Reveal>
-        ))}
-      </div>
+    <section id="cta" className="relative overflow-hidden px-5 py-12 lg:px-8">
+      <Reveal variant="zoom" className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-gradient-cta p-10 lg:p-14 shadow-lift">
+        <svg aria-hidden className="pointer-events-none absolute -right-10 top-0 h-full w-1/2 opacity-20" viewBox="0 0 400 400" fill="none" preserveAspectRatio="xMidYMid slice">
+          <path d="M50 200 C 120 100, 180 300, 260 180 S 380 220, 450 160" stroke="white" strokeWidth="2" className="vein-line" />
+          <path d="M80 320 C 160 260, 220 380, 300 300 S 400 340, 460 280" stroke="white" strokeWidth="1.5" className="vein-line" />
+        </svg>
+
+        <div className="relative grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
+          <div className="text-primary-foreground">
+            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary-foreground/80">Need Expert Vascular Care?</span>
+            <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight sm:text-4xl">Your Health, Our Priority</h2>
+            <p className="mt-4 max-w-md text-sm text-primary-foreground/85">
+              Book an appointment today and take the first step towards a healthier, pain-free life.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center gap-8">
+            <div className="grid w-full grid-cols-3 gap-4">
+              {CTA_ITEMS.map((c, i) => (
+                <Reveal key={c.title} variant="up" delay={i * 0.15} className="flex flex-col items-center gap-2 text-center text-primary-foreground">
+                  <span className="grid h-14 w-14 place-items-center rounded-2xl bg-white/15 backdrop-blur transition-transform duration-500 hover:scale-110">
+                    <c.icon className="h-6 w-6" />
+                  </span>
+                  <p className="text-xs font-bold leading-tight">{c.title}</p>
+                </Reveal>
+              ))}
+            </div>
+            <a href="tel:+919966117292" className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-105">
+              Book Appointment Now <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-primary-foreground"><ArrowRight className="h-3.5 w-3.5" /></span>
+            </a>
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }
+
 
 /* ---------------- Premium Doctor Hero (v2) ---------------- */
 const HERO_STATS = [
