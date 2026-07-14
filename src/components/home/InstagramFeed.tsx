@@ -137,7 +137,6 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
           }}
           src={reel.video}
           poster={reel.poster}
-          autoPlay
           loop
           muted
           playsInline
