@@ -105,7 +105,7 @@ function ServicePage() {
               <Reveal variant="up" delay={0.15} className="mt-10">
                 <h2 className="font-display text-2xl font-extrabold">Common Symptoms</h2>
                 <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {s.symptoms.map((it) => (
+                  {s.symptoms.map((it: string) => (
                     <li key={it} className="flex items-start gap-3 rounded-xl border border-border/60 bg-card p-4">
                       <span className="mt-1 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-gradient-brand text-primary-foreground">
                         <Check className="h-3 w-3" />
