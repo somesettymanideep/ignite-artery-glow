@@ -389,11 +389,7 @@ function MetaCell({
   return (
     <div className="flex items-start gap-2.5">
       <span
-        className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full text-white ring-1 ring-white/60 shadow-[0_6px_16px_-4px_rgba(217,44,45,0.55)]"
-        style={{
-          background:
-            "linear-gradient(135deg, #ff6b6b 0%, #ef4444 45%, #d92c2d 75%, #b91c1c 100%)",
-        }}
+        className="bg-gradient-brand mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full text-white ring-1 ring-white/60 shadow-[0_6px_16px_-4px_rgba(217,44,45,0.45)]"
         aria-hidden="true"
       >
         <Icon className="h-[18px] w-[18px]" strokeWidth={2.25} />
