@@ -755,15 +755,18 @@ function FAQSection() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="bg-background py-16 lg:py-20">
-      <div className="mx-auto max-w-4xl px-5 lg:px-8">
+    <section id="faq" className="relative overflow-hidden bg-[#1a0b3d] py-16 lg:py-20">
+      {/* Ambient glows */}
+      <div className="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-[#311261]/50 blur-3xl" aria-hidden />
+      <div className="pointer-events-none absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-[#c62347]/25 blur-3xl" aria-hidden />
+      <div className="relative mx-auto max-w-4xl px-5 lg:px-8">
         <Reveal variant="up" className="text-center">
-          <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-primary">Frequently Asked Questions</p>
-          <h2 className="mt-3 font-display text-3xl font-extrabold text-secondary sm:text-4xl">
+          <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#ff7a90]">Frequently Asked Questions</p>
+          <h2 className="mt-3 font-display text-3xl font-extrabold text-white sm:text-4xl">
             Understanding the Second Opinion Process
           </h2>
-          <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-primary/70" />
-          <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+          <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-[#c62347] to-[#ff7a90]" />
+          <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed text-white/70">
             Get quick answers about eligibility, reports, confidentiality, and how our specialists review your case.
           </p>
         </Reveal>
@@ -774,7 +777,7 @@ function FAQSection() {
             return (
               <Reveal key={item.question} variant="up" delay={0.06 + i * 0.06}>
                 <div
-                  className={`overflow-hidden rounded-[14px] bg-card shadow-soft ring-1 ring-border/60 transition-all duration-300 ${isOpen ? "ring-primary/20" : ""}`}
+                  className={`overflow-hidden rounded-[14px] bg-white/[0.04] backdrop-blur-sm ring-1 transition-all duration-300 ${isOpen ? "ring-[#c62347]/50 bg-white/[0.06] shadow-[0_20px_50px_-20px_rgba(198,35,71,0.45)]" : "ring-white/10 hover:ring-white/20 hover:bg-white/[0.06]"}`}
                 >
                   <button
                     type="button"
@@ -783,12 +786,12 @@ function FAQSection() {
                     aria-expanded={isOpen}
                   >
                     <span className="flex items-center gap-3">
-                      <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition-colors duration-300 ${isOpen ? "bg-primary text-white" : "bg-[#311261]/10 text-[#311261]"}`}>
+                      <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition-colors duration-300 ${isOpen ? "bg-gradient-to-br from-[#c62347] to-[#ff7a90] text-white" : "bg-white/10 text-[#ff7a90]"}`}>
                         <HelpCircle className="h-4 w-4" strokeWidth={1.8} />
                       </span>
-                      <span className="font-display text-[15px] font-extrabold text-secondary sm:text-base">{item.question}</span>
+                      <span className="font-display text-[15px] font-extrabold text-white sm:text-base">{item.question}</span>
                     </span>
-                    <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-full bg-surface/60 text-muted-foreground transition-transform duration-300 ${isOpen ? "rotate-180 bg-primary/10 text-primary" : ""}`}>
+                    <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-full transition-all duration-300 ${isOpen ? "rotate-180 bg-[#c62347]/20 text-[#ff7a90]" : "bg-white/10 text-white/60"}`}>
                       <ChevronDown className="h-4 w-4" strokeWidth={2} />
                     </span>
                   </button>
@@ -798,8 +801,8 @@ function FAQSection() {
                     aria-hidden={!isOpen}
                   >
                     <div className="overflow-hidden">
-                      <div className="border-t border-border/60 px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
-                        <p className="max-w-3xl text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
+                      <div className="border-t border-white/10 px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
+                        <p className="max-w-3xl text-[14px] leading-relaxed text-white/75 sm:text-[15px]">
                           {item.answer}
                         </p>
                       </div>
@@ -808,6 +811,7 @@ function FAQSection() {
                 </div>
               </Reveal>
             );
+
           })}
         </div>
       </div>
