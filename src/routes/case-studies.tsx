@@ -193,12 +193,7 @@ function CaseStudiesPage() {
 
           <Reveal variant="right" delay={0.1}>
             <div className="relative -mr-5 lg:mr-0">
-              <img
-                src={heroVessels}
-                alt="Illustration of vascular blood vessels"
-                className="ml-auto block h-auto w-full max-w-[560px] object-cover lg:max-w-none"
-                loading="eager"
-              />
+              <HeroCarousel />
             </div>
           </Reveal>
 
