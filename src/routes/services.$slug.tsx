@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  ArrowRight, Phone, Check, Activity, Sparkles, Clock, ChevronRight,
+  ArrowRight, Phone, Check, Activity, Sparkles, Clock, ChevronRight, ChevronDown,
   Timer, Stethoscope, BedDouble, CalendarClock, UserCheck, ClipboardList,
   HelpCircle, Plus, Minus,
 } from "lucide-react";
@@ -60,6 +60,7 @@ function ServiceDetail() {
   const { service } = Route.useLoaderData() as { service: (typeof SERVICES)[number] };
   const Icon = service.icon;
   const related = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3);
+  const [factsOpen, setFactsOpen] = useState(false);
 
   return (
     <>
@@ -183,44 +184,69 @@ function ServiceDetail() {
                 </a>
               </Reveal>
 
-              {/* Quick Facts */}
-              <Reveal variant="up" className="overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-white to-primary/5 p-6 shadow-soft">
-                <div className="flex items-center gap-2 text-primary">
-                  <ClipboardList className="h-4 w-4" />
-                  <span className="text-[11px] font-black uppercase tracking-[0.22em]">Quick Facts</span>
-                </div>
-                <h3 className="mt-3 font-display text-lg font-extrabold text-secondary">At a glance</h3>
-                <dl className="mt-4 space-y-3">
-                  {[
-                    { icon: Timer, label: "Duration", value: service.quickFacts.duration },
-                    { icon: Stethoscope, label: "Anesthesia", value: service.quickFacts.anesthesia },
-                    { icon: BedDouble, label: "Hospital stay", value: service.quickFacts.hospitalStay },
-                    { icon: CalendarClock, label: "Recovery time", value: service.quickFacts.recoveryTime },
-                  ].map(({ icon: I, label, value }) => (
-                    <div key={label} className="flex items-start gap-3 rounded-xl bg-white/70 p-3">
-                      <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-gradient-brand text-primary-foreground shadow-glow-red">
-                        <I className="h-4 w-4" />
-                      </span>
-                      <div className="min-w-0">
-                        <dt className="text-[11px] font-black uppercase tracking-[0.16em] text-muted-foreground">{label}</dt>
-                        <dd className="text-[13.5px] font-semibold text-secondary">{value}</dd>
+              {/* Quick Facts — sticky on desktop, collapsible on mobile */}
+              <Reveal variant="up" className="overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-white to-primary/5 shadow-soft">
+                <button
+                  type="button"
+                  onClick={() => setFactsOpen((o) => !o)}
+                  aria-expanded={factsOpen}
+                  aria-controls="quick-facts-panel"
+                  className="flex w-full items-center justify-between gap-3 p-6 text-left lg:pointer-events-none lg:pb-2"
+                >
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2 text-primary">
+                      <ClipboardList className="h-4 w-4 shrink-0" />
+                      <span className="text-[11px] font-black uppercase tracking-[0.22em]">Quick Facts</span>
+                    </div>
+                    <h3 className="mt-2 font-display text-lg font-extrabold text-secondary">At a glance</h3>
+                  </div>
+                  <span
+                    className={`grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-brand text-primary-foreground shadow-glow-red transition-transform duration-300 lg:hidden ${factsOpen ? "rotate-180" : ""}`}
+                    aria-hidden="true"
+                  >
+                    <ChevronDown className="h-4 w-4" />
+                  </span>
+                </button>
+                <div
+                  id="quick-facts-panel"
+                  className={`grid transition-all duration-500 ease-out lg:!grid-rows-[1fr] lg:!opacity-100 ${factsOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+                >
+                  <div className="min-h-0 overflow-hidden">
+                    <div className="px-6 pb-6 lg:pt-2">
+                      <dl className="space-y-3">
+                        {[
+                          { icon: Timer, label: "Duration", value: service.quickFacts.duration },
+                          { icon: Stethoscope, label: "Anesthesia", value: service.quickFacts.anesthesia },
+                          { icon: BedDouble, label: "Hospital stay", value: service.quickFacts.hospitalStay },
+                          { icon: CalendarClock, label: "Recovery time", value: service.quickFacts.recoveryTime },
+                        ].map(({ icon: I, label, value }) => (
+                          <div key={label} className="flex items-start gap-3 rounded-xl bg-white/70 p-3">
+                            <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-gradient-brand text-primary-foreground shadow-glow-red">
+                              <I className="h-4 w-4" />
+                            </span>
+                            <div className="min-w-0">
+                              <dt className="text-[11px] font-black uppercase tracking-[0.16em] text-muted-foreground">{label}</dt>
+                              <dd className="text-[13.5px] font-semibold text-secondary">{value}</dd>
+                            </div>
+                          </div>
+                        ))}
+                      </dl>
+                      <div className="mt-4 rounded-2xl border border-primary/15 bg-white/80 p-4">
+                        <div className="flex items-center gap-2 text-primary">
+                          <UserCheck className="h-4 w-4" />
+                          <span className="text-[11px] font-black uppercase tracking-[0.16em]">Suitability</span>
+                        </div>
+                        <p className="mt-1.5 text-[13.5px] leading-relaxed text-secondary">{service.quickFacts.suitability}</p>
+                      </div>
+                      <div className="mt-3 rounded-2xl border border-secondary/10 bg-secondary p-4 text-white">
+                        <div className="flex items-center gap-2 text-primary-foreground/90">
+                          <Sparkles className="h-4 w-4 text-primary" />
+                          <span className="text-[11px] font-black uppercase tracking-[0.16em]">What to expect</span>
+                        </div>
+                        <p className="mt-1.5 text-[13.5px] leading-relaxed text-white/85">{service.quickFacts.whatToExpect}</p>
                       </div>
                     </div>
-                  ))}
-                </dl>
-                <div className="mt-4 rounded-2xl border border-primary/15 bg-white/80 p-4">
-                  <div className="flex items-center gap-2 text-primary">
-                    <UserCheck className="h-4 w-4" />
-                    <span className="text-[11px] font-black uppercase tracking-[0.16em]">Suitability</span>
                   </div>
-                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-secondary">{service.quickFacts.suitability}</p>
-                </div>
-                <div className="mt-3 rounded-2xl border border-secondary/10 bg-secondary p-4 text-white">
-                  <div className="flex items-center gap-2 text-primary-foreground/90">
-                    <Sparkles className="h-4 w-4 text-primary" />
-                    <span className="text-[11px] font-black uppercase tracking-[0.16em]">What to expect</span>
-                  </div>
-                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-white/85">{service.quickFacts.whatToExpect}</p>
                 </div>
               </Reveal>
 
