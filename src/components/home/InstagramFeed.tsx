@@ -29,16 +29,158 @@ const REELS: Reel[] = [
   { poster: reel5, caption: "Understanding DVT — the silent clot that travels", likes: "6.3k", comments: 92, views: "39k", tag: "#DVT" },
 ];
 
+type ReelCardProps = {
+  reel: Reel;
+  index: number;
+  isUnmuted: boolean;
+  onToggleSound: (i: number) => void;
+  registerVideo: (i: number, el: HTMLVideoElement | null) => void;
+};
+
+function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: ReelCardProps) {
+  const cardRef = useRef<HTMLElement | null>(null);
+  const [inView, setInView] = useState(false);
+  const [posterLoaded, setPosterLoaded] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
+
+  // Lazy-mount videos only when card is near viewport
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setInView(true);
+            io.disconnect();
+          }
+        });
+      },
+      { rootMargin: "300px 400px", threshold: 0.01 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <article
+      ref={cardRef}
+      role="listitem"
+      className="group relative aspect-[9/16] w-[220px] overflow-hidden rounded-[1.5rem] border border-border/60 bg-secondary shadow-lift transition-all duration-500 hover:-translate-y-1 hover:shadow-glow-red sm:w-[240px]"
+    >
+      {/* Shimmer skeleton — visible until poster (or video first frame) is ready */}
+      <div
+        aria-hidden
+        className={`absolute inset-0 bg-[linear-gradient(110deg,#1f1730_25%,#2a2140_50%,#1f1730_75%)] bg-[length:200%_100%] transition-opacity duration-500 ${
+          posterLoaded || videoReady ? "opacity-0" : "opacity-100 animate-[reel-shimmer_1.6s_linear_infinite]"
+        }`}
+      />
+
+      {/* Poster thumbnail — shown until video first frame is buffered */}
+      <img
+        src={reel.poster}
+        alt={reel.caption}
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setPosterLoaded(true)}
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+          videoReady && reel.video ? "opacity-0" : "opacity-100"
+        } ${!reel.video ? "transition-transform duration-[1400ms] ease-out group-hover:scale-110" : ""}`}
+      />
+
+      {/* Video — mounted only after intersection; fades in once buffered */}
+      {reel.video && inView && (
+        <video
+          ref={(el) => registerVideo(index, el)}
+          src={reel.video}
+          poster={reel.poster}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          onLoadedData={() => setVideoReady(true)}
+          onCanPlay={() => setVideoReady(true)}
+          className={`absolute inset-0 h-full w-full object-cover transition-all duration-[1400ms] ease-out group-hover:scale-105 ${
+            videoReady ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      )}
+
+      <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/85" aria-hidden />
+
+      {/* Buffering spinner while video prepares */}
+      {reel.video && inView && !videoReady && (
+        <div className="absolute inset-0 grid place-items-center" aria-hidden>
+          <span className="h-8 w-8 animate-spin rounded-full border-2 border-white/30 border-t-white/90" />
+        </div>
+      )}
+
+      {/* Top row */}
+      <div className="absolute inset-x-0 top-0 flex items-center justify-between px-3 pt-3">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Reel
+        </span>
+        <span className="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-semibold text-white backdrop-blur">
+          {reel.views}
+        </span>
+      </div>
+
+      {/* Per-video sound toggle */}
+      {reel.video && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleSound(index);
+          }}
+          aria-label={isUnmuted ? "Mute video" : "Unmute video"}
+          aria-pressed={isUnmuted}
+          className={`absolute right-3 top-12 z-10 grid h-9 w-9 place-items-center rounded-full backdrop-blur transition-all duration-300 hover:scale-110 ${
+            isUnmuted
+              ? "bg-[linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)] text-white shadow-glow-red"
+              : "bg-black/50 text-white hover:bg-black/70"
+          }`}
+        >
+          {isUnmuted ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+        </button>
+      )}
+
+      {/* Play button (only for image-only reels) */}
+      {!reel.video && (
+        <div className="absolute inset-0 grid place-items-center">
+          <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-secondary shadow-lift transition-transform duration-500 group-hover:scale-110">
+            <Play className="ml-0.5 h-5 w-5 fill-current" />
+          </span>
+        </div>
+      )}
+
+      {/* Bottom info */}
+      <div className="absolute inset-x-0 bottom-0 space-y-2 p-3 text-white">
+        <p className="line-clamp-2 text-[11px] font-semibold leading-snug">{reel.caption}</p>
+        <div className="flex items-center gap-3 text-[10px] font-bold text-white/90">
+          <span className="inline-flex items-center gap-1"><Heart className="h-3 w-3" /> {reel.likes}</span>
+          <span className="inline-flex items-center gap-1"><MessageCircle className="h-3 w-3" /> {reel.comments}</span>
+          <span className="inline-flex items-center gap-1"><Send className="h-3 w-3" /></span>
+          <span className="ml-auto rounded-full bg-white/20 px-1.5 py-0.5 backdrop-blur">{reel.tag}</span>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export function InstagramFeed() {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
-  // Which single video index is currently unmuted (null = all muted)
   const [unmutedIdx, setUnmutedIdx] = useState<number | null>(null);
 
   const registerVideo = useCallback((idx: number, el: HTMLVideoElement | null) => {
     if (el) {
       videoRefs.current.set(idx, el);
-      // Ensure autoplay always attempts (muted) on mount
       el.muted = true;
       const p = el.play();
       if (p && typeof p.catch === "function") p.catch(() => {});
@@ -51,7 +193,6 @@ export function InstagramFeed() {
     setUnmutedIdx((prev) => (prev === idx ? null : idx));
   }, []);
 
-  // Enforce single-audio rule: mute every video except the unmuted one
   useEffect(() => {
     videoRefs.current.forEach((el, idx) => {
       const shouldUnmute = idx === unmutedIdx;
@@ -60,16 +201,12 @@ export function InstagramFeed() {
         el.volume = 1;
         const p = el.play();
         if (p && typeof p.catch === "function") {
-          p.catch(() => {
-            // If browser blocks unmuted playback, revert
-            setUnmutedIdx(null);
-          });
+          p.catch(() => setUnmutedIdx(null));
         }
       }
     });
   }, [unmutedIdx]);
 
-  // Subtle auto-scroll on desktop; pause when any video is unmuted so audio stays with user
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
@@ -103,6 +240,12 @@ export function InstagramFeed() {
 
   return (
     <section id="instagram" className="relative overflow-hidden bg-white py-20 lg:py-28">
+      <style>{`
+        @keyframes reel-shimmer {
+          0% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+      `}</style>
       <div
         className="pointer-events-none absolute -top-40 right-0 h-96 w-96 rounded-full bg-gradient-to-br from-[#F58529]/15 via-[#DD2A7B]/15 to-[#8134AF]/15 blur-3xl"
         aria-hidden
@@ -147,94 +290,22 @@ export function InstagramFeed() {
           role="list"
           aria-label="Instagram reels"
         >
-          {REELS.concat(REELS).map((r, i) => {
-            const isUnmuted = unmutedIdx === i;
-            return (
-              <Reveal
-                key={i}
-                variant="up"
-                delay={(i % 5) * 0.06}
-                className="reveal shrink-0 snap-start"
-              >
-                <article
-                  role="listitem"
-                  className="group relative aspect-[9/16] w-[220px] overflow-hidden rounded-[1.5rem] border border-border/60 bg-secondary shadow-lift transition-all duration-500 hover:-translate-y-1 hover:shadow-glow-red sm:w-[240px]"
-                >
-                  {r.video ? (
-                    <video
-                      ref={(el) => registerVideo(i, el)}
-                      src={r.video}
-                      poster={r.poster}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      preload="auto"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
-                    />
-                  ) : (
-                    <img
-                      src={r.poster}
-                      alt={r.caption}
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/85" aria-hidden />
-
-                  {/* Top row */}
-                  <div className="absolute inset-x-0 top-0 flex items-center justify-between px-3 pt-3">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur">
-                      <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Reel
-                    </span>
-                    <span className="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-semibold text-white backdrop-blur">
-                      {r.views}
-                    </span>
-                  </div>
-
-                  {/* Per-video sound toggle */}
-                  {r.video && (
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleSound(i);
-                      }}
-                      aria-label={isUnmuted ? "Mute video" : "Unmute video"}
-                      aria-pressed={isUnmuted}
-                      className={`absolute right-3 top-12 z-10 grid h-9 w-9 place-items-center rounded-full backdrop-blur transition-all duration-300 hover:scale-110 ${
-                        isUnmuted
-                          ? "bg-[linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)] text-white shadow-glow-red"
-                          : "bg-black/50 text-white hover:bg-black/70"
-                      }`}
-                    >
-                      {isUnmuted ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-                    </button>
-                  )}
-
-                  {/* Play button (only for image-only reels) */}
-                  {!r.video && (
-                    <div className="absolute inset-0 grid place-items-center">
-                      <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-secondary shadow-lift transition-transform duration-500 group-hover:scale-110">
-                        <Play className="ml-0.5 h-5 w-5 fill-current" />
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Bottom info */}
-                  <div className="absolute inset-x-0 bottom-0 space-y-2 p-3 text-white">
-                    <p className="line-clamp-2 text-[11px] font-semibold leading-snug">{r.caption}</p>
-                    <div className="flex items-center gap-3 text-[10px] font-bold text-white/90">
-                      <span className="inline-flex items-center gap-1"><Heart className="h-3 w-3" /> {r.likes}</span>
-                      <span className="inline-flex items-center gap-1"><MessageCircle className="h-3 w-3" /> {r.comments}</span>
-                      <span className="inline-flex items-center gap-1"><Send className="h-3 w-3" /></span>
-                      <span className="ml-auto rounded-full bg-white/20 px-1.5 py-0.5 backdrop-blur">{r.tag}</span>
-                    </div>
-                  </div>
-                </article>
-              </Reveal>
-            );
-          })}
+          {REELS.concat(REELS).map((r, i) => (
+            <Reveal
+              key={i}
+              variant="up"
+              delay={(i % 5) * 0.06}
+              className="reveal shrink-0 snap-start"
+            >
+              <ReelCard
+                reel={r}
+                index={i}
+                isUnmuted={unmutedIdx === i}
+                onToggleSound={toggleSound}
+                registerVideo={registerVideo}
+              />
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
