@@ -62,6 +62,35 @@ function ServiceDetail() {
   const related = SERVICES.filter((s) => s.slug !== service.slug);
   const [factsOpen, setFactsOpen] = useState(false);
 
+  const sections = [
+    { id: "overview", label: "Overview" },
+    { id: "symptoms", label: "Signs & Symptoms" },
+    { id: "approach", label: "Our Approach" },
+    { id: "benefits", label: "Benefits" },
+    { id: "recovery", label: "Recovery & Follow-up" },
+  ];
+  const [activeSection, setActiveSection] = useState<string>(sections[0].id);
+
+  useEffect(() => {
+    const els = sections
+      .map((s) => document.getElementById(s.id))
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (!els.length) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]?.target.id) setActiveSection(visible[0].target.id);
+      },
+      { rootMargin: "-120px 0px -60% 0px", threshold: [0, 1] },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [service.slug]);
+
+
   return (
     <>
       <Navbar />
