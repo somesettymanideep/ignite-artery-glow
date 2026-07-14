@@ -12,6 +12,8 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  ZoomIn,
+
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
