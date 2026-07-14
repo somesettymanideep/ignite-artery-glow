@@ -205,6 +205,21 @@ export const SERVICES: Service[] = [
       "Structured long-term follow-up",
     ],
     recovery: "Most patients recover fully within weeks with continued anticoagulation for 3–6 months.",
+    quickFacts: {
+      duration: "30–120 minutes (imaging + intervention)",
+      anesthesia: "Local, sedation if thrombolysis",
+      hospitalStay: "1–3 nights",
+      recoveryTime: "1–2 weeks; anticoagulants for 3–6 months",
+      suitability: "Sudden leg swelling, calf pain, post-surgery / long-immobility patients, or confirmed DVT on ultrasound",
+      whatToExpect: "Fast-track duplex scan, blood-thinner start, and — for extensive clots — catheter-directed clot removal in the cath-lab.",
+    },
+    faqs: [
+      { q: "Is DVT life-threatening?", a: "Untreated DVT can cause a pulmonary embolism which is potentially fatal. Prompt treatment nearly eliminates this risk." },
+      { q: "How long will I need blood thinners?", a: "Typically 3–6 months; longer if the clot recurs or an underlying risk factor persists." },
+      { q: "Can I fly with DVT?", a: "Avoid flights until treatment is established and your doctor clears you, usually after 2–4 weeks of stable anticoagulation." },
+      { q: "Will the swelling go away?", a: "Most swelling settles within weeks. Compression stockings and staying active help prevent post-thrombotic syndrome." },
+      { q: "Can DVT come back?", a: "Recurrence risk exists, especially with genetic clotting disorders. Regular follow-up and lifestyle changes reduce it significantly." },
+    ],
   },
   {
     slug: "diabetic-foot-care",
