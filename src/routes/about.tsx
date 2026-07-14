@@ -16,8 +16,6 @@ const receptionImg = receptionAsset.url;
 import doctorImg from "@/assets/home2-doctor.jpg";
 import vascularImg from "@/assets/about-vascular.jpg";
 import surgeryImg from "@/assets/about-surgery.jpg";
-import mvBgAsset from "@/assets/mission-vision-bg.jpg.asset.json";
-const mvBgImg = mvBgAsset.url;
 
 export const Route = createFileRoute("/about")({
   head: () => ({
