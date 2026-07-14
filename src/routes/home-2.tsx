@@ -101,8 +101,6 @@ function Hero() {
   );
 }
 
-/* ---------------- Doctor (shared home Specialist section) ---------------- */
-import { Doctor } from "@/components/home/Doctor";
 
 
 /* ---------------- Services ---------------- */
