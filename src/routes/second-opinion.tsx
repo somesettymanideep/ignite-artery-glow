@@ -219,11 +219,11 @@ function HelpRibbon() {
     <section className="bg-[#f7f8fc] pb-16 pt-14 lg:pb-20 lg:pt-16">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal variant="up">
-          <div className="relative rounded-[18px] bg-[linear-gradient(115deg,#311261_0%,#311261_45%,#c62347_100%)] px-6 pb-8 pt-24 shadow-lift sm:overflow-visible sm:px-10 sm:py-9 sm:pl-[200px] lg:pl-[240px]">
-            {/* Circular doctor photo — centered above on mobile, overlapping left from sm+ */}
+          <div className="relative overflow-hidden rounded-[18px] bg-[linear-gradient(115deg,#311261_0%,#311261_45%,#c62347_100%)] px-6 py-8 shadow-lift sm:px-10 sm:py-9 sm:pl-[210px] lg:pl-[250px]">
+            {/* Circular doctor photo — stacked above on mobile, inset left from sm+ (contained within card) */}
             <div
               tabIndex={-1}
-              className="absolute left-1/2 top-0 z-10 aspect-square w-[140px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full bg-white ring-4 ring-white shadow-lift focus-visible:outline-none focus-visible:ring-[6px] focus-visible:ring-primary sm:left-6 sm:top-1/2 sm:w-[170px] sm:-translate-x-0 sm:-translate-y-1/2 lg:left-10 lg:w-[190px]"
+              className="mx-auto mb-5 aspect-square w-[140px] overflow-hidden rounded-full bg-white ring-4 ring-white shadow-lift focus-visible:outline-none focus-visible:ring-[6px] focus-visible:ring-primary sm:absolute sm:left-6 sm:top-1/2 sm:mx-0 sm:mb-0 sm:w-[170px] sm:-translate-y-1/2 lg:left-10 lg:w-[190px]"
             >
               <img
                 src={doctorImg}
@@ -234,6 +234,7 @@ function HelpRibbon() {
                 className="h-full w-full object-cover object-top"
               />
             </div>
+
 
             <div className="grid items-center gap-6 text-center sm:text-left md:grid-cols-[1fr_1.05fr]">
               <div>
