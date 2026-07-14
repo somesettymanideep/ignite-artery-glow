@@ -777,37 +777,41 @@ function FAQSection() {
             return (
               <Reveal key={item.question} variant="up" delay={0.06 + i * 0.06}>
                 <div
-                  className={`overflow-hidden rounded-[14px] bg-white/[0.04] backdrop-blur-sm ring-1 transition-all duration-300 ${isOpen ? "ring-[#c62347]/50 bg-white/[0.06] shadow-[0_20px_50px_-20px_rgba(198,35,71,0.45)]" : "ring-white/10 hover:ring-white/20 hover:bg-white/[0.06]"}`}
+                  className={`group/faq overflow-hidden rounded-[14px] bg-white/[0.04] backdrop-blur-sm ring-1 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "ring-[#c62347]/50 bg-white/[0.06] shadow-[0_20px_50px_-20px_rgba(198,35,71,0.45)]" : "ring-white/10 hover:ring-white/20 hover:bg-white/[0.06]"}`}
                 >
                   <button
                     type="button"
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
+                    className="flex w-full items-center justify-between gap-4 p-5 text-left transition-colors duration-300 sm:p-6"
                     aria-expanded={isOpen}
                   >
                     <span className="flex items-center gap-3">
-                      <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition-colors duration-300 ${isOpen ? "bg-gradient-to-br from-[#c62347] to-[#ff7a90] text-white" : "bg-white/10 text-[#ff7a90]"}`}>
+                      <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "scale-110 rotate-[360deg] bg-gradient-to-br from-[#c62347] to-[#ff7a90] text-white shadow-[0_8px_20px_-6px_rgba(198,35,71,0.6)]" : "scale-100 rotate-0 bg-white/10 text-[#ff7a90] group-hover/faq:bg-white/15"}`}>
                         <HelpCircle className="h-4 w-4" strokeWidth={1.8} />
                       </span>
                       <span className="font-display text-[15px] font-extrabold text-white sm:text-base">{item.question}</span>
                     </span>
-                    <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-full transition-all duration-300 ${isOpen ? "rotate-180 bg-[#c62347]/20 text-[#ff7a90]" : "bg-white/10 text-white/60"}`}>
-                      <ChevronDown className="h-4 w-4" strokeWidth={2} />
+                    <span className={`grid h-7 w-7 shrink-0 place-items-center rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "rotate-180 scale-110 bg-[#c62347]/25 text-[#ff7a90]" : "rotate-0 scale-100 bg-white/10 text-white/60 group-hover/faq:bg-white/15 group-hover/faq:text-white/80"}`}>
+                      <ChevronDown className="h-4 w-4 transition-transform duration-500" strokeWidth={2} />
                     </span>
                   </button>
                   <div
-                    className="grid transition-all duration-300 ease-out"
+                    className="grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
                     style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
                     aria-hidden={!isOpen}
                   >
                     <div className="overflow-hidden">
                       <div className="border-t border-white/10 px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
-                        <p className="max-w-3xl text-[14px] leading-relaxed text-white/75 sm:text-[15px]">
+                        <p
+                          className={`max-w-3xl text-[14px] leading-relaxed text-white/75 transition-all duration-500 ease-out sm:text-[15px] ${isOpen ? "translate-y-0 opacity-100 delay-150" : "-translate-y-1 opacity-0"}`}
+                        >
                           {item.answer}
                         </p>
                       </div>
                     </div>
                   </div>
+                </div>
+
                 </div>
               </Reveal>
             );
