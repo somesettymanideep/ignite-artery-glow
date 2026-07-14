@@ -137,7 +137,6 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
           }}
           src={reel.video}
           poster={reel.poster}
-          autoPlay
           loop
           muted
           playsInline
@@ -260,8 +259,6 @@ export function InstagramFeed() {
     if (el) {
       videoRefs.current.set(idx, el);
       el.muted = true;
-      const p = el.play();
-      if (p && typeof p.catch === "function") p.catch(() => {});
     } else {
       videoRefs.current.delete(idx);
     }
