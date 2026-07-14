@@ -10,6 +10,16 @@ import limbImg from "@/assets/service-limb.jpg";
 
 export type ServiceCategory = "treatments" | "diagnostics" | "surgeries" | "care";
 
+export type ServiceFAQ = { q: string; a: string };
+export type ServiceQuickFacts = {
+  duration: string;
+  anesthesia: string;
+  hospitalStay: string;
+  recoveryTime: string;
+  suitability: string;
+  whatToExpect: string;
+};
+
 export type Service = {
   slug: string;
   title: string;
@@ -22,6 +32,8 @@ export type Service = {
   procedure: string[];
   benefits: string[];
   recovery: string;
+  quickFacts: ServiceQuickFacts;
+  faqs: ServiceFAQ[];
 };
 
 export const SERVICES: Service[] = [
