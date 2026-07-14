@@ -67,45 +67,27 @@ function ServiceDetail() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="relative overflow-hidden pt-24 lg:pt-28">
+        <section className="relative overflow-hidden" style={{ height: 350 }}>
           <div className="absolute inset-0">
             <img src={service.image} alt="" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-secondary/95 via-secondary/85 to-secondary/60" />
           </div>
-          <div className="relative mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
+          <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-center px-5 pt-20 lg:px-8">
             <Reveal variant="up">
-              <nav aria-label="Breadcrumb" className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-white/85 backdrop-blur">
+              <nav aria-label="Breadcrumb" className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-white/85 backdrop-blur">
                 <Link to="/" className="hover:text-white">Home</Link>
                 <ChevronRight className="h-3.5 w-3.5 opacity-60" />
                 <Link to="/treatments" className="hover:text-white">Treatments</Link>
                 <ChevronRight className="h-3.5 w-3.5 opacity-60" />
                 <span className="text-white">{service.title}</span>
               </nav>
-              <div className="flex items-center gap-4">
-                <span className="grid h-14 w-14 place-items-center rounded-2xl bg-white/15 text-primary-foreground backdrop-blur">
-                  <Icon className="h-7 w-7" />
-                </span>
-                <span className="rounded-full bg-white/15 px-3 py-1 text-[11px] font-black uppercase tracking-[0.22em] text-white backdrop-blur">
-                  {service.cat}
-                </span>
-              </div>
-              <h1 className="mt-6 max-w-3xl font-display text-4xl font-black leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
+              <h1 className="max-w-3xl font-display text-3xl font-black leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
                 {service.title}
               </h1>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
-                {service.short}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-secondary shadow-soft transition-transform hover:scale-105">
-                  <Phone className="h-4 w-4" /> Book Appointment
-                </Link>
-                <Link to="/second-opinion" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-bold text-white hover:bg-white/10">
-                  Get a Second Opinion <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
             </Reveal>
           </div>
         </section>
+
 
         {/* Body */}
         <section className="py-16 lg:py-24">
