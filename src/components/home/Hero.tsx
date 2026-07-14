@@ -17,18 +17,8 @@ export function Hero() {
       <div className="pointer-events-none absolute -top-32 -left-32 h-[480px] w-[480px] rounded-full bg-primary/10 blur-3xl" aria-hidden />
       <div className="pointer-events-none absolute top-40 -right-40 h-[520px] w-[520px] rounded-full bg-secondary/15 blur-3xl" aria-hidden />
 
-      {/* Animated vascular lines */}
-      <svg
-        className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.07]"
-        viewBox="0 0 1440 900"
-        fill="none"
-        preserveAspectRatio="xMidYMid slice"
-        aria-hidden
-      >
-        <path d="M-50 200 C 300 150, 500 400, 800 320 S 1300 200, 1500 350" stroke="var(--red-brand)" strokeWidth="2" className="vein-line" />
-        <path d="M-50 500 C 250 550, 600 380, 900 520 S 1350 650, 1500 550" stroke="var(--indigo-deep)" strokeWidth="2" className="vein-line" />
-        <path d="M-50 750 C 350 700, 550 850, 950 760 S 1350 700, 1500 800" stroke="var(--red-brand)" strokeWidth="1.5" className="vein-line" />
-      </svg>
+
+
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2 lg:gap-10 lg:px-8">
         {/* Left */}
