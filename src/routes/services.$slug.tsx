@@ -119,7 +119,7 @@ function ServicePage() {
               <Reveal variant="up" delay={0.2} className="mt-10">
                 <h2 className="font-display text-2xl font-extrabold">Our Approach</h2>
                 <ol className="mt-4 space-y-3">
-                  {s.approach.map((it, i) => (
+                  {s.approach.map((it: string, i: number) => (
                     <li key={it} className="flex items-start gap-4 rounded-xl bg-gradient-brand-soft p-4">
                       <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand font-display text-sm font-black text-primary-foreground">
                         {i + 1}
