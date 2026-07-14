@@ -165,7 +165,11 @@ function MissionVision() {
                       </div>
 
                       <div className="relative w-full flex-1 pl-5">
-                        <span className={`absolute left-0 top-1 h-2.5 w-2.5 rounded-full ${dotColor} shadow-[0_0_0_4px_rgba(255,255,255,1),0_0_0_5px_rgba(65,48,92,0.08)]`} aria-hidden />
+                        <span
+                          aria-hidden
+                          className={`absolute left-0 top-1 h-2.5 w-2.5 rounded-full ${dotColor} shadow-[0_0_0_4px_rgba(255,255,255,1),0_0_0_5px_rgba(65,48,92,0.08)] motion-safe:dot-travel`}
+                          style={{ ["--dot-travel" as any]: "78px", animationDelay: isFirst ? "0s" : "1.6s" }}
+                        />
                         <span className={`absolute left-[5px] top-3 h-[calc(100%-12px)] w-px ${lineColor}`} aria-hidden />
 
                         <span className={`text-[11px] font-extrabold uppercase tracking-[0.28em] ${labelColor}`}>{it.label}</span>
