@@ -329,6 +329,19 @@
   50% { transform: scale(1.6); opacity: 0.55; }
 }
 
+@keyframes dot-travel {
+  0%   { transform: translateY(0); }
+  45%  { transform: translateY(var(--dot-travel, 100%)); }
+  50%  { transform: translateY(var(--dot-travel, 100%)); }
+  95%  { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
+@utility dot-travel {
+  animation: dot-travel 3.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  will-change: transform;
+}
+
 @utility hologram-scan {
   background: linear-gradient(
     to bottom,
