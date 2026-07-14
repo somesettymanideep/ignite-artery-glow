@@ -127,12 +127,25 @@ export function InstagramFeed() {
                 role="listitem"
                 className="group relative aspect-[9/16] w-[220px] overflow-hidden rounded-[1.5rem] border border-border/60 bg-secondary shadow-lift transition-all duration-500 hover:-translate-y-1 hover:shadow-glow-red sm:w-[240px]"
               >
-                <img
-                  src={r.poster}
-                  alt={r.caption}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
-                />
+                {r.video ? (
+                  <video
+                    src={r.video}
+                    poster={r.poster}
+                    autoPlay
+                    loop
+                    muted={muted}
+                    playsInline
+                    preload="metadata"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
+                  />
+                ) : (
+                  <img
+                    src={r.poster}
+                    alt={r.caption}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/85" aria-hidden />
 
                 {/* Top row */}
@@ -144,6 +157,15 @@ export function InstagramFeed() {
                     {r.views}
                   </span>
                 </div>
+
+                {/* Play button */}
+                {!r.video && (
+                  <div className="absolute inset-0 grid place-items-center">
+                    <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-secondary shadow-lift transition-transform duration-500 group-hover:scale-110">
+                      <Play className="ml-0.5 h-5 w-5 fill-current" />
+                    </span>
+                  </div>
+                )}
 
                 {/* Play button */}
                 <div className="absolute inset-0 grid place-items-center">
