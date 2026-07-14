@@ -115,18 +115,18 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
         }`}
       />
 
-      {/* Poster thumbnail — shown until video first frame is buffered */}
-      <img
-        src={reel.poster}
-        alt=""
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
-        onLoad={() => setPosterLoaded(true)}
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
-          videoReady && reel.video ? "opacity-0" : "opacity-100"
-        } ${!reel.video ? "transition-transform duration-[1400ms] ease-out group-hover:scale-110" : ""}`}
-      />
+      {/* Poster thumbnail — only for image-only reels (videos have no thumbnail) */}
+      {!reel.video && (
+        <img
+          src={reel.poster}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          onLoad={() => setPosterLoaded(true)}
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
+        />
+      )}
 
       {/* Video — mounted only after intersection; fades in once buffered */}
       {reel.video && inView && (
@@ -136,11 +136,10 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
             registerVideo(index, el);
           }}
           src={reel.video}
-          poster={reel.poster}
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           aria-label={`Video: ${reel.caption}`}
           onLoadedData={() => setVideoReady(true)}
           onCanPlay={() => setVideoReady(true)}
