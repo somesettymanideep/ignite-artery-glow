@@ -72,33 +72,115 @@ function MissionVision() {
   const items = [
     {
       icon: Target,
-      title: "Our Mission",
-      body: "To provide world-class vascular care through advanced medical expertise, innovative technology, and compassionate treatment that improves patients' quality of life.",
+      label: "Our Mission",
+      accent: "red" as const,
+      headLead: "To provide world-class",
+      headAccent: "vascular care",
+      body: "through advanced medical expertise, innovative technology, and compassionate treatment that improves patients' quality of life.",
     },
     {
       icon: Eye,
-      title: "Our Vision",
-      body: "To be the most trusted vascular care center in Andhra Pradesh, recognized for excellence, innovation, and patient-centered care.",
+      label: "Our Vision",
+      accent: "purple" as const,
+      headLead: "To be the most",
+      headAccent: "trusted vascular care center",
+      body: "in Andhra Pradesh, recognized for excellence, innovation, and patient-centered care.",
     },
   ];
+
   return (
-    <section className="bg-white pb-16">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal className="reveal rounded-3xl bg-[#f6f4f9] p-6 sm:p-10">
-          <div className="grid gap-8 sm:grid-cols-2 sm:divide-x sm:divide-secondary/15">
-            {items.map((it, i) => (
-              <Reveal key={it.title} className="reveal" variant="up" delay={i * 0.1}>
-                <div className="flex items-start gap-5 sm:px-4 lg:px-8">
-                  <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white shadow-soft">
-                    <it.icon strokeWidth={1.75} className="h-7 w-7 text-primary" />
-                  </span>
-                  <div>
-                    <h3 className="font-display text-sm font-extrabold uppercase tracking-[0.22em] text-secondary">{it.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{it.body}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#fdf3f5] via-white to-[#f4eefb] pb-20 pt-4">
+      <div aria-hidden className="pointer-events-none absolute left-0 top-10 hidden h-[420px] w-[220px] opacity-60 md:block">
+        <svg viewBox="0 0 220 420" fill="none" className="h-full w-full">
+          <path d="M10 0 C 60 90, 30 160, 90 220 S 40 340, 120 420" stroke="url(#vg1)" strokeWidth="1.2" opacity="0.55" />
+          <path d="M40 20 C 90 80, 60 150, 130 200" stroke="url(#vg1)" strokeWidth="1" opacity="0.35" />
+          <path d="M20 80 C 70 130, 50 200, 110 260" stroke="url(#vg1)" strokeWidth="0.9" opacity="0.3" />
+          <defs>
+            <linearGradient id="vg1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="oklch(0.65 0.20 20)" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="oklch(0.55 0.18 340)" stopOpacity="0.4" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div aria-hidden className="pointer-events-none absolute right-6 top-6 hidden h-[220px] w-[160px] opacity-50 md:block">
+        <svg viewBox="0 0 160 220" fill="none" className="h-full w-full">
+          <path d="M150 0 C 100 60, 130 120, 70 170" stroke="oklch(0.55 0.18 340)" strokeWidth="1" opacity="0.5" />
+          <path d="M140 30 C 90 80, 120 140, 60 190" stroke="oklch(0.65 0.20 20)" strokeWidth="0.9" opacity="0.35" />
+        </svg>
+      </div>
+      <div aria-hidden className="pointer-events-none absolute bottom-6 right-10 grid grid-cols-8 gap-1.5 opacity-40">
+        {Array.from({ length: 48 }).map((_, i) => (
+          <span key={i} className="h-1 w-1 rounded-full bg-secondary/40" />
+        ))}
+      </div>
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-24">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="h-full w-full">
+          <path d="M0,60 C240,120 480,0 720,60 C960,120 1200,20 1440,80 L1440,120 L0,120 Z" fill="url(#wg)" opacity="0.55" />
+          <defs>
+            <linearGradient id="wg" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="oklch(0.90 0.05 20)" />
+              <stop offset="100%" stopColor="oklch(0.88 0.06 300)" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
+        <Reveal className="reveal">
+          <div className="relative rounded-[28px] bg-white/85 p-6 shadow-[0_30px_80px_-40px_rgba(65,48,92,0.35)] ring-1 ring-secondary/10 backdrop-blur-sm sm:p-10 lg:p-12">
+            <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 sm:block">
+              <div className="grid h-14 w-14 place-items-center rounded-full bg-white shadow-lift ring-1 ring-secondary/10">
+                <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
+                  <path d="M12 3 C 9 7, 14 9, 11 13 C 8 17, 13 19, 12 22" stroke="oklch(0.55 0.20 20)" strokeWidth="1.5" strokeLinecap="round" />
+                  <path d="M12 3 C 15 7, 10 9, 13 13 C 16 17, 11 19, 12 22" stroke="oklch(0.45 0.18 340)" strokeWidth="1.5" strokeLinecap="round" />
+                  <circle cx="12" cy="3.2" r="1.1" fill="oklch(0.55 0.20 20)" />
+                  <circle cx="12" cy="21" r="1.1" fill="oklch(0.45 0.18 340)" />
+                </svg>
+              </div>
+            </div>
+
+            <div className="grid gap-10 sm:grid-cols-2 sm:gap-0 sm:divide-x sm:divide-secondary/15">
+              {items.map((it, i) => {
+                const red = it.accent === "red";
+                const labelColor = red ? "text-primary" : "text-secondary";
+                const accentColor = red ? "text-primary" : "text-secondary";
+                const dotColor = red ? "bg-primary" : "bg-secondary";
+                const lineColor = red ? "bg-primary/70" : "bg-secondary/70";
+                const iconTint = red ? "text-primary" : "text-secondary";
+                const ringTint = red
+                  ? "bg-[radial-gradient(circle_at_center,rgba(233,60,60,0.10),transparent_70%)]"
+                  : "bg-[radial-gradient(circle_at_center,rgba(90,48,150,0.10),transparent_70%)]";
+                return (
+                  <Reveal key={it.label} className="reveal" variant={i === 0 ? "left" : "right"} delay={i * 0.12}>
+                    <div className={`flex items-start gap-6 ${i === 0 ? "sm:pr-10" : "sm:pl-10"}`}>
+                      <div className="relative shrink-0">
+                        <span className={`absolute -inset-3 rounded-full ${ringTint}`} aria-hidden />
+                        <span className="relative grid h-24 w-24 place-items-center rounded-full bg-white shadow-[0_18px_40px_-18px_rgba(65,48,92,0.35)] ring-1 ring-secondary/10">
+                          <span className="grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-white to-[#faf4f7] ring-1 ring-secondary/10">
+                            <it.icon strokeWidth={2} className={`h-8 w-8 ${iconTint}`} />
+                          </span>
+                        </span>
+                      </div>
+
+                      <div className="relative flex-1 pl-5">
+                        <span className={`absolute left-0 top-1 h-2.5 w-2.5 rounded-full ${dotColor} shadow-[0_0_0_4px_rgba(255,255,255,1)]`} aria-hidden />
+                        <span className={`absolute left-[5px] top-3 h-[calc(100%-12px)] w-px ${lineColor} opacity-70`} aria-hidden />
+
+                        <span className={`text-[11px] font-extrabold uppercase tracking-[0.28em] ${labelColor}`}>{it.label}</span>
+                        <span className={`mt-2 block h-[3px] w-8 rounded-full ${dotColor}`} aria-hidden />
+
+                        <h3 className="mt-5 font-display text-2xl font-black leading-[1.15] tracking-tight text-secondary sm:text-[28px]">
+                          {it.headLead}{" "}
+                          <span className={accentColor}>{it.headAccent}</span>
+                        </h3>
+                        <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">{it.body}</p>
+                      </div>
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </div>
           </div>
         </Reveal>
       </div>
