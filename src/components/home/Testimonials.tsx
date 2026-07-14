@@ -206,10 +206,6 @@ export function Testimonials() {
                       <article
                         className="group relative flex h-full flex-col rounded-2xl border border-border/70 bg-card p-6 shadow-soft transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-lift focus-within:-translate-y-1.5 focus-within:border-primary/40 focus-within:shadow-lift sm:p-7"
                       >
-                        <span
-                          className="pointer-events-none absolute inset-x-6 top-0 h-1 rounded-b-full bg-gradient-brand opacity-70"
-                          aria-hidden
-                        />
                         <Quote
                           className="h-9 w-9 text-primary/25 transition-transform duration-500 group-hover:scale-110"
                           aria-hidden
