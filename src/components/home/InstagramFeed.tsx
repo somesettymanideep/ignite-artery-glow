@@ -6,9 +6,20 @@ import reel2 from "@/assets/home2-doctor.jpg";
 import reel3 from "@/assets/about-vascular.jpg";
 import reel4 from "@/assets/hero-surgeon.jpg";
 import reel5 from "@/assets/case-hero-vessels.jpg";
+import igReel1 from "@/assets/ignite-reel-1.mp4.asset.json";
 
-const REELS = [
-  { poster: reel1, caption: "Inside our advanced vascular OT — precision endovascular procedure", likes: "12.4k", comments: 218, views: "84k", tag: "#Endovascular" },
+type Reel = {
+  poster: string;
+  video?: string;
+  caption: string;
+  likes: string;
+  comments: number;
+  views: string;
+  tag: string;
+};
+
+const REELS: Reel[] = [
+  { video: igReel1.url, poster: reel1, caption: "Inside Ignite Vascular Center — a look at our advanced vascular care", likes: "12.4k", comments: 218, views: "84k", tag: "#IgniteVascular" },
   { poster: reel2, caption: "Dr. Narasimha Sai on early signs of varicose veins you shouldn't ignore", likes: "9.1k", comments: 342, views: "62k", tag: "#VaricoseVeins" },
   { poster: reel3, caption: "3D walkthrough — how a diabetic foot ulcer heals with vascular care", likes: "7.6k", comments: 154, views: "48k", tag: "#DiabeticFoot" },
   { poster: reel4, caption: "Live patient story: back to walking pain-free after PAD treatment", likes: "15.2k", comments: 487, views: "1.1M", tag: "#PatientStory" },
@@ -116,12 +127,25 @@ export function InstagramFeed() {
                 role="listitem"
                 className="group relative aspect-[9/16] w-[220px] overflow-hidden rounded-[1.5rem] border border-border/60 bg-secondary shadow-lift transition-all duration-500 hover:-translate-y-1 hover:shadow-glow-red sm:w-[240px]"
               >
-                <img
-                  src={r.poster}
-                  alt={r.caption}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
-                />
+                {r.video ? (
+                  <video
+                    src={r.video}
+                    poster={r.poster}
+                    autoPlay
+                    loop
+                    muted={muted}
+                    playsInline
+                    preload="metadata"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
+                  />
+                ) : (
+                  <img
+                    src={r.poster}
+                    alt={r.caption}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/85" aria-hidden />
 
                 {/* Top row */}
@@ -135,11 +159,13 @@ export function InstagramFeed() {
                 </div>
 
                 {/* Play button */}
-                <div className="absolute inset-0 grid place-items-center">
-                  <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-secondary shadow-lift transition-transform duration-500 group-hover:scale-110">
-                    <Play className="ml-0.5 h-5 w-5 fill-current" />
-                  </span>
-                </div>
+                {!r.video && (
+                  <div className="absolute inset-0 grid place-items-center">
+                    <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-secondary shadow-lift transition-transform duration-500 group-hover:scale-110">
+                      <Play className="ml-0.5 h-5 w-5 fill-current" />
+                    </span>
+                  </div>
+                )}
 
                 {/* Bottom info */}
                 <div className="absolute inset-x-0 bottom-0 space-y-2 p-3 text-white">
