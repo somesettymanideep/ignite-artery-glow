@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Activity, Users, Stethoscope, Award, Clock, CalendarDays,
   ShieldCheck, ArrowRight, Filter, Calendar, LayoutGrid,
@@ -11,7 +11,8 @@ import caseBanner from "@/assets/case-studies-banner.webp.asset.json";
 import { Footer } from "@/components/home/Footer";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 
-import heroVessels from "@/assets/case-hero-vessels.jpg";
+import heroSlide1 from "@/assets/case-hero-1.jpg.asset.json";
+import heroSlide2 from "@/assets/case-hero-2.jpg.asset.json";
 import imgSurgery from "@/assets/gallery/procedure-surgery.jpg";
 import imgAngio from "@/assets/gallery/procedure-angio.jpg";
 import imgCathlab from "@/assets/gallery/facility-cathlab.jpg";
@@ -192,12 +193,7 @@ function CaseStudiesPage() {
 
           <Reveal variant="right" delay={0.1}>
             <div className="relative -mr-5 lg:mr-0">
-              <img
-                src={heroVessels}
-                alt="Illustration of vascular blood vessels"
-                className="ml-auto block h-auto w-full max-w-[560px] object-cover lg:max-w-none"
-                loading="eager"
-              />
+              <HeroCarousel />
             </div>
           </Reveal>
 
@@ -403,5 +399,49 @@ function MetaCell({
     </div>
   );
 }
+
+function HeroCarousel() {
+  const slides = [
+    { src: heroSlide1.url, alt: "Healthcare professional examining varicose veins on an elderly patient's legs" },
+    { src: heroSlide2.url, alt: "Close-up of leg with varicose vein disease" },
+  ];
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setI((n) => (n + 1) % slides.length), 5500);
+    return () => clearInterval(id);
+  }, [slides.length]);
+
+  return (
+    <div className="relative ml-auto w-full max-w-[560px] lg:max-w-none">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-[14px] shadow-lift ring-1 ring-border/50">
+        {slides.map((s, idx) => (
+          <img
+            key={s.src}
+            src={s.src}
+            alt={s.alt}
+            loading={idx === 0 ? "eager" : "lazy"}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              i === idx ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-secondary/10 via-transparent to-transparent" />
+      </div>
+      <div className="mt-4 flex justify-center gap-2">
+        {slides.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setI(idx)}
+            aria-label={`Show slide ${idx + 1}`}
+            className={`h-2 rounded-full transition-all duration-500 ${
+              i === idx ? "w-8 bg-gradient-brand" : "w-2 bg-border"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
 
