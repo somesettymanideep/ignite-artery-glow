@@ -145,8 +145,42 @@ export function Services() {
           </div>
         </Reveal>
 
+        {/* Legend */}
+        <Reveal variant="fade" delay={0.15}>
+          <div
+            role="note"
+            aria-label="How to read the service cards"
+            className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-6 gap-y-3 rounded-2xl border border-white/60 bg-white/70 px-5 py-3 text-[12px] font-semibold text-secondary/80 backdrop-blur"
+            style={{ boxShadow: "0 8px 24px -18px rgba(69,54,96,0.35)" }}
+          >
+            <span className="inline-flex items-center gap-2">
+              <span
+                className="relative grid h-7 w-7 place-items-center rounded-full bg-white text-primary shadow-md animate-pulse-glow"
+                aria-hidden
+              >
+                <Stethoscope className="h-3.5 w-3.5" />
+              </span>
+              Icon medallion = service type
+            </span>
+            <span className="hidden h-4 w-px bg-secondary/20 sm:block" aria-hidden />
+            <span className="inline-flex items-center gap-2">
+              <span
+                className="h-2.5 w-6 rounded-full"
+                style={{ background: "var(--gradient-brand)" }}
+                aria-hidden
+              />
+              Active category
+            </span>
+            <span className="hidden h-4 w-px bg-secondary/20 sm:block" aria-hidden />
+            <span className="inline-flex items-center gap-2">
+              <ArrowRight className="h-3.5 w-3.5 animate-[float-slow_2.4s_ease-in-out_infinite] text-primary" aria-hidden />
+              Hover a card for details
+            </span>
+          </div>
+        </Reveal>
+
         {/* Cards grid */}
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((s, i) => (
             <Reveal
               key={s.title}
