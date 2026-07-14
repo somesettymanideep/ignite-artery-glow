@@ -1,6 +1,6 @@
 import { Star, Check, Calendar, ArrowRight, Award, Activity, HeartPulse, Users } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
-import heroAsset from "@/assets/hero-varicose-legs.png.asset.json";
+import heroAsset from "@/assets/hero-varicose-legs-v2.webp.asset.json";
 const heroImg = heroAsset.url;
 
 const trust = [
