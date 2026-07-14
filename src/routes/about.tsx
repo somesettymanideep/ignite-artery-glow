@@ -91,41 +91,7 @@ function MissionVision() {
   return (
     <section className="relative overflow-hidden pb-16 pt-6 sm:pb-20 sm:pt-4" style={{ backgroundColor: "#f0f3f6" }}>
 
-      <div aria-hidden className="pointer-events-none absolute left-0 top-10 hidden h-[420px] w-[220px] opacity-70 md:block">
-        <svg viewBox="0 0 220 420" fill="none" className="h-full w-full" shapeRendering="geometricPrecision">
-          <path d="M10 0 C 60 90, 30 160, 90 220 S 40 340, 120 420" stroke="url(#vg1)" strokeWidth="1.4" strokeLinecap="round" opacity="0.7" />
-          <path d="M40 20 C 90 80, 60 150, 130 200" stroke="url(#vg1)" strokeWidth="1.1" strokeLinecap="round" opacity="0.45" />
-          <path d="M20 80 C 70 130, 50 200, 110 260" stroke="url(#vg1)" strokeWidth="1" strokeLinecap="round" opacity="0.4" />
-          <defs>
-            <linearGradient id="vg1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="oklch(0.65 0.20 20)" stopOpacity="0.95" />
-              <stop offset="100%" stopColor="oklch(0.55 0.18 340)" stopOpacity="0.5" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-      <div aria-hidden className="pointer-events-none absolute right-6 top-6 hidden h-[220px] w-[160px] opacity-60 md:block">
-        <svg viewBox="0 0 160 220" fill="none" className="h-full w-full" shapeRendering="geometricPrecision">
-          <path d="M150 0 C 100 60, 130 120, 70 170" stroke="oklch(0.55 0.18 340)" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
-          <path d="M140 30 C 90 80, 120 140, 60 190" stroke="oklch(0.65 0.20 20)" strokeWidth="1" strokeLinecap="round" opacity="0.45" />
-        </svg>
-      </div>
-      <div aria-hidden className="pointer-events-none absolute bottom-8 right-8 hidden grid-cols-8 gap-1.5 opacity-50 md:grid">
-        {Array.from({ length: 48 }).map((_, i) => (
-          <span key={i} className="h-1 w-1 rounded-full bg-secondary/50" />
-        ))}
-      </div>
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-24">
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="h-full w-full">
-          <path d="M0,60 C240,120 480,0 720,60 C960,120 1200,20 1440,80 L1440,120 L0,120 Z" fill="url(#wg)" opacity="0.55" />
-          <defs>
-            <linearGradient id="wg" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="oklch(0.90 0.05 20)" />
-              <stop offset="100%" stopColor="oklch(0.88 0.06 300)" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
+
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
         <Reveal className="reveal" variant="up">
