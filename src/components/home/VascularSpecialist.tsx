@@ -53,10 +53,10 @@ export function VascularSpecialist() {
 
         <Reveal variant="right">
           <div className="rounded-[2rem] bg-secondary p-8 text-secondary-foreground shadow-lift lg:p-10">
-            <h3 className="font-display text-2xl font-extrabold">Dr. Arvind Kumar</h3>
+            <h3 className="font-display text-2xl font-extrabold">G. Narasimha Sai</h3>
             <div className="mt-4 space-y-1 text-sm text-secondary-foreground/85">
-              <p>MBBS, MS (General Surgery),</p>
-              <p>DNB (Vascular Surgery)</p>
+              <p>MBBS, DNB (Gen Surg),</p>
+              <p>DrNB (Vascular Surgery) [NIMS]</p>
             </div>
             <p className="mt-5 inline-flex rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider">
               Vascular &amp; Endovascular Surgeon
@@ -67,12 +67,13 @@ export function VascularSpecialist() {
               advanced surgical techniques.
             </p>
             <p className="mt-8 font-display text-2xl italic text-primary-foreground/90" style={{ fontFamily: "cursive" }}>
-              A. Kumar
+              G. N. Sai
             </p>
             <div className="mt-6 border-t border-white/15 pt-4 text-xs font-semibold text-secondary-foreground/70">
-              Reg. No. AP/MED/2015/00842
+              DrNB Vascular Surgery — NIMS
             </div>
           </div>
+
         </Reveal>
       </div>
     </section>
