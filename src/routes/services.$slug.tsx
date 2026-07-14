@@ -1,5 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowRight, Phone, Check, Activity, Sparkles, Clock, ChevronRight } from "lucide-react";
+import { useState } from "react";
+import {
+  ArrowRight, Phone, Check, Activity, Sparkles, Clock, ChevronRight,
+  Timer, Stethoscope, BedDouble, CalendarClock, UserCheck, ClipboardList,
+  HelpCircle, Plus, Minus,
+} from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
