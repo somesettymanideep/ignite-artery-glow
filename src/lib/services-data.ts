@@ -67,6 +67,21 @@ export const SERVICES: Service[] = [
       "Long-lasting relief with < 5% recurrence",
     ],
     recovery: "Most patients resume work within 24–48 hours. Compression stockings for 2 weeks and follow-up at 1 month.",
+    quickFacts: {
+      duration: "45–90 minutes per leg",
+      anesthesia: "Local with tumescent",
+      hospitalStay: "Day-care (walk-in / walk-out)",
+      recoveryTime: "24–48 hours to routine activity",
+      suitability: "Adults with symptomatic varicose veins, venous reflux on duplex, or skin changes",
+      whatToExpect: "Ultrasound mapping, gentle numbing, laser/RF ablation through a pinhole, and same-day discharge with compression stockings.",
+    },
+    faqs: [
+      { q: "Is laser treatment painful?", a: "The procedure is done under local anaesthesia; most patients only feel mild pressure. Post-procedure soreness is minimal and controlled with paracetamol." },
+      { q: "Will the veins come back?", a: "Recurrence with modern EVLA / RFA is under 5% at 5 years, significantly lower than with older stripping surgery." },
+      { q: "How soon can I go back to work?", a: "Most patients return to office work the next day and to full activity within 3–5 days." },
+      { q: "Do I need to wear stockings after treatment?", a: "Yes, medical-grade compression stockings for about 2 weeks help healing and improve comfort." },
+      { q: "Is the treatment covered by insurance?", a: "Symptomatic varicose vein treatment is covered by most health insurance policies. Our team helps with pre-authorisation." },
+    ],
   },
   {
     slug: "peripheral-arterial-disease",
