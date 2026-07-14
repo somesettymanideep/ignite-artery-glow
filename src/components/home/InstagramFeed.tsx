@@ -79,7 +79,6 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
     return () => io.disconnect();
   }, []);
 
-  return (
   const onKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLElement>) => {
       if (e.target !== e.currentTarget) return;
