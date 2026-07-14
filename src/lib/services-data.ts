@@ -113,6 +113,21 @@ export const SERVICES: Service[] = [
       "Reduced cardiovascular events",
     ],
     recovery: "Angioplasty patients go home the next day; walking typically improves within a week.",
+    quickFacts: {
+      duration: "1–2 hours (angioplasty)",
+      anesthesia: "Local sedation; general for bypass",
+      hospitalStay: "1 night (endovascular) / 3–5 days (bypass)",
+      recoveryTime: "1–2 weeks for endovascular",
+      suitability: "Adults with claudication, rest pain, non-healing wounds, or diagnosed arterial blockage",
+      whatToExpect: "Doppler and angiogram, catheter access through the groin, balloon and/or stent to reopen the artery, and next-day discharge.",
+    },
+    faqs: [
+      { q: "How do I know if I have PAD?", a: "Pain while walking that goes away with rest, cold feet, or non-healing wounds are classic clues. A simple ankle-brachial index test confirms it." },
+      { q: "Is angioplasty a permanent fix?", a: "Modern drug-eluting stents and balloons have excellent long-term patency, but controlling diabetes, BP and cholesterol is essential." },
+      { q: "Will I need a stent?", a: "Not always. Balloon angioplasty alone works in many cases; stents are used only when needed for optimal results." },
+      { q: "Can PAD lead to amputation?", a: "Untreated advanced PAD can cause gangrene and limb loss, which is why early diagnosis and revascularisation are critical." },
+      { q: "How long is the recovery?", a: "Most endovascular patients walk the same evening and go home the next morning; bypass patients recover over 4–6 weeks." },
+    ],
   },
   {
     slug: "endovascular-procedures",
