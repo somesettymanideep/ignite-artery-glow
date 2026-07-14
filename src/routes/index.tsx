@@ -20,7 +20,7 @@ function Index() {
     <main>
       <Navbar />
       <Hero />
-      <Doctor />
+      <VascularSpecialist />
       <Services />
       <WhyChoose />
       <Process />
