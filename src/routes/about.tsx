@@ -89,7 +89,7 @@ function MissionVision() {
   ];
 
   return (
-    <section className="relative overflow-hidden pb-16 pt-6 sm:pb-20 sm:pt-4" style={{ backgroundColor: "#f0f3f6" }}>
+    <section className="relative overflow-hidden pb-16 pt-20 sm:pb-20 sm:pt-24 lg:pt-28" style={{ backgroundColor: "#f0f3f6" }}>
 
 
 
