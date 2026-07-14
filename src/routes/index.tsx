@@ -9,6 +9,7 @@ import { Testimonials } from "@/components/home/Testimonials";
 
 import { InstagramFeed } from "@/components/home/InstagramFeed";
 import { Footer } from "@/components/home/Footer";
+import { Reveal } from "@/hooks/use-reveal";
 
 
 export const Route = createFileRoute("/")({
@@ -20,15 +21,14 @@ function Index() {
     <main>
       <Navbar />
       <Hero />
-      <VascularSpecialist />
-      <Services />
-      <WhyChoose />
-      <Process />
-      <Testimonials />
-      
-      <InstagramFeed />
+      <Reveal variant="up"><VascularSpecialist /></Reveal>
+      <Reveal variant="fade" delay={0.05}><Services /></Reveal>
+      <Reveal variant="up" delay={0.05}><WhyChoose /></Reveal>
+      <Reveal variant="left" delay={0.05}><Process /></Reveal>
+      <Reveal variant="up" delay={0.05}><Testimonials /></Reveal>
+      <Reveal variant="zoom" delay={0.05}><InstagramFeed /></Reveal>
       <Footer />
-      
     </main>
   );
 }
+
