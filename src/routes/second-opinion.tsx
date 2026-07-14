@@ -811,9 +811,8 @@ function FAQSection() {
                     </div>
                   </div>
                 </div>
-
-                </div>
               </Reveal>
+
             );
 
           })}
