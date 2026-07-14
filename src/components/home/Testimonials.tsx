@@ -65,23 +65,46 @@ function useSlidesPerView() {
 export function Testimonials() {
   const perView = useSlidesPerView();
   const total = TESTIMONIALS.length;
-  const maxIndex = Math.max(0, total - perView);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(0); // 0..total; `total` sits on cloned first slide
+  const [animate, setAnimate] = useState(true);
   const [paused, setPaused] = useState(false);
   const regionRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    if (index > maxIndex) setIndex(maxIndex);
-  }, [index, maxIndex]);
+  const next = useCallback(() => setIndex((i) => i + 1), []);
+  const prev = useCallback(() => {
+    setIndex((i) => {
+      if (i <= 0) {
+        // jump to cloned tail, then animate to real last on next tick
+        setAnimate(false);
+        return total;
+      }
+      return i - 1;
+    });
+  }, [total]);
 
-  const next = useCallback(
-    () => setIndex((i) => (i >= maxIndex ? 0 : i + 1)),
-    [maxIndex],
-  );
-  const prev = useCallback(
-    () => setIndex((i) => (i <= 0 ? maxIndex : i - 1)),
-    [maxIndex],
-  );
+  // After a jump (no-anim), re-enable animation and step to target
+  useEffect(() => {
+    if (animate) return;
+    // If we jumped to `total`, animate back one step to show last real slide
+    if (index === total) {
+      const raf = requestAnimationFrame(() => {
+        setAnimate(true);
+        setIndex(total - 1);
+      });
+      return () => cancelAnimationFrame(raf);
+    }
+    // If we jumped to 0, just re-enable animation
+    const raf = requestAnimationFrame(() => setAnimate(true));
+    return () => cancelAnimationFrame(raf);
+  }, [animate, index, total]);
+
+  // After forward wrap: when index reaches `total` (cloned first slide), snap to 0
+  const onTransitionEnd = () => {
+    if (index >= total) {
+      setAnimate(false);
+      setIndex(0);
+    }
+  };
 
   useEffect(() => {
     if (paused) return;
@@ -89,7 +112,7 @@ export function Testimonials() {
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
-    const id = setInterval(next, 6500);
+    const id = setInterval(next, 5000);
     return () => clearInterval(id);
   }, [next, paused]);
 
@@ -102,15 +125,18 @@ export function Testimonials() {
       prev();
     } else if (e.key === "Home") {
       e.preventDefault();
+      setAnimate(true);
       setIndex(0);
     } else if (e.key === "End") {
       e.preventDefault();
-      setIndex(maxIndex);
+      setAnimate(true);
+      setIndex(total - 1);
     }
   };
 
-  const pages = maxIndex + 1;
   const slideBasis = `${100 / perView}%`;
+  // Duplicate first `perView` slides at the end for seamless loop
+  const rendered = [...TESTIMONIALS, ...TESTIMONIALS.slice(0, perView)];
 
   return (
     <section
@@ -161,28 +187,24 @@ export function Testimonials() {
           >
             <div className="overflow-hidden rounded-3xl">
               <ul
-                className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                className={`flex ${animate ? "transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]" : ""}`}
                 style={{ transform: `translateX(-${index * (100 / perView)}%)` }}
                 aria-live="polite"
+                onTransitionEnd={onTransitionEnd}
               >
-                {TESTIMONIALS.map((t, i) => {
-                  const isVisible = i >= index && i < index + perView;
+                {rendered.map((t, i) => {
+                  const realIndex = i % total;
                   return (
                     <li
-                      key={t.name}
+                      key={`${t.name}-${i}`}
                       className="shrink-0 px-3 py-2"
                       style={{ flexBasis: slideBasis }}
                       role="group"
                       aria-roledescription="slide"
-                      aria-label={`${i + 1} of ${total}`}
-                      aria-hidden={!isVisible}
+                      aria-label={`${realIndex + 1} of ${total}`}
                     >
                       <article
-                        className={`group relative flex h-full flex-col rounded-2xl border border-border/70 bg-card p-6 shadow-soft transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-lift focus-within:-translate-y-1.5 focus-within:border-primary/40 focus-within:shadow-lift sm:p-7 ${
-                          isVisible
-                            ? "opacity-100 translate-y-0"
-                            : "opacity-40 translate-y-2"
-                        }`}
+                        className="group relative flex h-full flex-col rounded-2xl border border-border/70 bg-card p-6 shadow-soft transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-lift focus-within:-translate-y-1.5 focus-within:border-primary/40 focus-within:shadow-lift sm:p-7"
                       >
                         <span
                           className="pointer-events-none absolute inset-x-6 top-0 h-1 rounded-b-full bg-gradient-brand opacity-70"
@@ -272,15 +294,18 @@ export function Testimonials() {
               role="tablist"
               aria-label="Select testimonial slide"
             >
-              {Array.from({ length: pages }).map((_, i) => {
-                const active = i === index;
+              {TESTIMONIALS.map((_, i) => {
+                const active = i === index % total;
                 return (
                   <button
                     key={i}
                     role="tab"
                     aria-selected={active}
-                    aria-label={`Go to slide ${i + 1} of ${pages}`}
-                    onClick={() => setIndex(i)}
+                    aria-label={`Go to slide ${i + 1} of ${total}`}
+                    onClick={() => {
+                      setAnimate(true);
+                      setIndex(i);
+                    }}
                     className={`h-2.5 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                       active
                         ? "w-8 bg-gradient-brand"
