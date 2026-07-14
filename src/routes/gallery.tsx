@@ -316,11 +316,18 @@ function GalleryTwoPage() {
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-secondary/85 via-secondary/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 scale-75 place-items-center rounded-full bg-white/95 text-primary opacity-0 shadow-lift ring-1 ring-white/60 backdrop-blur transition-all duration-500 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100"
+                  >
+                    <ZoomIn className="h-6 w-6" />
+                  </span>
                   <figcaption className="absolute bottom-0 left-0 right-0 translate-y-4 p-5 text-white opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
                     <span className="text-[10px] font-semibold uppercase tracking-widest text-white/70">{img.cat}</span>
                     <p className="mt-1 font-display text-base font-bold">{img.alt}</p>
 
                   </figcaption>
+
                 </figure>
               </button>
             </Reveal>
