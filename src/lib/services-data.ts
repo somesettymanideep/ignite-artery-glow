@@ -159,6 +159,21 @@ export const SERVICES: Service[] = [
       "Faster return to normal life",
     ],
     recovery: "Overnight observation is usually sufficient. Normal activity resumes within 3–5 days.",
+    quickFacts: {
+      duration: "1–3 hours (varies by procedure)",
+      anesthesia: "Local + sedation",
+      hospitalStay: "1–2 nights",
+      recoveryTime: "3–5 days to routine activity",
+      suitability: "Patients needing aneurysm repair, blockage treatment, malformation embolisation, or failing dialysis access",
+      whatToExpect: "Pinhole catheter access under imaging, targeted stent/angioplasty/embolisation, and closure without stitches.",
+    },
+    faqs: [
+      { q: "How is this different from open surgery?", a: "Endovascular procedures use tiny catheter access instead of large cuts, meaning less pain, lower blood loss and a much faster recovery." },
+      { q: "Am I awake during the procedure?", a: "Most cases are done under local anaesthesia with light sedation; you're comfortable but not asleep unless required." },
+      { q: "Are the results as durable as open surgery?", a: "For most vascular problems today, endovascular results match or exceed open surgery when performed by an experienced team." },
+      { q: "Is there radiation exposure?", a: "Modern C-arm systems deliver a very low, ALARA-optimised dose. The clinical benefit far outweighs the minimal exposure." },
+      { q: "When can I fly or travel?", a: "Short-haul travel is usually safe after 1 week; long-haul flights after 2–4 weeks depending on the procedure." },
+    ],
   },
   {
     slug: "deep-vein-thrombosis",
