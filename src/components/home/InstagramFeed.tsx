@@ -108,7 +108,10 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
       {/* Video — mounted only after intersection; fades in once buffered */}
       {reel.video && inView && (
         <video
-          ref={(el) => registerVideo(index, el)}
+          ref={(el) => {
+            videoRef.current = el;
+            registerVideo(index, el);
+          }}
           src={reel.video}
           poster={reel.poster}
           autoPlay
@@ -118,6 +121,8 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
           preload="metadata"
           onLoadedData={() => setVideoReady(true)}
           onCanPlay={() => setVideoReady(true)}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
           className={`absolute inset-0 h-full w-full object-cover transition-all duration-[1400ms] ease-out group-hover:scale-105 ${
             videoReady ? "opacity-100" : "opacity-0"
           }`}
