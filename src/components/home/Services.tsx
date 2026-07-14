@@ -1,26 +1,11 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import {
-  LayoutGrid,
-  Stethoscope,
-  ScanSearch,
-  Scissors,
-  HeartHandshake,
-  Waves,
-  HeartPulse,
-  Syringe,
-  Footprints,
-  Activity,
-  ShieldPlus,
-  ArrowRight,
-  ArrowUpRight,
+  LayoutGrid, Stethoscope, ScanSearch, Scissors, HeartHandshake,
+  ArrowRight, ArrowUpRight,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
-import varicoseImg from "@/assets/service-varicose.jpg";
-import padImg from "@/assets/service-pad.jpg";
-import endoImg from "@/assets/service-endo.jpg";
-import dvtImg from "@/assets/service-dvt.jpg";
-import diabeticImg from "@/assets/service-diabetic.jpg";
-import limbImg from "@/assets/service-limb.jpg";
+import { SERVICES, type ServiceCategory } from "@/lib/services-data";
 
 const CATEGORIES = [
   { key: "all", label: "All Services", icon: LayoutGrid },
@@ -30,58 +15,7 @@ const CATEGORIES = [
   { key: "care", label: "Care Programs", icon: HeartHandshake },
 ] as const;
 
-type CatKey = (typeof CATEGORIES)[number]["key"];
-
-const SERVICES: {
-  title: string;
-  desc: string;
-  icon: typeof Waves;
-  image: string;
-  cat: Exclude<CatKey, "all">;
-}[] = [
-  {
-    title: "Varicose Veins Treatment",
-    desc: "Advanced laser & radiofrequency techniques for lasting relief.",
-    icon: Waves,
-    image: varicoseImg,
-    cat: "treatments",
-  },
-  {
-    title: "Peripheral Arterial Disease (PAD)",
-    desc: "Effective solutions for blocked arteries and poor circulation.",
-    icon: HeartPulse,
-    image: padImg,
-    cat: "treatments",
-  },
-  {
-    title: "Endovascular Procedures",
-    desc: "Stent placement, angioplasty & minimally invasive care.",
-    icon: Syringe,
-    image: endoImg,
-    cat: "surgeries",
-  },
-  {
-    title: "Deep Vein Thrombosis (DVT)",
-    desc: "Diagnosis, treatment & follow-up care.",
-    icon: Activity,
-    image: dvtImg,
-    cat: "diagnostics",
-  },
-  {
-    title: "Diabetic Foot Care",
-    desc: "Wound care, infection control & prevention.",
-    icon: Footprints,
-    image: diabeticImg,
-    cat: "care",
-  },
-  {
-    title: "Limb Salvage Procedures",
-    desc: "Advanced revascularization to save limbs.",
-    icon: ShieldPlus,
-    image: limbImg,
-    cat: "surgeries",
-  },
-];
+type CatKey = "all" | ServiceCategory;
 
 export function Services() {
   const [active, setActive] = useState<CatKey>("all");
@@ -111,7 +45,6 @@ export function Services() {
           </p>
         </Reveal>
 
-        {/* Category pills */}
         <Reveal variant="up" delay={0.1}>
           <div
             role="tablist"
@@ -125,7 +58,7 @@ export function Services() {
                   key={c.key}
                   role="tab"
                   aria-selected={selected}
-                  onClick={() => setActive(c.key)}
+                  onClick={() => setActive(c.key as CatKey)}
                   className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
                     selected
                       ? "text-primary-foreground shadow-glow-red"
@@ -145,20 +78,19 @@ export function Services() {
           </div>
         </Reveal>
 
-        {/* Cards grid */}
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((s, i) => (
             <Reveal
-              key={s.title}
+              key={s.slug}
               variant="zoom"
               delay={(i % 3) * 0.12}
               className="group relative overflow-hidden rounded-3xl"
             >
-              <article
-                tabIndex={0}
+              <Link
+                to="/services/$slug"
+                params={{ slug: s.slug }}
                 className="relative block h-[320px] overflow-hidden rounded-3xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
               >
-                {/* Background image */}
                 <img
                   src={s.image}
                   alt=""
@@ -167,7 +99,6 @@ export function Services() {
                   height={640}
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-focus-visible:scale-110"
                 />
-                {/* Overlay gradient */}
                 <div
                   className="absolute inset-0"
                   style={{
@@ -176,13 +107,11 @@ export function Services() {
                   }}
                   aria-hidden
                 />
-                {/* Sheen on hover */}
                 <div
                   className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-[1400ms] ease-out group-hover:translate-x-full"
                   aria-hidden
                 />
 
-                {/* Icon */}
                 <span
                   className="absolute left-5 top-5 grid h-11 w-11 place-items-center rounded-full bg-white/95 text-primary shadow-lg transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110"
                   aria-hidden
@@ -190,35 +119,33 @@ export function Services() {
                   <s.icon className="h-5 w-5" />
                 </span>
 
-                {/* Content */}
                 <div className="absolute inset-x-0 bottom-0 p-6 text-white">
                   <h3 className="font-display text-xl font-extrabold leading-tight">
                     {s.title}
                   </h3>
                   <p className="mt-2 text-[13px] leading-relaxed text-white/80">
-                    {s.desc}
+                    {s.short}
                   </p>
                   <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-white transition-all duration-300 group-hover:gap-3">
                     Learn More
                     <ArrowRight className="h-4 w-4" aria-hidden />
                   </span>
                 </div>
-              </article>
+              </Link>
             </Reveal>
           ))}
         </div>
 
-        {/* View all */}
         <Reveal variant="up" delay={0.2} className="mt-12 flex justify-center">
-          <a
-            href="#cta"
+          <Link
+            to="/treatments"
             className="group inline-flex items-center gap-3 rounded-full border-2 border-secondary/25 bg-white px-8 py-3.5 font-bold text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:border-secondary hover:shadow-glow-indigo"
           >
             View All Services
             <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-brand text-primary-foreground transition-transform duration-300 group-hover:rotate-45">
               <ArrowUpRight className="h-4 w-4" />
             </span>
-          </a>
+          </Link>
         </Reveal>
       </div>
     </section>
