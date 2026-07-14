@@ -259,8 +259,6 @@ export function InstagramFeed() {
     if (el) {
       videoRefs.current.set(idx, el);
       el.muted = true;
-      const p = el.play();
-      if (p && typeof p.catch === "function") p.catch(() => {});
     } else {
       videoRefs.current.delete(idx);
     }
