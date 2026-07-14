@@ -189,45 +189,7 @@ function ServiceDetail() {
 
             {/* Sidebar */}
             <aside className="space-y-6 lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
-              <Reveal variant="up" className="rounded-3xl border border-border/60 bg-white p-6 shadow-soft">
-                <div className="flex items-center gap-2 text-primary">
-                  <ListTree className="h-4 w-4" />
-                  <span className="text-[11px] font-black uppercase tracking-[0.22em]">On this page</span>
-                </div>
-                <nav aria-label="Section navigation" className="mt-4">
-                  <ul className="space-y-1">
-                    {sections.map((s) => {
-                      const active = activeSection === s.id;
-                      return (
-                        <li key={s.id}>
-                          <a
-                            href={`#${s.id}`}
-                            aria-current={active ? "true" : undefined}
-                            className={`group relative flex items-center gap-3 rounded-xl px-3 py-2 text-[13.5px] font-semibold transition-all ${
-                              active
-                                ? "bg-gradient-brand-soft text-secondary"
-                                : "text-muted-foreground hover:bg-primary/5 hover:text-secondary"
-                            }`}
-                          >
-                            <span
-                              className={`h-1.5 w-1.5 shrink-0 rounded-full transition-all ${
-                                active ? "bg-gradient-brand scale-125 shadow-glow-red" : "bg-border"
-                              }`}
-                              aria-hidden
-                            />
-                            <span className="truncate">{s.label}</span>
-                            {active && (
-                              <span className="ml-auto text-[10px] font-black uppercase tracking-[0.18em] text-primary">
-                                ●
-                              </span>
-                            )}
-                          </a>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </nav>
-              </Reveal>
+              <OnThisPageNav sections={sections} activeSection={activeSection} />
 
               <Reveal variant="up" className="rounded-3xl bg-gradient-brand-soft p-6">
                 <div className="flex items-center gap-2 text-primary">
@@ -395,5 +357,140 @@ function FAQSection({ faqs, title }: { faqs: { q: string; a: string }[]; title: 
         </Reveal>
       </div>
     </section>
+  );
+}
+
+function OnThisPageNav({
+  sections,
+  activeSection,
+}: {
+  sections: { id: string; label: string }[];
+  activeSection: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const active = sections.find((s) => s.id === activeSection) ?? sections[0];
+
+  // Close mobile dropdown on outside click / Escape
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  const handleJump = (id: string) => {
+    setOpen(false);
+    const el = document.getElementById(id);
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: y, behavior: "smooth" });
+      history.replaceState(null, "", `#${id}`);
+    }
+  };
+
+  return (
+    <>
+      {/* Mobile: sticky dropdown trigger */}
+      <div className="sticky top-20 z-30 -mx-5 lg:hidden">
+        <div className="px-5">
+          <button
+            type="button"
+            onClick={() => setOpen((o) => !o)}
+            aria-expanded={open}
+            aria-controls="on-this-page-panel"
+            className="flex w-full items-center justify-between gap-3 rounded-2xl border border-border/60 bg-white/95 px-4 py-3 shadow-soft backdrop-blur"
+          >
+            <span className="flex min-w-0 items-center gap-2">
+              <ListTree className="h-4 w-4 shrink-0 text-primary" />
+              <span className="text-[11px] font-black uppercase tracking-[0.22em] text-primary">On this page</span>
+              <span className="mx-1 h-3 w-px shrink-0 bg-border" />
+              <span className="truncate text-[13.5px] font-semibold text-secondary">{active.label}</span>
+            </span>
+            <span
+              className={`grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand text-primary-foreground shadow-glow-red transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+              aria-hidden="true"
+            >
+              <ChevronDown className="h-4 w-4" />
+            </span>
+          </button>
+
+          {open && (
+            <div
+              id="on-this-page-panel"
+              className="mt-2 overflow-hidden rounded-2xl border border-border/60 bg-white shadow-soft animate-in fade-in slide-in-from-top-2 duration-200"
+            >
+              <nav aria-label="Section navigation" className="p-2">
+                <ul className="space-y-1">
+                  {sections.map((s) => {
+                    const isActive = activeSection === s.id;
+                    return (
+                      <li key={s.id}>
+                        <button
+                          type="button"
+                          onClick={() => handleJump(s.id)}
+                          aria-current={isActive ? "true" : undefined}
+                          className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-[14px] font-semibold transition-all ${
+                            isActive
+                              ? "bg-gradient-brand-soft text-secondary"
+                              : "text-muted-foreground hover:bg-primary/5 hover:text-secondary"
+                          }`}
+                        >
+                          <span
+                            className={`h-1.5 w-1.5 shrink-0 rounded-full transition-all ${
+                              isActive ? "bg-gradient-brand scale-125 shadow-glow-red" : "bg-border"
+                            }`}
+                            aria-hidden
+                          />
+                          <span className="truncate">{s.label}</span>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </nav>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Desktop: expanded card */}
+      <Reveal variant="up" className="hidden rounded-3xl border border-border/60 bg-white p-6 shadow-soft lg:block">
+        <div className="flex items-center gap-2 text-primary">
+          <ListTree className="h-4 w-4" />
+          <span className="text-[11px] font-black uppercase tracking-[0.22em]">On this page</span>
+        </div>
+        <nav aria-label="Section navigation" className="mt-4">
+          <ul className="space-y-1">
+            {sections.map((s) => {
+              const isActive = activeSection === s.id;
+              return (
+                <li key={s.id}>
+                  <a
+                    href={`#${s.id}`}
+                    aria-current={isActive ? "true" : undefined}
+                    className={`group relative flex items-center gap-3 rounded-xl px-3 py-2 text-[13.5px] font-semibold transition-all ${
+                      isActive
+                        ? "bg-gradient-brand-soft text-secondary"
+                        : "text-muted-foreground hover:bg-primary/5 hover:text-secondary"
+                    }`}
+                  >
+                    <span
+                      className={`h-1.5 w-1.5 shrink-0 rounded-full transition-all ${
+                        isActive ? "bg-gradient-brand scale-125 shadow-glow-red" : "bg-border"
+                      }`}
+                      aria-hidden
+                    />
+                    <span className="truncate">{s.label}</span>
+                    {isActive && (
+                      <span className="ml-auto text-[10px] font-black uppercase tracking-[0.18em] text-primary">●</span>
+                    )}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </Reveal>
+    </>
   );
 }
