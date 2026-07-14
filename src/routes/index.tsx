@@ -9,7 +9,6 @@ import { Process } from "@/components/home/Process";
 import { Testimonials } from "@/components/home/Testimonials";
 
 import { InstagramFeed } from "@/components/home/InstagramFeed";
-import { CTA } from "@/components/home/CTA";
 import { Footer } from "@/components/home/Footer";
 
 
@@ -30,7 +29,6 @@ function Index() {
       <Testimonials />
       
       <InstagramFeed />
-      <CTA />
       <Footer />
       
     </main>
