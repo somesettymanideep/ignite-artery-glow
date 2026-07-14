@@ -89,29 +89,29 @@ function MissionVision() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#fdf3f5] via-white to-[#f4eefb] pb-20 pt-4">
-      <div aria-hidden className="pointer-events-none absolute left-0 top-10 hidden h-[420px] w-[220px] opacity-60 md:block">
-        <svg viewBox="0 0 220 420" fill="none" className="h-full w-full">
-          <path d="M10 0 C 60 90, 30 160, 90 220 S 40 340, 120 420" stroke="url(#vg1)" strokeWidth="1.2" opacity="0.55" />
-          <path d="M40 20 C 90 80, 60 150, 130 200" stroke="url(#vg1)" strokeWidth="1" opacity="0.35" />
-          <path d="M20 80 C 70 130, 50 200, 110 260" stroke="url(#vg1)" strokeWidth="0.9" opacity="0.3" />
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#fdf3f5] via-white to-[#f4eefb] pb-16 pt-6 sm:pb-20 sm:pt-4">
+      <div aria-hidden className="pointer-events-none absolute left-0 top-10 hidden h-[420px] w-[220px] opacity-70 md:block">
+        <svg viewBox="0 0 220 420" fill="none" className="h-full w-full" shapeRendering="geometricPrecision">
+          <path d="M10 0 C 60 90, 30 160, 90 220 S 40 340, 120 420" stroke="url(#vg1)" strokeWidth="1.4" strokeLinecap="round" opacity="0.7" />
+          <path d="M40 20 C 90 80, 60 150, 130 200" stroke="url(#vg1)" strokeWidth="1.1" strokeLinecap="round" opacity="0.45" />
+          <path d="M20 80 C 70 130, 50 200, 110 260" stroke="url(#vg1)" strokeWidth="1" strokeLinecap="round" opacity="0.4" />
           <defs>
             <linearGradient id="vg1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="oklch(0.65 0.20 20)" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="oklch(0.55 0.18 340)" stopOpacity="0.4" />
+              <stop offset="0%" stopColor="oklch(0.65 0.20 20)" stopOpacity="0.95" />
+              <stop offset="100%" stopColor="oklch(0.55 0.18 340)" stopOpacity="0.5" />
             </linearGradient>
           </defs>
         </svg>
       </div>
-      <div aria-hidden className="pointer-events-none absolute right-6 top-6 hidden h-[220px] w-[160px] opacity-50 md:block">
-        <svg viewBox="0 0 160 220" fill="none" className="h-full w-full">
-          <path d="M150 0 C 100 60, 130 120, 70 170" stroke="oklch(0.55 0.18 340)" strokeWidth="1" opacity="0.5" />
-          <path d="M140 30 C 90 80, 120 140, 60 190" stroke="oklch(0.65 0.20 20)" strokeWidth="0.9" opacity="0.35" />
+      <div aria-hidden className="pointer-events-none absolute right-6 top-6 hidden h-[220px] w-[160px] opacity-60 md:block">
+        <svg viewBox="0 0 160 220" fill="none" className="h-full w-full" shapeRendering="geometricPrecision">
+          <path d="M150 0 C 100 60, 130 120, 70 170" stroke="oklch(0.55 0.18 340)" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
+          <path d="M140 30 C 90 80, 120 140, 60 190" stroke="oklch(0.65 0.20 20)" strokeWidth="1" strokeLinecap="round" opacity="0.45" />
         </svg>
       </div>
-      <div aria-hidden className="pointer-events-none absolute bottom-6 right-10 grid grid-cols-8 gap-1.5 opacity-40">
+      <div aria-hidden className="pointer-events-none absolute bottom-8 right-8 hidden grid-cols-8 gap-1.5 opacity-50 md:grid">
         {Array.from({ length: 48 }).map((_, i) => (
-          <span key={i} className="h-1 w-1 rounded-full bg-secondary/40" />
+          <span key={i} className="h-1 w-1 rounded-full bg-secondary/50" />
         ))}
       </div>
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-24">
@@ -126,21 +126,31 @@ function MissionVision() {
         </svg>
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal className="reveal">
-          <div className="relative rounded-[28px] bg-white/85 p-6 shadow-[0_30px_80px_-40px_rgba(65,48,92,0.35)] ring-1 ring-secondary/10 backdrop-blur-sm sm:p-10 lg:p-12">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
+        <Reveal className="reveal" variant="up">
+          <div className="relative rounded-[24px] bg-white/90 p-5 shadow-[0_30px_80px_-40px_rgba(65,48,92,0.35)] ring-1 ring-secondary/10 backdrop-blur-sm sm:rounded-[28px] sm:p-8 lg:p-12">
             <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 sm:block">
-              <div className="grid h-14 w-14 place-items-center rounded-full bg-white shadow-lift ring-1 ring-secondary/10">
-                <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none">
-                  <path d="M12 3 C 9 7, 14 9, 11 13 C 8 17, 13 19, 12 22" stroke="oklch(0.55 0.20 20)" strokeWidth="1.5" strokeLinecap="round" />
-                  <path d="M12 3 C 15 7, 10 9, 13 13 C 16 17, 11 19, 12 22" stroke="oklch(0.45 0.18 340)" strokeWidth="1.5" strokeLinecap="round" />
-                  <circle cx="12" cy="3.2" r="1.1" fill="oklch(0.55 0.20 20)" />
-                  <circle cx="12" cy="21" r="1.1" fill="oklch(0.45 0.18 340)" />
+              <div className="grid h-16 w-16 place-items-center rounded-full bg-white shadow-[0_12px_32px_-10px_rgba(65,48,92,0.35)] ring-1 ring-secondary/15">
+                <svg viewBox="0 0 24 24" className="h-8 w-8" fill="none" shapeRendering="geometricPrecision">
+                  <path d="M12 3 C 9 7, 14 9, 11 13 C 8 17, 13 19, 12 22" stroke="oklch(0.55 0.20 20)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M12 3 C 15 7, 10 9, 13 13 C 16 17, 11 19, 12 22" stroke="oklch(0.45 0.18 340)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                  <circle cx="12" cy="3.2" r="1.3" fill="oklch(0.55 0.20 20)" />
+                  <circle cx="12" cy="21" r="1.3" fill="oklch(0.45 0.18 340)" />
                 </svg>
               </div>
             </div>
+            <div aria-hidden className="my-6 flex items-center justify-center sm:hidden">
+              <span className="h-px flex-1 bg-gradient-to-r from-transparent via-secondary/25 to-secondary/25" />
+              <span className="mx-3 grid h-11 w-11 place-items-center rounded-full bg-white shadow-[0_8px_20px_-6px_rgba(65,48,92,0.3)] ring-1 ring-secondary/15">
+                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" shapeRendering="geometricPrecision">
+                  <path d="M12 3 C 9 7, 14 9, 11 13 C 8 17, 13 19, 12 22" stroke="oklch(0.55 0.20 20)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M12 3 C 15 7, 10 9, 13 13 C 16 17, 11 19, 12 22" stroke="oklch(0.45 0.18 340)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <span className="h-px flex-1 bg-gradient-to-l from-transparent via-secondary/25 to-secondary/25" />
+            </div>
 
-            <div className="grid gap-10 sm:grid-cols-2 sm:gap-0 sm:divide-x sm:divide-secondary/15">
+            <div className="grid gap-8 sm:grid-cols-2 sm:gap-0 sm:divide-x sm:divide-secondary/15">
               {items.map((it, i) => {
                 const red = it.accent === "red";
                 const labelColor = red ? "text-primary" : "text-secondary";
@@ -149,32 +159,37 @@ function MissionVision() {
                 const lineColor = red ? "bg-primary/70" : "bg-secondary/70";
                 const iconTint = red ? "text-primary" : "text-secondary";
                 const ringTint = red
-                  ? "bg-[radial-gradient(circle_at_center,rgba(233,60,60,0.10),transparent_70%)]"
-                  : "bg-[radial-gradient(circle_at_center,rgba(90,48,150,0.10),transparent_70%)]";
+                  ? "bg-[radial-gradient(circle_at_center,rgba(233,60,60,0.14),transparent_70%)]"
+                  : "bg-[radial-gradient(circle_at_center,rgba(90,48,150,0.14),transparent_70%)]";
+                const isFirst = i === 0;
                 return (
-                  <Reveal key={it.label} className="reveal" variant={i === 0 ? "left" : "right"} delay={i * 0.12}>
-                    <div className={`flex items-start gap-6 ${i === 0 ? "sm:pr-10" : "sm:pl-10"}`}>
+                  <Reveal
+                    key={it.label}
+                    className="reveal group"
+                    variant={isFirst ? "left" : "right"}
+                    delay={0.15 + i * 0.18}
+                  >
+                    <div className={`flex flex-col items-start gap-5 sm:flex-row sm:gap-6 ${isFirst ? "sm:pr-8 lg:pr-12" : "sm:pl-8 lg:pl-12"}`}>
                       <div className="relative shrink-0">
-                        <span className={`absolute -inset-3 rounded-full ${ringTint}`} aria-hidden />
-                        <span className="relative grid h-24 w-24 place-items-center rounded-full bg-white shadow-[0_18px_40px_-18px_rgba(65,48,92,0.35)] ring-1 ring-secondary/10">
-                          <span className="grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-white to-[#faf4f7] ring-1 ring-secondary/10">
-                            <it.icon strokeWidth={2} className={`h-8 w-8 ${iconTint}`} />
+                        <span className={`absolute -inset-3 rounded-full ${ringTint} transition-opacity duration-500 group-hover:opacity-80`} aria-hidden />
+                        <span className="relative grid h-20 w-20 place-items-center rounded-full bg-white shadow-[0_18px_40px_-18px_rgba(65,48,92,0.4)] ring-1 ring-secondary/15 transition-transform duration-500 group-hover:-translate-y-1 sm:h-24 sm:w-24">
+                          <span className="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-white to-[#faf4f7] ring-1 ring-secondary/10 sm:h-16 sm:w-16">
+                            <it.icon strokeWidth={2.25} className={`h-7 w-7 ${iconTint} sm:h-8 sm:w-8`} />
                           </span>
                         </span>
                       </div>
 
-                      <div className="relative flex-1 pl-5">
-                        <span className={`absolute left-0 top-1 h-2.5 w-2.5 rounded-full ${dotColor} shadow-[0_0_0_4px_rgba(255,255,255,1)]`} aria-hidden />
-                        <span className={`absolute left-[5px] top-3 h-[calc(100%-12px)] w-px ${lineColor} opacity-70`} aria-hidden />
+                      <div className="relative w-full flex-1 pl-5">
+                        <span className={`absolute left-0 top-1 h-2.5 w-2.5 rounded-full ${dotColor} shadow-[0_0_0_4px_rgba(255,255,255,1),0_0_0_5px_rgba(65,48,92,0.08)]`} aria-hidden />
+                        <span className={`absolute left-[5px] top-3 h-[calc(100%-12px)] w-px ${lineColor}`} aria-hidden />
 
                         <span className={`text-[11px] font-extrabold uppercase tracking-[0.28em] ${labelColor}`}>{it.label}</span>
                         <span className={`mt-2 block h-[3px] w-8 rounded-full ${dotColor}`} aria-hidden />
 
-                        <h3 className="mt-5 font-display text-2xl font-black leading-[1.15] tracking-tight text-secondary sm:text-[28px]">
-                          {it.headLead}{" "}
-                          <span className={accentColor}>{it.headAccent}</span>
+                        <h3 className="mt-4 font-display text-xl font-black leading-[1.2] tracking-tight text-secondary sm:mt-5 sm:text-2xl lg:text-[28px] lg:leading-[1.15]">
+                          {it.headLead} <span className={accentColor}>{it.headAccent}</span>
                         </h3>
-                        <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">{it.body}</p>
+                        <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground sm:mt-4">{it.body}</p>
                       </div>
                     </div>
                   </Reveal>
