@@ -5,7 +5,7 @@ import reel1 from "@/assets/about-surgery.jpg";
 import reel2 from "@/assets/home2-doctor.jpg";
 import reel3 from "@/assets/about-vascular.jpg";
 import reel4 from "@/assets/hero-surgeon.jpg";
-import reel5 from "@/assets/case-hero-vessels.jpg";
+
 import igReel1 from "@/assets/ignite-reel-1.mp4.asset.json";
 import igReel2 from "@/assets/ignite-reel-2.mp4.asset.json";
 import igReel3 from "@/assets/ignite-reel-3.mp4.asset.json";
