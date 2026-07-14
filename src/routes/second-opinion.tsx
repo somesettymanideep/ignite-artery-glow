@@ -824,7 +824,7 @@ function FAQSection() {
 
 function CTABanner() {
   return (
-    <section className="pb-16">
+    <section className="pb-16 pt-16 lg:pt-20">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal variant="zoom">
           <div className="relative overflow-hidden rounded-[14px] bg-[linear-gradient(115deg,#311261_0%,#311261_50%,#c62347_100%)] p-6 shadow-lift sm:p-8">
