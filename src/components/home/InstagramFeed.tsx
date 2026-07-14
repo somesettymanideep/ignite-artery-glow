@@ -177,6 +177,30 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
         </div>
       )}
 
+      {/* Play/Pause button for videos */}
+      {reel.video && videoReady && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            togglePlay();
+          }}
+          aria-label={isPlaying ? "Pause video" : "Play video"}
+          aria-pressed={isPlaying}
+          className={`absolute inset-0 z-10 grid place-items-center transition-opacity duration-300 ${
+            isPlaying ? "opacity-0 hover:opacity-100 focus-visible:opacity-100" : "opacity-100"
+          }`}
+        >
+          <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-secondary shadow-lift backdrop-blur transition-transform duration-300 hover:scale-110">
+            {isPlaying ? (
+              <Pause className="h-5 w-5 fill-current" />
+            ) : (
+              <Play className="ml-0.5 h-5 w-5 fill-current" />
+            )}
+          </span>
+        </button>
+      )}
+
       {/* Bottom info */}
       <div className="absolute inset-x-0 bottom-0 space-y-2 p-3 text-white">
         <p className="line-clamp-2 text-[11px] font-semibold leading-snug">{reel.caption}</p>
