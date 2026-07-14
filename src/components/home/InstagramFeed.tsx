@@ -167,13 +167,6 @@ export function InstagramFeed() {
                   </div>
                 )}
 
-                {/* Play button */}
-                <div className="absolute inset-0 grid place-items-center">
-                  <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-secondary shadow-lift transition-transform duration-500 group-hover:scale-110">
-                    <Play className="ml-0.5 h-5 w-5 fill-current" />
-                  </span>
-                </div>
-
                 {/* Bottom info */}
                 <div className="absolute inset-x-0 bottom-0 space-y-2 p-3 text-white">
                   <p className="line-clamp-2 text-[11px] font-semibold leading-snug">{r.caption}</p>
