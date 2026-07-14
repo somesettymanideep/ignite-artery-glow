@@ -129,26 +129,6 @@ function MissionVision() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
         <Reveal className="reveal" variant="up">
           <div className="relative rounded-[24px] bg-white/90 p-5 shadow-[0_30px_80px_-40px_rgba(65,48,92,0.35)] ring-1 ring-secondary/10 backdrop-blur-sm sm:rounded-[28px] sm:p-8 lg:p-12">
-            <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 sm:block">
-              <div className="grid h-16 w-16 place-items-center rounded-full bg-white shadow-[0_12px_32px_-10px_rgba(65,48,92,0.35)] ring-1 ring-secondary/15">
-                <svg viewBox="0 0 24 24" className="h-8 w-8" fill="none" shapeRendering="geometricPrecision">
-                  <path d="M12 3 C 9 7, 14 9, 11 13 C 8 17, 13 19, 12 22" stroke="oklch(0.55 0.20 20)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M12 3 C 15 7, 10 9, 13 13 C 16 17, 11 19, 12 22" stroke="oklch(0.45 0.18 340)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                  <circle cx="12" cy="3.2" r="1.3" fill="oklch(0.55 0.20 20)" />
-                  <circle cx="12" cy="21" r="1.3" fill="oklch(0.45 0.18 340)" />
-                </svg>
-              </div>
-            </div>
-            <div aria-hidden className="my-6 flex items-center justify-center sm:hidden">
-              <span className="h-px flex-1 bg-gradient-to-r from-transparent via-secondary/25 to-secondary/25" />
-              <span className="mx-3 grid h-11 w-11 place-items-center rounded-full bg-white shadow-[0_8px_20px_-6px_rgba(65,48,92,0.3)] ring-1 ring-secondary/15">
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" shapeRendering="geometricPrecision">
-                  <path d="M12 3 C 9 7, 14 9, 11 13 C 8 17, 13 19, 12 22" stroke="oklch(0.55 0.20 20)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M12 3 C 15 7, 10 9, 13 13 C 16 17, 11 19, 12 22" stroke="oklch(0.45 0.18 340)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-              <span className="h-px flex-1 bg-gradient-to-l from-transparent via-secondary/25 to-secondary/25" />
-            </div>
 
             <div className="grid gap-8 sm:grid-cols-2 sm:gap-0 sm:divide-x sm:divide-secondary/15">
               {items.map((it, i) => {
