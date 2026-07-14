@@ -297,6 +297,21 @@ export const SERVICES: Service[] = [
       "Better long-term survival",
     ],
     recovery: "Hospital stay 3–7 days; wound healing and walking rehab over 6–12 weeks.",
+    quickFacts: {
+      duration: "2–5 hours (hybrid procedure)",
+      anesthesia: "General or regional",
+      hospitalStay: "3–7 nights",
+      recoveryTime: "6–12 weeks with rehabilitation",
+      suitability: "Critical limb ischemia, gangrene, non-healing ulcers, or failed prior vascular treatment",
+      whatToExpect: "Detailed angiography, combined endovascular + open bypass to restore flow, wound reconstruction and structured rehab.",
+    },
+    faqs: [
+      { q: "What is the success rate of limb salvage?", a: "In experienced centres, limb salvage rates exceed 85% at 1 year for critical limb ischemia patients presenting in time." },
+      { q: "Will I be able to walk normally again?", a: "With successful revascularisation, wound healing and rehab, most patients regain independent walking within 3 months." },
+      { q: "Is bypass surgery risky?", a: "Modern bypass surgery is very safe in specialised centres. Risks are individualised and discussed thoroughly before consent." },
+      { q: "How long is the hospital stay?", a: "Typically 3–7 days, depending on wound status, infection control and mobilisation." },
+      { q: "What happens if the bypass blocks later?", a: "Regular duplex surveillance detects narrowing early so angioplasty or a redo can maintain the graft long-term." },
+    ],
   },
 ];
 
