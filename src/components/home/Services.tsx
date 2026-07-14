@@ -25,7 +25,7 @@ export function Services() {
     <section
       id="services"
       className="relative overflow-hidden py-20 lg:py-28"
-      style={{ background: "linear-gradient(180deg,#F6F3FB 0%,#EEE7F7 100%)" }}
+      style={{ background: "#f0f3f6" }}
     >
       <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-primary/10 blur-3xl" aria-hidden />
       <div className="pointer-events-none absolute -right-40 bottom-10 h-[28rem] w-[28rem] rounded-full bg-secondary/15 blur-3xl" aria-hidden />
