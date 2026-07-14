@@ -183,6 +183,47 @@ function ServiceDetail() {
                 </a>
               </Reveal>
 
+              {/* Quick Facts */}
+              <Reveal variant="up" className="overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-white to-primary/5 p-6 shadow-soft">
+                <div className="flex items-center gap-2 text-primary">
+                  <ClipboardList className="h-4 w-4" />
+                  <span className="text-[11px] font-black uppercase tracking-[0.22em]">Quick Facts</span>
+                </div>
+                <h3 className="mt-3 font-display text-lg font-extrabold text-secondary">At a glance</h3>
+                <dl className="mt-4 space-y-3">
+                  {[
+                    { icon: Timer, label: "Duration", value: service.quickFacts.duration },
+                    { icon: Stethoscope, label: "Anesthesia", value: service.quickFacts.anesthesia },
+                    { icon: BedDouble, label: "Hospital stay", value: service.quickFacts.hospitalStay },
+                    { icon: CalendarClock, label: "Recovery time", value: service.quickFacts.recoveryTime },
+                  ].map(({ icon: I, label, value }) => (
+                    <div key={label} className="flex items-start gap-3 rounded-xl bg-white/70 p-3">
+                      <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-gradient-brand text-primary-foreground shadow-glow-red">
+                        <I className="h-4 w-4" />
+                      </span>
+                      <div className="min-w-0">
+                        <dt className="text-[11px] font-black uppercase tracking-[0.16em] text-muted-foreground">{label}</dt>
+                        <dd className="text-[13.5px] font-semibold text-secondary">{value}</dd>
+                      </div>
+                    </div>
+                  ))}
+                </dl>
+                <div className="mt-4 rounded-2xl border border-primary/15 bg-white/80 p-4">
+                  <div className="flex items-center gap-2 text-primary">
+                    <UserCheck className="h-4 w-4" />
+                    <span className="text-[11px] font-black uppercase tracking-[0.16em]">Suitability</span>
+                  </div>
+                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-secondary">{service.quickFacts.suitability}</p>
+                </div>
+                <div className="mt-3 rounded-2xl border border-secondary/10 bg-secondary p-4 text-white">
+                  <div className="flex items-center gap-2 text-primary-foreground/90">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    <span className="text-[11px] font-black uppercase tracking-[0.16em]">What to expect</span>
+                  </div>
+                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-white/85">{service.quickFacts.whatToExpect}</p>
+                </div>
+              </Reveal>
+
               <Reveal variant="up" className="rounded-3xl bg-gradient-brand-soft p-6">
                 <div className="flex items-center gap-2 text-primary">
                   <Sparkles className="h-4 w-4" />
