@@ -233,7 +233,7 @@ function CertificationsCarousel() {
       aria-label="Doctor certifications carousel"
     >
       <div className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 blur-2xl" aria-hidden />
-      <div className="relative h-[360px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#1a0b3d] via-[#2a0f4d] to-[#0f0724] shadow-[0_20px_60px_-15px_rgba(49,18,97,0.6)]">
+      <div className="relative h-[360px] overflow-hidden rounded-3xl border border-white/10 bg-[#41305c] shadow-[0_20px_60px_-15px_rgba(65,48,92,0.65)]">
         {/* ambient glows */}
         <div className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-primary/25 blur-3xl" aria-hidden />
         <div className="pointer-events-none absolute -bottom-20 -left-16 h-52 w-52 rounded-full bg-[oklch(0.55_0.18_10)]/20 blur-3xl" aria-hidden />
