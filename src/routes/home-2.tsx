@@ -1066,15 +1066,16 @@ function Home2() {
     <main className="bg-background [&_section]:scroll-mt-24">
       <Navbar />
       <Hero />
-      <Trust />
       <HeroPremium />
       <Hero3D />
       <Doctor />
       <Services />
       <Testimonials />
+      <Trust />
       <GoogleReviews />
       <CTASection />
       <Footer />
+
 
       {/* floating link to original */}
       <Link to="/" className="fixed bottom-6 left-6 z-40 rounded-full bg-white px-4 py-2 text-xs font-bold text-secondary shadow-lift transition-transform hover:scale-105">
