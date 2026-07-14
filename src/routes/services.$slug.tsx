@@ -91,8 +91,9 @@ function ServiceDetail() {
 
         {/* Body */}
         <section className="py-16 lg:py-24">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[1fr,320px] lg:px-8">
-            <div className="space-y-12">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-12 lg:px-8">
+            <div className="space-y-12 lg:col-span-8">
+
               <Reveal variant="up">
                 <h2 className="font-display text-3xl font-extrabold text-secondary">Overview</h2>
                 <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">{service.overview}</p>
