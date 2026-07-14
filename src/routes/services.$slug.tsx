@@ -247,6 +247,9 @@ function ServiceDetail() {
             </aside>
           </div>
         </section>
+
+        {/* FAQ */}
+        <FAQSection faqs={service.faqs} title={service.title} />
       </main>
       <Footer />
     </>
