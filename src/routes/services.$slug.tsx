@@ -255,3 +255,73 @@ function ServiceDetail() {
     </>
   );
 }
+
+function FAQSection({ faqs, title }: { faqs: { q: string; a: string }[]; title: string }) {
+  const [open, setOpen] = useState<number | null>(0);
+  return (
+    <section className="relative border-t border-border/60 bg-gradient-to-b from-white via-primary/5 to-white py-16 lg:py-24">
+      <div className="mx-auto max-w-4xl px-5 lg:px-8">
+        <Reveal variant="up" className="text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white px-4 py-1.5 text-[11px] font-black uppercase tracking-[0.22em] text-primary shadow-soft">
+            <HelpCircle className="h-3.5 w-3.5" /> FAQ
+          </span>
+          <h2 className="mt-4 font-display text-3xl font-black tracking-tight text-secondary sm:text-4xl">
+            Frequently Asked Questions
+          </h2>
+          <p className="mt-3 text-[15px] text-muted-foreground">
+            Common patient questions about {title.toLowerCase()}.
+          </p>
+        </Reveal>
+
+        <div className="mt-10 space-y-3">
+          {faqs.map((f, i) => {
+            const isOpen = open === i;
+            return (
+              <Reveal key={f.q} variant="up" className="overflow-hidden rounded-2xl border border-border/60 bg-white shadow-soft transition hover:border-primary/30">
+                <h3>
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-panel-${i}`}
+                    id={`faq-trigger-${i}`}
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    className="flex w-full items-start justify-between gap-4 px-5 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 sm:px-6"
+                  >
+                    <span className="pr-2 text-[15px] font-bold text-secondary sm:text-base">{f.q}</span>
+                    <span
+                      className={`mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand text-primary-foreground shadow-glow-red transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    >
+                      {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+                    </span>
+                  </button>
+                </h3>
+                <div
+                  id={`faq-panel-${i}`}
+                  role="region"
+                  aria-labelledby={`faq-trigger-${i}`}
+                  className={`grid transition-all duration-300 ease-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+                >
+                  <div className="min-h-0 overflow-hidden">
+                    <p className="border-t border-border/50 px-5 py-4 text-[14.5px] leading-relaxed text-muted-foreground sm:px-6">
+                      {f.a}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        <Reveal variant="up" className="mt-10 flex flex-col items-center justify-between gap-4 rounded-3xl bg-secondary p-6 text-center text-white sm:flex-row sm:text-left">
+          <div>
+            <p className="font-display text-lg font-extrabold">Still have questions?</p>
+            <p className="text-sm text-white/80">Talk to our vascular specialist for a personalised answer.</p>
+          </div>
+          <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-3 text-sm font-bold text-primary-foreground shadow-glow-red">
+            <Phone className="h-4 w-4" /> Book a Consultation
+          </Link>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
