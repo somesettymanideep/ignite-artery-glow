@@ -136,11 +136,10 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
             registerVideo(index, el);
           }}
           src={reel.video}
-          poster={reel.poster}
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           aria-label={`Video: ${reel.caption}`}
           onLoadedData={() => setVideoReady(true)}
           onCanPlay={() => setVideoReady(true)}
