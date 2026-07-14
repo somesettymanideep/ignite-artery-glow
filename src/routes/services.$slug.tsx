@@ -11,7 +11,7 @@ export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
     const service = findService(params.slug);
     if (!service) throw notFound();
-    return service;
+    return service as NonNullable<ReturnType<typeof findService>>;
   },
   head: ({ loaderData, params }) => {
     const s = loaderData;
