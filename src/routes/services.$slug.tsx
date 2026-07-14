@@ -189,6 +189,46 @@ function ServiceDetail() {
 
             {/* Sidebar */}
             <aside className="space-y-6 lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
+              <Reveal variant="up" className="rounded-3xl border border-border/60 bg-white p-6 shadow-soft">
+                <div className="flex items-center gap-2 text-primary">
+                  <ListTree className="h-4 w-4" />
+                  <span className="text-[11px] font-black uppercase tracking-[0.22em]">On this page</span>
+                </div>
+                <nav aria-label="Section navigation" className="mt-4">
+                  <ul className="space-y-1">
+                    {sections.map((s) => {
+                      const active = activeSection === s.id;
+                      return (
+                        <li key={s.id}>
+                          <a
+                            href={`#${s.id}`}
+                            aria-current={active ? "true" : undefined}
+                            className={`group relative flex items-center gap-3 rounded-xl px-3 py-2 text-[13.5px] font-semibold transition-all ${
+                              active
+                                ? "bg-gradient-brand-soft text-secondary"
+                                : "text-muted-foreground hover:bg-primary/5 hover:text-secondary"
+                            }`}
+                          >
+                            <span
+                              className={`h-1.5 w-1.5 shrink-0 rounded-full transition-all ${
+                                active ? "bg-gradient-brand scale-125 shadow-glow-red" : "bg-border"
+                              }`}
+                              aria-hidden
+                            />
+                            <span className="truncate">{s.label}</span>
+                            {active && (
+                              <span className="ml-auto text-[10px] font-black uppercase tracking-[0.18em] text-primary">
+                                ●
+                              </span>
+                            )}
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </nav>
+              </Reveal>
+
               <Reveal variant="up" className="rounded-3xl bg-gradient-brand-soft p-6">
                 <div className="flex items-center gap-2 text-primary">
                   <Sparkles className="h-4 w-4" />
