@@ -153,21 +153,29 @@ function ServiceDetail() {
             </div>
 
             {/* Sidebar */}
-            <aside className="space-y-6 lg:sticky lg:top-28 lg:self-start">
-              <Reveal variant="up" className="rounded-3xl border border-border/60 bg-card p-6 shadow-soft">
-                <h3 className="font-display text-lg font-extrabold text-secondary">Book a Consultation</h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Speak with our vascular specialist about {service.title.toLowerCase()}.
-                </p>
-                <Link to="/contact" className="mt-5 flex items-center justify-center gap-2 rounded-xl bg-gradient-brand py-3 text-sm font-bold text-primary-foreground shadow-glow-red">
-                  <Phone className="h-4 w-4" /> Book Appointment
-                </Link>
-                <a href="tel:+919999999999" className="mt-3 flex items-center justify-center gap-2 rounded-xl border-2 border-secondary/15 py-3 text-sm font-bold text-secondary hover:bg-secondary/5">
-                  Call Now
-                </a>
+            <aside className="space-y-6 lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
+              <Reveal variant="up" className="rounded-3xl bg-gradient-brand-soft p-6">
+                <div className="flex items-center gap-2 text-primary">
+                  <Sparkles className="h-4 w-4" />
+                  <span className="text-[11px] font-black uppercase tracking-[0.22em]">Other Treatments</span>
+                </div>
+                <ul className="mt-4 space-y-2">
+                  {related.map((r) => (
+                    <li key={r.slug}>
+                      <Link
+                        to="/services/$slug"
+                        params={{ slug: r.slug }}
+                        className="group flex items-center justify-between gap-3 rounded-xl bg-white p-3 text-[13.5px] font-semibold text-secondary shadow-soft transition hover:-translate-y-0.5"
+                      >
+                        <span className="truncate">{r.title}</span>
+                        <ArrowRight className="h-4 w-4 shrink-0 text-primary transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </Reveal>
 
-              {/* Quick Facts — sticky on desktop, collapsible on mobile */}
+              {/* Quick Facts — collapsible on mobile */}
               <Reveal variant="up" className="overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-white to-primary/5 shadow-soft">
                 <button
                   type="button"
@@ -232,28 +240,8 @@ function ServiceDetail() {
                   </div>
                 </div>
               </Reveal>
-
-              <Reveal variant="up" className="rounded-3xl bg-gradient-brand-soft p-6">
-                <div className="flex items-center gap-2 text-primary">
-                  <Sparkles className="h-4 w-4" />
-                  <span className="text-[11px] font-black uppercase tracking-[0.22em]">Other Treatments</span>
-                </div>
-                <ul className="mt-4 space-y-2">
-                  {related.map((r) => (
-                    <li key={r.slug}>
-                      <Link
-                        to="/services/$slug"
-                        params={{ slug: r.slug }}
-                        className="group flex items-center justify-between gap-3 rounded-xl bg-white p-3 text-[13.5px] font-semibold text-secondary shadow-soft transition hover:-translate-y-0.5"
-                      >
-                        <span className="truncate">{r.title}</span>
-                        <ArrowRight className="h-4 w-4 shrink-0 text-primary transition-transform group-hover:translate-x-1" />
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
             </aside>
+
           </div>
         </section>
 
