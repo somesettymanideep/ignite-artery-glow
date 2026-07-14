@@ -251,6 +251,21 @@ export const SERVICES: Service[] = [
       "Improved quality of life",
     ],
     recovery: "Wounds usually heal in 4–12 weeks depending on severity, with lifelong foot-care follow-up.",
+    quickFacts: {
+      duration: "Ongoing programme (weekly reviews)",
+      anesthesia: "As required for debridement / revascularisation",
+      hospitalStay: "OPD-based; admission if severe infection",
+      recoveryTime: "4–12 weeks to full wound healing",
+      suitability: "Diabetic patients with foot ulcers, infections, numbness, or previous amputation risk",
+      whatToExpect: "Circulation check, wound cleaning and dressings, targeted antibiotics, offloading footwear, and structured follow-up.",
+    },
+    faqs: [
+      { q: "Can amputation always be avoided?", a: "Early treatment saves the vast majority of feet. Success depends on how early you present and control of blood sugar." },
+      { q: "How often should I visit for dressings?", a: "In the active phase, weekly reviews are common. As the wound heals, visits reduce to fortnightly or monthly." },
+      { q: "Do I need special footwear?", a: "Yes, customised offloading footwear protects the wound and prevents recurrence — it is a key part of the treatment." },
+      { q: "Will insurance cover diabetic foot care?", a: "Most policies cover admissions for infection, debridement and revascularisation. Our team assists with claims." },
+      { q: "How do I prevent future ulcers?", a: "Daily foot inspection, well-fitting shoes, tight glucose control and periodic vascular review are the four pillars of prevention." },
+    ],
   },
   {
     slug: "limb-salvage-procedures",
