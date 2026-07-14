@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Instagram, Play, Heart, MessageCircle, Send, Volume2, VolumeX } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import reel1 from "@/assets/about-surgery.jpg";
@@ -31,9 +31,45 @@ const REELS: Reel[] = [
 
 export function InstagramFeed() {
   const trackRef = useRef<HTMLDivElement | null>(null);
-  const [muted, setMuted] = useState(true);
+  const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
+  // Which single video index is currently unmuted (null = all muted)
+  const [unmutedIdx, setUnmutedIdx] = useState<number | null>(null);
 
-  // Subtle auto-scroll on desktop
+  const registerVideo = useCallback((idx: number, el: HTMLVideoElement | null) => {
+    if (el) {
+      videoRefs.current.set(idx, el);
+      // Ensure autoplay always attempts (muted) on mount
+      el.muted = true;
+      const p = el.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    } else {
+      videoRefs.current.delete(idx);
+    }
+  }, []);
+
+  const toggleSound = useCallback((idx: number) => {
+    setUnmutedIdx((prev) => (prev === idx ? null : idx));
+  }, []);
+
+  // Enforce single-audio rule: mute every video except the unmuted one
+  useEffect(() => {
+    videoRefs.current.forEach((el, idx) => {
+      const shouldUnmute = idx === unmutedIdx;
+      el.muted = !shouldUnmute;
+      if (shouldUnmute) {
+        el.volume = 1;
+        const p = el.play();
+        if (p && typeof p.catch === "function") {
+          p.catch(() => {
+            // If browser blocks unmuted playback, revert
+            setUnmutedIdx(null);
+          });
+        }
+      }
+    });
+  }, [unmutedIdx]);
+
+  // Subtle auto-scroll on desktop; pause when any video is unmuted so audio stays with user
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
@@ -41,7 +77,7 @@ export function InstagramFeed() {
     let raf = 0;
     let paused = false;
     const step = () => {
-      if (!paused && el) {
+      if (!paused && unmutedIdx === null && el) {
         el.scrollLeft += 0.35;
         if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 1) {
           el.scrollLeft = 0;
@@ -63,7 +99,7 @@ export function InstagramFeed() {
       el.removeEventListener("touchstart", onEnter);
       el.removeEventListener("touchend", onLeave);
     };
-  }, []);
+  }, [unmutedIdx]);
 
   return (
     <section id="instagram" className="relative overflow-hidden bg-white py-20 lg:py-28">
@@ -94,14 +130,6 @@ export function InstagramFeed() {
           </div>
 
           <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setMuted((m) => !m)}
-              aria-label={muted ? "Unmute preview" : "Mute preview"}
-              className="grid h-11 w-11 place-items-center rounded-full border border-border/70 bg-white text-secondary shadow-soft transition-transform hover:-translate-y-0.5"
-            >
-              {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
-            </button>
             <a
               href="https://www.instagram.com/"
               target="_blank"
@@ -119,70 +147,94 @@ export function InstagramFeed() {
           role="list"
           aria-label="Instagram reels"
         >
-          {REELS.concat(REELS).map((r, i) => (
-            <Reveal
-              key={i}
-              variant="up"
-              delay={(i % 5) * 0.06}
-              className="reveal shrink-0 snap-start"
-            >
-              <article
-                role="listitem"
-                className="group relative aspect-[9/16] w-[220px] overflow-hidden rounded-[1.5rem] border border-border/60 bg-secondary shadow-lift transition-all duration-500 hover:-translate-y-1 hover:shadow-glow-red sm:w-[240px]"
+          {REELS.concat(REELS).map((r, i) => {
+            const isUnmuted = unmutedIdx === i;
+            return (
+              <Reveal
+                key={i}
+                variant="up"
+                delay={(i % 5) * 0.06}
+                className="reveal shrink-0 snap-start"
               >
-                {r.video ? (
-                  <video
-                    src={r.video}
-                    poster={r.poster}
-                    autoPlay
-                    loop
-                    muted={muted}
-                    playsInline
-                    preload="metadata"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
-                  />
-                ) : (
-                  <img
-                    src={r.poster}
-                    alt={r.caption}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
-                  />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/85" aria-hidden />
+                <article
+                  role="listitem"
+                  className="group relative aspect-[9/16] w-[220px] overflow-hidden rounded-[1.5rem] border border-border/60 bg-secondary shadow-lift transition-all duration-500 hover:-translate-y-1 hover:shadow-glow-red sm:w-[240px]"
+                >
+                  {r.video ? (
+                    <video
+                      ref={(el) => registerVideo(i, el)}
+                      src={r.video}
+                      poster={r.poster}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="auto"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
+                    />
+                  ) : (
+                    <img
+                      src={r.poster}
+                      alt={r.caption}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/85" aria-hidden />
 
-                {/* Top row */}
-                <div className="absolute inset-x-0 top-0 flex items-center justify-between px-3 pt-3">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Reel
-                  </span>
-                  <span className="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-semibold text-white backdrop-blur">
-                    {r.views}
-                  </span>
-                </div>
-
-                {/* Play button */}
-                {!r.video && (
-                  <div className="absolute inset-0 grid place-items-center">
-                    <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-secondary shadow-lift transition-transform duration-500 group-hover:scale-110">
-                      <Play className="ml-0.5 h-5 w-5 fill-current" />
+                  {/* Top row */}
+                  <div className="absolute inset-x-0 top-0 flex items-center justify-between px-3 pt-3">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur">
+                      <span className="h-1.5 w-1.5 rounded-full bg-primary" /> Reel
+                    </span>
+                    <span className="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-semibold text-white backdrop-blur">
+                      {r.views}
                     </span>
                   </div>
-                )}
 
-                {/* Bottom info */}
-                <div className="absolute inset-x-0 bottom-0 space-y-2 p-3 text-white">
-                  <p className="line-clamp-2 text-[11px] font-semibold leading-snug">{r.caption}</p>
-                  <div className="flex items-center gap-3 text-[10px] font-bold text-white/90">
-                    <span className="inline-flex items-center gap-1"><Heart className="h-3 w-3" /> {r.likes}</span>
-                    <span className="inline-flex items-center gap-1"><MessageCircle className="h-3 w-3" /> {r.comments}</span>
-                    <span className="inline-flex items-center gap-1"><Send className="h-3 w-3" /></span>
-                    <span className="ml-auto rounded-full bg-white/20 px-1.5 py-0.5 backdrop-blur">{r.tag}</span>
+                  {/* Per-video sound toggle */}
+                  {r.video && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleSound(i);
+                      }}
+                      aria-label={isUnmuted ? "Mute video" : "Unmute video"}
+                      aria-pressed={isUnmuted}
+                      className={`absolute right-3 top-12 z-10 grid h-9 w-9 place-items-center rounded-full backdrop-blur transition-all duration-300 hover:scale-110 ${
+                        isUnmuted
+                          ? "bg-[linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)] text-white shadow-glow-red"
+                          : "bg-black/50 text-white hover:bg-black/70"
+                      }`}
+                    >
+                      {isUnmuted ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+                    </button>
+                  )}
+
+                  {/* Play button (only for image-only reels) */}
+                  {!r.video && (
+                    <div className="absolute inset-0 grid place-items-center">
+                      <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-secondary shadow-lift transition-transform duration-500 group-hover:scale-110">
+                        <Play className="ml-0.5 h-5 w-5 fill-current" />
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Bottom info */}
+                  <div className="absolute inset-x-0 bottom-0 space-y-2 p-3 text-white">
+                    <p className="line-clamp-2 text-[11px] font-semibold leading-snug">{r.caption}</p>
+                    <div className="flex items-center gap-3 text-[10px] font-bold text-white/90">
+                      <span className="inline-flex items-center gap-1"><Heart className="h-3 w-3" /> {r.likes}</span>
+                      <span className="inline-flex items-center gap-1"><MessageCircle className="h-3 w-3" /> {r.comments}</span>
+                      <span className="inline-flex items-center gap-1"><Send className="h-3 w-3" /></span>
+                      <span className="ml-auto rounded-full bg-white/20 px-1.5 py-0.5 backdrop-blur">{r.tag}</span>
+                    </div>
                   </div>
-                </div>
-              </article>
-            </Reveal>
-          ))}
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
