@@ -4,7 +4,7 @@ import {
   Phone, ArrowRight, Calendar, Check, ShieldCheck, Cpu, UserCheck, Heart,
   GraduationCap, Award, Users, Stethoscope, Activity, Waves, Syringe, Footprints,
   Scan, CircleDot, HeartPulse, MonitorPlay, Droplets, Star, Quote, ChevronLeft,
-  ChevronRight,
+  ChevronRight, MessageCircleHeart, BadgeCheck, MessageSquare, HandHeart,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
@@ -226,75 +226,277 @@ function Services() {
   );
 }
 
-/* ---------------- Testimonials ---------------- */
+/* ---------------- Testimonials (v2 — reference layout) ---------------- */
 const TESTIMONIALS = [
-  { name: "Ramesh B.", location: "Vijayawada", text: "I had severe varicose veins and leg pain for years. After treatment at Ignite Vascular Center, I feel relief and can walk without pain. The doctor and staff are very caring and professional." },
-  { name: "Suresh K.", location: "Vijayawada", text: "The endovascular procedure recommended by the doctor was life-changing. Minimal pain, quick recovery, and excellent care throughout my treatment." },
-  { name: "Lakshmi P.", location: "Vijayawada", text: "Very advanced technology and excellent expertise. I highly recommend Ignite Vascular Center for any vascular problems." },
-  { name: "Padmavathi K.", location: "Machilipatnam", text: "For my dialysis fistula, the procedure went smoothly and the access works perfectly. The staff treated me like family." },
+  {
+    name: "Ramesh Babu",
+    location: "Vijayawada",
+    treatment: "Varicose Veins Treatment",
+    color: "#1a73e8",
+    text: "I had severe varicose veins for years and was suffering a lot. Dr. Narasimha Sai explained the condition clearly and suggested the best treatment. The laser procedure was painless and the results are excellent.",
+  },
+  {
+    name: "Suresh K.",
+    location: "Vijayawada",
+    treatment: "Angioplasty Treatment",
+    color: "#41305c",
+    text: "My father had a blocked leg artery and severe pain while walking. Dr. Sai performed angioplasty and the recovery was smooth. His expertise and care gave us great confidence.",
+  },
+  {
+    name: "Lakshmi S.",
+    location: "Vijayawada",
+    treatment: "Diabetic Foot Care",
+    color: "#c5221f",
+    text: "I consulted Dr. Sai for a non-healing ulcer on my foot due to diabetes. The treatment and care I received were excellent. Now my ulcer has healed completely. Highly recommended!",
+  },
+  {
+    name: "Padmavathi K.",
+    location: "Machilipatnam",
+    treatment: "Dialysis Fistula",
+    color: "#188038",
+    text: "For my dialysis fistula, the procedure went smoothly and the access works perfectly. The staff treated me like family throughout the process.",
+  },
 ];
 
 function Testimonials() {
-  const [start, setStart] = useState(0);
-  const perView = 3;
-  const pages = Math.max(1, TESTIMONIALS.length - perView + 1);
+  const [perView, setPerView] = useState(3);
+  useEffect(() => {
+    const compute = () => {
+      const w = window.innerWidth;
+      setPerView(w >= 1024 ? 3 : w >= 640 ? 2 : 1);
+    };
+    compute();
+    window.addEventListener("resize", compute);
+    return () => window.removeEventListener("resize", compute);
+  }, []);
+
+  const total = TESTIMONIALS.length;
+  const maxIndex = Math.max(0, total - perView);
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => { if (index > maxIndex) setIndex(maxIndex); }, [index, maxIndex]);
 
   useEffect(() => {
-    const id = setInterval(() => setStart((s) => (s + 1) % pages), 6000);
+    if (paused) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    const id = setInterval(() => setIndex((i) => (i >= maxIndex ? 0 : i + 1)), 6500);
     return () => clearInterval(id);
-  }, [pages]);
+  }, [maxIndex, paused]);
 
-  const visible = Array.from({ length: perView }, (_, i) => TESTIMONIALS[(start + i) % TESTIMONIALS.length]);
+  const prev = () => setIndex((i) => (i <= 0 ? maxIndex : i - 1));
+  const next = () => setIndex((i) => (i >= maxIndex ? 0 : i + 1));
+  const pages = maxIndex + 1;
 
   return (
-    <section id="testimonials" className="relative overflow-hidden py-20 lg:py-24">
-      <Reveal variant="up" className="mx-auto max-w-2xl text-center px-5">
-        <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary">Patients Stories</span>
-        <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-secondary">
-          What Our <span className="text-primary">Patients</span> Say
+    <section
+      id="testimonials"
+      aria-labelledby="t-heading"
+      className="relative overflow-hidden py-20 lg:py-24"
+      style={{ background: "linear-gradient(180deg,#FFFFFF 0%,#F6F3FB 100%)" }}
+    >
+      <Reveal variant="up" className="mx-auto max-w-2xl px-5 text-center">
+        <div className="inline-flex items-center gap-3">
+          <span className="h-px w-8" style={{ background: "linear-gradient(90deg, transparent, #DA3234)" }} />
+          <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#453660" }} />
+          <span className="text-[11px] font-black uppercase tracking-[0.28em]" style={{ color: "#DA3234" }}>
+            Testimonials
+          </span>
+          <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#453660" }} />
+          <span className="h-px w-8" style={{ background: "linear-gradient(90deg, #DA3234, transparent)" }} />
+        </div>
+        <h2 id="t-heading" className="mt-4 font-display text-4xl font-black tracking-tight sm:text-5xl" style={{ color: "#1E293B" }}>
+          What Our <span style={{ color: "#DA3234" }}>Patients Say</span>
         </h2>
-        <div className="mx-auto mt-3 h-1 w-14 rounded-full bg-gradient-brand" />
+        <p className="mt-4 text-[15px] leading-relaxed" style={{ color: "#1E293BB3" }}>
+          Real stories from real patients who experienced better care and better outcomes.
+        </p>
       </Reveal>
 
-      <div className="relative mx-auto mt-14 max-w-7xl px-5 lg:px-8">
-        <div className="grid gap-6 md:grid-cols-3">
-          {visible.map((t, i) => (
-            <Reveal key={`${t.name}-${start}-${i}`} variant="up" delay={i * 0.15} className="relative rounded-3xl bg-card p-8 shadow-soft transition-all duration-500 hover:-translate-y-2 hover:shadow-lift">
-              <Quote className="h-8 w-8 text-primary" />
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{t.text}</p>
-              <div className="my-5 h-0.5 w-12 bg-gradient-brand" />
-              <div className="mb-4 flex gap-0.5" aria-label="5 star rating">
-                {Array.from({ length: 5 }).map((_, s) => <Star key={s} className="h-4 w-4 fill-primary text-primary" />)}
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="grid h-11 w-11 place-items-center rounded-full bg-gradient-brand font-display text-sm font-extrabold text-primary-foreground">
-                  {t.name.charAt(0)}
-                </span>
-                <span>
-                  <p className="font-display text-sm font-bold text-secondary">{t.name}</p>
-                  <p className="text-xs font-semibold text-muted-foreground">{t.location}</p>
-                </span>
-              </div>
-            </Reveal>
-          ))}
+      <div
+        className="relative mx-auto mt-14 max-w-7xl px-5 lg:px-8"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <div className="overflow-hidden">
+          <ul
+            className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            style={{ transform: `translateX(-${index * (100 / perView)}%)` }}
+            aria-live="polite"
+          >
+            {TESTIMONIALS.map((t, i) => (
+              <li key={t.name} className="shrink-0 px-3" style={{ flexBasis: `${100 / perView}%` }}>
+                <article
+                  className="group relative flex h-full flex-col rounded-3xl bg-white p-7 transition-all duration-500 hover:-translate-y-1.5"
+                  style={{ boxShadow: "0 24px 50px -28px rgba(69,54,96,0.28)" }}
+                >
+                  <div className="flex items-start justify-between">
+                    <span
+                      className="grid h-11 w-11 place-items-center rounded-full"
+                      style={{ background: "rgba(69,54,96,0.1)", color: "#453660" }}
+                      aria-hidden
+                    >
+                      <Quote className="h-5 w-5" />
+                    </span>
+                    <div className="flex gap-0.5" role="img" aria-label="Rated 5 out of 5 stars">
+                      {Array.from({ length: 5 }).map((_, s) => (
+                        <Star key={s} className="h-4 w-4" style={{ color: "#DA3234", fill: "#DA3234" }} aria-hidden />
+                      ))}
+                    </div>
+                  </div>
+                  <blockquote className="mt-5 flex-1 text-[14.5px] leading-relaxed" style={{ color: "#1E293BCC" }}>
+                    <p>{t.text}</p>
+                  </blockquote>
+                  <div className="my-5 h-px w-full" style={{ background: "rgba(69,54,96,0.12)" }} />
+                  <figcaption className="flex items-center gap-3">
+                    <span
+                      className="grid h-12 w-12 shrink-0 place-items-center rounded-full font-display text-base font-extrabold text-white"
+                      style={{ backgroundColor: t.color, boxShadow: `0 8px 20px -8px ${t.color}80` }}
+                      aria-hidden
+                    >
+                      {t.name.charAt(0)}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="truncate font-display text-[15px] font-extrabold" style={{ color: "#1E293B" }}>
+                        {t.name}
+                      </p>
+                      <p className="truncate text-xs font-semibold" style={{ color: "#1E293B99" }}>
+                        {t.location}
+                      </p>
+                      <p className="mt-0.5 truncate text-[12px] font-bold" style={{ color: "#453660" }}>
+                        {t.treatment}
+                      </p>
+                    </div>
+                  </figcaption>
+                </article>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <button onClick={() => setStart((start - 1 + pages) % pages)} aria-label="Previous"
-          className="absolute -left-2 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-card shadow-soft transition-transform hover:scale-110 lg:-left-6">
-          <ChevronLeft className="h-5 w-5 text-secondary" />
+        <button
+          type="button"
+          onClick={prev}
+          aria-label="Previous testimonial"
+          className="absolute -left-2 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-white transition-all duration-300 hover:scale-110 sm:grid lg:-left-6"
+          style={{ boxShadow: "0 10px 24px -10px rgba(69,54,96,0.35)", color: "#453660" }}
+        >
+          <ChevronLeft className="h-5 w-5" aria-hidden />
         </button>
-        <button onClick={() => setStart((start + 1) % pages)} aria-label="Next"
-          className="absolute -right-2 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-card shadow-soft transition-transform hover:scale-110 lg:-right-6">
-          <ChevronRight className="h-5 w-5 text-secondary" />
+        <button
+          type="button"
+          onClick={next}
+          aria-label="Next testimonial"
+          className="absolute -right-2 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-white transition-all duration-300 hover:scale-110 sm:grid lg:-right-6"
+          style={{ boxShadow: "0 10px 24px -10px rgba(69,54,96,0.35)", color: "#453660" }}
+        >
+          <ChevronRight className="h-5 w-5" aria-hidden />
         </button>
 
-        <div className="mt-10 flex justify-center gap-2">
-          {Array.from({ length: pages }).map((_, i) => (
-            <button key={i} onClick={() => setStart(i)} aria-label={`Slide ${i + 1}`}
-              className={`h-2.5 rounded-full transition-all duration-300 ${i === start ? "w-8 bg-gradient-brand" : "w-2.5 bg-border"}`} />
-          ))}
+        <div className="mt-8 flex items-center justify-center gap-4 sm:hidden">
+          <button
+            type="button"
+            onClick={prev}
+            aria-label="Previous testimonial"
+            className="grid h-11 w-11 place-items-center rounded-full bg-white shadow-soft"
+            style={{ color: "#453660" }}
+          >
+            <ChevronLeft className="h-5 w-5" aria-hidden />
+          </button>
+          <div className="flex items-center gap-2">
+            {Array.from({ length: pages }).map((_, i) => (
+              <button
+                key={i}
+                aria-label={`Slide ${i + 1}`}
+                onClick={() => setIndex(i)}
+                className="h-2.5 rounded-full transition-all duration-300"
+                style={{
+                  width: i === index ? 28 : 10,
+                  background: i === index ? "linear-gradient(90deg,#DA3234,#453660)" : "rgba(69,54,96,0.2)",
+                }}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={next}
+            aria-label="Next testimonial"
+            className="grid h-11 w-11 place-items-center rounded-full bg-white shadow-soft"
+            style={{ color: "#453660" }}
+          >
+            <ChevronRight className="h-5 w-5" aria-hidden />
+          </button>
         </div>
       </div>
+    </section>
+  );
+}
+
+/* ---------------- Stats strip (v2 — reference layout) ---------------- */
+const TRUST_ITEMS = [
+  { icon: MessageCircleHeart, value: "2000+", label: "Happy Patients", sub: "Trusted by thousands of patients", tone: "purple" as const },
+  { icon: BadgeCheck, value: "4.9/5", label: "Patient Rating", sub: "Based on Google reviews", tone: "red" as const },
+  { icon: MessageSquare, value: "98%", label: "Satisfaction Rate", sub: "Patients recommend our treatments", tone: "purple" as const },
+  { icon: HandHeart, value: "10+", label: "Years of Trust", sub: "A decade of compassionate vascular care", tone: "red" as const },
+];
+
+function Trust() {
+  return (
+    <section aria-labelledby="trust-heading" className="relative px-5 pb-6 lg:px-8">
+      <h2 id="trust-heading" className="sr-only">Clinic trust and patient satisfaction metrics</h2>
+      <Reveal variant="up" className="relative mx-auto max-w-7xl">
+        <div
+          className="overflow-hidden rounded-[2rem] p-6 sm:p-8"
+          style={{
+            background: "linear-gradient(135deg,#F3EEFA 0%,#EEE7F7 100%)",
+            boxShadow: "0 24px 50px -30px rgba(69,54,96,0.35)",
+          }}
+        >
+          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+            {TRUST_ITEMS.map((item, i) => {
+              const isPurple = item.tone === "purple";
+              const iconBg = isPurple ? "rgba(69,54,96,0.14)" : "rgba(218,50,52,0.12)";
+              const iconColor = isPurple ? "#453660" : "#DA3234";
+              return (
+                <Reveal
+                  as="li"
+                  key={item.label}
+                  variant="up"
+                  delay={i * 0.1}
+                  className="relative flex items-center gap-4 lg:justify-center"
+                >
+                  <span
+                    className="grid h-16 w-16 shrink-0 place-items-center rounded-full transition-transform duration-500 hover:scale-110"
+                    style={{ background: iconBg, color: iconColor }}
+                    aria-hidden
+                  >
+                    <item.icon className="h-7 w-7" strokeWidth={1.75} />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="font-display text-2xl font-black leading-none" style={{ color: "#1E293B" }}>
+                      {item.value}
+                    </p>
+                    <p className="mt-1 text-[13px] font-extrabold" style={{ color: "#1E293B" }}>
+                      {item.label}
+                    </p>
+                    <p className="mt-0.5 text-[11px] font-medium leading-snug" style={{ color: "#1E293B99" }}>
+                      {item.sub}
+                    </p>
+                  </div>
+                  {i < TRUST_ITEMS.length - 1 && (
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute right-0 top-1/2 hidden h-12 w-px -translate-y-1/2 lg:block"
+                      style={{ background: "rgba(69,54,96,0.15)" }}
+                    />
+                  )}
+                </Reveal>
+              );
+            })}
+          </ul>
+        </div>
+      </Reveal>
     </section>
   );
 }
@@ -345,28 +547,6 @@ function CTASection() {
   );
 }
 
-
-/* ---------------- Stats strip (light) ---------------- */
-function Trust() {
-  const items = [
-    { k: "10+", v: "Years of Excellence" },
-    { k: "5000+", v: "Successful Procedures" },
-    { k: "98%", v: "Patient Satisfaction" },
-    { k: "24/7", v: "Emergency Support" },
-  ];
-  return (
-    <section className="relative -mt-4">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-5 lg:grid-cols-4 lg:px-8">
-        {items.map((s, i) => (
-          <Reveal key={s.v} variant="up" delay={i * 0.1} className="rounded-2xl bg-card p-5 text-center shadow-soft">
-            <p className="font-display text-3xl font-extrabold text-gradient">{s.k}</p>
-            <p className="mt-1 text-xs font-semibold text-muted-foreground">{s.v}</p>
-          </Reveal>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 /* ---------------- Premium Doctor Hero (v2) ---------------- */
 const HERO_STATS = [
@@ -886,15 +1066,16 @@ function Home2() {
     <main className="bg-background [&_section]:scroll-mt-24">
       <Navbar />
       <Hero />
-      <Trust />
       <HeroPremium />
       <Hero3D />
       <Doctor />
       <Services />
       <Testimonials />
+      <Trust />
       <GoogleReviews />
       <CTASection />
       <Footer />
+
 
       {/* floating link to original */}
       <Link to="/" className="fixed bottom-6 left-6 z-40 rounded-full bg-white px-4 py-2 text-xs font-bold text-secondary shadow-lift transition-transform hover:scale-105">
