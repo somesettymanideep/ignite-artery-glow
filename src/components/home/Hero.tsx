@@ -1,150 +1,113 @@
-import { Calendar, ArrowRight, Sparkles, Zap, Activity, HeartPulse } from "lucide-react";
+import { Star, Check, Calendar, ArrowRight, Award, Activity, HeartPulse, Users } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import heroAsset from "@/assets/hero-varicose-legs.png.asset.json";
-import veinCloseup from "@/assets/vein-closeup.jpg";
-
 const heroImg = heroAsset.url;
 
-const chips = [
-  { icon: Sparkles, label: "Varicose Vein Treatment" },
-  { icon: Zap, label: "Endovenous Laser Therapy" },
-  { icon: Activity, label: "Peripheral Artery Disease Care" },
-  { icon: HeartPulse, label: "Non Healing Ulcer Management" },
-];
-
-const stats = [
-  { value: "400+", label: "AV Fistula Surgeries" },
-  { value: "100+", label: "Laser Surgeries for Varicose Veins" },
-  { value: "50+", label: "Limb Salvage Procedures" },
+const trust = [
+  "Experienced Vascular Specialists",
+  "Minimally Invasive Procedures",
+  "Advanced Diagnostic Technology",
+  "Personalized Patient Care",
 ];
 
 export function Hero() {
   return (
-    <section
-      id="home"
-      className="relative overflow-hidden pt-28 pb-24 lg:pt-32 lg:pb-32"
-      style={{
-        background:
-          "linear-gradient(135deg, #f6f2ff 0%, #ffffff 45%, #faf7ff 100%)",
-      }}
-    >
-      {/* Dot grid accent top-right */}
-      <div
-        className="pointer-events-none absolute right-10 top-24 hidden h-24 w-24 opacity-40 lg:block"
-        aria-hidden
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, #8b5cf6 1.2px, transparent 1.2px)",
-          backgroundSize: "14px 14px",
-        }}
-      />
+    <section id="home" className="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-28">
+      {/* Ambient gradient blobs */}
+      <div className="pointer-events-none absolute -top-32 -left-32 h-[480px] w-[480px] rounded-full bg-primary/10 blur-3xl" aria-hidden />
+      <div className="pointer-events-none absolute top-40 -right-40 h-[520px] w-[520px] rounded-full bg-secondary/15 blur-3xl" aria-hidden />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2 lg:gap-8 lg:px-8">
-        {/* LEFT */}
+      {/* Animated vascular lines */}
+      <svg
+        className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.07]"
+        viewBox="0 0 1440 900"
+        fill="none"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden
+      >
+        <path d="M-50 200 C 300 150, 500 400, 800 320 S 1300 200, 1500 350" stroke="var(--red-brand)" strokeWidth="2" className="vein-line" />
+        <path d="M-50 500 C 250 550, 600 380, 900 520 S 1350 650, 1500 550" stroke="var(--indigo-deep)" strokeWidth="2" className="vein-line" />
+        <path d="M-50 750 C 350 700, 550 850, 950 760 S 1350 700, 1500 800" stroke="var(--red-brand)" strokeWidth="1.5" className="vein-line" />
+      </svg>
+
+      <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2 lg:gap-10 lg:px-8">
+        {/* Left */}
         <Reveal variant="left">
-          <div className="mb-7 inline-flex items-center gap-2 rounded-full bg-[#4c1d95] px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white shadow-md">
-            Variation 02
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full glass-card px-4 py-2 text-sm font-semibold text-secondary">
+            <Star className="h-4 w-4 fill-primary text-primary" />
+            Advanced Vascular &amp; Endovascular Care
           </div>
 
-          <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-[#1a0b3d] sm:text-5xl xl:text-[3.5rem]">
-            Don't Ignore Vein Problems.
-            <br />
-            Treat Early,{" "}
-            <span style={{ color: "#e11d48" }}>Live Better.</span>
+          <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl xl:text-[3.4rem]">
+            Advanced Vascular Surgery with{" "}
+            <span className="text-gradient">Compassion &amp; Precision</span>
           </h1>
 
-          <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
-            From varicose veins to complex vascular conditions,
-            we provide safe, effective and advanced treatments
-            to improve your quality of life.
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            Ignite Vascular Center provides comprehensive diagnosis and treatment for diseases
+            affecting arteries, veins, and blood vessels using advanced minimally invasive
+            endovascular procedures and conventional vascular surgery.
           </p>
 
-          <ul className="mt-8 space-y-3.5">
-            {chips.map(({ icon: Icon, label }) => (
-              <li key={label} className="flex items-center gap-3">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#ede4ff] text-[#6d28d9]">
-                  <Icon className="h-4 w-4" />
-                </span>
-                <span className="text-[15px] font-semibold text-[#1a0b3d]">
-                  {label}
-                </span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-4">
             <a
               href="#cta"
-              className="inline-flex items-center gap-2 rounded-full bg-[#4c1d95] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-purple-900/25 transition-all duration-300 hover:scale-[1.03] hover:bg-[#5b21b6]"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-7 py-3.5 font-bold text-primary-foreground shadow-glow-red transition-all duration-300 hover:scale-105 hover:shadow-glow-indigo animate-pulse-glow"
             >
-              Book an Appointment <Calendar className="h-4 w-4" />
+              <Calendar className="h-5 w-5" /> Book Appointment
             </a>
             <a
               href="#services"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-[#4c1d95]/25 bg-white px-6 py-3 text-sm font-bold text-[#4c1d95] transition-all duration-300 hover:border-[#4c1d95] hover:bg-[#f5efff]"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-secondary/25 bg-card px-7 py-3.5 font-bold text-secondary transition-all duration-300 hover:border-secondary hover:bg-accent"
             >
-              Learn More <ArrowRight className="h-4 w-4" />
+              Our Services <ArrowRight className="h-5 w-5" />
             </a>
           </div>
+
+          <ul className="mt-10 grid gap-3 sm:grid-cols-2">
+            {trust.map((t) => (
+              <li key={t} className="flex items-center gap-2.5 text-sm font-semibold">
+                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gradient-brand text-primary-foreground">
+                  <Check className="h-3.5 w-3.5" />
+                </span>
+                {t}
+              </li>
+            ))}
+          </ul>
         </Reveal>
 
-        {/* RIGHT */}
+        {/* Right */}
         <Reveal variant="right" className="relative">
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-xl">
-            {/* Purple gradient circle backdrop */}
-            <div
-              className="absolute left-1/2 top-1/2 h-[92%] w-[92%] -translate-x-1/2 -translate-y-1/2 rounded-full"
-              style={{
-                background:
-                  "radial-gradient(circle at 30% 30%, #c4b5fd 0%, #a78bfa 45%, #7c3aed 100%)",
-              }}
-              aria-hidden
-            />
-            <div
-              className="absolute left-1/2 top-1/2 h-[88%] w-[88%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60 blur-2xl"
-              style={{ background: "#a78bfa" }}
-              aria-hidden
-            />
-
-            {/* Legs image */}
+          <div className="relative mx-auto max-w-lg">
+            <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-brand opacity-15 blur-2xl" aria-hidden />
             <img
               src={heroImg}
-              alt="Anatomical illustration of legs showing varicose veins"
+              alt="Vascular surgeon with advanced digital artery visualization at Ignite Vascular Center"
               width={1024}
-              height={1280}
-              className="relative z-10 h-full w-full object-contain drop-shadow-2xl"
+              height={1152}
+              className="relative w-full rounded-[2rem] object-cover shadow-lift"
             />
 
-            {/* Vein close-up floating circle */}
-            <div className="absolute left-[38%] top-[38%] z-20 h-28 w-28 overflow-hidden rounded-full border-4 border-white shadow-2xl animate-float sm:h-36 sm:w-36">
-              <img
-                src={veinCloseup}
-                alt="Close-up of vein cross-section"
-                width={768}
-                height={768}
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
+            {/* Floating glass cards */}
+            <div className="glass-card animate-float absolute -left-4 top-8 flex items-center gap-3 rounded-2xl px-4 py-3 sm:-left-10">
+              <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-brand text-primary-foreground"><Award className="h-5 w-5" /></span>
+              <span className="text-sm font-bold leading-tight">20+ Years<br /><span className="text-xs font-semibold text-muted-foreground">Experience</span></span>
+            </div>
+            <div className="glass-card animate-float-slower absolute -right-4 top-1/3 flex items-center gap-3 rounded-2xl px-4 py-3 sm:-right-8">
+              <span className="grid h-10 w-10 place-items-center rounded-xl bg-secondary text-secondary-foreground"><Activity className="h-5 w-5" /></span>
+              <span className="text-sm font-bold leading-tight">Advanced<br /><span className="text-xs font-semibold text-muted-foreground">Endovascular Procedures</span></span>
+            </div>
+            <div className="glass-card animate-float absolute -left-2 bottom-24 flex items-center gap-3 rounded-2xl px-4 py-3 [animation-delay:1.2s] sm:-left-12">
+              <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-brand text-primary-foreground"><HeartPulse className="h-5 w-5" /></span>
+              <span className="text-sm font-bold leading-tight">Patient-Centered<br /><span className="text-xs font-semibold text-muted-foreground">Care</span></span>
+            </div>
+            <div className="glass-card animate-float-slower absolute -right-2 -bottom-5 flex items-center gap-3 rounded-2xl px-4 py-3 [animation-delay:0.6s] sm:-right-6">
+              <span className="grid h-10 w-10 place-items-center rounded-xl bg-secondary text-secondary-foreground"><Users className="h-5 w-5" /></span>
+              <span className="text-sm font-bold leading-tight">Trusted by<br /><span className="text-xs font-semibold text-muted-foreground">Thousands</span></span>
             </div>
           </div>
         </Reveal>
       </div>
-
-      {/* Stats card */}
-      <Reveal variant="up" className="relative mx-auto mt-14 max-w-5xl px-5 lg:px-8">
-        <div className="grid grid-cols-3 gap-6 rounded-2xl bg-white p-6 shadow-[0_20px_60px_-20px_rgba(76,29,149,0.25)] ring-1 ring-purple-100 sm:p-8">
-          {stats.map((s) => (
-            <div key={s.label} className="text-center sm:text-left">
-              <div className="text-3xl font-extrabold text-[#4c1d95] sm:text-4xl">
-                {s.value}
-              </div>
-              <div className="mt-1 text-xs font-medium text-muted-foreground sm:text-sm">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </Reveal>
     </section>
   );
 }
