@@ -91,7 +91,11 @@ function MissionVision() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#fdf3f5] via-white to-[#f4eefb] pb-16 pt-6 sm:pb-20 sm:pt-4">
+    <section className="relative overflow-hidden pb-16 pt-6 sm:pb-20 sm:pt-4">
+      <div aria-hidden className="absolute inset-0 -z-10">
+        <img src={mvBgImg} alt="" width={1920} height={1024} loading="lazy" className="h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/60 to-white/85" />
+      </div>
       <div aria-hidden className="pointer-events-none absolute left-0 top-10 hidden h-[420px] w-[220px] opacity-70 md:block">
         <svg viewBox="0 0 220 420" fill="none" className="h-full w-full" shapeRendering="geometricPrecision">
           <path d="M10 0 C 60 90, 30 160, 90 220 S 40 340, 120 420" stroke="url(#vg1)" strokeWidth="1.4" strokeLinecap="round" opacity="0.7" />
