@@ -113,17 +113,17 @@ export function Navbar() {
                     to="/services/$slug"
                     params={{ slug: s.slug }}
                     role="menuitem"
-                    className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-gradient-brand-soft"
+                    className="group flex items-start gap-3 rounded-xl px-3 py-2.5 transition hover:bg-secondary"
                     onClick={() => setTreatOpen(false)}
                   >
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-brand-soft text-primary transition group-hover:bg-white">
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-brand-soft text-primary transition group-hover:bg-white/10 group-hover:text-white">
                       <s.icon className="h-4 w-4" />
                     </span>
-                    <span className="min-w-0">
-                      <span className="block truncate text-[13px] font-bold text-secondary">
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[13px] font-bold leading-tight text-secondary group-hover:text-white">
                         {s.title}
                       </span>
-                      <span className="block truncate text-[11px] text-muted-foreground">
+                      <span className="mt-0.5 block text-[11px] leading-snug text-muted-foreground group-hover:text-white/75">
                         {s.short}
                       </span>
                     </span>
