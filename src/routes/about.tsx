@@ -495,8 +495,8 @@ function AboutPage() {
       <SubBanner />
       <Hero />
       <div className="h-10 lg:h-16 bg-white" aria-hidden />
-      <MissionVision />
       <WhyChoose />
+      <MissionVision />
       <Doctor />
       <StatsBar />
       <Commitment />
