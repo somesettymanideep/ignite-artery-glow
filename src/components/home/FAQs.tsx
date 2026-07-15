@@ -200,6 +200,34 @@ export function FAQs() {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-8px); }
         }
+        @keyframes orbit-dash {
+          to { stroke-dashoffset: -80; }
+        }
+        .faq-orbit path {
+          stroke-dasharray: 4 6;
+          animation: orbit-dash 12s linear infinite;
+        }
+        .faq-accordion-body {
+          transition: grid-template-rows 500ms cubic-bezier(0.22, 1, 0.36, 1),
+                      padding 500ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .faq-accordion-body > div > p {
+          opacity: 0;
+          transform: translateY(-4px);
+          transition: opacity 400ms ease 80ms, transform 400ms ease 80ms;
+        }
+        .faq-accordion-open .faq-accordion-body > div > p {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-\\[floaty_6s_ease-in-out_infinite\\] { animation: none !important; }
+          .faq-orbit path { animation: none !important; }
+          .faq-accordion-body,
+          .faq-accordion-body > div > p {
+            transition: none !important;
+          }
+        }
       `}</style>
     </section>
   );
