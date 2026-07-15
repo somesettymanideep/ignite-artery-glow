@@ -402,12 +402,12 @@ export function InstagramFeed() {
           role="list"
           aria-label="Instagram reels"
         >
-          {REELS.concat(REELS).map((r, i) => (
+          {(isMobile ? REELS : REELS.concat(REELS)).map((r, i) => (
             <Reveal
               key={i}
               variant="up"
               delay={(i % 5) * 0.06}
-              className="reveal shrink-0 snap-start"
+              className="reveal shrink-0 snap-center md:snap-start basis-full md:basis-auto flex justify-center"
             >
               <ReelCard
                 reel={r}
@@ -419,6 +419,29 @@ export function InstagramFeed() {
             </Reveal>
           ))}
         </div>
+
+        {/* Mobile carousel arrows */}
+        {isMobile && (
+          <div className="mt-4 flex items-center justify-center gap-4 md:hidden">
+            <button
+              type="button"
+              onClick={() => slideBy(-1)}
+              aria-label="Previous reel"
+              className="grid h-11 w-11 place-items-center rounded-full border border-border bg-white text-secondary shadow-md transition-all hover:scale-105 hover:border-primary hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => slideBy(1)}
+              aria-label="Next reel"
+              className="grid h-11 w-11 place-items-center rounded-full bg-[linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4)] text-white shadow-glow-red transition-all hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
+        )}
+
       </div>
     </section>
   );
