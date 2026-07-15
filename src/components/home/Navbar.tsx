@@ -147,7 +147,6 @@ export function Navbar() {
     return <li key={item.label}>{renderLink(item, false)}</li>;
   };
 
-  const isHome = pathname === "/";
 
   const cta = (
     <button
