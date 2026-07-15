@@ -72,9 +72,9 @@ function Hero() {
           </ul>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#cta" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105">
+            <button type="button" onClick={() => openBookingModal()} className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105">
               Book Appointment <span className="grid h-6 w-6 place-items-center rounded-full bg-white/25"><ArrowRight className="h-3.5 w-3.5" /></span>
-            </a>
+            </button>
             <a href="#services" className="inline-flex items-center gap-2 rounded-full border-2 border-secondary/20 bg-white px-6 py-3.5 text-sm font-bold text-secondary transition-colors duration-300 hover:border-primary hover:text-primary">
               Our Services <span className="grid h-6 w-6 place-items-center rounded-full bg-primary/10 text-primary"><ArrowRight className="h-3.5 w-3.5" /></span>
             </a>
@@ -462,9 +462,9 @@ function CTASection() {
                 </Reveal>
               ))}
             </div>
-            <a href="tel:+919966117292" className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-105">
+            <button type="button" onClick={() => openBookingModal()} className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-105">
               Book Appointment Now <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-primary-foreground"><ArrowRight className="h-3.5 w-3.5" /></span>
-            </a>
+            </button>
           </div>
         </div>
       </Reveal>
@@ -600,7 +600,7 @@ function HeroPremium() {
           {/* CTAs */}
           <Reveal variant="zoom" delay={0.85}>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#cta"
+              <button type="button" onClick={() => openBookingModal()}
                 className="group inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:scale-105"
                 style={{
                   background: "#DA3234",
@@ -612,7 +612,7 @@ function HeroPremium() {
                 <span className="grid h-6 w-6 place-items-center rounded-full bg-white/25 transition-transform group-hover:translate-x-0.5">
                   <ArrowRight className="h-3.5 w-3.5" />
                 </span>
-              </a>
+              </button>
               <Link to="/second-opinion"
                 className="inline-flex items-center gap-2 rounded-full border-2 bg-white px-7 py-3.5 text-sm font-bold transition-all duration-300 hover:-translate-y-0.5"
                 style={{ borderColor: "#453660", color: "#453660" }}>

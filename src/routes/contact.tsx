@@ -270,12 +270,12 @@ function AppointmentBanner() {
               </div>
             </Reveal>
             <Reveal variant="right" delay={0.16}>
-              <a href="tel:+919966117292" className="inline-flex items-center justify-center gap-2.5 rounded-full bg-white px-6 py-3.5 font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-105">
+              <button type="button" onClick={() => openBookingModal()} className="inline-flex items-center justify-center gap-2.5 rounded-full bg-white px-6 py-3.5 font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-105">
                 Book Appointment
                 <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-brand text-primary-foreground">
                   <ArrowRight className="h-3.5 w-3.5" />
                 </span>
-              </a>
+              </button>
             </Reveal>
           </div>
         </Reveal>

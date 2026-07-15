@@ -314,9 +314,9 @@ function ServiceDetail() {
                   </div>
                   <p className="relative mt-4 max-w-2xl text-[15px] leading-relaxed text-white/85">{service.recovery}</p>
                   <div className="relative mt-6 flex flex-wrap gap-3">
-                    <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-[13.5px] font-bold text-primary-foreground shadow-glow-red">
+                    <button type="button" onClick={() => openBookingModal()} className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-[13.5px] font-bold text-primary-foreground shadow-glow-red">
                       Book a Consultation <ArrowRight className="h-4 w-4" />
-                    </Link>
+                    </button>
                     <a href="tel:+919966117292" className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-2.5 text-[13.5px] font-bold text-white backdrop-blur transition hover:bg-white/20">
                       <Phone className="h-4 w-4" /> +91 99661 17292
                     </a>
@@ -517,9 +517,9 @@ function FAQSection({ faqs, title }: { faqs: { q: string; a: string }[]; title: 
             <p className="font-display text-lg font-extrabold">Still have questions?</p>
             <p className="text-sm text-white/80">Talk to our vascular specialist for a personalised answer.</p>
           </div>
-          <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-3 text-sm font-bold text-primary-foreground shadow-glow-red">
+          <button type="button" onClick={() => openBookingModal()} className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-3 text-sm font-bold text-primary-foreground shadow-glow-red">
             <Phone className="h-4 w-4" /> Book a Consultation
-          </Link>
+          </button>
         </Reveal>
       </div>
     </section>

@@ -363,12 +363,13 @@ function GalleryTwoPage() {
                   </p>
                 </div>
               </div>
-              <a
-                href="/contact"
+              <button
+                type="button"
+                onClick={() => openBookingModal()}
                 className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-secondary shadow-lift transition-transform duration-300 hover:scale-105"
               >
                 Book an Appointment <ArrowRight className="h-4 w-4" />
-              </a>
+              </button>
             </div>
           </div>
         </Reveal>

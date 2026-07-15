@@ -346,15 +346,16 @@ function CaseStudiesPage() {
                   </div>
                 </div>
                 <Reveal variant="right" delay={0.28}>
-                  <Link
-                    to="/contact"
+                  <button
+                    type="button"
+                    onClick={() => openBookingModal()}
                     className="group inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-bold text-secondary transition-transform hover:scale-105"
                   >
                     Book an Appointment
                     <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-white transition-transform group-hover:translate-x-0.5">
                       <ArrowRight className="h-3.5 w-3.5" />
                     </span>
-                  </Link>
+                  </button>
                 </Reveal>
 
 
