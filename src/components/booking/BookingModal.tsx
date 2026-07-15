@@ -89,14 +89,12 @@ export function BookingModal() {
         <div className="relative overflow-hidden bg-gradient-brand px-6 pb-8 pt-7 text-white">
           <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-white/15 blur-2xl" aria-hidden />
           <div className="pointer-events-none absolute -left-10 -bottom-10 h-32 w-32 rounded-full bg-white/10 blur-2xl" aria-hidden />
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
+          <DialogClose
             aria-label="Close"
-            className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition-colors hover:bg-white/25"
+            className="absolute right-4 top-4 z-20 grid h-9 w-9 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition-colors hover:bg-white/25 focus:outline-none focus:ring-2 focus:ring-white/60"
           >
             <X className="h-4 w-4" />
-          </button>
+          </DialogClose>
           <DialogHeader className="relative space-y-1.5 text-left">
             <div className="inline-flex w-fit items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-[11px] font-bold uppercase tracking-widest backdrop-blur">
               <CalendarIcon className="h-3.5 w-3.5" /> Appointment
