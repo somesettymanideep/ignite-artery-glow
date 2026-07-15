@@ -167,47 +167,7 @@ function Hero() {
 
         {/* Right image */}
         <Reveal variant="right" delay={0.12} className="relative lg:-mr-[max(2rem,calc((100vw-1280px)/2))]">
-          <div className="relative h-[420px] sm:h-[520px] lg:h-[600px]">
-            {/* Curved divider SVG */}
-            <svg
-              className="absolute top-0 left-0 z-10 h-full w-16 lg:w-24"
-              viewBox="0 0 120 600"
-              preserveAspectRatio="none"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path
-                d="M120,0 C30,120 30,480 120,600"
-                stroke="#311261"
-                strokeWidth="12"
-                strokeLinecap="round"
-              />
-            </svg>
-
-            <div className="absolute inset-0 overflow-hidden rounded-l-[60px] sm:rounded-l-[80px] lg:rounded-l-[120px]">
-              <img
-                src={heroImg}
-                alt="Anatomical illustration of the vascular tree"
-                width={1200}
-                height={1000}
-                className="h-full w-full object-cover"
-              />
-            </div>
-
-            <div className="absolute -bottom-5 left-4 right-4 z-20 rounded-xl bg-white p-5 shadow-lift sm:left-6 sm:right-auto sm:max-w-[340px]">
-              <div className="flex items-start gap-4">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-red-50 text-primary">
-                  <ShieldCheck className="h-5 w-5" strokeWidth={1.8} />
-                </span>
-                <div>
-                  <p className="font-display text-[14px] font-extrabold text-secondary">Not Sure About Your Diagnosis or Treatment?</p>
-                  <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">
-                    A second opinion can help you explore better options and ensure the right care for your vascular health.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ServicesCarousel />
         </Reveal>
       </div>
     </section>
