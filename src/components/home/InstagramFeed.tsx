@@ -126,7 +126,6 @@ function ReelCard({ reel, index, isActive, onPlayRequest, onPauseRequest, regist
           src={reel.video}
           loop
           playsInline
-          muted={!isActive}
           preload="metadata"
           aria-label={`Video: ${reel.caption}`}
           onLoadedData={() => setVideoReady(true)}
@@ -220,6 +219,8 @@ export function InstagramFeed() {
   const registerVideo = useCallback((idx: number, el: HTMLVideoElement | null) => {
     if (el) {
       videoRefs.current.set(idx, el);
+      el.muted = true;
+      el.defaultMuted = true;
     } else {
       videoRefs.current.delete(idx);
     }
@@ -234,6 +235,7 @@ export function InstagramFeed() {
       if (i !== idx) {
         try { el.pause(); } catch {}
         el.muted = true;
+        el.defaultMuted = true;
       }
     });
 
@@ -250,7 +252,10 @@ export function InstagramFeed() {
       target.removeAttribute("muted");
       const p = target.play();
       if (p && typeof p.catch === "function") {
-        p.catch(() => {});
+        p.catch(() => {
+          activeIdxRef.current = null;
+          setActiveIdx(null);
+        });
       }
     };
     tryPlay();
@@ -268,6 +273,7 @@ export function InstagramFeed() {
     if (!target) return;
     try { target.pause(); } catch {}
     target.muted = true;
+    target.defaultMuted = true;
     if (activeIdxRef.current === idx) {
       activeIdxRef.current = null;
       setActiveIdx(null);
