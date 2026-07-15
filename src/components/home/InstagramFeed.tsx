@@ -266,8 +266,7 @@ export function InstagramFeed() {
   }, []);
 
   const toggleSound = useCallback((idx: number) => {
-    // Run audio side effects SYNCHRONOUSLY in the user gesture (outside any
-    // setState updater — those may run twice in StrictMode and undo the effect).
+    console.log("[ig] toggleSound", idx, "hasVideo:", videoRefs.current.has(idx));
     const target = videoRefs.current.get(idx);
     if (!target) return;
 

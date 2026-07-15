@@ -26,14 +26,14 @@ export function ScrollToTop() {
 
   return (
     <div
-      className={`fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 transition-all duration-500 ${
-        visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"
+      className={`pointer-events-none fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 transition-all duration-500 ${
+        visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       }`}
     >
       {/* Services popover */}
       <div
         className={`w-72 origin-bottom-right overflow-hidden rounded-3xl border border-border/60 bg-white shadow-lift transition-all duration-300 ease-out ${
-          open ? "scale-100 opacity-100 translate-y-0" : "scale-90 opacity-0 translate-y-4 pointer-events-none"
+          open ? "pointer-events-auto scale-100 opacity-100 translate-y-0" : "pointer-events-none scale-90 opacity-0 translate-y-4"
         }`}
       >
         <div className="bg-gradient-brand px-5 py-3.5">
@@ -59,7 +59,7 @@ export function ScrollToTop() {
       </div>
 
       {/* Controls */}
-      <div className="flex items-center gap-2">
+      <div className="pointer-events-auto flex items-center gap-2">
         <button
           onClick={() => setOpen((o) => !o)}
           aria-expanded={open}
