@@ -301,9 +301,20 @@ export function InstagramFeed() {
     }
   }, []);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
+    if (isMobile) return; // no autoplay on mobile
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let raf = 0;
     let paused = false;
@@ -330,7 +341,14 @@ export function InstagramFeed() {
       el.removeEventListener("touchstart", onEnter);
       el.removeEventListener("touchend", onLeave);
     };
-  }, [unmutedIdx]);
+  }, [unmutedIdx, isMobile]);
+
+  const slideBy = useCallback((dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * el.clientWidth, behavior: "smooth" });
+  }, []);
+
 
   return (
     <section id="instagram" className="relative overflow-hidden bg-white py-20 lg:py-28">
