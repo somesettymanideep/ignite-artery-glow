@@ -510,5 +510,3 @@ function FAQSection({ faqs, title }: { faqs: { q: string; a: string }[]; title: 
   );
 }
 
-// Silence unused import warning kept for shared iconography.
-void Sparkles;
