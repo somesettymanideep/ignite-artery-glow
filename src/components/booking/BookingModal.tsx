@@ -72,7 +72,7 @@ export function BookingModal() {
       setErrors(errs);
       return;
     }
-    // Success — in real app: send to backend / email service
+    addSubmission("booking", parsed.data);
     setSubmitted(true);
   };
 
