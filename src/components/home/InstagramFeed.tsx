@@ -264,22 +264,33 @@ export function InstagramFeed() {
   }, []);
 
   const toggleSound = useCallback((idx: number) => {
-    setUnmutedIdx((prev) => (prev === idx ? null : idx));
-  }, []);
+    // Perform audio changes SYNCHRONOUSLY inside the user gesture — browsers
+    // block programmatic unmute+play if it happens after an async state update.
+    const target = videoRefs.current.get(idx);
+    if (!target) return;
 
-  useEffect(() => {
-    videoRefs.current.forEach((el, idx) => {
-      const shouldUnmute = idx === unmutedIdx;
-      el.muted = !shouldUnmute;
-      if (shouldUnmute) {
-        el.volume = 1;
-        const p = el.play();
+    setUnmutedIdx((prev) => {
+      const willUnmute = prev !== idx;
+
+      // Mute every other video immediately
+      videoRefs.current.forEach((el, i) => {
+        if (i !== idx) el.muted = true;
+      });
+
+      target.muted = !willUnmute;
+      if (willUnmute) {
+        target.volume = 1;
+        const p = target.play();
         if (p && typeof p.catch === "function") {
-          p.catch(() => setUnmutedIdx(null));
+          p.catch(() => {
+            target.muted = true;
+            setUnmutedIdx(null);
+          });
         }
       }
+      return willUnmute ? idx : null;
     });
-  }, [unmutedIdx]);
+  }, []);
 
   useEffect(() => {
     const el = trackRef.current;
