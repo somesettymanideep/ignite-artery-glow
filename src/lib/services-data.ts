@@ -1,7 +1,7 @@
 import {
   Waves, HeartPulse, Syringe, Activity, Footprints, ShieldPlus,
 } from "lucide-react";
-import varicoseImg from "@/assets/service-varicose.jpg";
+import varicoseImg from "@/assets/service-varicose.png.asset.json";
 import padImg from "@/assets/service-pad.jpg";
 import endoImg from "@/assets/service-endo.jpg";
 import dvtImg from "@/assets/service-dvt.jpg";
