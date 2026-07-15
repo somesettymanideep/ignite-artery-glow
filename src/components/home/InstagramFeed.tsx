@@ -253,6 +253,7 @@ export function InstagramFeed() {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
   const [unmutedIdx, setUnmutedIdx] = useState<number | null>(null);
+  const unmutedIdxRef = useRef<number | null>(null);
 
   const registerVideo = useCallback((idx: number, el: HTMLVideoElement | null) => {
     if (el) {
@@ -264,32 +265,39 @@ export function InstagramFeed() {
   }, []);
 
   const toggleSound = useCallback((idx: number) => {
-    // Perform audio changes SYNCHRONOUSLY inside the user gesture — browsers
-    // block programmatic unmute+play if it happens after an async state update.
+    // Run audio side effects SYNCHRONOUSLY in the user gesture (outside any
+    // setState updater — those may run twice in StrictMode and undo the effect).
     const target = videoRefs.current.get(idx);
     if (!target) return;
 
-    setUnmutedIdx((prev) => {
-      const willUnmute = prev !== idx;
+    const willUnmute = unmutedIdxRef.current !== idx;
 
-      // Mute every other video immediately
-      videoRefs.current.forEach((el, i) => {
-        if (i !== idx) el.muted = true;
-      });
-
-      target.muted = !willUnmute;
-      if (willUnmute) {
-        target.volume = 1;
-        const p = target.play();
-        if (p && typeof p.catch === "function") {
-          p.catch(() => {
-            target.muted = true;
-            setUnmutedIdx(null);
-          });
-        }
+    // Mute every other video first
+    videoRefs.current.forEach((el, i) => {
+      if (i !== idx) {
+        el.muted = true;
       }
-      return willUnmute ? idx : null;
     });
+
+    if (willUnmute) {
+      target.muted = false;
+      target.volume = 1;
+      // Always (re)start playback when the user turns sound on
+      const p = target.play();
+      if (p && typeof p.catch === "function") {
+        p.catch(() => {
+          target.muted = true;
+          unmutedIdxRef.current = null;
+          setUnmutedIdx(null);
+        });
+      }
+      unmutedIdxRef.current = idx;
+      setUnmutedIdx(idx);
+    } else {
+      target.muted = true;
+      unmutedIdxRef.current = null;
+      setUnmutedIdx(null);
+    }
   }, []);
 
   useEffect(() => {
