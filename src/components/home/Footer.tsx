@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { MapPin, Phone, Mail, Clock, Heart } from "lucide-react";
 import { FaFacebook, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
 import { Reveal } from "@/hooks/use-reveal";
+import logoAsset from "@/assets/ignite-logo.png.asset.json";
 
 const quickLinks: { label: string; to: string }[] = [
   { label: "Home", to: "/" },
