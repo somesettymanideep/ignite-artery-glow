@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ScrollToTop } from "@/components/home/ScrollToTop";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
+import { BookingModal } from "@/components/booking/BookingModal";
 
 function NotFoundComponent() {
   return (
@@ -182,6 +183,7 @@ function RootComponent() {
       <Outlet />
       <ScrollToTop />
       <FloatingEmergency />
+      <BookingModal />
     </QueryClientProvider>
   );
 }
