@@ -7,6 +7,7 @@ import {
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
+import { SubBanner } from "@/components/home/SubBanner";
 import { SERVICES, getServiceBySlug } from "@/lib/services-data";
 
 export const Route = createFileRoute("/services/$slug")({
@@ -98,8 +99,11 @@ function ServiceDetail() {
     <>
       <Navbar />
       <main className="bg-white">
+        {/* Sub-page banner */}
+        <SubBanner title={service.title} crumb={service.title} image={service.image} />
+
         {/* Hero */}
-        <section className="relative overflow-hidden pt-28 lg:pt-32">
+        <section className="relative overflow-hidden pt-16 lg:pt-20">
           {/* Ambient decor */}
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-primary/10 blur-3xl" />
@@ -108,13 +112,7 @@ function ServiceDetail() {
           </div>
 
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[13px] font-semibold text-muted-foreground">
-              <Link to="/" className="hover:text-primary">Home</Link>
-              <ChevronRight className="h-3.5 w-3.5" />
-              <Link to="/treatments" className="hover:text-primary">Services</Link>
-              <ChevronRight className="h-3.5 w-3.5" />
-              <span className="text-secondary">{service.title}</span>
-            </nav>
+
 
             <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
               {/* Left */}
