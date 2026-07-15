@@ -109,6 +109,89 @@ const FAQS = [
   },
 ];
 
+function ServicesCarousel() {
+  const [idx, setIdx] = useState(0);
+  const count = SERVICES.length;
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    const t = setInterval(() => setIdx((i) => (i + 1) % count), 3800);
+    return () => clearInterval(t);
+  }, [count]);
+
+  return (
+    <div className="relative h-[420px] sm:h-[520px] lg:h-[600px]">
+      <svg
+        className="absolute top-0 left-0 z-10 h-full w-16 lg:w-24"
+        viewBox="0 0 120 600"
+        preserveAspectRatio="none"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path d="M120,0 C30,120 30,480 120,600" stroke="#311261" strokeWidth="12" strokeLinecap="round" />
+      </svg>
+
+      <div className="absolute inset-0 overflow-hidden rounded-l-[60px] sm:rounded-l-[80px] lg:rounded-l-[120px] bg-secondary/5">
+        {SERVICES.map((s, i) => (
+          <img
+            key={s.slug}
+            src={s.image}
+            alt={s.title}
+            loading={i === 0 ? "eager" : "lazy"}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-out ${
+              i === idx ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+
+        {/* Title chip */}
+        <div className="absolute left-6 right-6 bottom-24 sm:bottom-28 z-20">
+          {SERVICES.map((s, i) => (
+            <p
+              key={s.slug}
+              className={`font-display text-lg sm:text-xl font-extrabold text-white drop-shadow transition-all duration-500 ${
+                i === idx ? "opacity-100 translate-y-0" : "pointer-events-none absolute inset-x-0 opacity-0 translate-y-2"
+              }`}
+            >
+              {s.title}
+            </p>
+          ))}
+        </div>
+
+        {/* Dots */}
+        <div className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 flex items-center gap-2">
+          {SERVICES.map((s, i) => (
+            <button
+              key={s.slug}
+              type="button"
+              aria-label={`Show ${s.title}`}
+              onClick={() => setIdx(i)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === idx ? "w-6 bg-white" : "w-2 bg-white/50 hover:bg-white/80"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="absolute -bottom-5 left-4 right-4 z-30 rounded-xl bg-white p-5 shadow-lift sm:left-6 sm:right-auto sm:max-w-[340px]">
+        <div className="flex items-start gap-4">
+          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-red-50 text-primary">
+            <ShieldCheck className="h-5 w-5" strokeWidth={1.8} />
+          </span>
+          <div>
+            <p className="font-display text-[14px] font-extrabold text-secondary">Not Sure About Your Diagnosis or Treatment?</p>
+            <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">
+              A second opinion can help you explore better options and ensure the right care for your vascular health.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#f7f8fc] pt-28 lg:pt-32">
