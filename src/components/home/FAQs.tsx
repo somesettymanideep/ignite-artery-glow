@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Minus, ArrowRight, Headphones, Phone, Activity, HeartPulse, ClipboardCheck, ShieldCheck } from "lucide-react";
+import { Plus, Minus, Headphones, Phone, Activity, HeartPulse, ClipboardCheck, ShieldCheck } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 
 const FAQS = [
