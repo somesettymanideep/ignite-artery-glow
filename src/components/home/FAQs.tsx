@@ -66,7 +66,7 @@ export function FAQs() {
                     <div
                       className={`rounded-2xl border transition-all ${
                         isOpen
-                          ? "border-primary/30 bg-red-soft/15 shadow-lg shadow-primary/10"
+                          ? "faq-accordion-open border-primary/30 bg-red-soft/15 shadow-lg shadow-primary/10"
                           : "border-border bg-card hover:border-primary/30 hover:shadow-md"
                       }`}
                     >
@@ -89,7 +89,7 @@ export function FAQs() {
                         </span>
                       </button>
                       <div
-                        className={`grid overflow-hidden px-5 transition-all duration-500 ease-out ${
+                        className={`faq-accordion-body grid overflow-hidden px-5 ${
                           isOpen ? "grid-rows-[1fr] pb-5" : "grid-rows-[0fr]"
                         }`}
                       >
@@ -121,7 +121,7 @@ export function FAQs() {
           <Reveal variant="fade" delay={0.1}>
             <div className="relative mx-auto h-[560px] w-full max-w-xl">
               {/* connecting dashed lines */}
-              <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 500 560" fill="none" aria-hidden>
+              <svg className="faq-orbit pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 500 560" fill="none" aria-hidden>
                 <path d="M120 130 Q 250 260 380 130" stroke="currentColor" strokeDasharray="4 6" className="text-secondary/20" strokeWidth="1.5" />
                 <path d="M120 430 Q 250 300 380 430" stroke="currentColor" strokeDasharray="4 6" className="text-secondary/20" strokeWidth="1.5" />
                 <path d="M120 130 L 120 430" stroke="currentColor" strokeDasharray="4 6" className="text-secondary/20" strokeWidth="1.5" />
@@ -199,6 +199,34 @@ export function FAQs() {
         @keyframes floaty {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-8px); }
+        }
+        @keyframes orbit-dash {
+          to { stroke-dashoffset: -80; }
+        }
+        .faq-orbit path {
+          stroke-dasharray: 4 6;
+          animation: orbit-dash 12s linear infinite;
+        }
+        .faq-accordion-body {
+          transition: grid-template-rows 500ms cubic-bezier(0.22, 1, 0.36, 1),
+                      padding 500ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .faq-accordion-body > div > p {
+          opacity: 0;
+          transform: translateY(-4px);
+          transition: opacity 400ms ease 80ms, transform 400ms ease 80ms;
+        }
+        .faq-accordion-open .faq-accordion-body > div > p {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-\\[floaty_6s_ease-in-out_infinite\\] { animation: none !important; }
+          .faq-orbit path { animation: none !important; }
+          .faq-accordion-body,
+          .faq-accordion-body > div > p {
+            transition: none !important;
+          }
         }
       `}</style>
     </section>
