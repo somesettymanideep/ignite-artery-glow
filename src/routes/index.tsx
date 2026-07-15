@@ -14,6 +14,58 @@ import { Reveal } from "@/hooks/use-reveal";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "Best Vascular Surgeon in Vijayawada | Best Endovascular Surgeon — Ignite Vascular Center" },
+      {
+        name: "description",
+        content:
+          "Ignite Vascular Center, Vijayawada — led by Dr. G. Narasimha Sai, one of the best vascular & endovascular surgeons in Vijayawada. Advanced treatment for varicose veins, DVT, PAD, diabetic foot & limb salvage.",
+      },
+      {
+        name: "keywords",
+        content:
+          "best vascular surgeon in Vijayawada, best endovascular surgeon, vascular surgeon Vijayawada, endovascular surgery Vijayawada, varicose veins treatment Vijayawada, DVT treatment, PAD treatment, diabetic foot care, limb salvage, Ignite Vascular Center",
+      },
+      { property: "og:title", content: "Best Vascular & Endovascular Surgeon in Vijayawada — Ignite Vascular Center" },
+      {
+        property: "og:description",
+        content:
+          "Advanced vascular & endovascular care in Vijayawada by Dr. G. Narasimha Sai (DrNB Vascular Surgery, NIMS). Book a consultation today.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://ignite-artery-glow.lovable.app/" },
+    ],
+    links: [{ rel: "canonical", href: "https://ignite-artery-glow.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "MedicalBusiness",
+          name: "Ignite Vascular Center",
+          description:
+            "Home to one of the best vascular and endovascular surgeons in Vijayawada, offering advanced treatment for varicose veins, DVT, PAD, diabetic foot and limb salvage.",
+          url: "https://ignite-artery-glow.lovable.app/",
+          telephone: "+91-00000-00000",
+          medicalSpecialty: ["VascularSurgery", "Endovascular Surgery"],
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Kasturibai Peta",
+            addressLocality: "Vijayawada",
+            addressRegion: "Andhra Pradesh",
+            addressCountry: "IN",
+          },
+          physician: {
+            "@type": "Physician",
+            name: "Dr. G. Narasimha Sai",
+            medicalSpecialty: "Vascular and Endovascular Surgery",
+            qualifications: "MBBS, DNB (Gen Surg), DrNB (Vascular Surgery) [NIMS]",
+          },
+        }),
+      },
+    ],
+  }),
 });
 
 function Index() {
