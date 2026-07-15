@@ -103,18 +103,6 @@ export function FAQs() {
               })}
             </div>
 
-            <Reveal variant="up" delay={0.15}>
-              <button
-                type="button"
-                onClick={openBooking}
-                className="group mt-8 inline-flex items-center gap-3 rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30"
-              >
-                Book Consultation
-                <span className="grid h-6 w-6 place-items-center rounded-full bg-white/20 transition-transform group-hover:translate-x-0.5">
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </span>
-              </button>
-            </Reveal>
           </div>
 
           {/* RIGHT — floating cards around central FAQ bubble */}
