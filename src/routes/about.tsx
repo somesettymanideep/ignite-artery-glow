@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { openBookingModal } from "@/components/booking/BookingModal";
 import { useEffect, useState } from "react";
 import { Award, BadgeCheck, ScrollText, GraduationCap as GradCap, Trophy, ShieldCheck as ShieldCert } from "lucide-react";
 import {
@@ -49,12 +50,12 @@ function Hero() {
             minimally invasive techniques.
           </p>
           <div className="mt-8">
-            <Link to="/contact" className="group inline-flex items-center gap-3 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-[1.03]">
+            <button type="button" onClick={() => openBookingModal()} className="group inline-flex items-center gap-3 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-[1.03]">
               Book an Appointment
               <span className="grid h-6 w-6 place-items-center rounded-full bg-white/25 transition-transform group-hover:translate-x-0.5">
                 <ArrowRight className="h-3.5 w-3.5" />
               </span>
-            </Link>
+            </button>
           </div>
         </Reveal>
 
@@ -442,12 +443,12 @@ function CTA() {
               </div>
             </Reveal>
             <Reveal className="reveal" variant="zoom" delay={0.14}>
-              <Link to="/contact" className="inline-flex items-center gap-3 self-start rounded-full bg-white px-6 py-3 text-sm font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-[1.03] sm:self-auto">
+              <button type="button" onClick={() => openBookingModal()} className="inline-flex items-center gap-3 self-start rounded-full bg-white px-6 py-3 text-sm font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-[1.03] sm:self-auto">
                 Book Appointment
                 <span className="grid h-6 w-6 place-items-center rounded-full bg-primary text-primary-foreground">
                   <ArrowRight className="h-3.5 w-3.5" />
                 </span>
-              </Link>
+              </button>
             </Reveal>
           </div>
           <div className="pointer-events-none absolute -right-6 -top-8 h-56 w-56 rounded-full bg-white/10 blur-2xl" aria-hidden />

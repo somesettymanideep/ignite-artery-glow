@@ -3,6 +3,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Phone, Menu, X, ChevronDown } from "lucide-react";
 import { SERVICES } from "@/lib/services-data";
 import logoAsset from "@/assets/ignite-logo.png.asset.json";
+import { openBookingModal } from "@/components/booking/BookingModal";
 
 type NavItem = {
   label: string;
@@ -146,24 +147,15 @@ export function Navbar() {
     return <li key={item.label}>{renderLink(item, false)}</li>;
   };
 
-  const isHome = pathname === "/";
 
-  const cta = isHome ? (
-    <a
-      href="#cta"
+  const cta = (
+    <button
+      type="button"
+      onClick={() => { setOpen(false); openBookingModal(); }}
       className="hidden items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105 sm:inline-flex"
-      onClick={() => setOpen(false)}
     >
       <Phone className="h-4 w-4" /> Book Appointment
-    </a>
-  ) : (
-    <Link
-      to="/contact"
-      className="hidden items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105 sm:inline-flex"
-      onClick={() => setOpen(false)}
-    >
-      <Phone className="h-4 w-4" /> Book Appointment
-    </Link>
+    </button>
   );
 
   return (

@@ -1,4 +1,5 @@
 import { Star, Check, Calendar, ArrowRight, Award, Activity, HeartPulse, Users } from "lucide-react";
+import { openBookingModal } from "@/components/booking/BookingModal";
 import { Reveal } from "@/hooks/use-reveal";
 import heroAsset from "@/assets/hero-varicose-legs-v3.webp.asset.json";
 const heroImg = heroAsset.url;
@@ -40,12 +41,13 @@ export function Hero() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="#cta"
+            <button
+              type="button"
+              onClick={() => openBookingModal()}
               className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-7 py-3.5 font-bold text-primary-foreground shadow-glow-red transition-all duration-300 hover:scale-105 hover:shadow-glow-indigo animate-pulse-glow"
             >
               <Calendar className="h-5 w-5" /> Book Appointment
-            </a>
+            </button>
             <a
               href="#services"
               className="inline-flex items-center gap-2 rounded-full border-2 border-secondary/25 bg-card px-7 py-3.5 font-bold text-secondary transition-all duration-300 hover:border-secondary hover:bg-accent"

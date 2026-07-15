@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { openBookingModal } from "@/components/booking/BookingModal";
 import { useState } from "react";
 import {
   HeartPulse, Droplets, Stethoscope, Syringe, ChevronRight,
@@ -286,13 +287,14 @@ function CtaBanner() {
             Our vascular specialists will evaluate your condition and recommend the most effective, minimally invasive approach for your recovery.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to="/contact"
+            <button
+              type="button"
+              onClick={() => openBookingModal()}
               className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-secondary shadow-soft transition-transform duration-300 hover:scale-105"
             >
               <Phone className="h-4 w-4" />
               Book an Appointment
-            </Link>
+            </button>
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-bold text-white transition-colors duration-300 hover:bg-white/10"

@@ -1,4 +1,5 @@
 import { Calendar, Phone } from "lucide-react";
+import { openBookingModal } from "@/components/booking/BookingModal";
 import { Reveal } from "@/hooks/use-reveal";
 import ctaBgAsset from "@/assets/cta-vascular-bg.webp.asset.json";
 const ctaBg = ctaBgAsset.url;
@@ -30,12 +31,13 @@ export function CTA() {
           treatment for your vascular conditions.
         </p>
         <div className="mt-9 flex flex-wrap justify-center gap-4">
-          <a
-            href="tel:+919999999999"
+          <button
+            type="button"
+            onClick={() => openBookingModal()}
             className="inline-flex items-center gap-2 rounded-full bg-card px-8 py-4 font-bold text-secondary shadow-lift transition-transform duration-300 hover:scale-105"
           >
             <Calendar className="h-5 w-5" /> Book Appointment
-          </a>
+          </button>
           <a
             href="#contact"
             className="glass-dark inline-flex items-center gap-2 rounded-full px-8 py-4 font-bold text-primary-foreground transition-transform duration-300 hover:scale-105"
