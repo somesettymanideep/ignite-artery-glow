@@ -118,6 +118,7 @@ function ContactForm() {
   function submit(e: FormEvent) {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim() || !form.agree) return;
+    import("@/lib/admin-store").then((m) => m.addSubmission("contact", form));
     setStatus("ok");
     setForm({ name: "", phone: "", email: "", subject: "", message: "", agree: false });
   }
