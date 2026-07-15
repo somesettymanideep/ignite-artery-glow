@@ -129,7 +129,7 @@ export function FAQs() {
               </svg>
 
               {/* Center FAQ speech bubbles */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:block">
                 <div className="relative">
                   <div className="grid h-32 w-32 place-items-center rounded-3xl rounded-br-sm bg-secondary text-3xl font-extrabold tracking-wide text-white shadow-2xl shadow-secondary/40 sm:h-36 sm:w-36 sm:text-4xl">
                     FAQ
