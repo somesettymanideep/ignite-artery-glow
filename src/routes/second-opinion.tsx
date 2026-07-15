@@ -120,9 +120,8 @@ function ServicesCarousel() {
   }, [count]);
 
   return (
-    <div className="relative h-[420px] sm:h-[520px] lg:h-[600px]">
-      <div className="absolute inset-0 overflow-hidden rounded-2xl bg-secondary/5">
-
+    <div className="relative">
+      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-secondary/5 shadow-lift ring-1 ring-black/5">
         {SERVICES.map((s, i) => (
           <img
             key={s.slug}
@@ -134,54 +133,26 @@ function ServicesCarousel() {
             }`}
           />
         ))}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
-
-        {/* Title chip */}
-        <div className="absolute left-6 right-6 bottom-24 sm:bottom-28 z-20">
-          {SERVICES.map((s, i) => (
-            <p
-              key={s.slug}
-              className={`font-display text-lg sm:text-xl font-extrabold text-white drop-shadow transition-all duration-500 ${
-                i === idx ? "opacity-100 translate-y-0" : "pointer-events-none absolute inset-x-0 opacity-0 translate-y-2"
-              }`}
-            >
-              {s.title}
-            </p>
-          ))}
-        </div>
-
-        {/* Dots */}
-        <div className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 flex items-center gap-2">
-          {SERVICES.map((s, i) => (
-            <button
-              key={s.slug}
-              type="button"
-              aria-label={`Show ${s.title}`}
-              onClick={() => setIdx(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === idx ? "w-6 bg-white" : "w-2 bg-white/50 hover:bg-white/80"
-              }`}
-            />
-          ))}
-        </div>
       </div>
 
-      <div className="absolute -bottom-5 left-4 right-4 z-30 rounded-xl bg-white p-5 shadow-lift sm:left-6 sm:right-auto sm:max-w-[340px]">
-        <div className="flex items-start gap-4">
-          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-red-50 text-primary">
-            <ShieldCheck className="h-5 w-5" strokeWidth={1.8} />
-          </span>
-          <div>
-            <p className="font-display text-[14px] font-extrabold text-secondary">Not Sure About Your Diagnosis or Treatment?</p>
-            <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">
-              A second opinion can help you explore better options and ensure the right care for your vascular health.
-            </p>
-          </div>
-        </div>
+      {/* Dots below the frame */}
+      <div className="mt-5 flex items-center justify-center gap-2">
+        {SERVICES.map((s, i) => (
+          <button
+            key={s.slug}
+            type="button"
+            aria-label={`Show ${s.title}`}
+            onClick={() => setIdx(i)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              i === idx ? "w-6 bg-primary" : "w-2 bg-secondary/25 hover:bg-secondary/45"
+            }`}
+          />
+        ))}
       </div>
     </div>
   );
 }
+
 
 function Hero() {
   return (
