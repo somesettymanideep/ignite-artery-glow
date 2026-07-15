@@ -84,7 +84,7 @@ export function BookingModal() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="max-w-lg overflow-hidden border-0 bg-white p-0 sm:max-w-xl">
+      <DialogContent className="max-w-lg overflow-hidden border-0 bg-white p-0 sm:max-w-xl [&>button.absolute]:hidden">
         {/* Gradient header */}
         <div className="relative overflow-hidden bg-gradient-brand px-6 pb-8 pt-7 text-white">
           <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-white/15 blur-2xl" aria-hidden />
