@@ -139,7 +139,7 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           aria-label={`Video: ${reel.caption}`}
           onLoadedData={() => setVideoReady(true)}
           onCanPlay={() => setVideoReady(true)}
