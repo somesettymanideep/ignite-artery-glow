@@ -106,7 +106,7 @@ export function Footer() {
                 <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand">
                   <Mail className="h-4 w-4" />
                 </span>
-                <a href="mailto:info@ignitevascularcenter.com" className="hover:text-primary-foreground">info@ignitevascularcenter.com</a>
+                <a href="mailto:ignitevascularcenter@gmail.com" className="hover:text-primary-foreground">ignitevascularcenter@gmail.com</a>
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand">

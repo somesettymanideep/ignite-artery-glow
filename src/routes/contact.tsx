@@ -42,7 +42,7 @@ const INFO = [
   {
     icon: Mail,
     title: "Email",
-    lines: ["info@ignitevascularcenter.com", "appointments@ignitevascularcenter.com"],
+    lines: ["ignitevascularcenter@gmail.com"],
   },
   {
     icon: Clock,
