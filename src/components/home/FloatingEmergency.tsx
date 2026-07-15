@@ -5,11 +5,11 @@ export function FloatingEmergency() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-24 right-6 z-50 flex flex-col items-end gap-3">
+    <div className="pointer-events-none fixed bottom-24 right-6 z-50 flex flex-col items-end gap-3">
       {/* Expanded card */}
       <div
         className={`w-72 origin-bottom-right overflow-hidden rounded-3xl glass-dark shadow-lift transition-all duration-500 ease-out ${
-          open ? "scale-100 opacity-100 translate-y-0" : "scale-90 opacity-0 translate-y-4 pointer-events-none"
+          open ? "pointer-events-auto scale-100 opacity-100 translate-y-0" : "pointer-events-none scale-90 opacity-0 translate-y-4"
         }`}
       >
         <div className="p-5">
@@ -44,7 +44,7 @@ export function FloatingEmergency() {
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-label={open ? "Close emergency contact" : "Open emergency contact"}
-        className="grid h-14 w-14 place-items-center rounded-full bg-gradient-brand text-primary-foreground shadow-glow-red transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+        className="pointer-events-auto grid h-14 w-14 place-items-center rounded-full bg-gradient-brand text-primary-foreground shadow-glow-red transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
       >
         {open ? (
           <X className="h-6 w-6" />

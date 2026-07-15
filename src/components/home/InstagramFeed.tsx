@@ -140,7 +140,7 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
           loop
           muted={!isUnmuted}
           playsInline
-          preload="none"
+          preload="metadata"
           aria-label={`Video: ${reel.caption}`}
           onLoadedData={() => setVideoReady(true)}
           onCanPlay={() => setVideoReady(true)}
@@ -266,8 +266,6 @@ export function InstagramFeed() {
   }, []);
 
   const toggleSound = useCallback((idx: number) => {
-    // Run audio side effects SYNCHRONOUSLY in the user gesture (outside any
-    // setState updater — those may run twice in StrictMode and undo the effect).
     const target = videoRefs.current.get(idx);
     if (!target) return;
 
@@ -283,17 +281,23 @@ export function InstagramFeed() {
     if (willUnmute) {
       target.muted = false;
       target.volume = 1;
-      // Always (re)start playback when the user turns sound on
-      const p = target.play();
-      if (p && typeof p.catch === "function") {
-        p.catch(() => {
-          target.muted = true;
-          unmutedIdxRef.current = null;
-          setUnmutedIdx(null);
-        });
-      }
       unmutedIdxRef.current = idx;
       setUnmutedIdx(idx);
+      // Ensure the source is loading, then play. Any transient play() rejection
+      // (e.g. src still buffering) is retried once metadata is available.
+      try { target.load(); } catch {}
+      const tryPlay = () => {
+        const p = target.play();
+        if (p && typeof p.catch === "function") p.catch(() => {});
+      };
+      tryPlay();
+      if (target.readyState < 2) {
+        const onReady = () => {
+          target.removeEventListener("loadedmetadata", onReady);
+          if (unmutedIdxRef.current === idx) tryPlay();
+        };
+        target.addEventListener("loadedmetadata", onReady);
+      }
     } else {
       target.muted = true;
       unmutedIdxRef.current = null;
