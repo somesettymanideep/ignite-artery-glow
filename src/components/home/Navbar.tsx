@@ -3,6 +3,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Phone, Menu, X, ChevronDown } from "lucide-react";
 import { SERVICES } from "@/lib/services-data";
 import logoAsset from "@/assets/ignite-logo.png.asset.json";
+import { openBookingModal } from "@/components/booking/BookingModal";
 
 type NavItem = {
   label: string;
