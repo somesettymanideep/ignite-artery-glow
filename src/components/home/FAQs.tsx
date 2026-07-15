@@ -119,9 +119,9 @@ export function FAQs() {
 
           {/* RIGHT — floating cards around central FAQ bubble */}
           <Reveal variant="fade" delay={0.1}>
-            <div className="relative mx-auto h-[560px] w-full max-w-xl">
+            <div className="relative mx-auto w-full max-w-xl lg:h-[560px]">
               {/* connecting dashed lines */}
-              <svg className="faq-orbit pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 500 560" fill="none" aria-hidden>
+              <svg className="faq-orbit pointer-events-none absolute inset-0 hidden h-full w-full lg:block" viewBox="0 0 500 560" fill="none" aria-hidden>
                 <path d="M120 130 Q 250 260 380 130" stroke="currentColor" strokeDasharray="4 6" className="text-secondary/20" strokeWidth="1.5" />
                 <path d="M120 430 Q 250 300 380 430" stroke="currentColor" strokeDasharray="4 6" className="text-secondary/20" strokeWidth="1.5" />
                 <path d="M120 130 L 120 430" stroke="currentColor" strokeDasharray="4 6" className="text-secondary/20" strokeWidth="1.5" />
@@ -129,7 +129,7 @@ export function FAQs() {
               </svg>
 
               {/* Center FAQ speech bubbles */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:block">
                 <div className="relative">
                   <div className="grid h-32 w-32 place-items-center rounded-3xl rounded-br-sm bg-secondary text-3xl font-extrabold tracking-wide text-white shadow-2xl shadow-secondary/40 sm:h-36 sm:w-36 sm:text-4xl">
                     FAQ
