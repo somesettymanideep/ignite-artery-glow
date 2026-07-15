@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   ArrowRight, Phone, Check, ChevronRight, Sparkles, Wand2, Clock, ShieldCheck, HeartPulse,
-  HelpCircle, Plus, Minus, Download, PhoneCall, CheckCircle2,
+  HelpCircle, Plus, Minus, Download, PhoneCall, CheckCircle2, Star, Award, Users,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
