@@ -30,8 +30,8 @@ export function Footer() {
         <Reveal className="reveal" variant="up" delay={0}>
           <div>
             <Link to="/" className="inline-flex items-center" aria-label="Ignite Vascular Center — Home">
-              <span className="inline-flex items-center rounded-2xl bg-white px-4 py-3 shadow-sm">
-                <img src={logoAsset.url} alt="Ignite Vascular Center" className="h-12 w-auto" width={220} height={80} />
+              <span className="inline-flex items-center bg-white px-5 py-4 shadow-sm" style={{ borderRadius: 8 }}>
+                <img src={logoAsset.url} alt="Ignite Vascular Center" className="h-20 w-auto" width={320} height={120} />
               </span>
             </Link>
             <p className="mt-5 text-sm leading-relaxed text-primary-foreground/75">
