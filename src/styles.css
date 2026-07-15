@@ -142,15 +142,15 @@
 }
 
 @utility bg-gradient-brand {
-  background: var(--gradient-brand);
+  background-image: var(--gradient-brand);
 }
 
 @utility bg-gradient-brand-soft {
-  background: var(--gradient-brand-soft);
+  background-image: var(--gradient-brand-soft);
 }
 
 @utility bg-gradient-cta {
-  background: var(--gradient-cta);
+  background-image: var(--gradient-cta);
 }
 
 @utility shadow-lift {
