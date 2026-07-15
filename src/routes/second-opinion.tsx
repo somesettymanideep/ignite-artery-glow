@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { z } from "zod";
 import {
   ChevronRight, ChevronDown, ShieldCheck, FileText, HeartHandshake, Lock,
@@ -13,10 +13,10 @@ import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 import { SubBanner } from "@/components/home/SubBanner";
-import heroImg from "@/assets/second-opinion-hero.jpg";
 import doctorImg from "@/assets/doctor-portrait.jpg";
 import whyImg from "@/assets/why-choose.jpg";
 import secondOpinionBanner from "@/assets/about-vascular.jpg";
+import { SERVICES } from "@/lib/services-data";
 
 const secondOpinionSchema = z.object({
   name: z.string().trim().min(2, "Full name is required").max(100, "Name is too long"),
@@ -109,6 +109,89 @@ const FAQS = [
   },
 ];
 
+function ServicesCarousel() {
+  const [idx, setIdx] = useState(0);
+  const count = SERVICES.length;
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    const t = setInterval(() => setIdx((i) => (i + 1) % count), 3800);
+    return () => clearInterval(t);
+  }, [count]);
+
+  return (
+    <div className="relative h-[420px] sm:h-[520px] lg:h-[600px]">
+      <svg
+        className="absolute top-0 left-0 z-10 h-full w-16 lg:w-24"
+        viewBox="0 0 120 600"
+        preserveAspectRatio="none"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path d="M120,0 C30,120 30,480 120,600" stroke="#311261" strokeWidth="12" strokeLinecap="round" />
+      </svg>
+
+      <div className="absolute inset-0 overflow-hidden rounded-l-[60px] sm:rounded-l-[80px] lg:rounded-l-[120px] bg-secondary/5">
+        {SERVICES.map((s, i) => (
+          <img
+            key={s.slug}
+            src={s.image}
+            alt={s.title}
+            loading={i === 0 ? "eager" : "lazy"}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-out ${
+              i === idx ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+
+        {/* Title chip */}
+        <div className="absolute left-6 right-6 bottom-24 sm:bottom-28 z-20">
+          {SERVICES.map((s, i) => (
+            <p
+              key={s.slug}
+              className={`font-display text-lg sm:text-xl font-extrabold text-white drop-shadow transition-all duration-500 ${
+                i === idx ? "opacity-100 translate-y-0" : "pointer-events-none absolute inset-x-0 opacity-0 translate-y-2"
+              }`}
+            >
+              {s.title}
+            </p>
+          ))}
+        </div>
+
+        {/* Dots */}
+        <div className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 flex items-center gap-2">
+          {SERVICES.map((s, i) => (
+            <button
+              key={s.slug}
+              type="button"
+              aria-label={`Show ${s.title}`}
+              onClick={() => setIdx(i)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === idx ? "w-6 bg-white" : "w-2 bg-white/50 hover:bg-white/80"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="absolute -bottom-5 left-4 right-4 z-30 rounded-xl bg-white p-5 shadow-lift sm:left-6 sm:right-auto sm:max-w-[340px]">
+        <div className="flex items-start gap-4">
+          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-red-50 text-primary">
+            <ShieldCheck className="h-5 w-5" strokeWidth={1.8} />
+          </span>
+          <div>
+            <p className="font-display text-[14px] font-extrabold text-secondary">Not Sure About Your Diagnosis or Treatment?</p>
+            <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">
+              A second opinion can help you explore better options and ensure the right care for your vascular health.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#f7f8fc] pt-28 lg:pt-32">
@@ -167,47 +250,7 @@ function Hero() {
 
         {/* Right image */}
         <Reveal variant="right" delay={0.12} className="relative lg:-mr-[max(2rem,calc((100vw-1280px)/2))]">
-          <div className="relative h-[420px] sm:h-[520px] lg:h-[600px]">
-            {/* Curved divider SVG */}
-            <svg
-              className="absolute top-0 left-0 z-10 h-full w-16 lg:w-24"
-              viewBox="0 0 120 600"
-              preserveAspectRatio="none"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path
-                d="M120,0 C30,120 30,480 120,600"
-                stroke="#311261"
-                strokeWidth="12"
-                strokeLinecap="round"
-              />
-            </svg>
-
-            <div className="absolute inset-0 overflow-hidden rounded-l-[60px] sm:rounded-l-[80px] lg:rounded-l-[120px]">
-              <img
-                src={heroImg}
-                alt="Anatomical illustration of the vascular tree"
-                width={1200}
-                height={1000}
-                className="h-full w-full object-cover"
-              />
-            </div>
-
-            <div className="absolute -bottom-5 left-4 right-4 z-20 rounded-xl bg-white p-5 shadow-lift sm:left-6 sm:right-auto sm:max-w-[340px]">
-              <div className="flex items-start gap-4">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-red-50 text-primary">
-                  <ShieldCheck className="h-5 w-5" strokeWidth={1.8} />
-                </span>
-                <div>
-                  <p className="font-display text-[14px] font-extrabold text-secondary">Not Sure About Your Diagnosis or Treatment?</p>
-                  <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">
-                    A second opinion can help you explore better options and ensure the right care for your vascular health.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ServicesCarousel />
         </Reveal>
       </div>
     </section>
