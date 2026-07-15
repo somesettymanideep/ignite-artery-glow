@@ -66,7 +66,7 @@ export function FAQs() {
                     <div
                       className={`rounded-2xl border transition-all ${
                         isOpen
-                          ? "border-primary/30 bg-red-soft/15 shadow-lg shadow-primary/10"
+                          ? "faq-accordion-open border-primary/30 bg-red-soft/15 shadow-lg shadow-primary/10"
                           : "border-border bg-card hover:border-primary/30 hover:shadow-md"
                       }`}
                     >
