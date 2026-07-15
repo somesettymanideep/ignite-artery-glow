@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { Instagram, Play, Pause, Heart, MessageCircle, Send, Volume2, VolumeX } from "lucide-react";
+import { Instagram, Play, Pause, Heart, MessageCircle, Send, Volume2, VolumeX, ChevronLeft, ChevronRight } from "lucide-react";
+
 import { Reveal } from "@/hooks/use-reveal";
 import reel1 from "@/assets/about-surgery.jpg";
 import reel2 from "@/assets/home2-doctor.jpg";
@@ -300,9 +301,20 @@ export function InstagramFeed() {
     }
   }, []);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
+    if (isMobile) return; // no autoplay on mobile
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let raf = 0;
     let paused = false;
@@ -329,7 +341,14 @@ export function InstagramFeed() {
       el.removeEventListener("touchstart", onEnter);
       el.removeEventListener("touchend", onLeave);
     };
-  }, [unmutedIdx]);
+  }, [unmutedIdx, isMobile]);
+
+  const slideBy = useCallback((dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * el.clientWidth, behavior: "smooth" });
+  }, []);
+
 
   return (
     <section id="instagram" className="relative overflow-hidden bg-white py-20 lg:py-28">
@@ -383,12 +402,12 @@ export function InstagramFeed() {
           role="list"
           aria-label="Instagram reels"
         >
-          {REELS.concat(REELS).map((r, i) => (
+          {(isMobile ? REELS : REELS.concat(REELS)).map((r, i) => (
             <Reveal
               key={i}
               variant="up"
               delay={(i % 5) * 0.06}
-              className="reveal shrink-0 snap-start"
+              className="reveal shrink-0 snap-center md:snap-start basis-full md:basis-auto flex justify-center"
             >
               <ReelCard
                 reel={r}
@@ -400,6 +419,29 @@ export function InstagramFeed() {
             </Reveal>
           ))}
         </div>
+
+        {/* Mobile carousel arrows */}
+        {isMobile && (
+          <div className="mt-4 flex items-center justify-center gap-4 md:hidden">
+            <button
+              type="button"
+              onClick={() => slideBy(-1)}
+              aria-label="Previous reel"
+              className="grid h-11 w-11 place-items-center rounded-full border border-border bg-white text-secondary shadow-md transition-all hover:scale-105 hover:border-primary hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => slideBy(1)}
+              aria-label="Next reel"
+              className="grid h-11 w-11 place-items-center rounded-full bg-[linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4)] text-white shadow-glow-red transition-all hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
+        )}
+
       </div>
     </section>
   );
