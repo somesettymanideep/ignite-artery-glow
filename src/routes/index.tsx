@@ -8,7 +8,7 @@ import { Process } from "@/components/home/Process";
 import { Testimonials } from "@/components/home/Testimonials";
 import { FAQs } from "@/components/home/FAQs";
 
-import { InstagramFeed } from "@/components/home/InstagramFeed";
+import { LazyInstagramFeed } from "@/components/home/LazyInstagramFeed";
 import { Footer } from "@/components/home/Footer";
 import { Reveal } from "@/hooks/use-reveal";
 
@@ -80,7 +80,7 @@ function Index() {
       <Reveal variant="left" delay={0.05}><Process /></Reveal>
       <Reveal variant="up" delay={0.05}><FAQs /></Reveal>
       <Reveal variant="up" delay={0.05}><Testimonials /></Reveal>
-      <Reveal variant="zoom" delay={0.05}><InstagramFeed /></Reveal>
+      <Reveal variant="zoom" delay={0.05}><LazyInstagramFeed /></Reveal>
       <Footer />
     </main>
   );
