@@ -1,4 +1,5 @@
 import { Calendar, Phone } from "lucide-react";
+import { openBookingModal } from "@/components/booking/BookingModal";
 import { Reveal } from "@/hooks/use-reveal";
 import ctaBgAsset from "@/assets/cta-vascular-bg.webp.asset.json";
 const ctaBg = ctaBgAsset.url;

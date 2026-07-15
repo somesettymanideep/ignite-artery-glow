@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { openBookingModal } from "@/components/booking/BookingModal";
 import { useEffect, useState } from "react";
 import { Award, BadgeCheck, ScrollText, GraduationCap as GradCap, Trophy, ShieldCheck as ShieldCert } from "lucide-react";
 import {

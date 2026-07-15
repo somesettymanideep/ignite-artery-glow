@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { openBookingModal } from "@/components/booking/BookingModal";
 import { useState, useEffect, useCallback, useRef } from "react";
 
 import {

@@ -1,4 +1,5 @@
 import { Star, Check, Calendar, ArrowRight, Award, Activity, HeartPulse, Users } from "lucide-react";
+import { openBookingModal } from "@/components/booking/BookingModal";
 import { Reveal } from "@/hooks/use-reveal";
 import heroAsset from "@/assets/hero-varicose-legs-v3.webp.asset.json";
 const heroImg = heroAsset.url;

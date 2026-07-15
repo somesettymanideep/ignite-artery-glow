@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { openBookingModal } from "@/components/booking/BookingModal";
 import { useState } from "react";
 import {
   HeartPulse, Droplets, Stethoscope, Syringe, ChevronRight,

@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { openBookingModal } from "@/components/booking/BookingModal";
 import { useState, type FormEvent } from "react";
 import {
   Phone, MapPin, Mail, Clock, MessageCircleHeart, CalendarCheck,
