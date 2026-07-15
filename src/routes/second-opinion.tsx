@@ -15,7 +15,7 @@ import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 import { SubBanner } from "@/components/home/SubBanner";
 import doctorImg from "@/assets/doctor-portrait.jpg";
 import whyImg from "@/assets/why-choose.jpg";
-import secondOpinionBanner from "@/assets/about-vascular.jpg";
+import secondOpinionBanner from "@/assets/second-opinion-banner.jpg";
 import { SERVICES } from "@/lib/services-data";
 
 const secondOpinionSchema = z.object({
