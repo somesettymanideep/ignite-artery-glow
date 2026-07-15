@@ -3,11 +3,15 @@ import {
 } from "lucide-react";
 import varicoseAsset from "@/assets/service-varicose.png.asset.json";
 const varicoseImg = varicoseAsset.url;
-import padImg from "@/assets/service-pad.jpg";
+import padAsset from "@/assets/service-pad.png.asset.json";
+const padImg = padAsset.url;
 import endoImg from "@/assets/service-endo.jpg";
-import dvtImg from "@/assets/service-dvt.jpg";
-import diabeticImg from "@/assets/service-diabetic.jpg";
-import limbImg from "@/assets/service-limb.jpg";
+import dvtAsset from "@/assets/service-dvt.png.asset.json";
+const dvtImg = dvtAsset.url;
+import diabeticAsset from "@/assets/service-diabetic.png.asset.json";
+const diabeticImg = diabeticAsset.url;
+import limbAsset from "@/assets/service-limb.png.asset.json";
+const limbImg = limbAsset.url;
 
 export type ServiceCategory = "treatments" | "diagnostics" | "surgeries" | "care";
 
