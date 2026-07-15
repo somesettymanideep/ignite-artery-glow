@@ -34,7 +34,7 @@ export function FAQs() {
   const openBooking = () => window.dispatchEvent(new CustomEvent("open-booking-modal"));
 
   return (
-    <section className="relative overflow-hidden bg-surface py-20 lg:py-28">
+    <section className="relative overflow-hidden py-20 lg:py-28" style={{ backgroundColor: "#f8f9fc" }}>
       <div className="pointer-events-none absolute -left-32 top-16 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
       <div className="pointer-events-none absolute -right-32 bottom-16 h-72 w-72 rounded-full bg-accent/20 blur-3xl" />
 
