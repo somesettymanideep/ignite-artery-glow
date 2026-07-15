@@ -282,17 +282,23 @@ export function InstagramFeed() {
     if (willUnmute) {
       target.muted = false;
       target.volume = 1;
-      // Always (re)start playback when the user turns sound on
-      const p = target.play();
-      if (p && typeof p.catch === "function") {
-        p.catch(() => {
-          target.muted = true;
-          unmutedIdxRef.current = null;
-          setUnmutedIdx(null);
-        });
-      }
       unmutedIdxRef.current = idx;
       setUnmutedIdx(idx);
+      // Ensure the source is loading, then play. Any transient play() rejection
+      // (e.g. src still buffering) is retried once metadata is available.
+      try { target.load(); } catch {}
+      const tryPlay = () => {
+        const p = target.play();
+        if (p && typeof p.catch === "function") p.catch(() => {});
+      };
+      tryPlay();
+      if (target.readyState < 2) {
+        const onReady = () => {
+          target.removeEventListener("loadedmetadata", onReady);
+          if (unmutedIdxRef.current === idx) tryPlay();
+        };
+        target.addEventListener("loadedmetadata", onReady);
+      }
     } else {
       target.muted = true;
       unmutedIdxRef.current = null;
