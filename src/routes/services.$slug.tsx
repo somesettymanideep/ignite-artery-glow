@@ -1,9 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
-  ArrowRight, Phone, Check, Activity, Sparkles, Clock, ChevronRight, ChevronDown,
-  Timer, Stethoscope, BedDouble, CalendarClock, UserCheck, ClipboardList,
-  HelpCircle, Plus, Minus, ListTree,
+  ArrowRight, Phone, Check, ChevronRight, Sparkles, Wand2, Clock, ShieldCheck, HeartPulse,
+  HelpCircle, Plus, Minus, Download, PhoneCall, CheckCircle2,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
@@ -56,126 +55,184 @@ function ServiceNotFound() {
   );
 }
 
+const FEATURES = [
+  { icon: Wand2, title: "Minimally Invasive", desc: "Advanced techniques with minimal pain" },
+  { icon: Clock, title: "Quick Recovery", desc: "Get back to your routine faster" },
+  { icon: ShieldCheck, title: "Safe & Effective", desc: "Proven treatments with great results" },
+  { icon: HeartPulse, title: "Better Quality of Life", desc: "Relieve pain, improve circulation & comfort" },
+];
+
+const WHY_CHOOSE = [
+  "Expert Vascular Surgeons",
+  "Advanced Technology",
+  "Minimally Invasive Treatments",
+  "Personalized Patient Care",
+  "Proven Track Record",
+];
+
+// Split "Bulging, rope-like veins in the legs" → title="Bulging", desc="rope-like veins in the legs"
+function splitSymptom(s: string): { title: string; desc: string } {
+  const commaIdx = s.indexOf(",");
+  if (commaIdx > 0 && commaIdx < 22) {
+    return { title: s.slice(0, commaIdx).trim(), desc: s.slice(commaIdx + 1).trim() };
+  }
+  const words = s.split(" ");
+  const title = words.slice(0, 2).join(" ");
+  const desc = words.slice(2).join(" ") || s;
+  return { title, desc };
+}
+
 function ServiceDetail() {
   const { service } = Route.useLoaderData() as { service: (typeof SERVICES)[number] };
-  const Icon = service.icon;
   const related = SERVICES.filter((s) => s.slug !== service.slug);
-  const [factsOpen, setFactsOpen] = useState(false);
 
-  const sections = [
-    { id: "overview", label: "Overview" },
-    { id: "symptoms", label: "Signs & Symptoms" },
-    { id: "approach", label: "Our Approach" },
-    { id: "benefits", label: "Benefits" },
-    { id: "recovery", label: "Recovery & Follow-up" },
-  ];
-  const [activeSection, setActiveSection] = useState<string>(sections[0].id);
+  // Split title so the last word gets the red accent (e.g. "Varicose Veins" + "Treatment")
+  const titleWords = service.title.split(" ");
+  const titleHead = titleWords.slice(0, -1).join(" ");
+  const titleAccent = titleWords.slice(-1)[0];
 
-  useEffect(() => {
-    const els = sections
-      .map((s) => document.getElementById(s.id))
-      .filter((el): el is HTMLElement => Boolean(el));
-    if (!els.length) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible[0]?.target.id) setActiveSection(visible[0].target.id);
-      },
-      { rootMargin: "-120px 0px -60% 0px", threshold: [0, 1] },
-    );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [service.slug]);
-
+  const symptomCards = service.symptoms.slice(0, 4).map(splitSymptom);
+  const bullets = service.benefits.slice(0, 5);
 
   return (
     <>
       <Navbar />
-      <main>
+      <main className="bg-white">
         {/* Hero */}
-        <section className="relative overflow-hidden" style={{ height: 350 }}>
-          <div className="absolute inset-0">
-            <img src={service.image} alt="" className="h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-r from-secondary/95 via-secondary/85 to-secondary/60" />
-          </div>
-          <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-center px-5 pt-20 lg:px-8">
-            <Reveal variant="up">
-              <nav aria-label="Breadcrumb" className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-white/85 backdrop-blur">
-                <Link to="/" className="hover:text-white">Home</Link>
-                <ChevronRight className="h-3.5 w-3.5 opacity-60" />
-                <Link to="/treatments" className="hover:text-white">Treatments</Link>
-                <ChevronRight className="h-3.5 w-3.5 opacity-60" />
-                <span className="text-white">{service.title}</span>
-              </nav>
-              <h1 className="max-w-3xl font-display text-3xl font-black leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
-                {service.title}
-              </h1>
-            </Reveal>
-          </div>
-        </section>
+        <section className="relative overflow-hidden pt-28 lg:pt-32">
+          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+            <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[13px] font-semibold text-muted-foreground">
+              <Link to="/" className="hover:text-primary">Home</Link>
+              <ChevronRight className="h-3.5 w-3.5" />
+              <Link to="/treatments" className="hover:text-primary">Services</Link>
+              <ChevronRight className="h-3.5 w-3.5" />
+              <span className="text-secondary">{service.title}</span>
+            </nav>
 
+            <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+              {/* Left */}
+              <Reveal variant="up" className="lg:col-span-6">
+                <span className="text-[11px] font-black uppercase tracking-[0.28em] text-primary/80">
+                  Our Service
+                </span>
+                <h1 className="mt-3 font-display text-4xl font-black leading-[1.05] tracking-tight text-secondary sm:text-5xl lg:text-6xl">
+                  {titleHead}{" "}
+                  <span className="text-primary">{titleAccent}</span>
+                </h1>
+                <p className="mt-5 max-w-xl text-[15.5px] leading-relaxed text-muted-foreground">
+                  {service.overview}
+                </p>
 
-        {/* Body */}
-        <section className="py-16 lg:py-24">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-12 lg:px-8">
-            <div className="space-y-12 lg:col-span-8">
-
-              <Reveal variant="up" as="section" className="scroll-mt-32" >
-                <div id="overview" />
-                <h2 className="font-display text-3xl font-extrabold text-secondary">Overview</h2>
-                <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">{service.overview}</p>
-              </Reveal>
-
-              <Reveal variant="up" as="section" className="scroll-mt-32">
-                <div id="symptoms" />
-                <h2 className="font-display text-3xl font-extrabold text-secondary">Signs & Symptoms</h2>
-                <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-                  {service.symptoms.map((s) => (
-                    <li key={s} className="flex items-start gap-3 rounded-2xl border border-border/60 bg-card p-4 text-[14.5px] text-secondary">
-                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
-                        <Activity className="h-3.5 w-3.5" />
+                {/* Feature chips row */}
+                <ul className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-4">
+                  {FEATURES.map(({ icon: I, title, desc }, i) => (
+                    <Reveal key={title} variant="up" delay={0.05 * (i + 1)} as="li" className="text-center">
+                      <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-primary/10 text-primary ring-1 ring-primary/15">
+                        <I className="h-6 w-6" />
                       </span>
-                      {s}
-                    </li>
+                      <p className="mt-3 text-[13px] font-bold text-secondary">{title}</p>
+                      <p className="mt-1 text-[11.5px] leading-snug text-muted-foreground">{desc}</p>
+                    </Reveal>
                   ))}
                 </ul>
               </Reveal>
 
-              <Reveal variant="up" as="section" className="scroll-mt-32">
-                <div id="approach" />
+              {/* Right image */}
+              <Reveal variant="zoom" className="lg:col-span-6">
+                <div className="relative">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="h-[380px] w-full rounded-3xl object-cover shadow-soft sm:h-[460px]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-black/5" />
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* Body */}
+        <section className="py-16 lg:py-20">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-12 lg:px-8">
+            {/* Main content */}
+            <div className="space-y-14 lg:col-span-8">
+              {/* About */}
+              <Reveal variant="up" as="section">
+                <h2 className="font-display text-3xl font-extrabold text-secondary">
+                  About {service.title.replace(/ Treatment$/i, "")}
+                </h2>
+                <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
+                  {service.overview}
+                </p>
+
+                <div className="mt-8 rounded-3xl border border-border/60 bg-white p-5 shadow-soft sm:p-6">
+                  <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                    {symptomCards.map(({ title, desc }, i) => (
+                      <li key={title + i} className="flex flex-col items-start gap-3">
+                        <span className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/15">
+                          <HeartPulse className="h-5 w-5" />
+                        </span>
+                        <div>
+                          <p className="text-[14px] font-bold text-secondary">{title}</p>
+                          <p className="mt-1 text-[12.5px] leading-snug text-muted-foreground">{desc}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+
+              {/* How we treat */}
+              <Reveal variant="up" as="section">
+                <div className="grid items-center gap-8 lg:grid-cols-2">
+                  <div>
+                    <h2 className="font-display text-3xl font-extrabold text-secondary">
+                      <span className="border-b-4 border-primary pb-1">How We Treat</span>{" "}
+                      {service.title.replace(/ Treatment$/i, "")}
+                    </h2>
+                    <p className="mt-4 text-[14.5px] leading-relaxed text-muted-foreground">
+                      We provide state-of-the-art treatments customized to your condition
+                      for lasting relief and improved vascular health.
+                    </p>
+                    <ul className="mt-6 space-y-3">
+                      {bullets.map((b) => (
+                        <li key={b} className="flex items-start gap-3">
+                          <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                            <CheckCircle2 className="h-4 w-4" />
+                          </span>
+                          <span className="text-[14.5px] text-secondary">{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="relative">
+                    <img
+                      src={service.image}
+                      alt={`${service.title} procedure`}
+                      className="h-[320px] w-full rounded-3xl object-cover shadow-soft sm:h-[380px]"
+                    />
+                  </div>
+                </div>
+              </Reveal>
+
+              {/* Our approach steps */}
+              <Reveal variant="up" as="section">
                 <h2 className="font-display text-3xl font-extrabold text-secondary">Our Approach</h2>
-                <ol className="mt-5 space-y-3">
+                <ol className="mt-6 grid gap-3 sm:grid-cols-2">
                   {service.procedure.map((p, i) => (
                     <li key={p} className="flex items-start gap-4 rounded-2xl bg-gradient-brand-soft p-4">
                       <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-brand font-display text-sm font-black text-primary-foreground shadow-glow-red">
                         {i + 1}
                       </span>
-                      <p className="pt-1 text-[14.5px] text-secondary">{p}</p>
+                      <p className="pt-1 text-[14px] text-secondary">{p}</p>
                     </li>
                   ))}
                 </ol>
               </Reveal>
 
-              <Reveal variant="up" as="section" className="scroll-mt-32">
-                <div id="benefits" />
-                <h2 className="font-display text-3xl font-extrabold text-secondary">Benefits</h2>
-                <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-                  {service.benefits.map((b) => (
-                    <li key={b} className="flex items-start gap-3 rounded-2xl border border-primary/15 bg-white p-4 text-[14.5px] text-secondary shadow-soft">
-                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gradient-brand text-primary-foreground">
-                        <Check className="h-3.5 w-3.5" />
-                      </span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
-
-              <Reveal variant="up" as="section" className="scroll-mt-32">
-                <div id="recovery" />
+              {/* Recovery */}
+              <Reveal variant="up" as="section">
                 <div className="rounded-3xl bg-secondary p-6 text-primary-foreground sm:p-8">
                   <div className="flex items-center gap-3">
                     <Clock className="h-6 w-6 text-primary" />
@@ -184,101 +241,88 @@ function ServiceDetail() {
                   <p className="mt-3 text-[15px] leading-relaxed text-white/85">{service.recovery}</p>
                 </div>
               </Reveal>
-
             </div>
 
             {/* Sidebar */}
             <aside className="space-y-6 lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
-              <OnThisPageNav sections={sections} activeSection={activeSection} />
+              {/* Other Treatments */}
+              <Reveal variant="up" className="rounded-3xl border border-border/60 bg-white p-6 shadow-soft">
+                <h3 className="font-display text-xl font-extrabold text-secondary">Other Treatments</h3>
+                <ul className="mt-5 space-y-1">
+                  {related.map((r) => {
+                    const I = r.icon;
+                    return (
+                      <li key={r.slug}>
+                        <Link
+                          to="/services/$slug"
+                          params={{ slug: r.slug }}
+                          className="group flex items-center gap-3 rounded-xl px-2 py-2.5 text-[14px] font-semibold text-secondary transition hover:bg-primary/5"
+                        >
+                          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                            <I className="h-4 w-4" />
+                          </span>
+                          <span className="min-w-0 flex-1 leading-snug">{r.title}</span>
+                          <ArrowRight className="h-4 w-4 shrink-0 text-primary transition-transform group-hover:translate-x-1" />
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Reveal>
 
-              <Reveal variant="up" className="rounded-3xl bg-gradient-brand-soft p-6">
-                <div className="flex items-center gap-2 text-primary">
-                  <Sparkles className="h-4 w-4" />
-                  <span className="text-[11px] font-black uppercase tracking-[0.22em]">Other Treatments</span>
-                </div>
-                <ul className="mt-4 space-y-2">
-                  {related.map((r) => (
-                    <li key={r.slug}>
-                      <Link
-                        to="/services/$slug"
-                        params={{ slug: r.slug }}
-                        className="group flex items-center justify-between gap-3 rounded-xl bg-white p-3 text-[13.5px] font-semibold text-secondary shadow-soft transition hover:-translate-y-0.5"
-                      >
-                        <span className="truncate">{r.title}</span>
-                        <ArrowRight className="h-4 w-4 shrink-0 text-primary transition-transform group-hover:translate-x-1" />
-                      </Link>
+              {/* Need Help */}
+              <Reveal variant="up" className="relative overflow-hidden rounded-3xl p-6 text-white shadow-soft" >
+                <div className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#4b1d8a_0%,#7c3aed_55%,#a855f7_100%)]" />
+                <h3 className="font-display text-xl font-extrabold">Need Help?</h3>
+                <p className="mt-2 text-[13.5px] text-white/85">
+                  Speak with our vascular care experts today.
+                </p>
+                <a
+                  href="tel:+919966117292"
+                  className="mt-5 flex items-center gap-3 text-white"
+                >
+                  <span className="grid h-9 w-9 place-items-center rounded-full bg-white/15 ring-1 ring-white/20">
+                    <PhoneCall className="h-4 w-4" />
+                  </span>
+                  <span className="font-display text-lg font-black tracking-wide">+91 99661 17292</span>
+                </a>
+                <Link
+                  to="/contact"
+                  className="mt-5 flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-[13.5px] font-bold text-secondary shadow-soft transition hover:-translate-y-0.5"
+                >
+                  Talk to Specialist <Phone className="h-4 w-4 text-primary" />
+                </Link>
+              </Reveal>
+
+              {/* Why Choose Us */}
+              <Reveal variant="up" className="rounded-3xl border border-border/60 bg-white p-6 shadow-soft">
+                <h3 className="font-display text-xl font-extrabold text-secondary">Why Choose Us?</h3>
+                <ul className="mt-5 space-y-3">
+                  {WHY_CHOOSE.map((w) => (
+                    <li key={w} className="flex items-center gap-3 text-[14px] font-semibold text-secondary">
+                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                        <Check className="h-3.5 w-3.5" />
+                      </span>
+                      {w}
                     </li>
                   ))}
                 </ul>
               </Reveal>
 
-              {/* Quick Facts — collapsible on mobile */}
-              <Reveal variant="up" className="overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-white to-primary/5 shadow-soft">
-                <button
-                  type="button"
-                  onClick={() => setFactsOpen((o) => !o)}
-                  aria-expanded={factsOpen}
-                  aria-controls="quick-facts-panel"
-                  className="flex w-full items-center justify-between gap-3 p-6 text-left lg:pointer-events-none lg:pb-2"
+              {/* Download Brochure */}
+              <Reveal variant="up" className="rounded-3xl border border-primary/15 bg-[hsl(15,90%,97%)] p-6 shadow-soft">
+                <h3 className="font-display text-xl font-extrabold text-secondary">Download Brochure</h3>
+                <p className="mt-2 text-[13.5px] text-muted-foreground">
+                  Get detailed information about our vascular treatments.
+                </p>
+                <a
+                  href="#"
+                  className="mt-5 flex items-center justify-center gap-2 rounded-full border border-primary/20 bg-white px-5 py-3 text-[13.5px] font-bold text-secondary shadow-soft transition hover:-translate-y-0.5"
                 >
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2 text-primary">
-                      <ClipboardList className="h-4 w-4 shrink-0" />
-                      <span className="text-[11px] font-black uppercase tracking-[0.22em]">Quick Facts</span>
-                    </div>
-                    <h3 className="mt-2 font-display text-lg font-extrabold text-secondary">At a glance</h3>
-                  </div>
-                  <span
-                    className={`grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-brand text-primary-foreground shadow-glow-red transition-transform duration-300 lg:hidden ${factsOpen ? "rotate-180" : ""}`}
-                    aria-hidden="true"
-                  >
-                    <ChevronDown className="h-4 w-4" />
-                  </span>
-                </button>
-                <div
-                  id="quick-facts-panel"
-                  className={`grid transition-all duration-500 ease-out lg:!grid-rows-[1fr] lg:!opacity-100 ${factsOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
-                >
-                  <div className="min-h-0 overflow-hidden">
-                    <div className="px-6 pb-6 lg:pt-2">
-                      <dl className="space-y-3">
-                        {[
-                          { icon: Timer, label: "Duration", value: service.quickFacts.duration },
-                          { icon: Stethoscope, label: "Anesthesia", value: service.quickFacts.anesthesia },
-                          { icon: BedDouble, label: "Hospital stay", value: service.quickFacts.hospitalStay },
-                          { icon: CalendarClock, label: "Recovery time", value: service.quickFacts.recoveryTime },
-                        ].map(({ icon: I, label, value }) => (
-                          <div key={label} className="flex items-start gap-3 rounded-xl bg-white/70 p-3">
-                            <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-gradient-brand text-primary-foreground shadow-glow-red">
-                              <I className="h-4 w-4" />
-                            </span>
-                            <div className="min-w-0">
-                              <dt className="text-[11px] font-black uppercase tracking-[0.16em] text-muted-foreground">{label}</dt>
-                              <dd className="text-[13.5px] font-semibold text-secondary">{value}</dd>
-                            </div>
-                          </div>
-                        ))}
-                      </dl>
-                      <div className="mt-4 rounded-2xl border border-primary/15 bg-white/80 p-4">
-                        <div className="flex items-center gap-2 text-primary">
-                          <UserCheck className="h-4 w-4" />
-                          <span className="text-[11px] font-black uppercase tracking-[0.16em]">Suitability</span>
-                        </div>
-                        <p className="mt-1.5 text-[13.5px] leading-relaxed text-secondary">{service.quickFacts.suitability}</p>
-                      </div>
-                      <div className="mt-3 rounded-2xl border border-secondary/10 bg-secondary p-4 text-white">
-                        <div className="flex items-center gap-2 text-primary-foreground/90">
-                          <Sparkles className="h-4 w-4 text-primary" />
-                          <span className="text-[11px] font-black uppercase tracking-[0.16em]">What to expect</span>
-                        </div>
-                        <p className="mt-1.5 text-[13.5px] leading-relaxed text-white/85">{service.quickFacts.whatToExpect}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  Download Now <Download className="h-4 w-4 text-primary" />
+                </a>
               </Reveal>
             </aside>
-
           </div>
         </section>
 
@@ -360,137 +404,5 @@ function FAQSection({ faqs, title }: { faqs: { q: string; a: string }[]; title: 
   );
 }
 
-function OnThisPageNav({
-  sections,
-  activeSection,
-}: {
-  sections: { id: string; label: string }[];
-  activeSection: string;
-}) {
-  const [open, setOpen] = useState(false);
-  const active = sections.find((s) => s.id === activeSection) ?? sections[0];
-
-  // Close mobile dropdown on outside click / Escape
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
-
-  const handleJump = (id: string) => {
-    setOpen(false);
-    const el = document.getElementById(id);
-    if (el) {
-      const y = el.getBoundingClientRect().top + window.scrollY - 100;
-      window.scrollTo({ top: y, behavior: "smooth" });
-      history.replaceState(null, "", `#${id}`);
-    }
-  };
-
-  return (
-    <>
-      {/* Mobile: sticky dropdown trigger */}
-      <div className="sticky top-20 z-30 -mx-5 lg:hidden">
-        <div className="px-5">
-          <button
-            type="button"
-            onClick={() => setOpen((o) => !o)}
-            aria-expanded={open}
-            aria-controls="on-this-page-panel"
-            className="flex w-full items-center justify-between gap-3 rounded-2xl border border-border/60 bg-white/95 px-4 py-3 shadow-soft backdrop-blur"
-          >
-            <span className="flex min-w-0 items-center gap-2">
-              <ListTree className="h-4 w-4 shrink-0 text-primary" />
-              <span className="text-[11px] font-black uppercase tracking-[0.22em] text-primary">On this page</span>
-              <span className="mx-1 h-3 w-px shrink-0 bg-border" />
-              <span className="truncate text-[13.5px] font-semibold text-secondary">{active.label}</span>
-            </span>
-            <span
-              className={`grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-brand text-primary-foreground shadow-glow-red transition-transform duration-300 ${open ? "rotate-180" : ""}`}
-              aria-hidden="true"
-            >
-              <ChevronDown className="h-4 w-4" />
-            </span>
-          </button>
-
-          {open && (
-            <div
-              id="on-this-page-panel"
-              className="mt-2 overflow-hidden rounded-2xl border border-border/60 bg-white shadow-soft animate-in fade-in slide-in-from-top-2 duration-200"
-            >
-              <nav aria-label="Section navigation" className="p-2">
-                <ul className="space-y-1">
-                  {sections.map((s) => {
-                    const isActive = activeSection === s.id;
-                    return (
-                      <li key={s.id}>
-                        <button
-                          type="button"
-                          onClick={() => handleJump(s.id)}
-                          aria-current={isActive ? "true" : undefined}
-                          className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-[14px] font-semibold transition-all ${
-                            isActive
-                              ? "bg-gradient-brand-soft text-secondary"
-                              : "text-muted-foreground hover:bg-primary/5 hover:text-secondary"
-                          }`}
-                        >
-                          <span
-                            className={`h-1.5 w-1.5 shrink-0 rounded-full transition-all ${
-                              isActive ? "bg-gradient-brand scale-125 shadow-glow-red" : "bg-border"
-                            }`}
-                            aria-hidden
-                          />
-                          <span className="truncate">{s.label}</span>
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </nav>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Desktop: expanded card */}
-      <Reveal variant="up" className="hidden rounded-3xl border border-border/60 bg-white p-6 shadow-soft lg:block">
-        <div className="flex items-center gap-2 text-primary">
-          <ListTree className="h-4 w-4" />
-          <span className="text-[11px] font-black uppercase tracking-[0.22em]">On this page</span>
-        </div>
-        <nav aria-label="Section navigation" className="mt-4">
-          <ul className="space-y-1">
-            {sections.map((s) => {
-              const isActive = activeSection === s.id;
-              return (
-                <li key={s.id}>
-                  <a
-                    href={`#${s.id}`}
-                    aria-current={isActive ? "true" : undefined}
-                    className={`group relative flex items-center gap-3 rounded-xl px-3 py-2 text-[13.5px] font-semibold transition-all ${
-                      isActive
-                        ? "bg-gradient-brand-soft text-secondary"
-                        : "text-muted-foreground hover:bg-primary/5 hover:text-secondary"
-                    }`}
-                  >
-                    <span
-                      className={`h-1.5 w-1.5 shrink-0 rounded-full transition-all ${
-                        isActive ? "bg-gradient-brand scale-125 shadow-glow-red" : "bg-border"
-                      }`}
-                      aria-hidden
-                    />
-                    <span className="truncate">{s.label}</span>
-                    {isActive && (
-                      <span className="ml-auto text-[10px] font-black uppercase tracking-[0.18em] text-primary">●</span>
-                    )}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-      </Reveal>
-    </>
-  );
-}
+// Silence unused import warning kept for shared iconography.
+void Sparkles;
