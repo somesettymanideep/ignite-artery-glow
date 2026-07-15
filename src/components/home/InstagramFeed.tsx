@@ -266,7 +266,6 @@ export function InstagramFeed() {
   }, []);
 
   const toggleSound = useCallback((idx: number) => {
-    console.log("[ig] toggleSound", idx, "hasVideo:", videoRefs.current.has(idx));
     const target = videoRefs.current.get(idx);
     if (!target) return;
 
