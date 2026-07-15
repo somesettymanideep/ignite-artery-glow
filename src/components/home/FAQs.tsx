@@ -119,7 +119,7 @@ export function FAQs() {
 
           {/* RIGHT — floating cards around central FAQ bubble */}
           <Reveal variant="fade" delay={0.1}>
-            <div className="relative mx-auto h-[560px] w-full max-w-xl">
+            <div className="relative mx-auto w-full max-w-xl lg:h-[560px]">
               {/* connecting dashed lines */}
               <svg className="faq-orbit pointer-events-none absolute inset-0 hidden h-full w-full lg:block" viewBox="0 0 500 560" fill="none" aria-hidden>
                 <path d="M120 130 Q 250 260 380 130" stroke="currentColor" strokeDasharray="4 6" className="text-secondary/20" strokeWidth="1.5" />
