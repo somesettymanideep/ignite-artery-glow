@@ -211,7 +211,7 @@ function Hero() {
 
 
         {/* Right image */}
-        <Reveal variant="right" delay={0.12} className="relative lg:-mr-[max(2rem,calc((100vw-1280px)/2))]">
+        <Reveal variant="right" delay={0.12} className="relative mx-auto w-full max-w-md lg:max-w-none lg:mx-0 lg:-mr-[max(2rem,calc((100vw-1280px)/2))]">
           <ServicesCarousel />
         </Reveal>
       </div>
