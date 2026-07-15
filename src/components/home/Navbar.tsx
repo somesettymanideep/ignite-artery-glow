@@ -174,18 +174,14 @@ export function Navbar() {
         aria-hidden
       />
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-        <Link to="/" className="flex min-w-0 items-center gap-3">
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-brand text-lg font-bold text-primary-foreground shadow-glow-red">
-            IV
-          </span>
-          <span className="min-w-0 leading-tight">
-            <span className="block truncate font-display text-lg font-bold tracking-tight">
-              Ignite Vascular
-            </span>
-            <span className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Center · Vijayawada
-            </span>
-          </span>
+        <Link to="/" className="flex min-w-0 items-center gap-3" aria-label="Ignite Vascular Center — Home">
+          <img
+            src={logoAsset.url}
+            alt="Ignite Vascular Center"
+            className="h-11 w-auto shrink-0 sm:h-12"
+            width={220}
+            height={80}
+          />
         </Link>
 
         <ul className="hidden items-center gap-7 lg:flex">
