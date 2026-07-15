@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { Instagram, Play, Pause, Heart, MessageCircle, Send, Volume2, VolumeX } from "lucide-react";
+import { Instagram, Play, Pause, Heart, MessageCircle, Send, Volume2, VolumeX, ChevronLeft, ChevronRight } from "lucide-react";
+
 import { Reveal } from "@/hooks/use-reveal";
 import reel1 from "@/assets/about-surgery.jpg";
 import reel2 from "@/assets/home2-doctor.jpg";
