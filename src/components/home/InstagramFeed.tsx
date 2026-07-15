@@ -346,7 +346,22 @@ export function InstagramFeed() {
   const slideBy = useCallback((dir: 1 | -1) => {
     const el = trackRef.current;
     if (!el) return;
-    el.scrollBy({ left: dir * el.clientWidth, behavior: "smooth" });
+    const children = Array.from(el.children) as HTMLElement[];
+    if (children.length === 0) return;
+    const scrollLeft = el.scrollLeft;
+    // Find the child currently closest to the left edge
+    let currentIdx = 0;
+    let bestDist = Infinity;
+    children.forEach((c, i) => {
+      const d = Math.abs(c.offsetLeft - scrollLeft);
+      if (d < bestDist) {
+        bestDist = d;
+        currentIdx = i;
+      }
+    });
+    const nextIdx = Math.max(0, Math.min(children.length - 1, currentIdx + dir));
+    const target = children[nextIdx];
+    el.scrollTo({ left: target.offsetLeft, behavior: "smooth" });
   }, []);
 
 
