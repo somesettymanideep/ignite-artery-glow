@@ -121,7 +121,7 @@ export function FAQs() {
           <Reveal variant="fade" delay={0.1}>
             <div className="relative mx-auto h-[560px] w-full max-w-xl">
               {/* connecting dashed lines */}
-              <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 500 560" fill="none" aria-hidden>
+              <svg className="faq-orbit pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 500 560" fill="none" aria-hidden>
                 <path d="M120 130 Q 250 260 380 130" stroke="currentColor" strokeDasharray="4 6" className="text-secondary/20" strokeWidth="1.5" />
                 <path d="M120 430 Q 250 300 380 430" stroke="currentColor" strokeDasharray="4 6" className="text-secondary/20" strokeWidth="1.5" />
                 <path d="M120 130 L 120 430" stroke="currentColor" strokeDasharray="4 6" className="text-secondary/20" strokeWidth="1.5" />
