@@ -362,7 +362,7 @@ function ServiceDetail() {
 
               {/* Need Help */}
               <Reveal variant="up" className="relative overflow-hidden rounded-3xl p-6 text-white shadow-soft">
-                <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#3b0f6f_0%,#7c3aed_55%,#c026d3_100%)]" />
+                <div aria-hidden className="absolute inset-0 -z-10 bg-[#41305c]" />
                 <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/15 blur-3xl" />
                 <div aria-hidden className="pointer-events-none absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-primary/30 blur-3xl" />
                 <div className="relative flex items-center gap-2 text-white/80">
