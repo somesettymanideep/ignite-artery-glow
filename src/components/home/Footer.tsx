@@ -29,10 +29,9 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-[1.1fr_0.8fr_1fr_1.1fr] lg:px-8">
         <Reveal className="reveal" variant="up" delay={0}>
           <div>
-            <Link to="/" className="flex items-center gap-2.5">
-              <span className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-brand font-display text-sm font-bold shadow-glow-red">IV</span>
-              <span className="font-display text-lg font-extrabold">
-                Ignite <span className="text-primary">Vascular</span> Center
+            <Link to="/" className="inline-flex items-center" aria-label="Ignite Vascular Center — Home">
+              <span className="inline-flex items-center rounded-2xl bg-white px-4 py-3 shadow-sm">
+                <img src={logoAsset.url} alt="Ignite Vascular Center" className="h-12 w-auto" width={220} height={80} />
               </span>
             </Link>
             <p className="mt-5 text-sm leading-relaxed text-primary-foreground/75">
