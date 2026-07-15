@@ -100,6 +100,13 @@ function ServiceDetail() {
       <main className="bg-white">
         {/* Hero */}
         <section className="relative overflow-hidden pt-28 lg:pt-32">
+          {/* Ambient decor */}
+          <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-primary/10 blur-3xl" />
+            <div className="absolute top-40 right-[-120px] h-[380px] w-[380px] rounded-full bg-[hsl(258,90%,66%)]/15 blur-3xl" />
+            <div className="absolute inset-x-0 top-0 h-[560px] bg-[radial-gradient(1200px_500px_at_50%_-10%,hsl(15,90%,97%),transparent)]" />
+          </div>
+
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[13px] font-semibold text-muted-foreground">
               <Link to="/" className="hover:text-primary">Home</Link>
@@ -109,25 +116,49 @@ function ServiceDetail() {
               <span className="text-secondary">{service.title}</span>
             </nav>
 
-            <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+            <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
               {/* Left */}
               <Reveal variant="up" className="lg:col-span-6">
-                <span className="text-[11px] font-black uppercase tracking-[0.28em] text-primary/80">
-                  Our Service
+                <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/70 px-3 py-1.5 shadow-soft backdrop-blur">
+                  <span className="grid h-5 w-5 place-items-center rounded-full bg-gradient-brand text-primary-foreground">
+                    <Sparkles className="h-3 w-3" />
+                  </span>
+                  <span className="text-[10.5px] font-black uppercase tracking-[0.24em] text-primary">Our Service</span>
                 </span>
-                <h1 className="mt-3 font-display text-4xl font-black leading-[1.05] tracking-tight text-secondary sm:text-5xl lg:text-6xl">
+                <h1 className="mt-4 font-display text-4xl font-black leading-[1.02] tracking-tight text-secondary sm:text-5xl lg:text-6xl">
                   {titleHead}{" "}
-                  <span className="text-primary">{titleAccent}</span>
+                  <span className="relative inline-block">
+                    <span className="bg-gradient-brand bg-clip-text text-transparent">{titleAccent}</span>
+                    <span aria-hidden className="absolute -bottom-1 left-0 h-1.5 w-full rounded-full bg-gradient-brand opacity-20" />
+                  </span>
                 </h1>
                 <p className="mt-5 max-w-xl text-[15.5px] leading-relaxed text-muted-foreground">
                   {service.overview}
                 </p>
 
+                {/* Trust row */}
+                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+                  <div className="flex items-center gap-2">
+                    <div className="flex">
+                      {[0,1,2,3,4].map((i) => (
+                        <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                    <span className="text-[13px] font-bold text-secondary">4.9/5</span>
+                    <span className="text-[12px] text-muted-foreground">· 500+ patients</span>
+                  </div>
+                  <span className="h-4 w-px bg-border" />
+                  <div className="flex items-center gap-2 text-[13px] font-semibold text-secondary">
+                    <Award className="h-4 w-4 text-primary" />
+                    NABH-aligned care
+                  </div>
+                </div>
+
                 {/* Feature chips row */}
                 <ul className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-4">
                   {FEATURES.map(({ icon: I, title, desc }, i) => (
-                    <Reveal key={title} variant="up" delay={0.05 * (i + 1)} as="li" className="text-center">
-                      <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-primary/10 text-primary ring-1 ring-primary/15">
+                    <Reveal key={title} variant="up" delay={0.05 * (i + 1)} as="li" className="group text-center">
+                      <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-white text-primary shadow-soft ring-1 ring-primary/10 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-glow-red group-hover:ring-primary/40">
                         <I className="h-6 w-6" />
                       </span>
                       <p className="mt-3 text-[13px] font-bold text-secondary">{title}</p>
@@ -137,15 +168,43 @@ function ServiceDetail() {
                 </ul>
               </Reveal>
 
-              {/* Right image */}
+              {/* Right image with floating card */}
               <Reveal variant="zoom" className="lg:col-span-6">
                 <div className="relative">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="h-[380px] w-full rounded-3xl object-cover shadow-soft sm:h-[460px]"
-                  />
-                  <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-black/5" />
+                  {/* Gradient frame */}
+                  <div aria-hidden className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-brand opacity-20 blur-2xl" />
+                  <div className="relative overflow-hidden rounded-[2rem] shadow-glow-red ring-1 ring-black/5">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="h-[420px] w-full object-cover sm:h-[500px]"
+                    />
+                    <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-secondary/25 via-transparent to-transparent" />
+                  </div>
+
+                  {/* Floating stat card — top right */}
+                  <div className="absolute -top-4 right-4 hidden rounded-2xl border border-white/60 bg-white/95 p-4 shadow-soft backdrop-blur sm:block">
+                    <div className="flex items-center gap-3">
+                      <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow-red">
+                        <Users className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <p className="font-display text-lg font-black leading-none text-secondary">500+</p>
+                        <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Patients treated</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Floating badge — bottom left */}
+                  <div className="absolute -bottom-5 left-4 hidden items-center gap-3 rounded-2xl border border-white/60 bg-white/95 p-3 pr-5 shadow-soft backdrop-blur sm:flex">
+                    <span className="grid h-10 w-10 place-items-center rounded-xl bg-secondary text-primary">
+                      <ShieldCheck className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-primary">Day-care</p>
+                      <p className="text-[13px] font-bold text-secondary">Walk-in · Walk-out</p>
+                    </div>
+                  </div>
                 </div>
               </Reveal>
             </div>
@@ -153,43 +212,45 @@ function ServiceDetail() {
         </section>
 
         {/* Body */}
-        <section className="py-16 lg:py-20">
+        <section className="relative py-16 lg:py-24">
+          <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(800px_400px_at_0%_20%,hsl(15,90%,97%),transparent)]" />
           <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-12 lg:px-8">
             {/* Main content */}
-            <div className="space-y-14 lg:col-span-8">
+            <div className="space-y-16 lg:col-span-8">
               {/* About */}
               <Reveal variant="up" as="section">
-                <h2 className="font-display text-3xl font-extrabold text-secondary">
+                <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary">01 · Overview</span>
+                <h2 className="mt-2 font-display text-3xl font-extrabold text-secondary sm:text-4xl">
                   About {service.title.replace(/ Treatment$/i, "")}
                 </h2>
                 <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
                   {service.overview}
                 </p>
 
-                <div className="mt-8 rounded-3xl border border-border/60 bg-white p-5 shadow-soft sm:p-6">
-                  <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                    {symptomCards.map(({ title, desc }, i) => (
-                      <li key={title + i} className="flex flex-col items-start gap-3">
-                        <span className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/15">
-                          <HeartPulse className="h-5 w-5" />
-                        </span>
-                        <div>
-                          <p className="text-[14px] font-bold text-secondary">{title}</p>
-                          <p className="mt-1 text-[12.5px] leading-snug text-muted-foreground">{desc}</p>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  {symptomCards.map(({ title, desc }, i) => (
+                    <Reveal key={title + i} variant="up" delay={0.05 * i} as="li" className="group relative overflow-hidden rounded-2xl border border-border/60 bg-white p-5 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-primary/40 hover:shadow-glow-red">
+                      <span aria-hidden className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gradient-brand opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-30" />
+                      <span className="relative grid h-12 w-12 place-items-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow-red">
+                        <HeartPulse className="h-5 w-5" />
+                      </span>
+                      <p className="relative mt-4 text-[15px] font-bold text-secondary">{title}</p>
+                      <p className="relative mt-1.5 text-[12.5px] leading-snug text-muted-foreground">{desc}</p>
+                    </Reveal>
+                  ))}
+                </ul>
               </Reveal>
 
               {/* How we treat */}
               <Reveal variant="up" as="section">
-                <div className="grid items-center gap-8 lg:grid-cols-2">
+                <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary">02 · Treatment</span>
+                <div className="mt-2 grid items-center gap-10 lg:grid-cols-2">
                   <div>
-                    <h2 className="font-display text-3xl font-extrabold text-secondary">
-                      <span className="border-b-4 border-primary pb-1">How We Treat</span>{" "}
-                      {service.title.replace(/ Treatment$/i, "")}
+                    <h2 className="font-display text-3xl font-extrabold text-secondary sm:text-4xl">
+                      How We Treat{" "}
+                      <span className="bg-gradient-brand bg-clip-text text-transparent">
+                        {service.title.replace(/ Treatment$/i, "")}
+                      </span>
                     </h2>
                     <p className="mt-4 text-[14.5px] leading-relaxed text-muted-foreground">
                       We provide state-of-the-art treatments customized to your condition
@@ -197,35 +258,46 @@ function ServiceDetail() {
                     </p>
                     <ul className="mt-6 space-y-3">
                       {bullets.map((b) => (
-                        <li key={b} className="flex items-start gap-3">
-                          <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                        <li key={b} className="group flex items-start gap-3 rounded-xl p-2 transition-colors hover:bg-primary/5">
+                          <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gradient-brand text-primary-foreground shadow-glow-red transition-transform group-hover:scale-110">
                             <CheckCircle2 className="h-4 w-4" />
                           </span>
-                          <span className="text-[14.5px] text-secondary">{b}</span>
+                          <span className="text-[14.5px] font-semibold text-secondary">{b}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   <div className="relative">
+                    <div aria-hidden className="absolute -inset-2 -z-10 rounded-[2rem] bg-gradient-brand-soft" />
+                    <div aria-hidden className="absolute -right-4 -bottom-4 -z-10 h-40 w-40 rounded-full bg-primary/10 blur-2xl" />
                     <img
                       src={service.image}
                       alt={`${service.title} procedure`}
-                      className="h-[320px] w-full rounded-3xl object-cover shadow-soft sm:h-[380px]"
+                      className="h-[340px] w-full rounded-[1.75rem] object-cover shadow-soft ring-1 ring-black/5 sm:h-[400px]"
                     />
+                    {/* corner badge */}
+                    <div className="absolute -left-4 -top-4 hidden rounded-2xl bg-secondary p-3 pr-4 shadow-glow-red sm:flex sm:items-center sm:gap-2">
+                      <Sparkles className="h-4 w-4 text-primary" />
+                      <span className="text-[11px] font-black uppercase tracking-wider text-white">Advanced Care</span>
+                    </div>
                   </div>
                 </div>
               </Reveal>
 
               {/* Our approach steps */}
               <Reveal variant="up" as="section">
-                <h2 className="font-display text-3xl font-extrabold text-secondary">Our Approach</h2>
-                <ol className="mt-6 grid gap-3 sm:grid-cols-2">
+                <span className="text-[11px] font-black uppercase tracking-[0.24em] text-primary">03 · Method</span>
+                <h2 className="mt-2 font-display text-3xl font-extrabold text-secondary sm:text-4xl">Our Approach</h2>
+                <ol className="mt-6 grid gap-4 sm:grid-cols-2">
                   {service.procedure.map((p, i) => (
-                    <li key={p} className="flex items-start gap-4 rounded-2xl bg-gradient-brand-soft p-4">
-                      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-brand font-display text-sm font-black text-primary-foreground shadow-glow-red">
+                    <li key={p} className="group relative overflow-hidden rounded-2xl border border-border/60 bg-white p-5 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-primary/40 hover:shadow-glow-red">
+                      <span aria-hidden className="absolute right-3 top-3 font-display text-6xl font-black text-primary/5 transition-colors group-hover:text-primary/10">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="relative grid h-10 w-10 place-items-center rounded-full bg-gradient-brand font-display text-sm font-black text-primary-foreground shadow-glow-red">
                         {i + 1}
                       </span>
-                      <p className="pt-1 text-[14px] text-secondary">{p}</p>
+                      <p className="relative mt-4 text-[14px] font-semibold text-secondary">{p}</p>
                     </li>
                   ))}
                 </ol>
@@ -233,15 +305,28 @@ function ServiceDetail() {
 
               {/* Recovery */}
               <Reveal variant="up" as="section">
-                <div className="rounded-3xl bg-secondary p-6 text-primary-foreground sm:p-8">
-                  <div className="flex items-center gap-3">
-                    <Clock className="h-6 w-6 text-primary" />
-                    <h2 className="font-display text-2xl font-extrabold">Recovery & Follow-up</h2>
+                <div className="relative overflow-hidden rounded-3xl bg-secondary p-6 text-primary-foreground shadow-soft sm:p-8">
+                  <div aria-hidden className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-primary/25 blur-3xl" />
+                  <div aria-hidden className="absolute -bottom-20 -left-10 h-52 w-52 rounded-full bg-[hsl(258,90%,66%)]/25 blur-3xl" />
+                  <div className="relative flex items-center gap-3">
+                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-brand text-primary-foreground shadow-glow-red">
+                      <Clock className="h-5 w-5" />
+                    </span>
+                    <h2 className="font-display text-2xl font-extrabold sm:text-3xl">Recovery & Follow-up</h2>
                   </div>
-                  <p className="mt-3 text-[15px] leading-relaxed text-white/85">{service.recovery}</p>
+                  <p className="relative mt-4 max-w-2xl text-[15px] leading-relaxed text-white/85">{service.recovery}</p>
+                  <div className="relative mt-6 flex flex-wrap gap-3">
+                    <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-[13.5px] font-bold text-primary-foreground shadow-glow-red">
+                      Book a Consultation <ArrowRight className="h-4 w-4" />
+                    </Link>
+                    <a href="tel:+919966117292" className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-2.5 text-[13.5px] font-bold text-white backdrop-blur transition hover:bg-white/20">
+                      <Phone className="h-4 w-4" /> +91 99661 17292
+                    </a>
+                  </div>
                 </div>
               </Reveal>
             </div>
+
 
             {/* Sidebar */}
             <aside className="space-y-6 lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
