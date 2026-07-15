@@ -391,7 +391,9 @@ function RequestSection() {
     setStatus(null);
 
     // Simulate async submission for UX demo; replace with server function when backend is wired.
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    const { addSubmission } = await import("@/lib/admin-store");
+    addSubmission("second-opinion", form);
 
     setIsSubmitting(false);
     setStatus("ok");

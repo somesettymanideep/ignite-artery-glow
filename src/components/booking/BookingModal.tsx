@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { Calendar as CalendarIcon, Mail, MessageSquare, Phone, User, Clock, CheckCircle2, X } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
+import { addSubmission } from "@/lib/admin-store";
 
 const BOOKING_EVENT = "ignite:open-booking";
 
@@ -71,7 +72,7 @@ export function BookingModal() {
       setErrors(errs);
       return;
     }
-    // Success — in real app: send to backend / email service
+    addSubmission("booking", parsed.data);
     setSubmitted(true);
   };
 
