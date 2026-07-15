@@ -170,9 +170,9 @@ export function Navbar() {
           <img
             src={logoAsset.url}
             alt="Ignite Vascular Center"
-            className="h-11 w-auto shrink-0 sm:h-12"
-            width={220}
-            height={80}
+            className="h-16 w-auto shrink-0 sm:h-20"
+            width={320}
+            height={120}
           />
         </Link>
 
