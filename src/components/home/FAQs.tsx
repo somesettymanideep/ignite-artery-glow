@@ -89,7 +89,7 @@ export function FAQs() {
                         </span>
                       </button>
                       <div
-                        className={`grid overflow-hidden px-5 transition-all duration-500 ease-out ${
+                        className={`faq-accordion-body grid overflow-hidden px-5 ${
                           isOpen ? "grid-rows-[1fr] pb-5" : "grid-rows-[0fr]"
                         }`}
                       >
