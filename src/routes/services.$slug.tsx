@@ -84,7 +84,7 @@ function splitSymptom(s: string): { title: string; desc: string } {
 
 function ServiceDetail() {
   const { service } = Route.useLoaderData() as { service: (typeof SERVICES)[number] };
-  const related = SERVICES.filter((s) => s.slug !== service.slug);
+  const related = SERVICES;
 
   // Split title so the last word gets the red accent (e.g. "Varicose Veins" + "Treatment")
   const titleWords = service.title.split(" ");
@@ -341,18 +341,36 @@ function ServiceDetail() {
                 <ul className="relative mt-5 space-y-1">
                   {related.map((r) => {
                     const I = r.icon;
+                    const isActive = r.slug === service.slug;
                     return (
                       <li key={r.slug}>
                         <Link
                           to="/services/$slug"
                           params={{ slug: r.slug }}
-                          className="group flex items-center gap-3 rounded-xl px-2 py-2.5 text-[14px] font-semibold text-secondary transition-all hover:bg-gradient-brand-soft hover:pl-3"
+                          aria-current={isActive ? "page" : undefined}
+                          className={
+                            isActive
+                              ? "flex items-center gap-3 rounded-xl bg-gradient-brand px-3 py-2.5 text-[14px] font-bold text-primary-foreground shadow-glow-red"
+                              : "group flex items-center gap-3 rounded-xl px-2 py-2.5 text-[14px] font-semibold text-secondary transition-all hover:bg-gradient-brand-soft hover:pl-3"
+                          }
                         >
-                          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-primary/10 text-primary transition-all group-hover:bg-gradient-brand group-hover:text-primary-foreground group-hover:shadow-glow-red">
+                          <span
+                            className={
+                              isActive
+                                ? "grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/20 text-white ring-1 ring-white/40"
+                                : "grid h-8 w-8 shrink-0 place-items-center rounded-full bg-primary/10 text-primary transition-all group-hover:bg-gradient-brand group-hover:text-primary-foreground group-hover:shadow-glow-red"
+                            }
+                          >
                             <I className="h-4 w-4" />
                           </span>
                           <span className="min-w-0 flex-1 leading-snug">{r.title}</span>
-                          <ArrowRight className="h-4 w-4 shrink-0 text-primary transition-transform group-hover:translate-x-1" />
+                          <ArrowRight
+                            className={
+                              isActive
+                                ? "h-4 w-4 shrink-0 text-white"
+                                : "h-4 w-4 shrink-0 text-primary transition-transform group-hover:translate-x-1"
+                            }
+                          />
                         </Link>
                       </li>
                     );
