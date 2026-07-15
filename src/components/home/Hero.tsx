@@ -12,13 +12,30 @@ const trust = [
 
 export function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-28">
+    <section
+      id="home"
+      className="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-28 min-h-[92vh]"
+    >
+      {/* Full-section background image */}
+      <img
+        src={heroImg}
+        alt="Clinical illustration of varicose veins with a magnified vein valve diagram"
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        aria-hidden="false"
+      />
+      {/* Readability overlays */}
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/10 lg:from-background lg:via-background/70 lg:to-transparent"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-background/70"
+        aria-hidden
+      />
+
       {/* Ambient gradient blobs */}
       <div className="pointer-events-none absolute -top-32 -left-32 h-[480px] w-[480px] rounded-full bg-primary/10 blur-3xl" aria-hidden />
       <div className="pointer-events-none absolute top-40 -right-40 h-[520px] w-[520px] rounded-full bg-secondary/15 blur-3xl" aria-hidden />
-
-
-
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2 lg:gap-10 lg:px-8">
         {/* Left */}
@@ -66,32 +83,22 @@ export function Hero() {
           </ul>
         </Reveal>
 
-        {/* Right */}
-        <Reveal variant="right" className="relative">
-          <div className="relative mx-auto max-w-lg">
-            <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-brand opacity-15 blur-2xl" aria-hidden />
-            <img
-              src={heroImg}
-              alt="Vascular surgeon with advanced digital artery visualization at Ignite Vascular Center"
-              width={1024}
-              height={1152}
-              className="relative w-full rounded-[2rem] object-cover shadow-lift"
-            />
-
-            {/* Floating glass cards */}
-            <div className="glass-card animate-float absolute -left-4 top-8 flex items-center gap-3 rounded-2xl px-4 py-3 sm:-left-10">
+        {/* Right — floating glass credential cards over the background image */}
+        <Reveal variant="right" className="relative hidden lg:block">
+          <div className="relative mx-auto h-[520px] max-w-lg">
+            <div className="glass-card animate-float absolute left-0 top-6 flex items-center gap-3 rounded-2xl px-4 py-3">
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-brand text-primary-foreground"><Award className="h-5 w-5" /></span>
               <span className="text-sm font-bold leading-tight">20+ Years<br /><span className="text-xs font-semibold text-muted-foreground">Experience</span></span>
             </div>
-            <div className="glass-card animate-float-slower absolute -right-4 top-1/3 flex items-center gap-3 rounded-2xl px-4 py-3 sm:-right-8">
+            <div className="glass-card animate-float-slower absolute right-0 top-1/3 flex items-center gap-3 rounded-2xl px-4 py-3">
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-secondary text-secondary-foreground"><Activity className="h-5 w-5" /></span>
               <span className="text-sm font-bold leading-tight">Advanced<br /><span className="text-xs font-semibold text-muted-foreground">Endovascular Procedures</span></span>
             </div>
-            <div className="glass-card animate-float absolute -left-2 bottom-24 flex items-center gap-3 rounded-2xl px-4 py-3 [animation-delay:1.2s] sm:-left-12">
+            <div className="glass-card animate-float absolute left-4 bottom-24 flex items-center gap-3 rounded-2xl px-4 py-3 [animation-delay:1.2s]">
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-brand text-primary-foreground"><HeartPulse className="h-5 w-5" /></span>
               <span className="text-sm font-bold leading-tight">Patient-Centered<br /><span className="text-xs font-semibold text-muted-foreground">Care</span></span>
             </div>
-            <div className="glass-card animate-float-slower absolute -right-2 -bottom-5 flex items-center gap-3 rounded-2xl px-4 py-3 [animation-delay:0.6s] sm:-right-6">
+            <div className="glass-card animate-float-slower absolute right-2 bottom-0 flex items-center gap-3 rounded-2xl px-4 py-3 [animation-delay:0.6s]">
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-secondary text-secondary-foreground"><Users className="h-5 w-5" /></span>
               <span className="text-sm font-bold leading-tight">Trusted by<br /><span className="text-xs font-semibold text-muted-foreground">Thousands</span></span>
             </div>
