@@ -331,9 +331,14 @@ function ServiceDetail() {
             {/* Sidebar */}
             <aside className="space-y-6 lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
               {/* Other Treatments */}
-              <Reveal variant="up" className="rounded-3xl border border-border/60 bg-white p-6 shadow-soft">
-                <h3 className="font-display text-xl font-extrabold text-secondary">Other Treatments</h3>
-                <ul className="mt-5 space-y-1">
+              <Reveal variant="up" className="relative overflow-hidden rounded-3xl border border-border/60 bg-white p-6 shadow-soft">
+                <div aria-hidden className="absolute -right-16 -top-16 h-32 w-32 rounded-full bg-primary/10 blur-2xl" />
+                <div className="relative flex items-center gap-2 text-primary">
+                  <Sparkles className="h-4 w-4" />
+                  <span className="text-[10.5px] font-black uppercase tracking-[0.22em]">Explore More</span>
+                </div>
+                <h3 className="relative mt-2 font-display text-xl font-extrabold text-secondary">Other Treatments</h3>
+                <ul className="relative mt-5 space-y-1">
                   {related.map((r) => {
                     const I = r.icon;
                     return (
@@ -341,9 +346,9 @@ function ServiceDetail() {
                         <Link
                           to="/services/$slug"
                           params={{ slug: r.slug }}
-                          className="group flex items-center gap-3 rounded-xl px-2 py-2.5 text-[14px] font-semibold text-secondary transition hover:bg-primary/5"
+                          className="group flex items-center gap-3 rounded-xl px-2 py-2.5 text-[14px] font-semibold text-secondary transition-all hover:bg-gradient-brand-soft hover:pl-3"
                         >
-                          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-primary/10 text-primary transition-all group-hover:bg-gradient-brand group-hover:text-primary-foreground group-hover:shadow-glow-red">
                             <I className="h-4 w-4" />
                           </span>
                           <span className="min-w-0 flex-1 leading-snug">{r.title}</span>
@@ -356,36 +361,46 @@ function ServiceDetail() {
               </Reveal>
 
               {/* Need Help */}
-              <Reveal variant="up" className="relative overflow-hidden rounded-3xl p-6 text-white shadow-soft" >
-                <div className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#4b1d8a_0%,#7c3aed_55%,#a855f7_100%)]" />
-                <h3 className="font-display text-xl font-extrabold">Need Help?</h3>
-                <p className="mt-2 text-[13.5px] text-white/85">
+              <Reveal variant="up" className="relative overflow-hidden rounded-3xl p-6 text-white shadow-soft">
+                <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#3b0f6f_0%,#7c3aed_55%,#c026d3_100%)]" />
+                <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/15 blur-3xl" />
+                <div aria-hidden className="pointer-events-none absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-primary/30 blur-3xl" />
+                <div className="relative flex items-center gap-2 text-white/80">
+                  <PhoneCall className="h-4 w-4" />
+                  <span className="text-[10.5px] font-black uppercase tracking-[0.22em]">24/7 Support</span>
+                </div>
+                <h3 className="relative mt-2 font-display text-2xl font-extrabold">Need Help?</h3>
+                <p className="relative mt-2 text-[13.5px] text-white/85">
                   Speak with our vascular care experts today.
                 </p>
                 <a
                   href="tel:+919966117292"
-                  className="mt-5 flex items-center gap-3 text-white"
+                  className="relative mt-5 flex items-center gap-3 text-white"
                 >
-                  <span className="grid h-9 w-9 place-items-center rounded-full bg-white/15 ring-1 ring-white/20">
+                  <span className="grid h-10 w-10 place-items-center rounded-full bg-white/15 ring-1 ring-white/25 backdrop-blur">
                     <PhoneCall className="h-4 w-4" />
                   </span>
                   <span className="font-display text-lg font-black tracking-wide">+91 99661 17292</span>
                 </a>
                 <Link
                   to="/contact"
-                  className="mt-5 flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-[13.5px] font-bold text-secondary shadow-soft transition hover:-translate-y-0.5"
+                  className="relative mt-5 flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-[13.5px] font-bold text-secondary shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-glow-red"
                 >
                   Talk to Specialist <Phone className="h-4 w-4 text-primary" />
                 </Link>
               </Reveal>
 
               {/* Why Choose Us */}
-              <Reveal variant="up" className="rounded-3xl border border-border/60 bg-white p-6 shadow-soft">
-                <h3 className="font-display text-xl font-extrabold text-secondary">Why Choose Us?</h3>
+              <Reveal variant="up" className="relative overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-white to-primary/5 p-6 shadow-soft">
+                <div className="flex items-center gap-2 text-primary">
+                  <Award className="h-4 w-4" />
+                  <span className="text-[10.5px] font-black uppercase tracking-[0.22em]">Trusted Care</span>
+                </div>
+                <h3 className="mt-2 font-display text-xl font-extrabold text-secondary">Why Choose Us?</h3>
                 <ul className="mt-5 space-y-3">
                   {WHY_CHOOSE.map((w) => (
                     <li key={w} className="flex items-center gap-3 text-[14px] font-semibold text-secondary">
-                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gradient-brand text-primary-foreground shadow-glow-red">
                         <Check className="h-3.5 w-3.5" />
                       </span>
                       {w}
@@ -395,19 +410,25 @@ function ServiceDetail() {
               </Reveal>
 
               {/* Download Brochure */}
-              <Reveal variant="up" className="rounded-3xl border border-primary/15 bg-[hsl(15,90%,97%)] p-6 shadow-soft">
-                <h3 className="font-display text-xl font-extrabold text-secondary">Download Brochure</h3>
-                <p className="mt-2 text-[13.5px] text-muted-foreground">
+              <Reveal variant="up" className="relative overflow-hidden rounded-3xl border border-primary/15 bg-[hsl(15,90%,97%)] p-6 shadow-soft">
+                <div aria-hidden className="absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-gradient-brand opacity-10 blur-2xl" />
+                <div className="relative flex items-center gap-2 text-primary">
+                  <Download className="h-4 w-4" />
+                  <span className="text-[10.5px] font-black uppercase tracking-[0.22em]">Free Guide</span>
+                </div>
+                <h3 className="relative mt-2 font-display text-xl font-extrabold text-secondary">Download Brochure</h3>
+                <p className="relative mt-2 text-[13.5px] text-muted-foreground">
                   Get detailed information about our vascular treatments.
                 </p>
                 <a
                   href="#"
-                  className="mt-5 flex items-center justify-center gap-2 rounded-full border border-primary/20 bg-white px-5 py-3 text-[13.5px] font-bold text-secondary shadow-soft transition hover:-translate-y-0.5"
+                  className="relative mt-5 flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-5 py-3 text-[13.5px] font-bold text-primary-foreground shadow-glow-red transition hover:-translate-y-0.5"
                 >
-                  Download Now <Download className="h-4 w-4 text-primary" />
+                  Download Now <Download className="h-4 w-4" />
                 </a>
               </Reveal>
             </aside>
+
           </div>
         </section>
 
