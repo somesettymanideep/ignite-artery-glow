@@ -185,7 +185,7 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
           aria-label={isUnmuted ? `Mute reel ${index + 1}` : `Unmute reel ${index + 1}`}
           aria-pressed={isUnmuted}
           title={isUnmuted ? "Mute (M)" : "Unmute (M)"}
-          className={`absolute right-3 top-12 z-10 grid h-9 w-9 place-items-center rounded-full backdrop-blur transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 ${
+          className={`absolute right-3 top-12 z-20 grid h-9 w-9 place-items-center rounded-full backdrop-blur transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 ${
             isUnmuted
               ? "bg-[linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)] text-white shadow-glow-red"
               : "bg-black/50 text-white hover:bg-black/70"
