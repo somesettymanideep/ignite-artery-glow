@@ -4,13 +4,13 @@ import { Facebook, Instagram, Linkedin } from "lucide-react";
 const socials = [
   {
     name: "Facebook",
-    href: "https://facebook.com",
+    href: "https://www.facebook.com/people/Ignite-Vascular-Center/61578279247712/",
     icon: Facebook,
     bg: "#1877F2",
   },
   {
     name: "Instagram",
-    href: "https://instagram.com",
+    href: "https://www.instagram.com/ignite_vascular_center/?hl=en",
     icon: Instagram,
     bg: "linear-gradient(135deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5)",
   },
