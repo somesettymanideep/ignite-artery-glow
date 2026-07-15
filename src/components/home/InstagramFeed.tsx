@@ -7,14 +7,10 @@ import reel2 from "@/assets/home2-doctor.jpg";
 import reel3 from "@/assets/about-vascular.jpg";
 import reel4 from "@/assets/hero-surgeon.jpg";
 
-import igReel1 from "@/assets/ignite-reel-1.mp4.asset.json";
-import igReel2 from "@/assets/ignite-reel-2.mp4.asset.json";
-import igReel3 from "@/assets/ignite-reel-3.mp4.asset.json";
-import igReel4 from "@/assets/ignite-reel-4.mp4.asset.json";
-
 type Reel = {
   poster: string;
   video?: string;
+  webm?: string;
   caption: string;
   likes: string;
   comments: number;
@@ -23,10 +19,10 @@ type Reel = {
 };
 
 const REELS: Reel[] = [
-  { video: igReel1.url, poster: reel1, caption: "Inside Ignite Vascular Center — a look at our advanced vascular care", likes: "12.4k", comments: 218, views: "84k", tag: "#IgniteVascular" },
-  { video: igReel2.url, poster: reel2, caption: "Dr. Narasimha Sai on early signs of varicose veins you shouldn't ignore", likes: "9.1k", comments: 342, views: "62k", tag: "#VaricoseVeins" },
-  { video: igReel3.url, poster: reel3, caption: "3D walkthrough — how a diabetic foot ulcer heals with vascular care", likes: "7.6k", comments: 154, views: "48k", tag: "#DiabeticFoot" },
-  { video: igReel4.url, poster: reel4, caption: "Live patient story: back to walking pain-free after PAD treatment", likes: "15.2k", comments: 487, views: "1.1M", tag: "#PatientStory" },
+  { webm: "/reels/ignite-reel-1.webm", video: "/reels/ignite-reel-1.mp4", poster: reel1, caption: "Inside Ignite Vascular Center — a look at our advanced vascular care", likes: "12.4k", comments: 218, views: "84k", tag: "#IgniteVascular" },
+  { webm: "/reels/ignite-reel-2.webm", video: "/reels/ignite-reel-2.mp4", poster: reel2, caption: "Dr. Narasimha Sai on early signs of varicose veins you shouldn't ignore", likes: "9.1k", comments: 342, views: "62k", tag: "#VaricoseVeins" },
+  { webm: "/reels/ignite-reel-3.webm", video: "/reels/ignite-reel-3.mp4", poster: reel3, caption: "3D walkthrough — how a diabetic foot ulcer heals with vascular care", likes: "7.6k", comments: 154, views: "48k", tag: "#DiabeticFoot" },
+  { webm: "/reels/ignite-reel-4.webm", video: "/reels/ignite-reel-4.mp4", poster: reel4, caption: "Live patient story: back to walking pain-free after PAD treatment", likes: "15.2k", comments: 487, views: "1.1M", tag: "#PatientStory" },
 ];
 
 type ReelCardProps = {
@@ -123,7 +119,6 @@ function ReelCard({ reel, index, isActive, onPlayRequest, onPauseRequest, regist
             videoRef.current = el;
             registerVideo(index, el);
           }}
-          src={reel.video}
           loop
           playsInline
           preload="metadata"
@@ -135,7 +130,10 @@ function ReelCard({ reel, index, isActive, onPlayRequest, onPauseRequest, regist
           className={`absolute inset-0 h-full w-full object-cover transition-all duration-[1400ms] ease-out group-hover:scale-105 ${
             videoReady ? "opacity-100" : "opacity-0"
           }`}
-        />
+        >
+          {reel.webm && <source src={reel.webm} type="video/webm" />}
+          <source src={reel.video} type="video/mp4" />
+        </video>
       )}
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/85" aria-hidden />
@@ -167,7 +165,7 @@ function ReelCard({ reel, index, isActive, onPlayRequest, onPauseRequest, regist
         </div>
       )}
 
-      {reel.video && videoReady && (
+      {reel.video && inView && (
         <button
           type="button"
           onClick={(e) => {
@@ -219,8 +217,11 @@ export function InstagramFeed() {
   const registerVideo = useCallback((idx: number, el: HTMLVideoElement | null) => {
     if (el) {
       videoRefs.current.set(idx, el);
-      el.muted = true;
-      el.defaultMuted = true;
+      el.defaultMuted = false;
+      el.muted = false;
+      el.removeAttribute("muted");
+      el.volume = 1;
+      if (activeIdxRef.current !== idx) el.pause();
     } else {
       videoRefs.current.delete(idx);
     }
@@ -234,8 +235,9 @@ export function InstagramFeed() {
     videoRefs.current.forEach((el, i) => {
       if (i !== idx) {
         try { el.pause(); } catch {}
-        el.muted = true;
-        el.defaultMuted = true;
+        el.muted = false;
+        el.defaultMuted = false;
+        el.removeAttribute("muted");
       }
     });
 
@@ -243,6 +245,7 @@ export function InstagramFeed() {
     target.defaultMuted = false;
     target.removeAttribute("muted");
     target.volume = 1;
+    if (target.readyState === 0) target.load();
     activeIdxRef.current = idx;
     setActiveIdx(idx);
 
@@ -272,8 +275,9 @@ export function InstagramFeed() {
     const target = videoRefs.current.get(idx);
     if (!target) return;
     try { target.pause(); } catch {}
-    target.muted = true;
-    target.defaultMuted = true;
+    target.muted = false;
+    target.defaultMuted = false;
+    target.removeAttribute("muted");
     if (activeIdxRef.current === idx) {
       activeIdxRef.current = null;
       setActiveIdx(null);
