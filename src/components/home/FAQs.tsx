@@ -31,7 +31,7 @@ const FLOATING_CARDS = [
 export function FAQs() {
   const [open, setOpen] = useState<number | null>(0);
 
-  const openBooking = () => window.dispatchEvent(new CustomEvent("open-booking-modal"));
+
 
   return (
     <section className="relative overflow-hidden py-20 lg:py-28" style={{ backgroundColor: "#f8f9fc" }}>
