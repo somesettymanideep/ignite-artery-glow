@@ -138,7 +138,7 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
           }}
           src={reel.video}
           loop
-          muted
+          muted={!isUnmuted}
           playsInline
           preload="none"
           aria-label={`Video: ${reel.caption}`}
