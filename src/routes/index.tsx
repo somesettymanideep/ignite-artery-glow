@@ -79,6 +79,7 @@ function Index() {
       <Reveal variant="up" delay={0.05}><WhyChoose /></Reveal>
       <Reveal variant="left" delay={0.05}><Process /></Reveal>
       <Reveal variant="up" delay={0.05}><Testimonials /></Reveal>
+      <Reveal variant="up" delay={0.05}><FAQs /></Reveal>
       <Reveal variant="zoom" delay={0.05}><InstagramFeed /></Reveal>
       <Footer />
     </main>
