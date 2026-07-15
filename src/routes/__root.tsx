@@ -184,6 +184,7 @@ function RootComponent() {
       <Outlet />
       <ScrollToTop />
       <FloatingEmergency />
+      <FloatingSocials />
       <BookingModal />
     </QueryClientProvider>
   );
