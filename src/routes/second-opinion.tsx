@@ -121,17 +121,8 @@ function ServicesCarousel() {
 
   return (
     <div className="relative h-[420px] sm:h-[520px] lg:h-[600px]">
-      <svg
-        className="absolute top-0 left-0 z-10 h-full w-16 lg:w-24"
-        viewBox="0 0 120 600"
-        preserveAspectRatio="none"
-        fill="none"
-        aria-hidden="true"
-      >
-        <path d="M120,0 C30,120 30,480 120,600" stroke="#311261" strokeWidth="12" strokeLinecap="round" />
-      </svg>
+      <div className="absolute inset-0 overflow-hidden rounded-2xl bg-secondary/5">
 
-      <div className="absolute inset-0 overflow-hidden rounded-l-[60px] sm:rounded-l-[80px] lg:rounded-l-[120px] bg-secondary/5">
         {SERVICES.map((s, i) => (
           <img
             key={s.slug}
