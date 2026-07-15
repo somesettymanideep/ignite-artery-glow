@@ -6,6 +6,7 @@ import { Services } from "@/components/home/Services";
 import { WhyChoose } from "@/components/home/WhyChoose";
 import { Process } from "@/components/home/Process";
 import { Testimonials } from "@/components/home/Testimonials";
+import { FAQs } from "@/components/home/FAQs";
 
 import { InstagramFeed } from "@/components/home/InstagramFeed";
 import { Footer } from "@/components/home/Footer";
