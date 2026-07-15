@@ -253,6 +253,7 @@ export function InstagramFeed() {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
   const [unmutedIdx, setUnmutedIdx] = useState<number | null>(null);
+  const unmutedIdxRef = useRef<number | null>(null);
 
   const registerVideo = useCallback((idx: number, el: HTMLVideoElement | null) => {
     if (el) {
