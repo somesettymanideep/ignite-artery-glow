@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { Instagram, Play, Pause, Heart, MessageCircle, Send, Volume2, VolumeX, ChevronLeft, ChevronRight } from "lucide-react";
+import { Instagram, Play, Pause, Heart, MessageCircle, Send, ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Reveal } from "@/hooks/use-reveal";
 import reel1 from "@/assets/about-surgery.jpg";
@@ -27,18 +27,18 @@ const REELS: Reel[] = [
   { video: igReel2.url, poster: reel2, caption: "Dr. Narasimha Sai on early signs of varicose veins you shouldn't ignore", likes: "9.1k", comments: 342, views: "62k", tag: "#VaricoseVeins" },
   { video: igReel3.url, poster: reel3, caption: "3D walkthrough — how a diabetic foot ulcer heals with vascular care", likes: "7.6k", comments: 154, views: "48k", tag: "#DiabeticFoot" },
   { video: igReel4.url, poster: reel4, caption: "Live patient story: back to walking pain-free after PAD treatment", likes: "15.2k", comments: 487, views: "1.1M", tag: "#PatientStory" },
-  
 ];
 
 type ReelCardProps = {
   reel: Reel;
   index: number;
-  isUnmuted: boolean;
-  onToggleSound: (i: number) => void;
+  isActive: boolean;
+  onPlayRequest: (i: number) => void;
+  onPauseRequest: (i: number) => void;
   registerVideo: (i: number, el: HTMLVideoElement | null) => void;
 };
 
-function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: ReelCardProps) {
+function ReelCard({ reel, index, isActive, onPlayRequest, onPauseRequest, registerVideo }: ReelCardProps) {
   const cardRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [inView, setInView] = useState(false);
@@ -46,18 +46,11 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
   const [videoReady, setVideoReady] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const togglePlay = useCallback(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (v.paused) {
-      const p = v.play();
-      if (p && typeof p.catch === "function") p.catch(() => {});
-    } else {
-      v.pause();
-    }
-  }, []);
+  const handleToggle = useCallback(() => {
+    if (isPlaying) onPauseRequest(index);
+    else onPlayRequest(index);
+  }, [isPlaying, index, onPlayRequest, onPauseRequest]);
 
-  // Lazy-mount videos only when card is near viewport
   useEffect(() => {
     const el = cardRef.current;
     if (!el) return;
@@ -87,16 +80,13 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
       const key = e.key.toLowerCase();
       if (e.key === " " || e.key === "Spacebar" || key === "k" || key === "enter") {
         e.preventDefault();
-        togglePlay();
-      } else if (key === "m") {
-        e.preventDefault();
-        onToggleSound(index);
+        handleToggle();
       }
     },
-    [reel.video, togglePlay, onToggleSound, index],
+    [reel.video, handleToggle],
   );
 
-  const reelLabel = `Instagram reel ${index + 1}: ${reel.caption}. ${reel.views} views, ${reel.likes} likes, ${reel.comments} comments.${reel.video ? " Press Space or K to play or pause, M to toggle sound." : ""}`;
+  const reelLabel = `Instagram reel ${index + 1}: ${reel.caption}. ${reel.views} views, ${reel.likes} likes, ${reel.comments} comments.${reel.video ? " Press Space or K to play or pause." : ""}`;
 
   return (
     <article
@@ -108,7 +98,6 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
       aria-roledescription="Instagram reel"
       className="group relative aspect-[9/16] w-[220px] overflow-hidden rounded-[1.5rem] border border-border/60 bg-secondary shadow-lift transition-all duration-500 hover:-translate-y-1 hover:shadow-glow-red focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:w-[240px]"
     >
-      {/* Shimmer skeleton — visible until poster (or video first frame) is ready */}
       <div
         aria-hidden
         className={`absolute inset-0 bg-[linear-gradient(110deg,#1f1730_25%,#2a2140_50%,#1f1730_75%)] bg-[length:200%_100%] transition-opacity duration-500 ${
@@ -116,7 +105,6 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
         }`}
       />
 
-      {/* Poster thumbnail — only for image-only reels (videos have no thumbnail) */}
       {!reel.video && (
         <img
           src={reel.poster}
@@ -129,7 +117,6 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
         />
       )}
 
-      {/* Video — mounted only after intersection; fades in once buffered */}
       {reel.video && inView && (
         <video
           ref={(el) => {
@@ -138,7 +125,6 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
           }}
           src={reel.video}
           loop
-          muted={!isUnmuted}
           playsInline
           preload="metadata"
           aria-label={`Video: ${reel.caption}`}
@@ -154,7 +140,6 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/85" aria-hidden />
 
-      {/* Buffering spinner while video prepares */}
       {reel.video && inView && !videoReady && (
         <div className="absolute inset-0 grid place-items-center" role="status" aria-live="polite">
           <span className="h-8 w-8 animate-spin rounded-full border-2 border-white/30 border-t-white/90" aria-hidden />
@@ -162,7 +147,6 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
         </div>
       )}
 
-      {/* Top row */}
       <div className="absolute inset-x-0 top-0 flex items-center justify-between px-3 pt-3">
         <span className="inline-flex items-center gap-1.5 rounded-full bg-black/40 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur">
           <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden /> Reel
@@ -175,28 +159,6 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
         </span>
       </div>
 
-      {/* Per-video sound toggle */}
-      {reel.video && (
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            onToggleSound(index);
-          }}
-          aria-label={isUnmuted ? `Mute reel ${index + 1}` : `Unmute reel ${index + 1}`}
-          aria-pressed={isUnmuted}
-          title={isUnmuted ? "Mute (M)" : "Unmute (M)"}
-          className={`absolute right-3 top-12 z-20 grid h-9 w-9 place-items-center rounded-full backdrop-blur transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 ${
-            isUnmuted
-              ? "bg-[linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)] text-white shadow-glow-red"
-              : "bg-black/50 text-white hover:bg-black/70"
-          }`}
-        >
-          {isUnmuted ? <Volume2 className="h-4 w-4" aria-hidden /> : <VolumeX className="h-4 w-4" aria-hidden />}
-        </button>
-      )}
-
-      {/* Play button (only for image-only reels) */}
       {!reel.video && (
         <div className="absolute inset-0 grid place-items-center" aria-hidden>
           <span className="grid h-14 w-14 place-items-center rounded-full bg-white/90 text-secondary shadow-lift transition-transform duration-500 group-hover:scale-110">
@@ -205,17 +167,16 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
         </div>
       )}
 
-      {/* Play/Pause button for videos */}
       {reel.video && videoReady && (
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
-            togglePlay();
+            handleToggle();
           }}
-          aria-label={isPlaying ? `Pause reel ${index + 1}` : `Play reel ${index + 1}`}
+          aria-label={isPlaying ? `Pause reel ${index + 1}` : `Play reel ${index + 1} with sound`}
           aria-pressed={isPlaying}
-          title={isPlaying ? "Pause (Space / K)" : "Play (Space / K)"}
+          title={isPlaying ? "Pause (Space / K)" : "Play with sound (Space / K)"}
           className={`absolute inset-0 z-10 grid place-items-center transition-opacity duration-300 focus:outline-none focus-visible:opacity-100 ${
             isPlaying ? "opacity-0 hover:opacity-100" : "opacity-100"
           }`}
@@ -230,7 +191,6 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
         </button>
       )}
 
-      {/* Bottom info */}
       <div className="absolute inset-x-0 bottom-0 space-y-2 p-3 text-white">
         <p className="line-clamp-2 text-[11px] font-semibold leading-snug">{reel.caption}</p>
         <div className="flex items-center gap-3 text-[10px] font-bold text-white/90">
@@ -253,8 +213,8 @@ function ReelCard({ reel, index, isUnmuted, onToggleSound, registerVideo }: Reel
 export function InstagramFeed() {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
-  const [unmutedIdx, setUnmutedIdx] = useState<number | null>(null);
-  const unmutedIdxRef = useRef<number | null>(null);
+  const [activeIdx, setActiveIdx] = useState<number | null>(null);
+  const activeIdxRef = useRef<number | null>(null);
 
   const registerVideo = useCallback((idx: number, el: HTMLVideoElement | null) => {
     if (el) {
@@ -265,43 +225,52 @@ export function InstagramFeed() {
     }
   }, []);
 
-  const toggleSound = useCallback((idx: number) => {
+  const playReel = useCallback((idx: number) => {
     const target = videoRefs.current.get(idx);
     if (!target) return;
 
-    const willUnmute = unmutedIdxRef.current !== idx;
-
-    // Mute every other video first
+    // Pause & mute every other video
     videoRefs.current.forEach((el, i) => {
       if (i !== idx) {
+        try { el.pause(); } catch {}
         el.muted = true;
       }
     });
 
-    if (willUnmute) {
-      target.muted = false;
-      target.volume = 1;
-      unmutedIdxRef.current = idx;
-      setUnmutedIdx(idx);
-      // Ensure the source is loading, then play. Any transient play() rejection
-      // (e.g. src still buffering) is retried once metadata is available.
-      try { target.load(); } catch {}
-      const tryPlay = () => {
-        const p = target.play();
-        if (p && typeof p.catch === "function") p.catch(() => {});
-      };
-      tryPlay();
-      if (target.readyState < 2) {
-        const onReady = () => {
-          target.removeEventListener("loadedmetadata", onReady);
-          if (unmutedIdxRef.current === idx) tryPlay();
-        };
-        target.addEventListener("loadedmetadata", onReady);
+    target.muted = false;
+    target.volume = 1;
+    activeIdxRef.current = idx;
+    setActiveIdx(idx);
+
+    const tryPlay = () => {
+      const p = target.play();
+      if (p && typeof p.catch === "function") {
+        p.catch(() => {
+          // If unmuted playback is blocked, fall back to muted playback
+          target.muted = true;
+          const p2 = target.play();
+          if (p2 && typeof p2.catch === "function") p2.catch(() => {});
+        });
       }
-    } else {
-      target.muted = true;
-      unmutedIdxRef.current = null;
-      setUnmutedIdx(null);
+    };
+    tryPlay();
+    if (target.readyState < 2) {
+      const onReady = () => {
+        target.removeEventListener("loadedmetadata", onReady);
+        if (activeIdxRef.current === idx) tryPlay();
+      };
+      target.addEventListener("loadedmetadata", onReady);
+    }
+  }, []);
+
+  const pauseReel = useCallback((idx: number) => {
+    const target = videoRefs.current.get(idx);
+    if (!target) return;
+    try { target.pause(); } catch {}
+    target.muted = true;
+    if (activeIdxRef.current === idx) {
+      activeIdxRef.current = null;
+      setActiveIdx(null);
     }
   }, []);
 
@@ -318,12 +287,12 @@ export function InstagramFeed() {
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
-    if (isMobile) return; // no autoplay on mobile
+    if (isMobile) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let raf = 0;
     let paused = false;
     const step = () => {
-      if (!paused && unmutedIdx === null && el) {
+      if (!paused && activeIdx === null && el) {
         el.scrollLeft += 0.35;
         if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 1) {
           el.scrollLeft = 0;
@@ -345,7 +314,7 @@ export function InstagramFeed() {
       el.removeEventListener("touchstart", onEnter);
       el.removeEventListener("touchend", onLeave);
     };
-  }, [unmutedIdx, isMobile]);
+  }, [activeIdx, isMobile]);
 
   const slideBy = useCallback((dir: 1 | -1) => {
     const el = trackRef.current;
@@ -353,7 +322,6 @@ export function InstagramFeed() {
     const children = Array.from(el.children) as HTMLElement[];
     if (children.length === 0) return;
     const scrollLeft = el.scrollLeft;
-    // Find the child currently closest to the left edge
     let currentIdx = 0;
     let bestDist = Infinity;
     children.forEach((c, i) => {
@@ -431,15 +399,15 @@ export function InstagramFeed() {
               <ReelCard
                 reel={r}
                 index={i}
-                isUnmuted={unmutedIdx === i}
-                onToggleSound={toggleSound}
+                isActive={activeIdx === i}
+                onPlayRequest={playReel}
+                onPauseRequest={pauseReel}
                 registerVideo={registerVideo}
               />
             </Reveal>
           ))}
         </div>
 
-        {/* Mobile carousel arrows */}
         {isMobile && (
           <div className="mt-4 flex items-center justify-center gap-4 md:hidden">
             <button
