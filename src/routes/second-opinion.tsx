@@ -156,8 +156,8 @@ function ServicesCarousel() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#f7f8fc] pt-28 lg:pt-32">
-      <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 pb-14 lg:grid-cols-[1.15fr_0.95fr] lg:gap-8 lg:pb-20 lg:px-8">
+    <section className="relative overflow-hidden bg-[#f7f8fc] pt-32 lg:pt-40">
+      <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 pb-16 lg:grid-cols-[1.15fr_0.95fr] lg:gap-12 lg:pb-20 lg:px-8">
         {/* Left content */}
         <Reveal variant="left" className="z-10">
 
