@@ -220,6 +220,7 @@ export function InstagramFeed() {
     if (el) {
       videoRefs.current.set(idx, el);
       el.muted = true;
+      el.defaultMuted = true;
     } else {
       videoRefs.current.delete(idx);
     }
@@ -234,22 +235,26 @@ export function InstagramFeed() {
       if (i !== idx) {
         try { el.pause(); } catch {}
         el.muted = true;
+        el.defaultMuted = true;
       }
     });
 
     target.muted = false;
+    target.defaultMuted = false;
+    target.removeAttribute("muted");
     target.volume = 1;
     activeIdxRef.current = idx;
     setActiveIdx(idx);
 
     const tryPlay = () => {
+      target.muted = false;
+      target.defaultMuted = false;
+      target.removeAttribute("muted");
       const p = target.play();
       if (p && typeof p.catch === "function") {
         p.catch(() => {
-          // If unmuted playback is blocked, fall back to muted playback
-          target.muted = true;
-          const p2 = target.play();
-          if (p2 && typeof p2.catch === "function") p2.catch(() => {});
+          activeIdxRef.current = null;
+          setActiveIdx(null);
         });
       }
     };
@@ -268,6 +273,7 @@ export function InstagramFeed() {
     if (!target) return;
     try { target.pause(); } catch {}
     target.muted = true;
+    target.defaultMuted = true;
     if (activeIdxRef.current === idx) {
       activeIdxRef.current = null;
       setActiveIdx(null);
