@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { z } from "zod";
 import {
   ChevronRight, ChevronDown, ShieldCheck, FileText, HeartHandshake, Lock,
@@ -13,10 +13,10 @@ import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 import { SubBanner } from "@/components/home/SubBanner";
-import heroImg from "@/assets/second-opinion-hero.jpg";
 import doctorImg from "@/assets/doctor-portrait.jpg";
 import whyImg from "@/assets/why-choose.jpg";
 import secondOpinionBanner from "@/assets/about-vascular.jpg";
+import { SERVICES } from "@/lib/services-data";
 
 const secondOpinionSchema = z.object({
   name: z.string().trim().min(2, "Full name is required").max(100, "Name is too long"),
