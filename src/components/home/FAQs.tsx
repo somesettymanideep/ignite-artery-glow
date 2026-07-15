@@ -172,26 +172,27 @@ export function FAQs() {
 
         {/* Bottom bar — still have questions */}
         <Reveal variant="up" delay={0.1}>
-          <div className="mt-16 grid gap-4 rounded-2xl bg-accent/60 p-6 backdrop-blur sm:grid-cols-2 sm:p-8">
+          <div className="mt-16 grid gap-4 rounded-2xl bg-gradient-cta p-6 shadow-lift sm:grid-cols-2 sm:p-8">
             <div className="flex items-center gap-4">
               <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-white text-secondary shadow-md">
                 <Headphones className="h-6 w-6" />
               </div>
               <div>
-                <p className="text-lg font-bold text-secondary">Still have questions?</p>
-                <p className="text-sm text-muted-foreground">Our experts are just a call away.</p>
+                <p className="text-lg font-bold text-white">Still have questions?</p>
+                <p className="text-sm text-white/80">Our experts are just a call away.</p>
               </div>
             </div>
             <a href="tel:+910000000000" className="flex items-center gap-4 sm:justify-end">
-              <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-primary text-white shadow-md shadow-primary/30">
+              <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-white text-primary shadow-md">
                 <Phone className="h-6 w-6" />
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Call Us Today</p>
-                <p className="text-lg font-extrabold text-secondary">+91 00000 00000</p>
+                <p className="text-xs font-semibold uppercase tracking-wider text-white/70">Call Us Today</p>
+                <p className="text-lg font-extrabold text-white">+91 00000 00000</p>
               </div>
             </a>
           </div>
+
         </Reveal>
       </div>
 
