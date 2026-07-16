@@ -126,9 +126,9 @@ function ContactForm() {
   const input = "w-full rounded-2xl border border-border/70 bg-card px-4 py-3.5 pl-11 text-sm font-medium text-secondary placeholder:text-muted-foreground/70 outline-none transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/10";
 
   return (
-    <section className="py-8 lg:py-14">
-      <div className="mx-auto grid max-w-7xl items-start gap-8 px-5 lg:grid-cols-[1fr_minmax(320px,420px)] lg:px-8">
-        <div className="space-y-8">
+    <section className="py-6 sm:py-10 lg:py-14">
+      <div className="mx-auto grid max-w-7xl items-start gap-6 px-4 sm:gap-8 sm:px-6 lg:grid-cols-[1fr_minmax(320px,420px)] lg:px-8">
+        <div className="space-y-6 sm:space-y-8">
           <Reveal variant="left" className="rounded-[2rem] border border-border/70 bg-card p-6 shadow-soft sm:p-8 lg:p-10">
             <Reveal variant="up">
               <h2 className="font-display text-2xl font-extrabold text-secondary sm:text-3xl">Send Us a Message</h2>
@@ -197,8 +197,8 @@ function ContactForm() {
             </form>
           </Reveal>
 
-          <Reveal variant="up" delay={0.1} className="relative overflow-hidden rounded-[7px] shadow-soft">
-            <div className="relative min-h-[360px] lg:min-h-[420px]">
+          <Reveal variant="up" delay={0.1} className="relative overflow-hidden rounded-[2rem] border border-border/70 shadow-soft">
+            <div className="relative min-h-[320px] sm:min-h-[380px] lg:min-h-[420px]">
               <iframe
                 title="Ignite Vascular Center — Kasturibai Peta, Vijayawada"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.2889068739205!2d80.63596327490121!3d16.51150598423397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fb000b57ad75%3A0xe27905b07ec0904e!2sIgnite%20vascular%20center!5e0!3m2!1sen!2sin!4v1783746453912!5m2!1sen!2sin"
@@ -255,9 +255,9 @@ function ContactForm() {
 
 function AppointmentBanner() {
   return (
-    <section className="py-8 lg:py-10">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal variant="zoom" className="relative overflow-hidden rounded-[7px] bg-gradient-cta p-8 shadow-lift lg:p-10">
+    <section className="py-6 sm:py-8 lg:py-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Reveal variant="zoom" className="relative overflow-hidden rounded-[2rem] bg-gradient-cta p-6 shadow-lift sm:p-8 lg:p-10">
           <div className="relative grid gap-6 md:grid-cols-[auto_1fr_auto] md:items-center">
             <Reveal variant="left">
               <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white text-primary shadow-lift animate-pulse-glow">
