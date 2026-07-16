@@ -165,12 +165,12 @@ export function Navbar() {
         style={{ width: `${progress}%` }}
         aria-hidden
       />
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-5 sm:py-4 lg:px-8">
         <Link to="/" className="flex min-w-0 items-center gap-3" aria-label="Ignite Vascular Center — Home">
           <img
             src={logoAsset.url}
             alt="Ignite Vascular Center"
-            className="h-16 w-auto shrink-0 sm:h-20"
+            className="h-12 w-auto shrink-0 sm:h-20"
             width={320}
             height={120}
           />
@@ -180,30 +180,69 @@ export function Navbar() {
           {NAV.map(renderDesktopItem)}
         </ul>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           {cta}
+          <a
+            href="tel:+919966117292"
+            className="grid h-10 w-10 place-items-center rounded-full bg-gradient-brand text-primary-foreground shadow-glow-red transition-transform hover:scale-105 lg:hidden"
+            aria-label="Call us"
+          >
+            <Phone className="h-4 w-4" />
+          </a>
           <button
-            className="grid h-10 w-10 place-items-center rounded-xl border lg:hidden"
+            className="relative grid h-10 w-10 place-items-center rounded-xl border border-border/60 bg-white text-secondary transition hover:border-primary/40 hover:text-primary lg:hidden"
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
+            aria-expanded={open}
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </nav>
 
-      {open && (
-        <div className="border-t bg-white lg:hidden">
-          <ul className="space-y-1 px-5 py-4">
+      {/* Mobile drawer */}
+      <div
+        className={`fixed inset-0 z-40 bg-secondary/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        onClick={() => setOpen(false)}
+        aria-hidden
+      />
+      <aside
+        className={`fixed right-0 top-0 z-50 flex h-[100dvh] w-[86%] max-w-sm flex-col bg-white shadow-2xl transition-transform duration-300 ease-out lg:hidden ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
+        aria-hidden={!open}
+      >
+        <div className="flex items-center justify-between border-b border-border/60 px-5 py-4">
+          <img src={logoAsset.url} alt="Ignite Vascular Center" className="h-12 w-auto" />
+          <button
+            className="grid h-10 w-10 place-items-center rounded-xl border border-border/60 text-secondary hover:text-primary"
+            onClick={() => setOpen(false)}
+            aria-label="Close menu"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        <nav className="flex-1 overflow-y-auto px-3 py-4">
+          <ul className="space-y-1">
             {NAV.map((item) => {
+              const active = pathname === item.route || (item.route === "/treatments" && pathname.startsWith("/services/"));
               if (item.route === "/treatments") {
                 return (
-                  <li key={item.label}>
-                    <div className="flex items-center justify-between">
-                      {renderLink(item)}
+                  <li key={item.label} className="rounded-xl">
+                    <div className={`flex items-center justify-between rounded-xl px-3 ${active ? "bg-gradient-brand-soft" : ""}`}>
+                      <Link
+                        to="/treatments"
+                        onClick={() => setOpen(false)}
+                        className={`flex-1 py-3 text-[15px] font-semibold ${active ? "text-primary" : "text-secondary"}`}
+                      >
+                        {item.label}
+                      </Link>
                       <button
                         type="button"
-                        className="grid h-8 w-8 place-items-center rounded-lg text-secondary/70 hover:bg-secondary/5"
+                        className="grid h-9 w-9 place-items-center rounded-lg text-secondary/70 hover:bg-white"
                         onClick={() => setMobileTreatOpen((v) => !v)}
                         aria-label="Toggle treatments"
                         aria-expanded={mobileTreatOpen}
@@ -213,30 +252,69 @@ export function Navbar() {
                         />
                       </button>
                     </div>
-                    {mobileTreatOpen && (
-                      <ul className="mt-1 space-y-1 border-l border-secondary/10 pl-4">
+                    <div
+                      className={`grid overflow-hidden transition-all duration-300 ${
+                        mobileTreatOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <ul className="min-h-0 space-y-1 border-l border-primary/20 pl-3 ml-4 mt-1">
                         {SERVICES.map((s) => (
                           <li key={s.slug}>
                             <Link
                               to="/services/$slug"
                               params={{ slug: s.slug }}
                               onClick={() => setOpen(false)}
-                              className="flex items-center gap-2 py-1.5 text-[13px] font-semibold text-secondary/80 hover:text-primary"
+                              className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-[13px] font-semibold text-secondary/80 hover:bg-secondary/5 hover:text-primary"
                             >
-                              <s.icon className="h-3.5 w-3.5 text-primary" /> {s.title}
+                              <span className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-gradient-brand-soft text-primary">
+                                <s.icon className="h-3.5 w-3.5" />
+                              </span>
+                              {s.title}
                             </Link>
                           </li>
                         ))}
                       </ul>
-                    )}
+                    </div>
                   </li>
                 );
               }
-              return <li key={item.label}>{renderLink(item)}</li>;
+              return (
+                <li key={item.label}>
+                  <Link
+                    to={item.route}
+                    onClick={() => setOpen(false)}
+                    className={`flex items-center justify-between rounded-xl px-3 py-3 text-[15px] font-semibold transition ${
+                      active
+                        ? "bg-gradient-brand-soft text-primary"
+                        : "text-secondary hover:bg-secondary/5"
+                    }`}
+                  >
+                    {item.label}
+                    <ChevronDown className="h-4 w-4 -rotate-90 opacity-40" />
+                  </Link>
+                </li>
+              );
             })}
           </ul>
+        </nav>
+
+        <div className="border-t border-border/60 p-4 space-y-2">
+          <button
+            type="button"
+            onClick={() => { setOpen(false); openBookingModal(); }}
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-brand py-3 text-sm font-bold text-primary-foreground shadow-glow-red"
+          >
+            <Phone className="h-4 w-4" /> Book Appointment
+          </button>
+          <a
+            href="tel:+919966117292"
+            className="flex w-full items-center justify-center gap-2 rounded-full border border-border/60 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-secondary hover:border-primary/40 hover:text-primary"
+          >
+            <Phone className="h-3.5 w-3.5" /> +91 99661 17292
+          </a>
         </div>
-      )}
+      </aside>
     </header>
   );
 }
+
