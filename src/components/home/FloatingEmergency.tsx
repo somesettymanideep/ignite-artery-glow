@@ -25,13 +25,13 @@ export function FloatingEmergency() {
             </div>
           </div>
           <a
-            href="tel:+919999999999"
+            href="tel:+919966117292"
             className="mt-4 block font-display text-2xl font-extrabold text-primary-foreground transition-colors hover:text-red-soft"
           >
-            +91 99999 99999
+            +91 99661 17292
           </a>
           <a
-            href="tel:+919999999999"
+            href="tel:+919966117292"
             className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105"
           >
             <Phone className="h-4 w-4" /> Call Now
