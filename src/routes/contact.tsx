@@ -197,8 +197,8 @@ function ContactForm() {
             </form>
           </Reveal>
 
-          <Reveal variant="up" delay={0.1} className="relative overflow-hidden rounded-[7px] shadow-soft">
-            <div className="relative min-h-[360px] lg:min-h-[420px]">
+          <Reveal variant="up" delay={0.1} className="relative overflow-hidden rounded-[2rem] border border-border/70 shadow-soft">
+            <div className="relative min-h-[320px] sm:min-h-[380px] lg:min-h-[420px]">
               <iframe
                 title="Ignite Vascular Center — Kasturibai Peta, Vijayawada"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.2889068739205!2d80.63596327490121!3d16.51150598423397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fb000b57ad75%3A0xe27905b07ec0904e!2sIgnite%20vascular%20center!5e0!3m2!1sen!2sin!4v1783746453912!5m2!1sen!2sin"
