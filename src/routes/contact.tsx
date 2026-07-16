@@ -255,9 +255,9 @@ function ContactForm() {
 
 function AppointmentBanner() {
   return (
-    <section className="py-8 lg:py-10">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal variant="zoom" className="relative overflow-hidden rounded-[7px] bg-gradient-cta p-8 shadow-lift lg:p-10">
+    <section className="py-6 sm:py-8 lg:py-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Reveal variant="zoom" className="relative overflow-hidden rounded-[2rem] bg-gradient-cta p-6 shadow-lift sm:p-8 lg:p-10">
           <div className="relative grid gap-6 md:grid-cols-[auto_1fr_auto] md:items-center">
             <Reveal variant="left">
               <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white text-primary shadow-lift animate-pulse-glow">
