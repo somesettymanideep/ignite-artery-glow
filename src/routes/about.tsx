@@ -12,11 +12,13 @@ import aboutBanner from "@/assets/hero-surgeon.jpg";
 import { Reveal, useCountUp } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
+import { resolveAssetUrl } from "@/lib/asset-url";
 import receptionAsset from "@/assets/about-reception-new.webp.asset.json";
-const receptionImg = receptionAsset.url;
 import doctorImg from "@/assets/home2-doctor.jpg";
 import vascularImg from "@/assets/about-vascular.jpg";
 import surgeryImg from "@/assets/about-surgery.jpg";
+
+const receptionImg = resolveAssetUrl(receptionAsset.url);
 
 export const Route = createFileRoute("/about")({
   head: () => ({

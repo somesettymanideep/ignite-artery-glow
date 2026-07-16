@@ -1,18 +1,20 @@
 import {
   Waves, HeartPulse, Syringe, Activity, Footprints, ShieldPlus,
 } from "lucide-react";
+import { resolveAssetUrl } from "@/lib/asset-url";
 import varicoseAsset from "@/assets/service-varicose.png.asset.json";
-const varicoseImg = varicoseAsset.url;
 import padAsset from "@/assets/service-pad.png.asset.json";
-const padImg = padAsset.url;
 import endoAsset from "@/assets/service-endo.jpg.asset.json";
-const endoImg = endoAsset.url;
 import dvtAsset from "@/assets/service-dvt.png.asset.json";
-const dvtImg = dvtAsset.url;
 import diabeticAsset from "@/assets/service-diabetic.png.asset.json";
-const diabeticImg = diabeticAsset.url;
 import limbAsset from "@/assets/service-limb.png.asset.json";
-const limbImg = limbAsset.url;
+
+const varicoseImg = resolveAssetUrl(varicoseAsset.url);
+const padImg = resolveAssetUrl(padAsset.url);
+const endoImg = resolveAssetUrl(endoAsset.url);
+const dvtImg = resolveAssetUrl(dvtAsset.url);
+const diabeticImg = resolveAssetUrl(diabeticAsset.url);
+const limbImg = resolveAssetUrl(limbAsset.url);
 
 export type ServiceCategory = "treatments" | "diagnostics" | "surgeries" | "care";
 

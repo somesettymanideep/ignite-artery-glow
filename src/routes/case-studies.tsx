@@ -11,6 +11,7 @@ import { SubBanner } from "@/components/home/SubBanner";
 import caseBanner from "@/assets/case-studies-banner.webp.asset.json";
 import { Footer } from "@/components/home/Footer";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
+import { resolveAssetUrl } from "@/lib/asset-url";
 
 import heroSlide1 from "@/assets/case-hero-1.jpg.asset.json";
 import heroSlide2 from "@/assets/case-hero-2.jpg.asset.json";
@@ -20,6 +21,10 @@ import imgCathlab from "@/assets/gallery/facility-cathlab.jpg";
 import imgPatient from "@/assets/gallery/patient-care.jpg";
 import imgConsult from "@/assets/gallery/patient-consult.jpg";
 import imgRoom from "@/assets/gallery/facility-room.jpg";
+
+const caseBannerUrl = resolveAssetUrl(caseBanner.url);
+const heroSlide1Url = resolveAssetUrl(heroSlide1.url);
+const heroSlide2Url = resolveAssetUrl(heroSlide2.url);
 
 export const Route = createFileRoute("/case-studies")({
   head: () => ({
@@ -144,7 +149,7 @@ function CaseStudiesPage() {
   return (
     <main className="min-h-screen bg-background [overflow-x:clip]">
       <Navbar />
-      <SubBanner title="Case Studies" image={caseBanner.url} crumb="Case Studies" />
+      <SubBanner title="Case Studies" image={caseBannerUrl} crumb="Case Studies" />
 
 
 
@@ -404,8 +409,8 @@ function MetaCell({
 
 function HeroCarousel() {
   const slides = [
-    { src: heroSlide1.url, alt: "Healthcare professional examining varicose veins on an elderly patient's legs" },
-    { src: heroSlide2.url, alt: "Close-up of leg with varicose vein disease" },
+    { src: heroSlide1Url, alt: "Healthcare professional examining varicose veins on an elderly patient's legs" },
+    { src: heroSlide2Url, alt: "Close-up of leg with varicose vein disease" },
   ];
   const [i, setI] = useState(0);
   useEffect(() => {

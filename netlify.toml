@@ -4,3 +4,12 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+# Lovable asset pointer files use /__l5e/assets-v1/... URLs. Netlify does not
+# provide that asset namespace, so proxy those immutable media requests to the
+# published Lovable asset host instead of letting them fall through to SSR.
+[[redirects]]
+  from = "/__l5e/assets-v1/*"
+  to = "https://ignite-artery-glow.lovable.app/__l5e/assets-v1/:splat"
+  status = 200
+  force = true
