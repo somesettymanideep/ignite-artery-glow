@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Download, Upload, LogOut, Trash2, Search, LayoutDashboard, Mail, CalendarCheck, Stethoscope } from "lucide-react";
 import logoAsset from "@/assets/ignite-logo.png.asset.json";
+import { resolveAssetUrl } from "@/lib/asset-url";
 import {
   addSubmission,
   clearAll,
@@ -17,6 +18,8 @@ import {
   type Submission,
   type SubmissionKind,
 } from "@/lib/admin-store";
+
+const logoUrl = resolveAssetUrl(logoAsset.url);
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin • Ignite Vascular Center" }, { name: "robots", content: "noindex, nofollow" }] }),
@@ -37,7 +40,7 @@ function LoginScreen({ onSuccess }: { onSuccess: () => void }) {
     <div className="grid min-h-screen place-items-center bg-gradient-to-br from-[#f5f2fb] via-white to-[#ffe9ea] px-4 py-10">
       <div className="w-full max-w-md rounded-3xl border border-border/60 bg-white/90 p-8 shadow-2xl backdrop-blur">
         <div className="mb-6 flex flex-col items-center gap-3">
-          <img src={logoAsset.url} alt="Ignite Vascular Center" className="h-14 w-auto" />
+          <img src={logoUrl} alt="Ignite Vascular Center" className="h-14 w-auto" />
           <div className="text-center">
             <h1 className="font-display text-2xl font-black text-secondary">Admin Login</h1>
             <p className="mt-1 text-sm text-muted-foreground">Sign in to manage submissions</p>
@@ -142,7 +145,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
       <header className="sticky top-0 z-40 border-b border-border/60 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 lg:px-8">
           <div className="flex items-center gap-3">
-            <img src={logoAsset.url} alt="Ignite Vascular Center" className="h-10 w-auto" />
+            <img src={logoUrl} alt="Ignite Vascular Center" className="h-10 w-auto" />
             <div className="hidden sm:block">
               <p className="text-[11px] font-bold uppercase tracking-widest text-primary">Admin Panel</p>
               <p className="font-display text-sm font-bold text-secondary">Submissions Dashboard</p>

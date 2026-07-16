@@ -4,6 +4,9 @@ import { Phone, Menu, X, ChevronDown } from "lucide-react";
 import { SERVICES } from "@/lib/services-data";
 import logoAsset from "@/assets/ignite-logo.png.asset.json";
 import { openBookingModal } from "@/components/booking/BookingModal";
+import { resolveAssetUrl } from "@/lib/asset-url";
+
+const logoUrl = resolveAssetUrl(logoAsset.url);
 
 type NavItem = {
   label: string;
@@ -168,7 +171,7 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-5 sm:py-4 lg:px-8">
         <Link to="/" className="flex min-w-0 items-center gap-3" aria-label="Ignite Vascular Center — Home">
           <img
-            src={logoAsset.url}
+            src={logoUrl}
             alt="Ignite Vascular Center"
             className="h-12 w-auto shrink-0 sm:h-20"
             width={320}
@@ -215,7 +218,7 @@ export function Navbar() {
         aria-hidden={!open}
       >
         <div className="flex items-center justify-between border-b border-border/60 px-5 py-4">
-          <img src={logoAsset.url} alt="Ignite Vascular Center" className="h-12 w-auto" />
+          <img src={logoUrl} alt="Ignite Vascular Center" className="h-12 w-auto" />
           <button
             className="grid h-10 w-10 place-items-center rounded-xl border border-border/60 text-secondary hover:text-primary"
             onClick={() => setOpen(false)}

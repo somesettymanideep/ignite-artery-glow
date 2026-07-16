@@ -10,6 +10,7 @@ import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
 import { SubBanner } from "@/components/home/SubBanner";
 import { SERVICES, getServiceBySlug } from "@/lib/services-data";
+import { toAbsoluteUrl } from "@/lib/asset-url";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/services/$slug")({
         { property: "og:title", content: `${s.title} — Ignite Vascular Center` },
         { property: "og:description", content: s.short },
         { property: "og:type", content: "article" },
-        { property: "og:image", content: `https://ignite-artery-glow.lovable.app${s.image}` },
+        { property: "og:image", content: toAbsoluteUrl(s.image) },
         { name: "twitter:card", content: "summary_large_image" },
       ],
     };

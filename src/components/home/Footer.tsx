@@ -3,6 +3,9 @@ import { MapPin, Phone, Mail, Clock, Heart } from "lucide-react";
 import { FaFacebook, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
 import { Reveal } from "@/hooks/use-reveal";
 import logoAsset from "@/assets/ignite-logo.png.asset.json";
+import { resolveAssetUrl } from "@/lib/asset-url";
+
+const logoUrl = resolveAssetUrl(logoAsset.url);
 
 const quickLinks: { label: string; to: string }[] = [
   { label: "Home", to: "/" },
@@ -31,7 +34,7 @@ export function Footer() {
           <div>
             <Link to="/" className="inline-flex items-center" aria-label="Ignite Vascular Center — Home">
               <span className="inline-flex items-center bg-white px-5 py-4 shadow-sm" style={{ borderRadius: 8 }}>
-                <img src={logoAsset.url} alt="Ignite Vascular Center" className="h-20 w-auto" width={320} height={120} />
+                <img src={logoUrl} alt="Ignite Vascular Center" className="h-20 w-auto" width={320} height={120} />
               </span>
             </Link>
             <p className="mt-5 text-sm leading-relaxed text-primary-foreground/75">
