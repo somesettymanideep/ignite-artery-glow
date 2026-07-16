@@ -228,7 +228,7 @@ function ContactForm() {
                     </span>
                     <div className="min-w-0">
                       <h4 className="font-display text-[15px] font-bold text-secondary">{info.title}</h4>
-                      <div className="mt-1.5 space-y-0.5 text-[13px] leading-relaxed text-muted-foreground">
+                      <div className="mt-1.5 space-y-0.5 text-[13px] leading-relaxed text-muted-foreground break-words [overflow-wrap:anywhere]">
                         {info.lines.map((l) => <p key={l}>{l}</p>)}
                       </div>
                     </div>
