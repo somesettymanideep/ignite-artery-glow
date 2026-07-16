@@ -128,7 +128,7 @@ function ContactForm() {
   return (
     <section className="py-8 lg:py-14">
       <div className="mx-auto grid max-w-7xl items-start gap-6 px-4 sm:gap-8 sm:px-6 lg:grid-cols-[1fr_minmax(320px,420px)] lg:px-8">
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           <Reveal variant="left" className="rounded-[2rem] border border-border/70 bg-card p-6 shadow-soft sm:p-8 lg:p-10">
             <Reveal variant="up">
               <h2 className="font-display text-2xl font-extrabold text-secondary sm:text-3xl">Send Us a Message</h2>
