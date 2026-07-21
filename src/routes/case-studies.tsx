@@ -18,9 +18,6 @@ import heroSlide2 from "@/assets/case-hero-2.jpg.asset.json";
 import imgSurgery from "@/assets/gallery/procedure-surgery.jpg";
 import imgAngio from "@/assets/gallery/procedure-angio.jpg";
 import imgCathlab from "@/assets/gallery/facility-cathlab.jpg";
-import imgPatient from "@/assets/gallery/patient-care.jpg";
-import imgConsult from "@/assets/gallery/patient-consult.jpg";
-import imgRoom from "@/assets/gallery/facility-room.jpg";
 import imgSurgeon from "@/assets/gallery/team-surgeon.jpg";
 
 const caseBannerUrl = resolveAssetUrl(caseBanner.url);
