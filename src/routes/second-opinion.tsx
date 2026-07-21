@@ -733,7 +733,7 @@ function RequestSection() {
               <Reveal variant="up" delay={0.15}>
                 <div className="mt-8 grid grid-cols-2 gap-2.5 border-t border-border/60 pt-6 sm:gap-3">
                   {[
-                    { icon: Award, label: "15+ Yrs Experience" },
+                    { icon: Award, label: "10+ Yrs Experience" },
                     { icon: Stethoscope, label: "Minimally Invasive" },
                     { icon: Microscope, label: "Advanced Diagnostics" },
                     { icon: HeartHandshake, label: "Compassionate Care" },

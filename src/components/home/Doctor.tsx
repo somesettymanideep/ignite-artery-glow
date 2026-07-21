@@ -48,7 +48,7 @@ export function Doctor() {
                 </li>
                 <li className="flex items-center gap-3">
                   <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-accent text-secondary"><Activity className="h-4.5 w-4.5" /></span>
-                  20+ years of vascular &amp; endovascular experience
+                  10+ years of vascular &amp; endovascular experience
                 </li>
                 <li className="flex items-center gap-3">
                   <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-accent text-secondary"><Syringe className="h-4.5 w-4.5" /></span>
