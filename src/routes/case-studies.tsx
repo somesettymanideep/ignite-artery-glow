@@ -21,6 +21,7 @@ import imgCathlab from "@/assets/gallery/facility-cathlab.jpg";
 import imgPatient from "@/assets/gallery/patient-care.jpg";
 import imgConsult from "@/assets/gallery/patient-consult.jpg";
 import imgRoom from "@/assets/gallery/facility-room.jpg";
+import imgSurgeon from "@/assets/gallery/team-surgeon.jpg";
 
 const caseBannerUrl = resolveAssetUrl(caseBanner.url);
 const heroSlide1Url = resolveAssetUrl(heroSlide1.url);
@@ -46,7 +47,8 @@ type Category =
   | "Peripheral Artery Disease (PAD)"
   | "Deep Vein Thrombosis (DVT)"
   | "Endovascular Procedures"
-  | "Diabetic Foot Care";
+  | "Diabetic Foot Care"
+  | "AV Fistula Surgeries";
 
 type CaseItem = {
   category: Exclude<Category, "All Cases">;
@@ -120,6 +122,16 @@ const CASES: CaseItem[] = [
     outcome: "Excellent",
     badgeColor: "red",
   },
+  {
+    category: "AV Fistula Surgeries",
+    title: "Brachiocephalic AV Fistula Creation for Dialysis Access",
+    description: "A 55-year-old patient with end-stage renal disease required durable hemodialysis access. A radiocephalic AV fistula was created using microsurgical technique with excellent thrill and flow.",
+    image: imgSurgeon,
+    treatmentTime: "90 mins",
+    recovery: "14 days",
+    outcome: "Functional",
+    badgeColor: "red",
+  },
 ];
 
 const CATEGORIES: { label: Category; short: string; icon: React.ElementType }[] = [
@@ -129,6 +141,7 @@ const CATEGORIES: { label: Category; short: string; icon: React.ElementType }[] 
   { label: "Deep Vein Thrombosis (DVT)", short: "DVT", icon: Activity },
   { label: "Endovascular Procedures", short: "Endovascular", icon: Users },
   { label: "Diabetic Foot Care", short: "Diabetic Foot", icon: ShieldCheck },
+  { label: "AV Fistula Surgeries", short: "AV Fistula", icon: Activity },
 ];
 
 const STATS = [
@@ -262,7 +275,7 @@ function CaseStudiesPage() {
       <section className="py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {filtered.slice(0, 3).map((c, i) => (
+            {filtered.map((c, i) => (
               <Reveal key={c.title} variant="up" delay={i * 0.1}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-[7px] bg-white shadow-soft ring-1 ring-border/60 transition-all duration-500 hover:-translate-y-1 hover:shadow-lift">
                   <div className="relative aspect-[16/10] overflow-hidden">
