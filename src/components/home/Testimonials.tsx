@@ -230,7 +230,7 @@ export function Testimonials() {
                             />
                           ))}
                         </div>
-                        <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-foreground/85">
+                        <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-foreground/85 line-clamp-5">
                           <p>“{t.text}”</p>
                         </blockquote>
                         <figcaption className="mt-6 flex items-center gap-3 border-t border-border/60 pt-5">
