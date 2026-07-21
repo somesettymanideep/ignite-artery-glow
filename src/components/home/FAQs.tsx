@@ -5,7 +5,7 @@ import { Reveal } from "@/hooks/use-reveal";
 const FAQS = [
   {
     q: "What conditions does a vascular surgeon treat?",
-    a: "We treat varicose veins, deep vein thrombosis (DVT), peripheral arterial disease (PAD), diabetic foot ulcers, aneurysms and critical limb ischemia — using both minimally invasive endovascular and open surgical techniques.",
+    a: "We treat varicose veins, deep vein thrombosis (DVT), peripheral arterial disease (PAD), diabetic foot ulcers, av fistula procedures, aneurysms and critical limb ischemia — using both minimally invasive endovascular and open surgical techniques.",
   },
   {
     q: "Are your treatments minimally invasive?",
