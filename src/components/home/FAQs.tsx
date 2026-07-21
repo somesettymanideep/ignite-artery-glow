@@ -5,7 +5,7 @@ import { Reveal } from "@/hooks/use-reveal";
 const FAQS = [
   {
     q: "What conditions does a vascular surgeon treat?",
-    a: "We treat varicose veins, deep vein thrombosis (DVT), peripheral arterial disease (PAD), diabetic foot ulcers, av fistula procedures, aneurysms and critical limb ischemia — using both minimally invasive endovascular and open surgical techniques.",
+    a: "We treat varicose veins, deep vein thrombosis (DVT), peripheral arterial disease (PAD), diabetic foot ulcers, AV Fistula surgeries, aneurysms and critical limb ischemia — using both minimally invasive endovascular and open surgical techniques.",
   },
   {
     q: "Are your treatments minimally invasive?",
@@ -16,8 +16,8 @@ const FAQS = [
     a: "Leg pain while walking, non-healing wounds, sudden swelling, bulging veins, numbness or discoloration of the feet warrant a vascular evaluation. Early diagnosis prevents serious complications.",
   },
   {
-    q: "Is varicose vein treatment covered by insurance?",
-    a: "Symptomatic varicose vein treatment is covered by most health insurance policies in India. Our team assists with pre-authorization and cashless approval at empanelled insurers.",
+    q: "Best AV fistulas are created by vascular surgeons?",
+    a: "Yes. Vascular surgeons are uniquely trained in vessel mapping, ultrasound-guided cannulation and long-term fistula surveillance — which is why the best AV fistulas for dialysis access are created by vascular surgeons.",
   },
 ];
 
