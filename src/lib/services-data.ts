@@ -4,7 +4,7 @@ import {
 import { resolveAssetUrl } from "@/lib/asset-url";
 import varicoseAsset from "@/assets/service-varicose.png.asset.json";
 import padAsset from "@/assets/service-pad.png.asset.json";
-import endoAsset from "@/assets/service-endo.jpg.asset.json";
+import endoAsset from "@/assets/service-endo.webp.asset.json";
 import dvtAsset from "@/assets/service-dvt.png.asset.json";
 import diabeticAsset from "@/assets/service-diabetic.png.asset.json";
 import limbAsset from "@/assets/service-limb.png.asset.json";
