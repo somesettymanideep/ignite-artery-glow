@@ -3,7 +3,7 @@ import { openBookingModal } from "@/components/booking/BookingModal";
 import { useEffect, useMemo, useState } from "react";
 import {
   Activity, Users, Stethoscope, Award, Clock, CalendarDays,
-  ShieldCheck, ArrowRight, Filter, Calendar, LayoutGrid,
+  ArrowRight, Filter, Calendar, LayoutGrid,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
@@ -18,9 +18,6 @@ import heroSlide2 from "@/assets/case-hero-2.jpg.asset.json";
 import imgSurgery from "@/assets/gallery/procedure-surgery.jpg";
 import imgAngio from "@/assets/gallery/procedure-angio.jpg";
 import imgCathlab from "@/assets/gallery/facility-cathlab.jpg";
-import imgPatient from "@/assets/gallery/patient-care.jpg";
-import imgConsult from "@/assets/gallery/patient-consult.jpg";
-import imgRoom from "@/assets/gallery/facility-room.jpg";
 import imgSurgeon from "@/assets/gallery/team-surgeon.jpg";
 
 const caseBannerUrl = resolveAssetUrl(caseBanner.url);
@@ -46,8 +43,6 @@ type Category =
   | "Varicose Veins"
   | "Peripheral Artery Disease (PAD)"
   | "Deep Vein Thrombosis (DVT)"
-  | "Endovascular Procedures"
-  | "Diabetic Foot Care"
   | "AV Fistula Surgeries";
 
 type CaseItem = {
@@ -93,36 +88,6 @@ const CASES: CaseItem[] = [
     badgeColor: "indigo",
   },
   {
-    category: "Endovascular Procedures",
-    title: "Aneurysm Repair with Stent Graft",
-    description: "A 58-year-old male with abdominal aortic aneurysm treated with minimally invasive endovascular stent graft placement.",
-    image: imgRoom,
-    treatmentTime: "120 mins",
-    recovery: "5 days",
-    outcome: "Excellent",
-    badgeColor: "red",
-  },
-  {
-    category: "Diabetic Foot Care",
-    title: "Diabetic Foot Ulcer Treatment",
-    description: "A 60-year-old diabetic patient with non-healing ulcer. Advanced wound care and revascularization helped in complete healing.",
-    image: imgPatient,
-    treatmentTime: "—",
-    recovery: "14 days",
-    outcome: "Healed",
-    badgeColor: "indigo",
-  },
-  {
-    category: "Varicose Veins",
-    title: "Radiofrequency Ablation for Varicose Veins",
-    description: "A 50-year-old male patient treated with Radiofrequency Ablation (RFA) for varicose veins with minimal downtime.",
-    image: imgConsult,
-    treatmentTime: "35 mins",
-    recovery: "2 days",
-    outcome: "Excellent",
-    badgeColor: "red",
-  },
-  {
     category: "AV Fistula Surgeries",
     title: "Brachiocephalic AV Fistula Creation for Dialysis Access",
     description: "A 55-year-old patient with end-stage renal disease required durable hemodialysis access. A radiocephalic AV fistula was created using microsurgical technique with excellent thrill and flow.",
@@ -139,8 +104,6 @@ const CATEGORIES: { label: Category; short: string; icon: React.ElementType }[] 
   { label: "Varicose Veins", short: "Varicose Veins", icon: Activity },
   { label: "Peripheral Artery Disease (PAD)", short: "PAD", icon: Stethoscope },
   { label: "Deep Vein Thrombosis (DVT)", short: "DVT", icon: Activity },
-  { label: "Endovascular Procedures", short: "Endovascular", icon: Users },
-  { label: "Diabetic Foot Care", short: "Diabetic Foot", icon: ShieldCheck },
   { label: "AV Fistula Surgeries", short: "AV Fistula", icon: Activity },
 ];
 
