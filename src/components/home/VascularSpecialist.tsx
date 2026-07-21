@@ -53,7 +53,7 @@ export function VascularSpecialist() {
 
         <Reveal variant="right">
           <div className="rounded-[2rem] bg-secondary p-8 text-secondary-foreground shadow-lift lg:p-10">
-            <h3 className="font-display text-2xl font-extrabold">G. Narasimha Sai</h3>
+            <h3 className="font-display text-2xl font-extrabold">Dr. G. Narasimha Sai</h3>
             <div className="mt-4 space-y-1 text-sm text-secondary-foreground/85">
               <p>MBBS, DNB (Gen Surg),</p>
               <p>DrNB (Vascular Surgery) [NIMS]</p>
