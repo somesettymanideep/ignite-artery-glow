@@ -2,7 +2,7 @@ import { Reveal, useCountUp } from "@/hooks/use-reveal";
 
 const stats = [
   { value: 5000, suffix: "+", label: "Successful Procedures" },
-  { value: 20, suffix: "+", label: "Years Experience" },
+  { value: 10, suffix: "+", label: "Years Experience" },
   { value: 98, suffix: "%", label: "Patient Satisfaction" },
   { value: 24, suffix: "/7", label: "Patient Support" },
 ];
