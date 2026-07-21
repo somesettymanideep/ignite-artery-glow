@@ -9,7 +9,7 @@ const FAQS = [
   },
   {
     q: "Are your treatments minimally invasive?",
-    a: "Yes. Most procedures — laser ablation for varicose veins and angioplasty for blocked arteries — are performed through pinhole access under local anesthesia, allowing same-day discharge and rapid recovery.",
+    a: "Yes. Most procedures — laser ablation for varicose veins and angioplasty for blocked arteries — are performed through needle access under local anesthesia, allowing same-day discharge and rapid recovery.",
   },
   {
     q: "How do I know if I need to see a vascular specialist?",
