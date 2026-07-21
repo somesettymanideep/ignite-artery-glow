@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { openBookingModal } from "@/components/booking/BookingModal";
 import { useEffect, useMemo, useState } from "react";
 import {
-  Activity, Users, Stethoscope, Award, Clock, CalendarDays,
-  ShieldCheck, ArrowRight, Filter, Calendar, LayoutGrid,
+  Activity, Stethoscope, Award, Clock, CalendarDays,
+  ArrowRight, Filter, Calendar, LayoutGrid,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
