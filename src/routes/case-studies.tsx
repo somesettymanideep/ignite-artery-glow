@@ -43,8 +43,6 @@ type Category =
   | "Varicose Veins"
   | "Peripheral Artery Disease (PAD)"
   | "Deep Vein Thrombosis (DVT)"
-  | "Endovascular Procedures"
-  | "Diabetic Foot Care"
   | "AV Fistula Surgeries";
 
 type CaseItem = {
