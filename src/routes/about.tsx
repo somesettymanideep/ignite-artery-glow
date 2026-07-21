@@ -362,7 +362,7 @@ function StatsBar() {
     { icon: Users, end: 10, suffix: "+", label: "Years of Experience" },
     { icon: ShieldIcon, end: 2000, suffix: "+", label: "Successful Procedures" },
     { icon: Smile, end: 1500, suffix: "+", label: "Happy Patients" },
-    { icon: Activity, end: 25, suffix: "+", label: "Advanced Treatments" },
+    { icon: Activity, end: 100, suffix: "+", label: "Advanced Treatments" },
     { icon: Clock, end: 0, suffix: "", label: "Emergency Support", text: "24/7" },
   ];
   return (
