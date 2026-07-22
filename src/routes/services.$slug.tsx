@@ -177,6 +177,8 @@ function ServiceDetail() {
                     <img
                       src={service.image}
                       alt={service.title}
+                      decoding="async"
+                      fetchPriority="high"
                       className="h-[420px] w-full object-cover sm:h-[500px]"
                     />
                     <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-secondary/25 via-transparent to-transparent" />
