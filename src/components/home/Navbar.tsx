@@ -176,6 +176,8 @@ export function Navbar() {
             className="h-12 w-auto shrink-0 sm:h-20"
             width={320}
             height={120}
+            decoding="async"
+            fetchPriority="high"
           />
         </Link>
 
