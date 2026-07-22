@@ -8,7 +8,7 @@ import {
   Smile, Activity, Clock, Microscope, Lightbulb, BookOpenCheck, MessagesSquare,
   Stethoscope, ChevronRight,
 } from "lucide-react";
-import aboutBanner from "@/assets/hero-surgeon.jpg";
+import aboutBannerAsset from "@/assets/about-banner-narasimha.png.asset.json";
 import { Reveal, useCountUp } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
@@ -18,6 +18,7 @@ import doctorImg from "@/assets/home2-doctor.jpg";
 import vascularImg from "@/assets/about-vascular.jpg";
 import surgeryImg from "@/assets/about-surgery.jpg";
 
+const aboutBanner = resolveAssetUrl(aboutBannerAsset.url);
 const receptionImg = resolveAssetUrl(receptionAsset.url);
 
 export const Route = createFileRoute("/about")({
