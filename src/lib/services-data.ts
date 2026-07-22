@@ -1,5 +1,5 @@
 import {
-  Waves, HeartPulse, Syringe, Activity, Footprints, ShieldPlus,
+  Waves, HeartPulse, Syringe, Activity, Footprints, ShieldPlus, Siren,
 } from "lucide-react";
 import { resolveAssetUrl } from "@/lib/asset-url";
 import varicoseAsset from "@/assets/service-varicose.png.asset.json";
@@ -319,6 +319,53 @@ export const SERVICES: Service[] = [
       { q: "Is bypass surgery risky?", a: "Modern bypass surgery is very safe in specialised centres. Risks are individualised and discussed thoroughly before consent." },
       { q: "How long is the hospital stay?", a: "Typically 3–7 days, depending on wound status, infection control and mobilisation." },
       { q: "What happens if the bypass blocks later?", a: "Regular duplex surveillance detects narrowing early so angioplasty or a redo can maintain the graft long-term." },
+    ],
+  },
+  {
+    slug: "trauma-and-emergency-procedures",
+    title: "Trauma & Emergency Procedures",
+    short: "24/7 rapid response for vascular trauma and life-threatening emergencies.",
+    icon: Siren,
+    image: limbImg,
+    cat: "surgeries",
+    overview:
+      "Vascular trauma and emergencies — from road accidents to ruptured aneurysms and acute limb ischemia — need immediate expert intervention. Our team offers round-the-clock rapid response with hybrid endovascular and open surgical capabilities to save lives and limbs.",
+    symptoms: [
+      "Severe bleeding from an injury",
+      "Sudden cold, pale or painful limb",
+      "Pulsatile swelling after trauma",
+      "Penetrating neck, chest or limb injury",
+      "Suspected ruptured aneurysm (severe back/abdominal pain, collapse)",
+    ],
+    procedure: [
+      "Rapid triage and imaging (CT angiogram / doppler)",
+      "Damage control resuscitation",
+      "Emergency embolization for active bleeding",
+      "Open vascular repair or interposition graft",
+      "Endovascular stent-graft for ruptured aneurysms",
+      "Fasciotomy for compartment syndrome when needed",
+    ],
+    benefits: [
+      "Rapid bleeding control and hemodynamic stabilization",
+      "Higher limb salvage rates after trauma",
+      "Reduced mortality in ruptured aneurysms",
+      "Hybrid theatre — endovascular + open in one setting",
+    ],
+    recovery: "ICU stay of 1–3 days is common; overall hospital stay depends on injury severity. Rehab and follow-up are structured after discharge.",
+    quickFacts: {
+      duration: "1–4 hours (emergency setting)",
+      anesthesia: "General or regional",
+      hospitalStay: "3–10 nights depending on severity",
+      recoveryTime: "2–8 weeks with rehabilitation",
+      suitability: "Vascular trauma, active bleeding, acute limb ischemia, ruptured aneurysms, iatrogenic vessel injury",
+      whatToExpect: "Immediate assessment, urgent imaging, and emergency endovascular or open repair to stop bleeding and restore blood flow.",
+    },
+    faqs: [
+      { q: "Do you offer 24/7 emergency vascular care?", a: "Yes. Our vascular team is available round-the-clock for trauma, acute limb ischemia and ruptured aneurysm emergencies." },
+      { q: "What should I do if there is severe bleeding after an injury?", a: "Apply firm direct pressure with a clean cloth, elevate the limb if possible, and call emergency services immediately. Do not remove any impaled objects." },
+      { q: "Can a ruptured aneurysm be treated without open surgery?", a: "In many cases yes — an emergency endovascular stent-graft (EVAR/TEVAR) can seal the rupture with much lower risk than open repair." },
+      { q: "How is acute limb ischemia treated?", a: "Time is critical. Depending on the cause we perform urgent thrombectomy, thrombolysis, embolectomy or bypass to restore flow within hours." },
+      { q: "What is compartment syndrome and why does it need surgery?", a: "Swelling inside a limb after trauma or reperfusion can cut off circulation. A fasciotomy releases the pressure and prevents permanent muscle and nerve damage." },
     ],
   },
 ];
