@@ -16,7 +16,7 @@ const endoImg = resolveAssetUrl(endoAsset.url);
 const dvtImg = resolveAssetUrl(dvtAsset.url);
 const diabeticImg = resolveAssetUrl(diabeticAsset.url);
 const limbImg = resolveAssetUrl(limbAsset.url);
-const avFistulaImg = resolveAssetUrl(avFistulaAsset.url);
+const avFistulaImg = avFistulaAsset;
 
 export type ServiceCategory = "treatments" | "diagnostics" | "surgeries" | "care";
 
