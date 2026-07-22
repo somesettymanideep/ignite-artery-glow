@@ -9,6 +9,7 @@ import endoAsset from "@/assets/service-endo.webp.asset.json";
 import dvtAsset from "@/assets/service-dvt.png.asset.json";
 import diabeticAsset from "@/assets/service-diabetic.png.asset.json";
 import limbAsset from "@/assets/service-limb.png.asset.json";
+import traumaAsset from "@/assets/service-trauma-emergency.webp.asset.json";
 
 const varicoseImg = resolveAssetUrl(varicoseAsset.url);
 const padImg = resolveAssetUrl(padAsset.url);
@@ -17,6 +18,7 @@ const dvtImg = resolveAssetUrl(dvtAsset.url);
 const diabeticImg = resolveAssetUrl(diabeticAsset.url);
 const limbImg = resolveAssetUrl(limbAsset.url);
 const avFistulaImg = resolveAssetUrl(avFistulaAsset.url);
+const traumaImg = resolveAssetUrl(traumaAsset.url);
 
 export type ServiceCategory = "treatments" | "diagnostics" | "surgeries" | "care";
 
