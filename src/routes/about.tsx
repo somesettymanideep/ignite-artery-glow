@@ -468,6 +468,8 @@ function SubBanner() {
         <img
           src={aboutBanner}
           alt="About Ignite Vascular Center"
+          loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/75 to-secondary/50" />
