@@ -9,7 +9,6 @@ import {
   Stethoscope, ChevronRight,
 } from "lucide-react";
 import aboutBannerAsset from "@/assets/about-banner-narasimha.png.asset.json";
-const aboutBanner = resolveAssetUrl(aboutBannerAsset.url);
 import { Reveal, useCountUp } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
@@ -19,6 +18,7 @@ import doctorImg from "@/assets/home2-doctor.jpg";
 import vascularImg from "@/assets/about-vascular.jpg";
 import surgeryImg from "@/assets/about-surgery.jpg";
 
+const aboutBanner = resolveAssetUrl(aboutBannerAsset.url);
 const receptionImg = resolveAssetUrl(receptionAsset.url);
 
 export const Route = createFileRoute("/about")({
