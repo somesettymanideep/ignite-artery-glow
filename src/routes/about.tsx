@@ -8,7 +8,7 @@ import {
   Smile, Activity, Clock, Microscope, Lightbulb, BookOpenCheck, MessagesSquare,
   Stethoscope, ChevronRight,
 } from "lucide-react";
-import aboutBannerAsset from "@/assets/about-banner-narasimha.png.asset.json";
+import aboutBannerAsset from "@/assets/about-banner-narasimha-v2.png.asset.json";
 import { Reveal, useCountUp } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
