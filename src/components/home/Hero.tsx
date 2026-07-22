@@ -10,6 +10,7 @@ const trust = [
   "Experienced Vascular Specialist",
   "Minimally Invasive Procedures",
   "Advanced Diagnostic Technology",
+  "AV Fistula Surgeries",
   "Personalized Patient Care",
 ];
 
