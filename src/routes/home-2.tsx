@@ -668,6 +668,8 @@ function HeroPremium() {
                 alt="Dr. G. Narasimha Sai — Vascular & Endovascular Surgeon"
                 width={1000}
                 height={1250}
+                loading="lazy"
+                decoding="async"
                 className="w-full rounded-[1.6rem] object-cover"
                 style={{ aspectRatio: "4 / 5" }}
               />
