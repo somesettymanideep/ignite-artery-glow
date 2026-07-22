@@ -116,6 +116,8 @@ function Hero() {
           alt="Advanced vascular and endovascular care at Ignite Vascular Center"
           width={1600}
           height={900}
+          loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/75 to-secondary/50" />

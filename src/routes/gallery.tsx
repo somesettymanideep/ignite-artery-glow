@@ -231,6 +231,8 @@ function GalleryTwoPage() {
                     <img
                       src={heroReception}
                       alt="Ignite Vascular Center reception"
+                      decoding="async"
+                      fetchPriority="high"
                       className="h-full w-full object-cover"
                       style={{ height: "500px", width: "600px" }}
                     />

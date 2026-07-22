@@ -42,7 +42,10 @@ export const Route = createFileRoute("/")({
       { property: "og:image", content: homeOgImage },
       { name: "twitter:image", content: homeOgImage },
     ],
-    links: [{ rel: "canonical", href: "https://ignite-artery-glow.lovable.app/" }],
+    links: [
+      { rel: "canonical", href: "https://ignite-artery-glow.lovable.app/" },
+      { rel: "preload", as: "image", href: homeOgImage, fetchpriority: "high" } as unknown as { rel: string; href: string },
+    ],
     scripts: [
       {
         type: "application/ld+json",

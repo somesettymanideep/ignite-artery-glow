@@ -90,6 +90,8 @@ function Hero() {
               alt="Vascular specialist with holographic artery visualization"
               width={1280}
               height={1280}
+              fetchPriority="high"
+              decoding="async"
               className="relative w-full rounded-[2.5rem] object-cover"
             />
             <div className="glass-card animate-float absolute -bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-2xl px-5 py-3.5 shadow-lift">
@@ -666,6 +668,8 @@ function HeroPremium() {
                 alt="Dr. G. Narasimha Sai — Vascular & Endovascular Surgeon"
                 width={1000}
                 height={1250}
+                loading="lazy"
+                decoding="async"
                 className="w-full rounded-[1.6rem] object-cover"
                 style={{ aspectRatio: "4 / 5" }}
               />

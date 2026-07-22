@@ -63,7 +63,7 @@ function Hero() {
 
         <Reveal className="reveal" variant="right" delay={0.14}>
           <div className="relative overflow-hidden rounded-2xl shadow-lift">
-            <img src={receptionImg} alt="Ignite Vascular Center reception" width={1400} height={900} className="h-[320px] w-full object-cover sm:h-[420px] lg:h-[460px]" />
+            <img src={receptionImg} alt="Ignite Vascular Center reception" width={1400} height={900} loading="lazy" decoding="async" className="h-[320px] w-full object-cover sm:h-[420px] lg:h-[460px]" />
           </div>
         </Reveal>
       </div>
@@ -468,6 +468,8 @@ function SubBanner() {
         <img
           src={aboutBanner}
           alt="About Ignite Vascular Center"
+          loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/75 to-secondary/50" />
