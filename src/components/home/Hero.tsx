@@ -79,6 +79,8 @@ export function Hero() {
               alt="Vascular surgeon with advanced digital artery visualization at Ignite Vascular Center"
               width={1024}
               height={1152}
+              fetchPriority="high"
+              decoding="async"
               className="relative w-full rounded-[2rem] object-cover shadow-lift"
             />
 
