@@ -110,7 +110,7 @@ const CATEGORIES: { label: Category; short: string; icon: React.ElementType }[] 
 const STATS = [
   { icon: Award, value: "2000+", label: "Successful Procedures" },
   { icon: Users, value: "1500+", label: "Happy Patients" },
-  { icon: Stethoscope, value: "25+", label: "Expert Treatments" },
+  { icon: Stethoscope, value: "100+", label: "Advanced Treatments" },
   { icon: Activity, value: "10+", label: "Years of Experience" },
 ];
 
