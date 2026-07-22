@@ -1,5 +1,5 @@
 import {
-  Waves, HeartPulse, Syringe, Activity, Footprints, ShieldPlus,
+  Waves, HeartPulse, Syringe, Activity, Footprints, ShieldPlus, Siren,
 } from "lucide-react";
 import { resolveAssetUrl } from "@/lib/asset-url";
 import varicoseAsset from "@/assets/service-varicose.png.asset.json";
