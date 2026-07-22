@@ -275,6 +275,8 @@ function ServiceDetail() {
                     <img
                       src={service.image}
                       alt={`${service.title} procedure`}
+                      loading="lazy"
+                      decoding="async"
                       className="h-[340px] w-full rounded-[1.75rem] object-cover shadow-soft ring-1 ring-black/5 sm:h-[400px]"
                     />
                     {/* corner badge */}
