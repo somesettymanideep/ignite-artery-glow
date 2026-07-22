@@ -492,6 +492,16 @@ function SubBanner() {
             <span className="font-semibold text-primary-foreground">About Us</span>
           </nav>
         </Reveal>
+
+        {/* Doctor name badge overlay on banner image */}
+        <Reveal variant="right" delay={0.14}>
+          <div className="absolute right-5 bottom-8 sm:right-8 lg:right-12">
+            <div className="rounded-xl border border-white/20 bg-white/15 px-4 py-2.5 shadow-lg backdrop-blur-md sm:px-5 sm:py-3">
+              <span className="block text-[10px] font-bold uppercase tracking-wider text-white/80 sm:text-xs">Vascular & Endovascular Surgeon</span>
+              <span className="mt-0.5 block font-display text-base font-black text-white sm:text-lg">Dr.G. Narasimha Sai</span>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
