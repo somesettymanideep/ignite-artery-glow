@@ -259,7 +259,8 @@ function Doctor() {
 const CERTIFICATIONS = [
   { icon: GradCap, title: "MBBS", subtitle: "Govt Siddhartha Medical College, Vijayawada", issuer: "Completed 2010", year: "2010", accent: "from-primary to-[oklch(0.55_0.18_10)]" },
   { icon: ScrollText, title: "DNB General Surgery", subtitle: "NBEMS, New Delhi", issuer: "Completed 2018", year: "2018", accent: "from-secondary to-[oklch(0.35_0.14_340)]" },
-  { icon: Award, title: "DrNB Vascular Surgery", subtitle: "NIMS, 2025", issuer: "Lifetime member in VSI since 2025", year: "2025", accent: "from-primary to-secondary" },
+  { icon: Award, title: "DrNB Vascular Surgery", subtitle: "NIMS, 2025", issuer: "Completed 2025", year: "2025", accent: "from-primary to-secondary" },
+  { icon: ShieldCert, title: "Lifetime Member VSI", subtitle: "Vascular Society of India", issuer: "Member since 2025", year: "2025", accent: "from-secondary to-primary" },
 ];
 
 function CertificationsCarousel() {
