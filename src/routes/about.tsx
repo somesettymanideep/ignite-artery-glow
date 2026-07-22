@@ -257,12 +257,9 @@ function Doctor() {
 }
 
 const CERTIFICATIONS = [
-  { icon: Award, title: "Board Certified", subtitle: "Vascular & Endovascular Surgery", issuer: "National Board of Examinations", year: "2018", accent: "from-primary to-[oklch(0.55_0.18_10)]" },
-  { icon: GradCap, title: "DrNB Vascular Surgery", subtitle: "Super-Specialty Fellowship", issuer: "NIMS, Hyderabad", year: "2017", accent: "from-secondary to-[oklch(0.35_0.14_340)]" },
-  { icon: ScrollText, title: "DNB General Surgery", subtitle: "Diplomate of National Board", issuer: "NBE, New Delhi", year: "2014", accent: "from-primary to-secondary" },
-  { icon: BadgeCheck, title: "Fellowship — Endovascular", subtitle: "Advanced Peripheral Interventions", issuer: "Vascular Society of India", year: "2019", accent: "from-[oklch(0.55_0.18_10)] to-secondary" },
-  { icon: Trophy, title: "Excellence in Patient Care", subtitle: "Clinical Outcomes Award", issuer: "AP Medical Association", year: "2022", accent: "from-secondary to-primary" },
-  { icon: ShieldCert, title: "Member — ISVS", subtitle: "Indian Society for Vascular Surgery", issuer: "Lifetime Membership", year: "2018", accent: "from-primary to-[oklch(0.35_0.14_340)]" },
+  { icon: GradCap, title: "MBBS", subtitle: "Govt Siddhartha Medical College, Vijayawada", issuer: "Completed 2010", year: "2010", accent: "from-primary to-[oklch(0.55_0.18_10)]" },
+  { icon: ScrollText, title: "DNB General Surgery", subtitle: "NBEMS, New Delhi", issuer: "Completed 2018", year: "2018", accent: "from-secondary to-[oklch(0.35_0.14_340)]" },
+  { icon: Award, title: "DrNB Vascular Surgery", subtitle: "NIMS, 2025", issuer: "Lifetime member in VSI since 2025", year: "2025", accent: "from-primary to-secondary" },
 ];
 
 function CertificationsCarousel() {
