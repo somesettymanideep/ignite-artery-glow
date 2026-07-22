@@ -221,8 +221,13 @@ function Doctor() {
             Meet Our Vascular Specialist
           </h2>
           <h3 className="mt-6 font-display text-xl font-extrabold text-primary">G. Narasimha Sai</h3>
-          <p className="mt-1 text-sm font-semibold text-secondary">MBBS, DNB (Gen Surg), DrNB (Vascular Surgery) [NIMS]</p>
-          <p className="text-sm text-muted-foreground">Vascular &amp; Endovascular Surgeon</p>
+          <div className="mt-1 space-y-1 text-sm font-semibold text-secondary">
+            <p>MBBS (Govt Siddhartha Medical College, Vijayawada 2010)</p>
+            <p>DNB (Gen Surgery, NBEMS New Delhi 2018)</p>
+            <p>DrNB (Vascular Surgery) NIMS, 2025</p>
+            <p>Lifetime Member in VSI since 2025</p>
+          </div>
+          <p className="mt-2 text-sm text-muted-foreground">Vascular &amp; Endovascular Surgeon</p>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
             With years of experience in managing complex vascular conditions, Dr. Narasimha Sai
             specializes in minimally invasive and endovascular procedures. He is dedicated
