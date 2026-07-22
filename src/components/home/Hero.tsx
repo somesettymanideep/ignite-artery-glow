@@ -7,7 +7,7 @@ import { resolveAssetUrl } from "@/lib/asset-url";
 const heroImg = resolveAssetUrl(heroAsset.url);
 
 const trust = [
-  "Experienced Vascular Specialists",
+  "Experienced Vascular Specialist",
   "Minimally Invasive Procedures",
   "Advanced Diagnostic Technology",
   "Personalized Patient Care",
