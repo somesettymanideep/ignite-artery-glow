@@ -376,7 +376,7 @@ export const SERVICES: Service[] = [
     title: "Trauma & Emergency Procedures",
     short: "24/7 rapid response for vascular trauma and life-threatening emergencies.",
     icon: Siren,
-    image: limbImg,
+    image: traumaImg,
     cat: "surgeries",
     overview:
       "Vascular trauma and emergencies — from road accidents to ruptured aneurysms and acute limb ischemia — need immediate expert intervention. Our team offers round-the-clock rapid response with hybrid endovascular and open surgical capabilities to save lives and limbs.",
