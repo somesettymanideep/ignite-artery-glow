@@ -2,7 +2,7 @@ import {
   Waves, HeartPulse, Syringe, Activity, Footprints, ShieldPlus, Siren, Droplets,
 } from "lucide-react";
 import { resolveAssetUrl } from "@/lib/asset-url";
-import avFistulaAsset from "@/assets/service-avfistula.png";
+import avFistulaAsset from "@/assets/service-avfistula.jpg.asset.json";
 import varicoseAsset from "@/assets/service-varicose.png.asset.json";
 import padAsset from "@/assets/service-pad.png.asset.json";
 import endoAsset from "@/assets/service-endo.webp.asset.json";
@@ -16,7 +16,7 @@ const endoImg = resolveAssetUrl(endoAsset.url);
 const dvtImg = resolveAssetUrl(dvtAsset.url);
 const diabeticImg = resolveAssetUrl(diabeticAsset.url);
 const limbImg = resolveAssetUrl(limbAsset.url);
-const avFistulaImg = avFistulaAsset;
+const avFistulaImg = resolveAssetUrl(avFistulaAsset.url);
 
 export type ServiceCategory = "treatments" | "diagnostics" | "surgeries" | "care";
 
