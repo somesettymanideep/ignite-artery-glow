@@ -97,7 +97,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "simple-and-complex-av-fistula",
-    title: "AV Fistula for Dialysis & Fistula Salvage",
+    title: "AV Fistula Procedure in Kidney Patients for Dialysis and Fistula Salvage Procedures",
     short: "Dialysis access creation and fistula salvage procedures for kidney patients.",
     icon: Droplets,
     image: avFistulaImg,
