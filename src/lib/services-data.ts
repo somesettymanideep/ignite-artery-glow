@@ -1,7 +1,8 @@
 import {
-  Waves, HeartPulse, Syringe, Activity, Footprints, ShieldPlus, Siren,
+  Waves, HeartPulse, Syringe, Activity, Footprints, ShieldPlus, Siren, Droplets,
 } from "lucide-react";
 import { resolveAssetUrl } from "@/lib/asset-url";
+import avFistulaAsset from "@/assets/service-avfistula.png";
 import varicoseAsset from "@/assets/service-varicose.png.asset.json";
 import padAsset from "@/assets/service-pad.png.asset.json";
 import endoAsset from "@/assets/service-endo.webp.asset.json";
@@ -15,6 +16,7 @@ const endoImg = resolveAssetUrl(endoAsset.url);
 const dvtImg = resolveAssetUrl(dvtAsset.url);
 const diabeticImg = resolveAssetUrl(diabeticAsset.url);
 const limbImg = resolveAssetUrl(limbAsset.url);
+const avFistulaImg = avFistulaAsset;
 
 export type ServiceCategory = "treatments" | "diagnostics" | "surgeries" | "care";
 
@@ -89,6 +91,52 @@ export const SERVICES: Service[] = [
       { q: "How soon can I go back to work?", a: "Most patients return to office work the next day and to full activity within 3–5 days." },
       { q: "Do I need to wear stockings after treatment?", a: "Yes, medical-grade compression stockings for about 2 weeks help healing and improve comfort." },
       { q: "Is the treatment covered by insurance?", a: "Symptomatic varicose vein treatment is covered by most health insurance policies. Our team helps with pre-authorisation." },
+    ],
+  },
+  {
+    slug: "simple-and-complex-av-fistula",
+    title: "Simple & Complex AV Fistula",
+    short: "Expert dialysis access creation, salvage and maintenance.",
+    icon: Droplets,
+    image: avFistulaImg,
+    cat: "treatments",
+    overview:
+      "An arteriovenous (AV) fistula is the lifeline for patients needing haemodialysis. We create simple radiocephalic and complex brachiocephalic / brachiobasilic fistulas, perform fistula maturation assessments, balloon angioplasty for stenosis, and thrombectomy for clotted access — all to keep dialysis running smoothly.",
+    symptoms: [
+      "Chronic kidney disease requiring dialysis",
+      "Weak or non-functioning fistula thrill",
+      "Swollen arm after fistula creation",
+      "Fistula not maturing for cannulation",
+      "Repeated cannulation failure",
+    ],
+    procedure: [
+      "Pre-operative vein mapping with duplex ultrasound",
+      "Selection of simple or complex fistula site",
+      "Microsurgical creation of artery-vein anastomosis",
+      "Fistula maturation monitoring at 4–6 weeks",
+      "Salvage procedures: angioplasty, thrombectomy, banding",
+    ],
+    benefits: [
+      "Long-lasting dialysis access with lower infection risk",
+      "High flow rates for efficient dialysis",
+      "Salvage options extend fistula life",
+      "Structured cannulation training and follow-up",
+    ],
+    recovery: "Simple fistula creation is day-care; complex fistulas may need overnight stay. Maturation takes 4–8 weeks before cannulation.",
+    quickFacts: {
+      duration: "1–2 hours",
+      anesthesia: "Local / regional / general",
+      hospitalStay: "Day-care to 1 night",
+      recoveryTime: "4–8 weeks for fistula maturation",
+      suitability: "CKD stage 5 patients planned for haemodialysis, or those with failing dialysis access",
+      whatToExpect: "Ultrasound vein mapping, gentle fistula creation, post-operative hand exercises, and regular maturation checks.",
+    },
+    faqs: [
+      { q: "What is an AV fistula and why is it needed?", a: "An AV fistula connects an artery to a vein, making the vein stronger and larger so it can be used repeatedly for haemodialysis needles. It is the safest long-term dialysis access." },
+      { q: "How long does a fistula take to mature?", a: "Most simple fistulas mature in 4–6 weeks; complex fistulas may take 8–12 weeks. We monitor with duplex scans before cannulation." },
+      { q: "What if my fistula stops working?", a: "Clotted or narrowed fistulas can often be salvaged with thrombectomy, angioplasty or stenting — avoiding the need for a new access." },
+      { q: "Is fistula creation painful?", a: "It is done under anaesthesia so the procedure itself is painless. Mild soreness for a few days is common and controlled with medication." },
+      { q: "Who creates the best AV fistulas?", a: "Vascular surgeons are specifically trained in vessel anatomy, ultrasound mapping and microsurgical techniques that produce durable, well-functioning fistulas." },
     ],
   },
   {
