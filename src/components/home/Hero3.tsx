@@ -167,20 +167,8 @@ export function Hero3() {
                   decoding="async"
                   className="absolute inset-x-0 bottom-0 top-[4%] mx-auto h-[96%] w-auto max-w-[92%] object-contain object-bottom"
                 />
+                {/* Callouts (varicose veins + AV fistula) are baked into the image */}
 
-                {/* Callouts overflow to the right of the shape */}
-                <Callout
-                  className="top-[12%] left-[78%]"
-                  title="Varicose Veins"
-                  desc="Advanced treatment for varicose veins and venous disorders."
-                  Icon={Waves}
-                />
-                <Callout
-                  className="top-[52%] left-[78%]"
-                  title="AV Fistula"
-                  desc="Expertise in simple and complex AV Fistula surgeries."
-                  Icon={Activity}
-                />
               </div>
             );
           })()}
