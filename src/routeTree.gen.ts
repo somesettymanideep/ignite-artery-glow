@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TreatmentsRouteImport } from './routes/treatments'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SecondOpinionRouteImport } from './routes/second-opinion'
+import { Route as Home3RouteImport } from './routes/home-3'
 import { Route as Home2RouteImport } from './routes/home-2'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -34,6 +35,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const SecondOpinionRoute = SecondOpinionRouteImport.update({
   id: '/second-opinion',
   path: '/second-opinion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Home3Route = Home3RouteImport.update({
+  id: '/home-3',
+  path: '/home-3',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Home2Route = Home2RouteImport.update({
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/home-2': typeof Home2Route
+  '/home-3': typeof Home3Route
   '/second-opinion': typeof SecondOpinionRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/treatments': typeof TreatmentsRoute
@@ -98,6 +105,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/home-2': typeof Home2Route
+  '/home-3': typeof Home3Route
   '/second-opinion': typeof SecondOpinionRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/treatments': typeof TreatmentsRoute
@@ -112,6 +120,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/home-2': typeof Home2Route
+  '/home-3': typeof Home3Route
   '/second-opinion': typeof SecondOpinionRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/treatments': typeof TreatmentsRoute
@@ -127,6 +136,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/home-2'
+    | '/home-3'
     | '/second-opinion'
     | '/sitemap.xml'
     | '/treatments'
@@ -140,6 +150,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/home-2'
+    | '/home-3'
     | '/second-opinion'
     | '/sitemap.xml'
     | '/treatments'
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/gallery'
     | '/home-2'
+    | '/home-3'
     | '/second-opinion'
     | '/sitemap.xml'
     | '/treatments'
@@ -167,6 +179,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   GalleryRoute: typeof GalleryRoute
   Home2Route: typeof Home2Route
+  Home3Route: typeof Home3Route
   SecondOpinionRoute: typeof SecondOpinionRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TreatmentsRoute: typeof TreatmentsRoute
@@ -194,6 +207,13 @@ declare module '@tanstack/react-router' {
       path: '/second-opinion'
       fullPath: '/second-opinion'
       preLoaderRoute: typeof SecondOpinionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home-3': {
+      id: '/home-3'
+      path: '/home-3'
+      fullPath: '/home-3'
+      preLoaderRoute: typeof Home3RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/home-2': {
@@ -263,6 +283,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   GalleryRoute: GalleryRoute,
   Home2Route: Home2Route,
+  Home3Route: Home3Route,
   SecondOpinionRoute: SecondOpinionRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TreatmentsRoute: TreatmentsRoute,
@@ -271,3 +292,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
