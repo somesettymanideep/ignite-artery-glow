@@ -1,4 +1,4 @@
-import { Star, Check, Calendar, ArrowRight, Award, Activity, HeartPulse, Users } from "lucide-react";
+import { Star, Check, Calendar, ArrowRight } from "lucide-react";
 import { openBookingModal } from "@/components/booking/BookingModal";
 import { Reveal } from "@/hooks/use-reveal";
 import heroAsset from "@/assets/hero-section-image.webp.asset.json";
@@ -73,8 +73,15 @@ export function Hero() {
 
         {/* Right */}
         <Reveal variant="right" className="relative">
-          <div className="relative mx-auto max-w-lg">
-            <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-brand opacity-15 blur-2xl" aria-hidden />
+          <div className="relative mx-auto w-full max-w-[620px]">
+            <div
+              aria-hidden
+              className="absolute -inset-6 -z-10 rounded-[40px] opacity-70"
+              style={{
+                background:
+                  "radial-gradient(ellipse 60% 55% at 55% 45%, rgba(65,48,92,0.10), transparent 70%)",
+              }}
+            />
             <img
               src={heroImg}
               alt="Medical illustration showing varicose veins and AV fistula anatomy at Ignite Vascular Center"
@@ -82,26 +89,8 @@ export function Hero() {
               height={1536}
               fetchPriority="high"
               decoding="async"
-              className="relative w-full rounded-[2rem] object-cover shadow-lift"
+              className="mx-auto block h-auto w-full max-w-[560px] object-contain"
             />
-
-            {/* Floating glass cards */}
-            <div className="glass-card animate-float absolute -left-4 top-8 flex items-center gap-3 rounded-2xl px-4 py-3 sm:-left-10">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-brand text-primary-foreground"><Award className="h-5 w-5" /></span>
-              <span className="text-sm font-bold leading-tight">10+ Years<br /><span className="text-xs font-semibold text-muted-foreground">Experience</span></span>
-            </div>
-            <div className="glass-card animate-float-slower absolute -right-4 top-8 flex items-center gap-3 rounded-2xl px-4 py-3 sm:-right-8">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-secondary text-secondary-foreground"><Activity className="h-5 w-5" /></span>
-              <span className="text-sm font-bold leading-tight">Advanced<br /><span className="text-xs font-semibold text-muted-foreground">Endovascular Procedures</span></span>
-            </div>
-            <div className="glass-card animate-float absolute -left-2 bottom-24 flex items-center gap-3 rounded-2xl px-4 py-3 [animation-delay:1.2s] sm:-left-12">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-brand text-primary-foreground"><HeartPulse className="h-5 w-5" /></span>
-              <span className="text-sm font-bold leading-tight">Patient-Centered<br /><span className="text-xs font-semibold text-muted-foreground">Care</span></span>
-            </div>
-            <div className="glass-card animate-float-slower absolute -right-2 -bottom-5 flex items-center gap-3 rounded-2xl px-4 py-3 [animation-delay:0.6s] sm:-right-6">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-secondary text-secondary-foreground"><Users className="h-5 w-5" /></span>
-              <span className="text-sm font-bold leading-tight">Trusted by<br /><span className="text-xs font-semibold text-muted-foreground">Thousands</span></span>
-            </div>
           </div>
         </Reveal>
       </div>
