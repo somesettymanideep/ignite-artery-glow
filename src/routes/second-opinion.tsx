@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { z } from "zod";
 import {
   ChevronRight, ChevronDown, ShieldCheck, FileText, HeartHandshake, Lock,
-  ArrowRight, PlayCircle, Activity, Stethoscope, Users, HeartPulse,
+  ArrowRight, Activity, Stethoscope, Users, HeartPulse,
   UploadCloud, UserRound, ClipboardCheck, MessagesSquare, ClipboardList,
   User, Phone, Mail, MessageCircle, Send, CalendarCheck, Loader2,
   Award, Search, Sparkles, Microscope, HeartHandshake as HeartCare, HelpCircle,
@@ -200,10 +200,6 @@ function Hero() {
                 <span className="grid h-6 w-6 place-items-center rounded-full bg-white/25 transition-transform duration-300 group-hover:translate-x-1">
                   <ArrowRight className="h-3.5 w-3.5" />
                 </span>
-              </a>
-              <a href="#how-it-works" className="inline-flex items-center gap-2 rounded-[6px] border-2 border-secondary/15 bg-white px-6 py-3.5 text-sm font-bold text-secondary transition-colors hover:border-primary hover:text-primary">
-                How It Works
-                <PlayCircle className="h-4 w-4" />
               </a>
             </div>
           </Reveal>
