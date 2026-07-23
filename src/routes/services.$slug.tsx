@@ -3,7 +3,7 @@ import { openBookingModal } from "@/components/booking/BookingModal";
 import { useState } from "react";
 import {
   ArrowRight, Phone, Check, ChevronRight, Sparkles, Wand2, Clock, ShieldCheck, HeartPulse,
-  HelpCircle, Plus, Minus, Download, PhoneCall, CheckCircle2, Star, Award, Users,
+  HelpCircle, Plus, Minus, Download, PhoneCall, CheckCircle2, Star, Award, Users, Droplets,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
