@@ -5,7 +5,7 @@ import doctorImg from "@/assets/home2-doctor.jpg";
 const DOCTOR_POINTS = [
   { icon: Award, text: "10+ Years of Experience" },
   { icon: Stethoscope, text: "Expert in Endovascular Procedures" },
-  { icon: Users, text: "Thousands of Successful Treatments" },
+  { icon: Users, text: "More than 400+ Simple and Complex AV Fistula Surgeries" },
   { icon: Heart, text: "Patient-Centered Approach" },
 ];
 
