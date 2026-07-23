@@ -3,14 +3,17 @@ import { openBookingModal } from "@/components/booking/BookingModal";
 import { useState } from "react";
 import {
   ArrowRight, Phone, Check, ChevronRight, Sparkles, Wand2, Clock, ShieldCheck, HeartPulse,
-  HelpCircle, Plus, Minus, Download, PhoneCall, CheckCircle2, Star, Award, Users,
+  HelpCircle, Plus, Minus, Download, PhoneCall, CheckCircle2, Star, Award, Users, Droplets,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
 import { SubBanner } from "@/components/home/SubBanner";
 import { SERVICES, getServiceBySlug } from "@/lib/services-data";
-import { toAbsoluteUrl } from "@/lib/asset-url";
+import { toAbsoluteUrl, resolveAssetUrl } from "@/lib/asset-url";
+import avFistulaAsset from "@/assets/service-avfistula.jpg.asset.json";
+
+const avFistulaImg = resolveAssetUrl(avFistulaAsset.url);
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -329,6 +332,61 @@ function ServiceDetail() {
                   </div>
                 </div>
               </Reveal>
+
+              {/* AV Fistula cross-link — shown on every treatment page except AV Fistula itself */}
+              {service.slug !== "simple-and-complex-av-fistula" && (
+                <Reveal variant="up" as="section">
+                  <div className="relative overflow-hidden rounded-3xl border border-primary/15 bg-gradient-to-br from-primary/5 via-white to-primary/[0.02] p-6 shadow-soft sm:p-8">
+                    <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-primary/10 blur-3xl" />
+                    <div aria-hidden className="pointer-events-none absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-[hsl(258,90%,66%)]/10 blur-3xl" />
+                    <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center">
+                      <div className="flex-1">
+                        <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white px-3 py-1.5 text-[10.5px] font-black uppercase tracking-[0.22em] text-primary shadow-soft">
+                          <Droplets className="h-3.5 w-3.5" /> Dialysis Access
+                        </span>
+                        <h3 className="mt-3 font-display text-2xl font-extrabold text-secondary sm:text-3xl">
+                          AV Fistula Procedure in Kidney Patients for Dialysis and Fistula Salvage Procedures
+                        </h3>
+                        <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
+                          An arteriovenous (AV) fistula is the preferred, longest-lasting access for haemodialysis. Our vascular team creates simple and complex AV fistulas for kidney patients and performs fistula salvage procedures — including angioplasty, thrombectomy and banding — to keep dialysis running smoothly.
+                        </p>
+                        <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                          {[
+                            "Simple & complex fistula creation",
+                            "Fistula maturation monitoring",
+                            "Balloon angioplasty for stenosis",
+                            "Thrombectomy for clotted fistulas",
+                          ].map((item) => (
+                            <li key={item} className="flex items-center gap-2 text-[13.5px] font-semibold text-secondary">
+                              <span className="grid h-5 w-5 place-items-center rounded-full bg-gradient-brand text-primary-foreground shadow-glow-red">
+                                <Check className="h-3 w-3" />
+                              </span>
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                        <Link
+                          to="/services/$slug"
+                          params={{ slug: "simple-and-complex-av-fistula" }}
+                          className="mt-5 inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-[13.5px] font-bold text-primary-foreground shadow-glow-red transition hover:-translate-y-0.5"
+                        >
+                          Learn More <ArrowRight className="h-4 w-4" />
+                        </Link>
+                      </div>
+                      <div className="relative shrink-0 lg:w-[320px]">
+                        <div aria-hidden className="absolute -inset-2 -z-10 rounded-[1.5rem] bg-gradient-brand opacity-15 blur-xl" />
+                        <img
+                          src={avFistulaImg}
+                          alt="AV fistula procedure in kidney patients for dialysis and fistula salvage procedures"
+                          loading="lazy"
+                          decoding="async"
+                          className="h-[220px] w-full rounded-[1.5rem] object-cover shadow-soft ring-1 ring-black/5"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              )}
             </div>
 
 
