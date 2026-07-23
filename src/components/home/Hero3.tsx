@@ -11,10 +11,7 @@ import {
 } from "lucide-react";
 import { openBookingModal } from "@/components/booking/BookingModal";
 import { Reveal } from "@/hooks/use-reveal";
-import heroAsset from "@/assets/hero-section-image.webp.asset.json";
-import { resolveAssetUrl } from "@/lib/asset-url";
-
-const heroImg = resolveAssetUrl(heroAsset.url);
+import heroImg from "@/assets/hero-leg-photo.jpg";
 
 const stats = [
   { icon: ShieldCheck, value: "10+", label: "Years of\nExperience" },
@@ -86,27 +83,59 @@ export function Hero3() {
             </div>
           </Reveal>
 
-          {/* ============ RIGHT — hero image with baked-in callouts ============ */}
+          {/* ============ RIGHT — photorealistic leg with callout labels ============ */}
           <Reveal variant="right" className="relative lg:col-span-6">
-            <div className="relative mx-auto w-full max-w-[620px]">
-              {/* Soft glow behind the image */}
+            <div className="relative mx-auto w-full max-w-[640px]">
               <div
                 aria-hidden
                 className="absolute -inset-6 -z-10 rounded-[40px] opacity-70"
                 style={{
                   background:
-                    "radial-gradient(ellipse 60% 55% at 55% 45%, rgba(65,48,92,0.10), transparent 70%)",
+                    "radial-gradient(ellipse 60% 55% at 55% 45%, rgba(65,48,92,0.12), transparent 70%)",
                 }}
               />
-              <img
-                src={heroImg}
-                alt="Medical illustration showing varicose veins and AV fistula anatomy — Ignite Vascular Center"
-                width={1024}
-                height={1536}
-                fetchPriority="high"
-                decoding="async"
-                className="mx-auto block h-auto w-full max-w-[560px] object-contain drop-shadow-[0_25px_40px_rgba(65,48,92,0.18)]"
-              />
+              <div className="relative overflow-hidden rounded-[28px] ring-1 ring-black/5 shadow-[0_30px_60px_-25px_rgba(65,48,92,0.35)]">
+                <img
+                  src={heroImg}
+                  alt="Close-up of a leg with varicose veins alongside medical illustrations of varicose veins and AV fistula anatomy — Ignite Vascular Center"
+                  width={1280}
+                  height={1024}
+                  fetchPriority="high"
+                  decoding="async"
+                  className="block h-auto w-full object-cover"
+                />
+
+                {/* Callout labels overlaid to the right of the baked-in zoom circles */}
+                <div className="pointer-events-none absolute right-3 top-[14%] w-[42%] max-w-[220px] rounded-2xl bg-white/95 p-3 shadow-[0_12px_30px_-10px_rgba(0,0,0,0.35)] ring-1 ring-black/5 backdrop-blur sm:right-4 sm:p-4">
+                  <div className="flex items-center gap-2">
+                    <span className="grid h-8 w-8 place-items-center rounded-full bg-secondary/10 text-secondary">
+                      <Activity className="h-4 w-4" />
+                    </span>
+                    <div className="text-[11px] font-black uppercase tracking-wider text-secondary sm:text-xs">
+                      Varicose Veins
+                    </div>
+                  </div>
+                  <div className="mt-1.5 h-[2px] w-8 rounded-full bg-primary" />
+                  <p className="mt-1.5 text-[10.5px] leading-snug text-muted-foreground sm:text-[11.5px]">
+                    Advanced treatment for varicose veins and venous disorders.
+                  </p>
+                </div>
+
+                <div className="pointer-events-none absolute right-3 top-[52%] w-[42%] max-w-[220px] rounded-2xl bg-white/95 p-3 shadow-[0_12px_30px_-10px_rgba(0,0,0,0.35)] ring-1 ring-black/5 backdrop-blur sm:right-4 sm:p-4">
+                  <div className="flex items-center gap-2">
+                    <span className="grid h-8 w-8 place-items-center rounded-full bg-secondary/10 text-secondary">
+                      <HeartPulse className="h-4 w-4" />
+                    </span>
+                    <div className="text-[11px] font-black uppercase tracking-wider text-secondary sm:text-xs">
+                      AV Fistula
+                    </div>
+                  </div>
+                  <div className="mt-1.5 h-[2px] w-8 rounded-full bg-primary" />
+                  <p className="mt-1.5 text-[10.5px] leading-snug text-muted-foreground sm:text-[11.5px]">
+                    Expertise in simple and complex AV Fistula surgeries.
+                  </p>
+                </div>
+              </div>
             </div>
           </Reveal>
         </div>
