@@ -116,9 +116,9 @@ export function Hero3() {
         {/* RIGHT — indigo stadium shape with offset red outline + leg image */}
         <Reveal variant="right" className="relative">
           {(() => {
-            const stadium = "50% 50% 46% 46% / 52% 52% 20% 20%";
+            const stadium = "52% 52% 46% 46% / 50% 50% 20% 20%";
             return (
-              <div className="relative mx-auto aspect-[3/4] w-full max-w-[560px]">
+              <div className="relative mx-auto aspect-[3/4] w-full max-w-[440px]">
                 {/* Thin red outline — same curvature, offset down-left */}
                 <div
                   aria-hidden
@@ -134,7 +134,6 @@ export function Hero3() {
                   className="absolute inset-0 overflow-hidden bg-gradient-to-b from-secondary via-[#2d2148] to-[#1c1430]"
                   style={{ borderRadius: stadium }}
                 >
-                  {/* top-left soft light */}
                   <div
                     className="absolute inset-0"
                     style={{
@@ -142,7 +141,6 @@ export function Hero3() {
                         "radial-gradient(ellipse 60% 45% at 28% 18%, rgba(255,255,255,0.10), transparent 70%)",
                     }}
                   />
-                  {/* bottom-right warm glow */}
                   <div
                     className="absolute inset-0"
                     style={{
@@ -150,12 +148,12 @@ export function Hero3() {
                         "radial-gradient(ellipse 55% 40% at 78% 88%, rgba(218,50,52,0.14), transparent 70%)",
                     }}
                   />
-                  {/* inner rim highlight following the curve */}
                   <div
                     className="pointer-events-none absolute inset-0"
                     style={{
                       borderRadius: stadium,
-                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -40px 60px rgba(0,0,0,0.25)",
+                      boxShadow:
+                        "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -40px 60px rgba(0,0,0,0.25)",
                     }}
                   />
                 </div>
@@ -169,57 +167,13 @@ export function Hero3() {
                   decoding="async"
                   className="absolute inset-x-0 bottom-0 top-[4%] mx-auto h-[96%] w-auto max-w-[92%] object-contain object-bottom"
                 />
+                {/* Callouts (varicose veins + AV fistula) are baked into the image */}
 
-
-
-
-            {/* Callout: Varicose Veins */}
-            <div className="absolute right-[-6%] top-[10%] flex items-center gap-3 sm:right-[-14%]">
-              <div className="relative h-20 w-20 overflow-hidden rounded-full ring-4 ring-white shadow-lift sm:h-24 sm:w-24">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-secondary/40 to-secondary/60" />
-                <Waves className="absolute inset-0 m-auto h-10 w-10 text-white/90" />
-              </div>
-              <div className="hidden sm:block">
-                <span className="grid h-11 w-11 place-items-center rounded-full bg-white text-primary shadow-lift">
-                  <Sparkles className="h-5 w-5" />
-                </span>
-              </div>
-              <div className="max-w-[180px] rounded-xl bg-white/95 p-3 shadow-lift ring-1 ring-black/5 backdrop-blur">
-                <div className="text-xs font-black uppercase tracking-wider text-secondary">
-                  Varicose Veins
-                </div>
-                <p className="mt-1 text-[11px] leading-snug text-muted-foreground">
-                  Advanced treatment for varicose veins and venous disorders.
-                </p>
-                <div className="mt-2 h-0.5 w-8 rounded-full bg-primary" />
-              </div>
-            </div>
-
-            {/* Callout: AV Fistula */}
-            <div className="absolute right-[-6%] top-[52%] flex items-center gap-3 sm:right-[-14%]">
-              <div className="relative h-20 w-20 overflow-hidden rounded-full ring-4 ring-white shadow-lift sm:h-24 sm:w-24">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-primary/20 to-secondary/60" />
-                <Activity className="absolute inset-0 m-auto h-10 w-10 text-white/90" />
-              </div>
-              <div className="hidden sm:block">
-                <span className="grid h-11 w-11 place-items-center rounded-full bg-white text-primary shadow-lift">
-                  <Stethoscope className="h-5 w-5" />
-                </span>
-              </div>
-              <div className="max-w-[180px] rounded-xl bg-white/95 p-3 shadow-lift ring-1 ring-black/5 backdrop-blur">
-                <div className="text-xs font-black uppercase tracking-wider text-secondary">
-                  AV Fistula
-                </div>
-                <p className="mt-1 text-[11px] leading-snug text-muted-foreground">
-                  Expertise in simple and complex AV Fistula surgeries.
-                </p>
-                <div className="mt-2 h-0.5 w-8 rounded-full bg-primary" />
-              </div>
-            </div>
               </div>
             );
           })()}
         </Reveal>
+
 
       </div>
 
@@ -245,3 +199,42 @@ export function Hero3() {
     </section>
   );
 }
+
+function Callout({
+  className = "",
+  title,
+  desc,
+  Icon,
+}: {
+  className?: string;
+  title: string;
+  desc: string;
+  Icon: React.ComponentType<{ className?: string }>;
+}) {
+  return (
+    <div className={`absolute z-10 flex items-center gap-2.5 ${className}`}>
+      {/* medical illustration disc */}
+      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-[3px] ring-white shadow-lift sm:h-20 sm:w-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-secondary/50 to-secondary/70" />
+        <Icon className="absolute inset-0 m-auto h-8 w-8 text-white/90" />
+        {/* dashed connector to the leg (going left) */}
+        <span
+          className="absolute right-full top-1/2 h-px w-4 -translate-y-1/2"
+          style={{ borderTop: "1px dashed rgba(255,255,255,0.55)" }}
+          aria-hidden
+        />
+      </div>
+      {/* label card */}
+      <div className="max-w-[150px] rounded-lg bg-white/95 px-3 py-2 shadow-lift ring-1 ring-black/5 backdrop-blur">
+        <div className="text-[11px] font-black uppercase tracking-wider text-secondary">
+          {title}
+        </div>
+        <p className="mt-0.5 text-[10.5px] leading-snug text-muted-foreground">
+          {desc}
+        </p>
+        <div className="mt-1.5 h-0.5 w-6 rounded-full bg-primary" />
+      </div>
+    </div>
+  );
+}
+
