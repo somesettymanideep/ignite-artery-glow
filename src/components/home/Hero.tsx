@@ -1,7 +1,7 @@
 import { Star, Check, Calendar, ArrowRight, Award, Activity, HeartPulse, Users } from "lucide-react";
 import { openBookingModal } from "@/components/booking/BookingModal";
 import { Reveal } from "@/hooks/use-reveal";
-import heroAsset from "@/assets/hero-varicose-legs-v3.webp.asset.json";
+import heroAsset from "@/assets/hero-section-image.webp.asset.json";
 import { resolveAssetUrl } from "@/lib/asset-url";
 
 const heroImg = resolveAssetUrl(heroAsset.url);
@@ -77,9 +77,9 @@ export function Hero() {
             <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-brand opacity-15 blur-2xl" aria-hidden />
             <img
               src={heroImg}
-              alt="Vascular surgeon with advanced digital artery visualization at Ignite Vascular Center"
+              alt="Medical illustration showing varicose veins and AV fistula anatomy at Ignite Vascular Center"
               width={1024}
-              height={1152}
+              height={1536}
               fetchPriority="high"
               decoding="async"
               className="relative w-full rounded-[2rem] object-cover shadow-lift"
