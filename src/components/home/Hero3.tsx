@@ -216,8 +216,11 @@ export function Hero3() {
                 <div className="mt-2 h-0.5 w-8 rounded-full bg-primary" />
               </div>
             </div>
-          </div>
+              </div>
+            );
+          })()}
         </Reveal>
+
       </div>
 
       {/* Bottom feature strip */}
