@@ -307,9 +307,9 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => { setOpen(false); openBookingModal(); }}
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-brand py-3 text-sm font-bold text-primary-foreground shadow-glow-red"
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-brand py-2.5 text-xs font-bold text-primary-foreground shadow-glow-red"
           >
-            <Phone className="h-4 w-4" /> Book Appointment
+            <Phone className="h-3.5 w-3.5" /> Book Appointment
           </button>
           <a
             href="tel:+919966117292"
