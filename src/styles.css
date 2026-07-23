@@ -43,21 +43,21 @@
 :root {
   --radius: 1.25rem;
 
-  /* Brand: #DA3234 red, #453660 indigo, #F8F9FC light bg, #F3F5F8 light gray, #2B2B2B text */
+  /* Brand: #DA3234 red, #41305c indigo, #F8F9FC light bg, #F3F5F8 light gray, #41305c text */
   --background: oklch(0.982 0.004 264);
-  --foreground: oklch(0.29 0 0);
+  --foreground: #41305c;
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.29 0 0);
+  --card-foreground: #41305c;
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.29 0 0);
+  --popover-foreground: #41305c;
   --primary: oklch(0.577 0.208 26.5);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.35 0.075 300);
+  --secondary: #41305c;
   --secondary-foreground: oklch(1 0 0);
   --muted: oklch(0.965 0.005 260);
-  --muted-foreground: oklch(0.5 0.015 280);
+  --muted-foreground: color-mix(in oklab, #41305c 62%, white);
   --accent: oklch(0.95 0.02 300);
-  --accent-foreground: oklch(0.35 0.075 300);
+  --accent-foreground: #41305c;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.91 0.01 270);
@@ -65,7 +65,7 @@
   --ring: oklch(0.577 0.208 26.5);
 
   --surface: oklch(0.963 0.005 255);
-  --indigo-deep: oklch(0.3 0.08 300);
+  --indigo-deep: #41305c;
   --indigo-soft: oklch(0.62 0.09 300);
   --red-brand: oklch(0.577 0.208 26.5);
   --red-soft: oklch(0.72 0.13 26);
