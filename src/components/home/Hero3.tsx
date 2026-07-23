@@ -6,11 +6,8 @@ import {
   Activity,
   HeartHandshake,
   Scissors,
-  Stethoscope,
   HeartPulse,
   UserRound,
-  Sparkles,
-  Waves,
 } from "lucide-react";
 import { openBookingModal } from "@/components/booking/BookingModal";
 import { Reveal } from "@/hooks/use-reveal";
@@ -36,71 +33,97 @@ const features = [
 
 export function Hero3() {
   return (
-    <section id="home" className="relative overflow-hidden pt-28 lg:pt-32">
-      {/* subtle pattern bg */}
+    <section id="home" className="relative isolate overflow-hidden">
+      {/* soft warm background */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, #41305c 1px, transparent 0)",
-          backgroundSize: "26px 26px",
-        }}
         aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[#faf7f2] via-white to-[#f5f0ea]"
       />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 pb-10 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-8">
-        {/* LEFT */}
-        <Reveal variant="left" className="relative z-10">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-secondary shadow-[0_8px_30px_-8px_rgba(65,48,92,0.25)] ring-1 ring-black/5">
-            <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-brand text-white">
-              <ShieldCheck className="h-4 w-4" />
-            </span>
-            Advanced Vascular &amp; Endovascular Care
-          </div>
+      <div className="relative mx-auto max-w-7xl px-5 pt-24 pb-10 lg:px-8 lg:pt-28 lg:pb-14">
+        <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-6">
+          {/* ============ LEFT — copy ============ */}
+          <Reveal variant="left" className="relative z-10 lg:col-span-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-secondary shadow-[0_8px_30px_-8px_rgba(65,48,92,0.25)] ring-1 ring-black/5">
+              <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-brand text-white">
+                <ShieldCheck className="h-4 w-4" />
+              </span>
+              Advanced Vascular &amp; Endovascular Care
+            </div>
 
-          <h1 className="mt-6 font-display text-[42px] font-black leading-[1.05] tracking-tight text-secondary sm:text-5xl xl:text-[58px]">
-            Advanced Vascular Solutions.
-            <br />
-            <span className="text-primary">Compassionate Care.</span>
-            <br />
-            <span className="text-secondary/70">Better Outcomes.</span>
-          </h1>
+            <h1 className="mt-6 font-display text-[40px] font-black leading-[1.05] tracking-tight text-secondary sm:text-5xl xl:text-[56px]">
+              Advanced Vascular Solutions.
+              <br />
+              <span className="text-primary">Compassionate Care.</span>
+              <br />
+              <span className="text-secondary/70">Better Outcomes.</span>
+            </h1>
 
-          <div className="mt-6 h-1 w-16 rounded-full bg-primary" />
+            <div className="mt-6 h-1 w-16 rounded-full bg-primary" />
 
-          <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
-            Ignite Vascular Center provides comprehensive diagnosis and treatment
-            for diseases affecting arteries, veins, and blood vessels using
-            advanced minimally invasive endovascular procedures, conventional
-            vascular surgery, and simple and complex AV Fistula surgeries.
-          </p>
+            <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
+              Ignite Vascular Center provides comprehensive diagnosis and
+              treatment for diseases affecting arteries, veins, and blood
+              vessels using advanced minimally invasive endovascular
+              procedures, conventional vascular surgery, and simple and
+              complex AV Fistula surgeries.
+            </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <button
-              type="button"
-              onClick={() => openBookingModal()}
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-white shadow-glow-red transition-transform duration-300 hover:scale-[1.03]"
-            >
-              <Calendar className="h-4 w-4" /> Book Appointment
-            </button>
-            <a
-              href="#services"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-secondary/20 bg-white px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-secondary transition-colors hover:border-secondary hover:bg-accent"
-            >
-              <PlayCircle className="h-5 w-5 text-primary" /> Explore Treatments
-            </a>
-          </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={() => openBookingModal()}
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-white shadow-glow-red transition-transform duration-300 hover:scale-[1.03]"
+              >
+                <Calendar className="h-4 w-4" /> Book Appointment
+              </button>
+              <a
+                href="#services"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-secondary/20 bg-white px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-secondary transition-colors hover:border-secondary hover:bg-accent"
+              >
+                <PlayCircle className="h-5 w-5 text-primary" /> Explore Treatments
+              </a>
+            </div>
+          </Reveal>
 
-          {/* Stats card */}
-          <div className="mt-10 rounded-2xl bg-white p-5 shadow-[0_20px_60px_-25px_rgba(65,48,92,0.35)] ring-1 ring-black/5">
+          {/* ============ RIGHT — hero image with baked-in callouts ============ */}
+          <Reveal variant="right" className="relative lg:col-span-6">
+            <div className="relative mx-auto w-full max-w-[620px]">
+              {/* Soft glow behind the image */}
+              <div
+                aria-hidden
+                className="absolute -inset-6 -z-10 rounded-[40px] opacity-70"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 60% 55% at 55% 45%, rgba(65,48,92,0.10), transparent 70%)",
+                }}
+              />
+              <img
+                src={heroImg}
+                alt="Medical illustration showing varicose veins and AV fistula anatomy — Ignite Vascular Center"
+                width={1024}
+                height={1536}
+                fetchPriority="high"
+                decoding="async"
+                className="mx-auto block h-auto w-full max-w-[560px] object-contain drop-shadow-[0_25px_40px_rgba(65,48,92,0.18)]"
+              />
+            </div>
+          </Reveal>
+        </div>
+
+        {/* ============ STATS CARD — spans full width under the grid ============ */}
+        <Reveal variant="up" className="relative mt-8 lg:mt-10">
+          <div className="max-w-[720px] rounded-2xl bg-white/95 p-5 shadow-[0_20px_60px_-25px_rgba(65,48,92,0.35)] ring-1 ring-black/5 backdrop-blur">
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               {stats.map((s) => (
                 <div key={s.label} className="flex items-center gap-3">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-secondary/8 text-secondary">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-secondary/10 text-secondary">
                     <s.icon className="h-5 w-5" />
                   </span>
                   <div className="leading-tight">
-                    <div className={`text-lg font-black ${s.valueClass ?? "text-primary"}`}>
+                    <div
+                      className={`text-lg font-black ${s.valueClass ?? "text-primary"}`}
+                    >
                       {s.value}
                     </div>
                     <div className="whitespace-pre-line text-[11px] font-semibold text-secondary/70">
@@ -112,79 +135,16 @@ export function Hero3() {
             </div>
           </div>
         </Reveal>
-
-        {/* RIGHT — indigo stadium shape with offset red outline + leg image */}
-        <Reveal variant="right" className="relative">
-          {(() => {
-            const stadium = "52% 52% 46% 46% / 50% 50% 20% 20%";
-            return (
-              <div className="relative mx-auto aspect-[3/4] w-full max-w-[440px]">
-                {/* Thin red outline — same curvature, offset down-left */}
-                <div
-                  aria-hidden
-                  className="absolute inset-0 border-[2px] border-primary"
-                  style={{
-                    borderRadius: stadium,
-                    transform: "translate(-10px, 10px)",
-                  }}
-                />
-                {/* Indigo stadium backdrop */}
-                <div
-                  aria-hidden
-                  className="absolute inset-0 overflow-hidden bg-gradient-to-b from-secondary via-[#2d2148] to-[#1c1430]"
-                  style={{ borderRadius: stadium }}
-                >
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        "radial-gradient(ellipse 60% 45% at 28% 18%, rgba(255,255,255,0.10), transparent 70%)",
-                    }}
-                  />
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        "radial-gradient(ellipse 55% 40% at 78% 88%, rgba(218,50,52,0.14), transparent 70%)",
-                    }}
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-0"
-                    style={{
-                      borderRadius: stadium,
-                      boxShadow:
-                        "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -40px 60px rgba(0,0,0,0.25)",
-                    }}
-                  />
-                </div>
-                {/* Leg image — contained inside the stadium, anchored to bottom */}
-                <img
-                  src={heroImg}
-                  alt="Medical illustration showing varicose veins and AV fistula anatomy — Ignite Vascular Center"
-                  width={1024}
-                  height={1536}
-                  fetchPriority="high"
-                  decoding="async"
-                  className="absolute inset-x-0 bottom-0 top-[4%] mx-auto h-[96%] w-auto max-w-[92%] object-contain object-bottom"
-                />
-                {/* Callouts (varicose veins + AV fistula) are baked into the image */}
-
-              </div>
-            );
-          })()}
-        </Reveal>
-
-
       </div>
 
-      {/* Bottom feature strip */}
+      {/* ============ DARK FEATURE STRIP ============ */}
       <Reveal variant="up">
-        <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-5 pb-10 lg:px-8">
           <div className="rounded-2xl bg-gradient-to-r from-secondary via-[#2d2148] to-secondary p-5 shadow-[0_30px_60px_-30px_rgba(65,48,92,0.55)]">
             <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
               {features.map((f) => (
                 <div key={f.text} className="flex items-center gap-3">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full ring-1 ring-white/25 text-primary bg-white/5">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white/5 text-primary ring-1 ring-white/25">
                     <f.icon className="h-5 w-5" />
                   </span>
                   <div className="whitespace-pre-line text-[13px] font-bold leading-tight text-white">
@@ -199,42 +159,3 @@ export function Hero3() {
     </section>
   );
 }
-
-function Callout({
-  className = "",
-  title,
-  desc,
-  Icon,
-}: {
-  className?: string;
-  title: string;
-  desc: string;
-  Icon: React.ComponentType<{ className?: string }>;
-}) {
-  return (
-    <div className={`absolute z-10 flex items-center gap-2.5 ${className}`}>
-      {/* medical illustration disc */}
-      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-[3px] ring-white shadow-lift sm:h-20 sm:w-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-secondary/50 to-secondary/70" />
-        <Icon className="absolute inset-0 m-auto h-8 w-8 text-white/90" />
-        {/* dashed connector to the leg (going left) */}
-        <span
-          className="absolute right-full top-1/2 h-px w-4 -translate-y-1/2"
-          style={{ borderTop: "1px dashed rgba(255,255,255,0.55)" }}
-          aria-hidden
-        />
-      </div>
-      {/* label card */}
-      <div className="max-w-[150px] rounded-lg bg-white/95 px-3 py-2 shadow-lift ring-1 ring-black/5 backdrop-blur">
-        <div className="text-[11px] font-black uppercase tracking-wider text-secondary">
-          {title}
-        </div>
-        <p className="mt-0.5 text-[10.5px] leading-snug text-muted-foreground">
-          {desc}
-        </p>
-        <div className="mt-1.5 h-0.5 w-6 rounded-full bg-primary" />
-      </div>
-    </div>
-  );
-}
-
