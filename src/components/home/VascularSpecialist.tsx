@@ -1,4 +1,4 @@
-import { ArrowRight, Award, Stethoscope, Users, Heart } from "lucide-react";
+import { ArrowRight, Award, Stethoscope, Users, Heart, Activity } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import doctorImg from "@/assets/home2-doctor.jpg";
 
@@ -6,6 +6,7 @@ const DOCTOR_POINTS = [
   { icon: Award, text: "10+ Years of Experience" },
   { icon: Stethoscope, text: "Expert in Endovascular Procedures" },
   { icon: Users, text: "More than 400+ Simple and Complex AV Fistula Surgeries" },
+  { icon: Activity, text: "More than 100+ Laser Surgeries for Varicose Veins" },
   { icon: Heart, text: "Patient-Centered Approach" },
 ];
 
