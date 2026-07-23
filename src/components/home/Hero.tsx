@@ -9,7 +9,7 @@ const heroImg = resolveAssetUrl(heroAsset.url);
 const trust = [
   "Experienced Vascular Specialist",
   "Minimally Invasive Procedures",
-  "Advanced Diagnostic Technology",
+  "Expertise in Non-healing ulcers and Limb salvage",
   "AV Fistula Surgeries",
   "Personalized Patient Care",
 ];
