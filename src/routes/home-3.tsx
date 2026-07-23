@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/home/Navbar";
-import { Hero } from "@/components/home/Hero";
+import { Hero3 } from "@/components/home/Hero3";
 import { toAbsoluteUrl } from "@/lib/asset-url";
 import heroAsset from "@/assets/hero-section-image.webp.asset.json";
 
@@ -39,7 +39,7 @@ function Home3Page() {
   return (
     <main className="min-h-screen overflow-hidden bg-background">
       <Navbar />
-      <Hero />
+      <Hero3 />
     </main>
   );
 }
