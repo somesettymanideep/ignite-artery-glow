@@ -33,113 +33,108 @@ const features = [
 
 export function Hero3() {
   return (
-    <section id="home" className="relative isolate">
-      {/* ============ HERO IMAGE + OVERLAY LAYER ============ */}
-      <div className="relative overflow-hidden pt-24 lg:pt-28">
-        {/* Full-bleed hero image, anchored to the right */}
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          {/* soft warm background wash behind the image */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#faf7f2] via-white to-[#f5f0ea]" />
-          <img
-            src={heroImg}
-            alt="Medical illustration showing varicose veins and AV fistula anatomy — Ignite Vascular Center"
-            width={1024}
-            height={1536}
-            fetchPriority="high"
-            decoding="async"
-            className="absolute right-0 bottom-0 h-full w-auto max-w-none object-contain object-bottom"
-          />
-          {/* White fade from left — protects the copy */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to right, #ffffff 0%, #ffffff 30%, rgba(255,255,255,0.85) 42%, rgba(255,255,255,0.15) 56%, rgba(255,255,255,0) 68%)",
-            }}
-          />
-          {/* Bottom fade so the stats card + strip sit on white */}
-          <div
-            className="absolute inset-x-0 bottom-0 h-40"
-            style={{
-              background:
-                "linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.9))",
-            }}
-          />
-        </div>
+    <section id="home" className="relative isolate overflow-hidden">
+      {/* soft warm background */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[#faf7f2] via-white to-[#f5f0ea]"
+      />
 
-        {/* CONTENT — occupies the left column */}
-        <div className="relative mx-auto flex min-h-[760px] max-w-7xl flex-col px-5 pb-8 lg:min-h-[820px] lg:px-8 lg:pb-14">
-          <div className="grid lg:grid-cols-12">
-            <Reveal variant="left" className="lg:col-span-6 xl:col-span-6">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-secondary shadow-[0_8px_30px_-8px_rgba(65,48,92,0.25)] ring-1 ring-black/5">
-                <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-brand text-white">
-                  <ShieldCheck className="h-4 w-4" />
-                </span>
-                Advanced Vascular &amp; Endovascular Care
-              </div>
+      <div className="relative mx-auto max-w-7xl px-5 pt-24 pb-10 lg:px-8 lg:pt-28 lg:pb-14">
+        <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-6">
+          {/* ============ LEFT — copy ============ */}
+          <Reveal variant="left" className="relative z-10 lg:col-span-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-secondary shadow-[0_8px_30px_-8px_rgba(65,48,92,0.25)] ring-1 ring-black/5">
+              <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-brand text-white">
+                <ShieldCheck className="h-4 w-4" />
+              </span>
+              Advanced Vascular &amp; Endovascular Care
+            </div>
 
-              <h1 className="mt-6 font-display text-[40px] font-black leading-[1.05] tracking-tight text-secondary sm:text-5xl xl:text-[56px]">
-                Advanced Vascular Solutions.
-                <br />
-                <span className="text-primary">Compassionate Care.</span>
-                <br />
-                <span className="text-secondary/70">Better Outcomes.</span>
-              </h1>
+            <h1 className="mt-6 font-display text-[40px] font-black leading-[1.05] tracking-tight text-secondary sm:text-5xl xl:text-[56px]">
+              Advanced Vascular Solutions.
+              <br />
+              <span className="text-primary">Compassionate Care.</span>
+              <br />
+              <span className="text-secondary/70">Better Outcomes.</span>
+            </h1>
 
+            <div className="mt-6 h-1 w-16 rounded-full bg-primary" />
 
-              <div className="mt-6 h-1 w-16 rounded-full bg-primary" />
+            <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
+              Ignite Vascular Center provides comprehensive diagnosis and
+              treatment for diseases affecting arteries, veins, and blood
+              vessels using advanced minimally invasive endovascular
+              procedures, conventional vascular surgery, and simple and
+              complex AV Fistula surgeries.
+            </p>
 
-              <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
-                Ignite Vascular Center provides comprehensive diagnosis and
-                treatment for diseases affecting arteries, veins, and blood
-                vessels using advanced minimally invasive endovascular
-                procedures, conventional vascular surgery, and simple and
-                complex AV Fistula surgeries.
-              </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={() => openBookingModal()}
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-white shadow-glow-red transition-transform duration-300 hover:scale-[1.03]"
+              >
+                <Calendar className="h-4 w-4" /> Book Appointment
+              </button>
+              <a
+                href="#services"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-secondary/20 bg-white px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-secondary transition-colors hover:border-secondary hover:bg-accent"
+              >
+                <PlayCircle className="h-5 w-5 text-primary" /> Explore Treatments
+              </a>
+            </div>
+          </Reveal>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <button
-                  type="button"
-                  onClick={() => openBookingModal()}
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-white shadow-glow-red transition-transform duration-300 hover:scale-[1.03]"
-                >
-                  <Calendar className="h-4 w-4" /> Book Appointment
-                </button>
-                <a
-                  href="#services"
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-secondary/20 bg-white px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-secondary transition-colors hover:border-secondary hover:bg-accent"
-                >
-                  <PlayCircle className="h-5 w-5 text-primary" /> Explore Treatments
-                </a>
-              </div>
-            </Reveal>
-          </div>
-
-          {/* Stats card — floats bottom-left, overlaps the image slightly on lg */}
-          <Reveal variant="up" className="relative mt-10 lg:mt-14">
-            <div className="max-w-[720px] rounded-2xl bg-white/95 p-5 shadow-[0_20px_60px_-25px_rgba(65,48,92,0.35)] ring-1 ring-black/5 backdrop-blur">
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                {stats.map((s) => (
-                  <div key={s.label} className="flex items-center gap-3">
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-secondary/10 text-secondary">
-                      <s.icon className="h-5 w-5" />
-                    </span>
-                    <div className="leading-tight">
-                      <div
-                        className={`text-lg font-black ${s.valueClass ?? "text-primary"}`}
-                      >
-                        {s.value}
-                      </div>
-                      <div className="whitespace-pre-line text-[11px] font-semibold text-secondary/70">
-                        {s.label}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          {/* ============ RIGHT — hero image with baked-in callouts ============ */}
+          <Reveal variant="right" className="relative lg:col-span-6">
+            <div className="relative mx-auto w-full max-w-[620px]">
+              {/* Soft glow behind the image */}
+              <div
+                aria-hidden
+                className="absolute -inset-6 -z-10 rounded-[40px] opacity-70"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 60% 55% at 55% 45%, rgba(65,48,92,0.10), transparent 70%)",
+                }}
+              />
+              <img
+                src={heroImg}
+                alt="Medical illustration showing varicose veins and AV fistula anatomy — Ignite Vascular Center"
+                width={1024}
+                height={1536}
+                fetchPriority="high"
+                decoding="async"
+                className="mx-auto block h-auto w-full max-w-[560px] object-contain drop-shadow-[0_25px_40px_rgba(65,48,92,0.18)]"
+              />
             </div>
           </Reveal>
         </div>
+
+        {/* ============ STATS CARD — spans full width under the grid ============ */}
+        <Reveal variant="up" className="relative mt-8 lg:mt-10">
+          <div className="max-w-[720px] rounded-2xl bg-white/95 p-5 shadow-[0_20px_60px_-25px_rgba(65,48,92,0.35)] ring-1 ring-black/5 backdrop-blur">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              {stats.map((s) => (
+                <div key={s.label} className="flex items-center gap-3">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-secondary/10 text-secondary">
+                    <s.icon className="h-5 w-5" />
+                  </span>
+                  <div className="leading-tight">
+                    <div
+                      className={`text-lg font-black ${s.valueClass ?? "text-primary"}`}
+                    >
+                      {s.value}
+                    </div>
+                    <div className="whitespace-pre-line text-[11px] font-semibold text-secondary/70">
+                      {s.label}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </div>
 
       {/* ============ DARK FEATURE STRIP ============ */}
