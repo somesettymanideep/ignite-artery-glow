@@ -72,7 +72,7 @@ export function Hero() {
         </Reveal>
 
         {/* Right */}
-        <Reveal variant="right" className="relative lg:mt-20">
+        <Reveal variant="right" className="relative lg:-mt-40">
           <div className="relative mx-auto w-full max-w-[620px]">
             <div
               aria-hidden
