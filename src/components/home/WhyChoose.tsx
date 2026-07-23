@@ -1,4 +1,4 @@
-import { BadgeCheck, Cpu, Scissors, ClipboardList, ScanLine, HeartHandshake } from "lucide-react";
+import { BadgeCheck, Cpu, Scissors, ClipboardList, Activity, HeartHandshake } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import whyImg from "@/assets/why-choose.jpg";
 
@@ -7,7 +7,7 @@ const points = [
   { icon: Cpu, text: "Modern Endovascular Techniques" },
   { icon: Scissors, text: "Minimally Invasive Procedures" },
   { icon: ClipboardList, text: "Personalized Treatment Plans" },
-  { icon: ScanLine, text: "Advanced Imaging & Diagnostics" },
+  { icon: Activity, text: "More than 400+ AV Fistula Surgeries" },
   { icon: HeartHandshake, text: "Compassionate Care" },
 ];
 
