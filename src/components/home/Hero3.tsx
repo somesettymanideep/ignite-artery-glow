@@ -115,43 +115,61 @@ export function Hero3() {
 
         {/* RIGHT — indigo stadium shape with offset red outline + leg image */}
         <Reveal variant="right" className="relative">
-          <div className="relative mx-auto aspect-[3/4] w-full max-w-[560px]">
-            {/* Thin red outline shape, offset down-left so it peeks out on left & bottom */}
-            <div
-              aria-hidden
-              className="absolute inset-0 border-[2px] border-primary"
-              style={{
-                borderRadius: "48% 48% 42% 42% / 44% 44% 14% 14%",
-                transform: "translate(-10px, 10px)",
-              }}
-            />
-            {/* Indigo stadium backdrop */}
-            <div
-              aria-hidden
-              className="absolute inset-0 overflow-hidden bg-gradient-to-b from-secondary via-[#2d2148] to-[#1c1430]"
-              style={{
-                borderRadius: "48% 48% 42% 42% / 44% 44% 14% 14%",
-              }}
-            >
-              {/* subtle inner highlight */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.08), transparent 55%)",
-                }}
-              />
-            </div>
-            {/* Leg image — contained inside the stadium with breathing room */}
-            <img
-              src={heroImg}
-              alt="Medical illustration showing varicose veins and AV fistula anatomy — Ignite Vascular Center"
-              width={1024}
-              height={1536}
-              fetchPriority="high"
-              decoding="async"
-              className="absolute inset-x-0 bottom-0 top-[4%] mx-auto h-[96%] w-auto max-w-[92%] object-contain object-bottom"
-            />
+          {(() => {
+            const stadium = "50% 50% 46% 46% / 52% 52% 20% 20%";
+            return (
+              <div className="relative mx-auto aspect-[3/4] w-full max-w-[560px]">
+                {/* Thin red outline — same curvature, offset down-left */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 border-[2px] border-primary"
+                  style={{
+                    borderRadius: stadium,
+                    transform: "translate(-10px, 10px)",
+                  }}
+                />
+                {/* Indigo stadium backdrop */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 overflow-hidden bg-gradient-to-b from-secondary via-[#2d2148] to-[#1c1430]"
+                  style={{ borderRadius: stadium }}
+                >
+                  {/* top-left soft light */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "radial-gradient(ellipse 60% 45% at 28% 18%, rgba(255,255,255,0.10), transparent 70%)",
+                    }}
+                  />
+                  {/* bottom-right warm glow */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "radial-gradient(ellipse 55% 40% at 78% 88%, rgba(218,50,52,0.14), transparent 70%)",
+                    }}
+                  />
+                  {/* inner rim highlight following the curve */}
+                  <div
+                    className="pointer-events-none absolute inset-0"
+                    style={{
+                      borderRadius: stadium,
+                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -40px 60px rgba(0,0,0,0.25)",
+                    }}
+                  />
+                </div>
+                {/* Leg image — contained inside the stadium, anchored to bottom */}
+                <img
+                  src={heroImg}
+                  alt="Medical illustration showing varicose veins and AV fistula anatomy — Ignite Vascular Center"
+                  width={1024}
+                  height={1536}
+                  fetchPriority="high"
+                  decoding="async"
+                  className="absolute inset-x-0 bottom-0 top-[4%] mx-auto h-[96%] w-auto max-w-[92%] object-contain object-bottom"
+                />
+
 
 
 
@@ -198,8 +216,11 @@ export function Hero3() {
                 <div className="mt-2 h-0.5 w-8 rounded-full bg-primary" />
               </div>
             </div>
-          </div>
+              </div>
+            );
+          })()}
         </Reveal>
+
       </div>
 
       {/* Bottom feature strip */}
