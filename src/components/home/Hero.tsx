@@ -32,7 +32,7 @@ export function Hero() {
             Advanced Vascular &amp; Endovascular Care
           </div>
 
-          <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl xl:text-[3.4rem]">
+          <h1 className="text-4xl font-extrabold leading-[1.15] tracking-tight sm:text-5xl lg:text-[2.5rem] xl:text-[2.75rem]">
             Advanced Vascular Surgery with{" "}
             <span className="text-gradient">Compassion &amp; Precision</span>
           </h1>
