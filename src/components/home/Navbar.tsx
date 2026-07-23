@@ -155,9 +155,9 @@ export function Navbar() {
     <button
       type="button"
       onClick={() => { setOpen(false); openBookingModal(); }}
-      className="hidden items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105 sm:inline-flex"
+      className="hidden items-center gap-1.5 rounded-full bg-gradient-brand px-3.5 py-2 text-xs font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105 sm:inline-flex"
     >
-      <Phone className="h-4 w-4" /> Book Appointment
+      <Phone className="h-3.5 w-3.5" /> Book Appointment
     </button>
   );
 
