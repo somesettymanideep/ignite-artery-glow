@@ -40,7 +40,7 @@ export function Hero() {
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Ignite Vascular Center provides comprehensive diagnosis and treatment for diseases
             affecting arteries, veins, and blood vessels using advanced minimally invasive
-            endovascular procedures and conventional vascular surgery.
+            endovascular procedures, conventional vascular surgery, and simple and complex AV Fistula surgeries.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
