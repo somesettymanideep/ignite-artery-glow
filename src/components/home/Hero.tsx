@@ -77,9 +77,9 @@ export function Hero() {
             <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-brand opacity-15 blur-2xl" aria-hidden />
             <img
               src={heroImg}
-              alt="Vascular surgeon with advanced digital artery visualization at Ignite Vascular Center"
+              alt="Medical illustration showing varicose veins and AV fistula anatomy at Ignite Vascular Center"
               width={1024}
-              height={1152}
+              height={1536}
               fetchPriority="high"
               decoding="async"
               className="relative w-full rounded-[2rem] object-cover shadow-lift"
