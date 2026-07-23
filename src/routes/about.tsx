@@ -221,7 +221,7 @@ function Doctor() {
           <h2 className="mt-2 font-display text-3xl font-black tracking-tight text-secondary sm:text-4xl">
             Meet Our Vascular Specialist
           </h2>
-          <h3 className="mt-6 font-display text-xl font-extrabold text-primary">G. Narasimha Sai</h3>
+          <h3 className="mt-6 font-display text-xl font-extrabold text-primary">Dr. G. Narasimha Sai</h3>
           <p className="mt-1 text-sm font-semibold text-secondary">MBBS, DNB (Gen Surg), DrNB (Vascular Surgery) [NIMS]</p>
           <p className="text-sm text-muted-foreground">Vascular &amp; Endovascular Surgeon</p>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
