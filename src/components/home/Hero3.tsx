@@ -113,24 +113,36 @@ export function Hero3() {
           </div>
         </Reveal>
 
-        {/* RIGHT — image with arc backdrop + callouts */}
+        {/* RIGHT — indigo stadium shape with offset red outline + leg image */}
         <Reveal variant="right" className="relative">
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-[560px]">
-            {/* red arc outline */}
+          <div className="relative mx-auto aspect-[3/4] w-full max-w-[560px]">
+            {/* Thin red outline shape, offset down-left so it peeks out on left & bottom */}
             <div
-              className="absolute inset-0 rounded-[9999px_9999px_9999px_9999px] border-2 border-primary/70"
+              aria-hidden
+              className="absolute inset-0 border-[2px] border-primary"
               style={{
-                clipPath: "inset(0 0 12% 0 round 9999px)",
-                transform: "translateY(6px)",
+                borderRadius: "48% 48% 42% 42% / 44% 44% 14% 14%",
+                transform: "translate(-10px, 10px)",
               }}
-              aria-hidden
             />
-            {/* deep indigo arc backdrop */}
+            {/* Indigo stadium backdrop */}
             <div
-              className="absolute inset-0 overflow-hidden rounded-[9999px_9999px_9999px_9999px] bg-gradient-to-b from-secondary via-[#2d2148] to-[#1c1430]"
               aria-hidden
-            />
-            {/* leg image */}
+              className="absolute inset-0 overflow-hidden bg-gradient-to-b from-secondary via-[#2d2148] to-[#1c1430]"
+              style={{
+                borderRadius: "48% 48% 42% 42% / 44% 44% 14% 14%",
+              }}
+            >
+              {/* subtle inner highlight */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.08), transparent 55%)",
+                }}
+              />
+            </div>
+            {/* Leg image — clipped to same stadium */}
             <img
               src={heroImg}
               alt="Medical illustration showing varicose veins and AV fistula anatomy — Ignite Vascular Center"
@@ -140,14 +152,10 @@ export function Hero3() {
               decoding="async"
               className="absolute inset-0 h-full w-full object-cover object-center"
               style={{
-                clipPath:
-                  "path('M 50% 0 A 50% 50% 0 1 1 50% 100% A 50% 50% 0 1 1 50% 0 Z')",
-                WebkitMaskImage:
-                  "radial-gradient(ellipse 50% 50% at 50% 50%, #000 98%, transparent 100%)",
-                maskImage:
-                  "radial-gradient(ellipse 50% 50% at 50% 50%, #000 98%, transparent 100%)",
+                borderRadius: "48% 48% 42% 42% / 44% 44% 14% 14%",
               }}
             />
+
 
             {/* Callout: Varicose Veins */}
             <div className="absolute right-[-6%] top-[10%] flex items-center gap-3 sm:right-[-14%]">
