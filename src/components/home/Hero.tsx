@@ -90,7 +90,7 @@ export function Hero() {
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-brand text-primary-foreground"><Award className="h-5 w-5" /></span>
               <span className="text-sm font-bold leading-tight">10+ Years<br /><span className="text-xs font-semibold text-muted-foreground">Experience</span></span>
             </div>
-            <div className="glass-card animate-float-slower absolute -right-4 top-1/3 flex items-center gap-3 rounded-2xl px-4 py-3 sm:-right-8">
+            <div className="glass-card animate-float-slower absolute -right-4 top-8 flex items-center gap-3 rounded-2xl px-4 py-3 sm:-right-8">
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-secondary text-secondary-foreground"><Activity className="h-5 w-5" /></span>
               <span className="text-sm font-bold leading-tight">Advanced<br /><span className="text-xs font-semibold text-muted-foreground">Endovascular Procedures</span></span>
             </div>
