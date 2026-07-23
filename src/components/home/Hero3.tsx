@@ -37,7 +37,9 @@ export function Hero3() {
       {/* ============ HERO IMAGE + OVERLAY LAYER ============ */}
       <div className="relative overflow-hidden pt-24 lg:pt-28">
         {/* Full-bleed hero image, anchored to the right */}
-        <div className="absolute inset-0 -z-10">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          {/* soft warm background wash behind the image */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#faf7f2] via-white to-[#f5f0ea]" />
           <img
             src={heroImg}
             alt="Medical illustration showing varicose veins and AV fistula anatomy — Ignite Vascular Center"
@@ -45,30 +47,28 @@ export function Hero3() {
             height={1536}
             fetchPriority="high"
             decoding="async"
-            className="h-full w-full object-cover object-right"
+            className="absolute right-0 bottom-0 h-full w-auto max-w-none object-contain object-bottom"
           />
-          {/* White fade from left — reveals content, image dominates the right */}
+          {/* White fade from left — protects the copy */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to right, #ffffff 0%, #ffffff 34%, rgba(255,255,255,0.85) 46%, rgba(255,255,255,0.15) 60%, rgba(255,255,255,0) 72%)",
+                "linear-gradient(to right, #ffffff 0%, #ffffff 30%, rgba(255,255,255,0.85) 42%, rgba(255,255,255,0.15) 56%, rgba(255,255,255,0) 68%)",
             }}
-            aria-hidden
           />
-          {/* Bottom fade so the dark feature strip has a clean anchor */}
+          {/* Bottom fade so the stats card + strip sit on white */}
           <div
-            className="absolute inset-x-0 bottom-0 h-32"
+            className="absolute inset-x-0 bottom-0 h-40"
             style={{
               background:
-                "linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.75))",
+                "linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.9))",
             }}
-            aria-hidden
           />
         </div>
 
         {/* CONTENT — occupies the left column */}
-        <div className="relative mx-auto max-w-7xl px-5 pb-12 lg:px-8 lg:pb-16">
+        <div className="relative mx-auto flex min-h-[760px] max-w-7xl flex-col px-5 pb-8 lg:min-h-[820px] lg:px-8 lg:pb-14">
           <div className="grid lg:grid-cols-12">
             <Reveal variant="left" className="lg:col-span-6 xl:col-span-6">
               <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-secondary shadow-[0_8px_30px_-8px_rgba(65,48,92,0.25)] ring-1 ring-black/5">
@@ -85,6 +85,7 @@ export function Hero3() {
                 <br />
                 <span className="text-secondary/70">Better Outcomes.</span>
               </h1>
+
 
               <div className="mt-6 h-1 w-16 rounded-full bg-primary" />
 
