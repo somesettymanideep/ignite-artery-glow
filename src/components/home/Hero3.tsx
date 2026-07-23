@@ -211,3 +211,42 @@ export function Hero3() {
     </section>
   );
 }
+
+function Callout({
+  className = "",
+  title,
+  desc,
+  Icon,
+}: {
+  className?: string;
+  title: string;
+  desc: string;
+  Icon: React.ComponentType<{ className?: string }>;
+}) {
+  return (
+    <div className={`absolute z-10 flex items-center gap-2.5 ${className}`}>
+      {/* medical illustration disc */}
+      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-[3px] ring-white shadow-lift sm:h-20 sm:w-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/40 via-secondary/50 to-secondary/70" />
+        <Icon className="absolute inset-0 m-auto h-8 w-8 text-white/90" />
+        {/* dashed connector to the leg (going left) */}
+        <span
+          className="absolute right-full top-1/2 h-px w-4 -translate-y-1/2"
+          style={{ borderTop: "1px dashed rgba(255,255,255,0.55)" }}
+          aria-hidden
+        />
+      </div>
+      {/* label card */}
+      <div className="max-w-[150px] rounded-lg bg-white/95 px-3 py-2 shadow-lift ring-1 ring-black/5 backdrop-blur">
+        <div className="text-[11px] font-black uppercase tracking-wider text-secondary">
+          {title}
+        </div>
+        <p className="mt-0.5 text-[10.5px] leading-snug text-muted-foreground">
+          {desc}
+        </p>
+        <div className="mt-1.5 h-0.5 w-6 rounded-full bg-primary" />
+      </div>
+    </div>
+  );
+}
+
