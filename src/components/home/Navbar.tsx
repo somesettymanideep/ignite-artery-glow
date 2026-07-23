@@ -220,7 +220,7 @@ export function Navbar() {
         aria-hidden={!open}
       >
         <div className="flex items-center justify-between border-b border-border/60 px-5 py-4">
-          <img src={logoUrl} alt="Ignite Vascular Center" className="h-12 w-auto" />
+          <img src={logoUrl} alt="Ignite Vascular Center" className="h-14 w-auto" />
           <button
             className="grid h-10 w-10 place-items-center rounded-xl border border-border/60 text-secondary hover:text-primary"
             onClick={() => setOpen(false)}
