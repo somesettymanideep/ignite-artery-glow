@@ -34,7 +34,7 @@ export function WhyChoose() {
         <Reveal variant="right">
           <span className="text-sm font-bold uppercase tracking-[0.2em] text-primary">Why Choose Us</span>
           <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
-            Why Choose <span className="text-gradient">Ignite Vascular Center</span>
+            <span className="text-gradient">Ignite Vascular Center</span>
           </h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
             We combine surgical expertise, cutting-edge endovascular technology and genuine
