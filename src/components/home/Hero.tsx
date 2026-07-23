@@ -89,7 +89,7 @@ export function Hero() {
               height={1536}
               fetchPriority="high"
               decoding="async"
-              className="mx-auto block h-auto w-full max-w-[560px] object-contain lg:mt-10"
+              className="mx-auto block h-auto w-full max-w-[560px] object-contain lg:mt-16"
             />
           </div>
         </Reveal>
