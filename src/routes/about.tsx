@@ -203,7 +203,7 @@ function WhyChoose() {
 }
 
 function Doctor() {
-  const bullets = ["Expert in Endovascular Procedures", "Varicose Veins Specialist", "Peripheral Arterial Disease Expert", "Diabetic Foot Care Specialist", "Deep Vein Thrombosis Expert", "Vascular Ultrasound Expert"];
+  const bullets = ["Expert in Endovascular Procedures", "Varicose Veins Specialist", "Peripheral Arterial Disease Expert", "Diabetic Foot Care Specialist", "Deep Vein Thrombosis Expert", "Expert in Simple and Complicated AV Fistula"];
   return (
     <section className="bg-white py-16 lg:py-20">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 lg:grid-cols-[minmax(0,260px)_1fr_minmax(0,280px)] lg:gap-12 lg:px-8">
