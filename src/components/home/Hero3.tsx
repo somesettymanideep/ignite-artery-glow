@@ -142,7 +142,7 @@ export function Hero3() {
                 }}
               />
             </div>
-            {/* Leg image — clipped to same stadium */}
+            {/* Leg image — contained inside the stadium with breathing room */}
             <img
               src={heroImg}
               alt="Medical illustration showing varicose veins and AV fistula anatomy — Ignite Vascular Center"
@@ -150,11 +150,9 @@ export function Hero3() {
               height={1536}
               fetchPriority="high"
               decoding="async"
-              className="absolute inset-0 h-full w-full object-cover object-center"
-              style={{
-                borderRadius: "48% 48% 42% 42% / 44% 44% 14% 14%",
-              }}
+              className="absolute inset-x-0 bottom-0 top-[4%] mx-auto h-[96%] w-auto max-w-[92%] object-contain object-bottom"
             />
+
 
 
             {/* Callout: Varicose Veins */}
