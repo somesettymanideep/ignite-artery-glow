@@ -1,6 +1,6 @@
 import { ArrowRight, Award, Stethoscope, Users, Heart, Activity } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
-import doctorImg from "@/assets/home2-doctor.jpg";
+import doctorAsset from "@/assets/doctor-portrait-new.webp.asset.json";
 
 const DOCTOR_POINTS = [
   { icon: Award, text: "10+ Years of Experience" },
