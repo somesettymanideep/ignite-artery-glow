@@ -1,6 +1,6 @@
 import { ArrowRight, Award, Stethoscope, Users, Heart, Activity } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
-import doctorImg from "@/assets/home2-doctor.jpg";
+import doctorAsset from "@/assets/doctor-portrait-new.webp.asset.json";
 
 const DOCTOR_POINTS = [
   { icon: Award, text: "10+ Years of Experience" },
@@ -42,11 +42,12 @@ export function VascularSpecialist() {
         <Reveal variant="zoom" className="relative">
           <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-b from-primary/10 to-secondary/10 p-3 shadow-lift">
             <img
-              src={doctorImg}
-              alt="Vascular surgeon portrait"
+              src={doctorAsset.url}
+              alt="Dr. G. Narasimha Sai — Vascular & Endovascular Surgeon"
               width={900}
               height={1100}
               loading="lazy"
+              decoding="async"
               className="w-full rounded-[1.5rem] object-cover"
             />
           </div>
