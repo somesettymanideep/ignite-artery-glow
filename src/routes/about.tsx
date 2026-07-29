@@ -241,12 +241,6 @@ function Doctor() {
             ))}
           </div>
 
-          <Link to="/contact" className="mt-7 inline-flex items-center gap-3 rounded-full bg-gradient-brand px-6 py-3 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-[1.03]">
-            View Doctor Profile
-            <span className="grid h-6 w-6 place-items-center rounded-full bg-white/25">
-              <ArrowRight className="h-3.5 w-3.5" />
-            </span>
-          </Link>
         </Reveal>
 
         <Reveal className="reveal" variant="right" delay={0.18}>
