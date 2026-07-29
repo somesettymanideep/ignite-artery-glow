@@ -235,7 +235,7 @@ function HelpRibbon() {
               className="group/doc relative mx-auto mb-5 aspect-square w-[140px] cursor-pointer overflow-hidden rounded-full bg-white ring-4 ring-white shadow-lift transition-all duration-500 ease-out hover:scale-[1.04] hover:ring-white/90 hover:shadow-[0_18px_40px_-12px_rgba(198,35,71,0.55)] focus-visible:outline-none focus-visible:ring-[6px] focus-visible:ring-primary focus-visible:scale-[1.04] sm:absolute sm:left-8 sm:top-1/2 sm:mx-0 sm:mb-0 sm:w-[168px] sm:-translate-y-1/2 sm:hover:-translate-y-[calc(50%+3px)] sm:focus-visible:-translate-y-[calc(50%+3px)] lg:left-10 lg:w-[188px]"
             >
               <img
-                src={doctorImg}
+                src={secondOpinionDoctorAsset.url}
                 alt="Dr. Vascular Specialist, Ignite Vascular Center"
                 loading="lazy"
                 width={400}
