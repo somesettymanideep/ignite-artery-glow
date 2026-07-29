@@ -1,9 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { openBookingModal } from "@/components/booking/BookingModal";
 import { useState, type FormEvent } from "react";
 import {
-  Phone, MapPin, Mail, Clock, MessageCircleHeart, CalendarCheck,
-  ChevronRight, User, Send, ArrowRight, MessageCircle,
+  Phone, MapPin, Mail, Clock, MessageCircleHeart,
+  ChevronRight, User, Send, MessageCircle,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
@@ -255,40 +254,6 @@ function ContactForm() {
   );
 }
 
-function AppointmentBanner() {
-  return (
-    <section className="py-6 sm:py-8 lg:py-10">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Reveal variant="zoom" className="relative overflow-hidden rounded-[2rem] bg-gradient-cta p-6 shadow-lift sm:p-8 lg:p-10">
-          <div className="relative grid gap-6 md:grid-cols-[auto_1fr_auto] md:items-center">
-            <Reveal variant="left">
-              <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white text-primary shadow-lift animate-pulse-glow">
-                <CalendarCheck className="h-8 w-8" />
-              </span>
-            </Reveal>
-            <Reveal variant="up" delay={0.08}>
-              <div className="min-w-0 text-primary-foreground">
-                <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary-foreground/75">Need Immediate Assistance?</p>
-                <h3 className="mt-2 font-display text-2xl font-extrabold sm:text-3xl">Book Your Appointment Today!</h3>
-                <p className="mt-1.5 text-sm text-primary-foreground/85">Take the first step towards healthy circulation and a better life.</p>
-              </div>
-            </Reveal>
-            <Reveal variant="right" delay={0.16}>
-              <button type="button" onClick={() => openBookingModal()} className="inline-flex items-center justify-center gap-2.5 rounded-full bg-white px-6 py-3.5 font-bold text-primary shadow-lift transition-transform duration-300 hover:scale-105">
-                Book Appointment
-                <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-brand text-primary-foreground">
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </span>
-              </button>
-            </Reveal>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-
 function ContactPage() {
   return (
     <div className="min-h-screen [overflow-x:clip] bg-background">
@@ -296,7 +261,6 @@ function ContactPage() {
       <main>
         <Hero />
         <ContactForm />
-        <AppointmentBanner />
       </main>
       <Footer />
     </div>
