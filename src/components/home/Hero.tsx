@@ -1,7 +1,7 @@
 import { Star, Check, Calendar, ArrowRight } from "lucide-react";
 import { openBookingModal } from "@/components/booking/BookingModal";
 import { Reveal } from "@/hooks/use-reveal";
-import heroAsset from "@/assets/hero-varicose-avfistula-v3.png.asset.json";
+import heroAsset from "@/assets/hero-varicose-avfistula-v4.png.asset.json";
 import { resolveAssetUrl } from "@/lib/asset-url";
 
 const heroImg = resolveAssetUrl(heroAsset.url);
