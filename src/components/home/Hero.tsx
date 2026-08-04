@@ -85,8 +85,8 @@ export function Hero() {
             <img
               src={heroImg}
               alt="Medical illustration showing varicose veins and AV fistula anatomy at Ignite Vascular Center"
-              width={1024}
-              height={1536}
+              width={1071}
+              height={1568}
               fetchPriority="high"
               decoding="async"
               className="mx-auto block h-auto w-full max-w-[560px] object-contain lg:mt-24"
