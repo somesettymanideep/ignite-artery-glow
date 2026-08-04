@@ -1,7 +1,7 @@
 import { Star, Check, Calendar, ArrowRight } from "lucide-react";
 import { openBookingModal } from "@/components/booking/BookingModal";
 import { Reveal } from "@/hooks/use-reveal";
-import heroAsset from "@/assets/hero-varicose-avfistula-v4.png.asset.json";
+import heroAsset from "@/assets/hero-avfistula-v5.png.asset.json";
 import { resolveAssetUrl } from "@/lib/asset-url";
 
 const heroImg = resolveAssetUrl(heroAsset.url);
@@ -85,8 +85,8 @@ export function Hero() {
             <img
               src={heroImg}
               alt="Medical illustration showing varicose veins and AV fistula anatomy at Ignite Vascular Center"
-              width={1024}
-              height={1536}
+              width={1071}
+              height={1568}
               fetchPriority="high"
               decoding="async"
               className="mx-auto block h-auto w-full max-w-[560px] object-contain lg:mt-24"
