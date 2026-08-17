@@ -4,13 +4,9 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
-  // We use Nitro's static preset for a complete static export.
-  // This generates an index.html and other static assets in dist/client.
+  // We use the 'static' preset to ensure Nitro generates the HTML files for each route.
+  // This is required for GitHub Pages since it doesn't have a dynamic server to handle SSR.
   nitro: {
     preset: "static",
-    prerender: {
-      routes: ["/"],
-      crawlLinks: true,
-    },
   },
 });
