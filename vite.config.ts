@@ -16,4 +16,6 @@ export default defineConfig({
   nitro: {
     preset: "static",
   },
+  // Ensure we're targeting client-only for GitHub Pages
+  ssr: false,
 });
