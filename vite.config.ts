@@ -8,8 +8,5 @@ export default defineConfig({
   // This generates an index.html and other static assets in dist/client.
   nitro: {
     preset: "static",
-    prerender: {
-      routes: ["/"],
-    },
   },
 });
