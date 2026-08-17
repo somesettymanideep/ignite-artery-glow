@@ -4,9 +4,13 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
-  // Default cloudflare preset for Nitro.
-  // We handle static hosting via public/index.html and 404.html.
+  // We use Nitro's static preset for a complete static export.
+  // This generates an index.html and other static assets in dist/client.
   nitro: {
-    preset: "cloudflare",
+    preset: "static",
+    prerender: {
+      routes: ["/"],
+      crawlLinks: true,
+    },
   },
 });
