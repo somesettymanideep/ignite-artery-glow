@@ -38,12 +38,12 @@ export const Route = createFileRoute("/")({
           "Advanced vascular & endovascular care in Vijayawada by Dr. G. Narasimha Sai (DrNB Vascular Surgery, NIMS). Book a consultation today.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://ignite-artery-glow.lovable.app/" },
+      { property: "og:url", content: "https://ignitevascularcenter.com/" },
       { property: "og:image", content: homeOgImage },
       { name: "twitter:image", content: homeOgImage },
     ],
     links: [
-      { rel: "canonical", href: "https://ignite-artery-glow.lovable.app/" },
+      { rel: "canonical", href: "https://ignitevascularcenter.com/" },
       { rel: "preload", as: "image", href: homeOgImage, fetchpriority: "high" } as unknown as { rel: string; href: string },
     ],
     scripts: [
