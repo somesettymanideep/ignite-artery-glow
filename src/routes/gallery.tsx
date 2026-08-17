@@ -314,7 +314,7 @@ function GalleryTwoPage() {
               >
                 <figure className="contents">
                   <img
-                    src={img.src}
+                    src={resolveAssetUrl(img.src)}
                     alt={img.alt}
                     loading={i < 3 ? "eager" : "lazy"}
                     decoding="async"

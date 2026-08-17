@@ -244,7 +244,7 @@ function CaseStudiesPage() {
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <Reveal variant="zoom" delay={0.06 + i * 0.1}>
                       <img
-                        src={c.image}
+                        src={resolveAssetUrl(c.image)}
                         alt={c.title}
                         loading="lazy"
                         decoding="async"
