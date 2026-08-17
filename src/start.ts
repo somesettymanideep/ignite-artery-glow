@@ -20,5 +20,5 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
 export const startInstance = createStart(() => ({
   functionMiddleware: [attachSupabaseAuth],
   requestMiddleware: [errorMiddleware],
-  ssr: true, // Enable SSR for production builds
+  ssr: true,
 }));
