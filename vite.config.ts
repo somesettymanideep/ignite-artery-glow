@@ -5,7 +5,7 @@ export default defineConfig({
     server: { entry: "server" },
   },
   // We use the cloudflare-pages preset for GitHub Pages static hosting.
-  // This generates the client-side index.html in the output directory.
+  // This ensures the client-side index.html is generated correctly in dist/client.
   nitro: {
     preset: "cloudflare-pages",
   },
