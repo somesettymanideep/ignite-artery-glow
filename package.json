@@ -7,7 +7,7 @@
     "dev": "vite dev",
     "build": "vite build",
     "build:netlify": "NITRO_PRESET=netlify vite build",
-    "build:gh-pages": "NITRO_PRESET=github-pages VITE_BASE_PATH=/ vite build && find dist -name index.html -exec cp {} dist/client/404.html \\;",
+    "build:gh-pages": "NITRO_PRESET=static VITE_BASE_PATH=/ vite build && cp dist/client/index.html dist/client/404.html",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
