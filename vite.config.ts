@@ -4,6 +4,9 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
-  // We use standard Vite output for static hosting.
-  // GitHub Pages needs an index.html at the root of the deployment.
+  // We use the cloudflare-pages preset for GitHub Pages static hosting.
+  // This generates the client-side index.html in the output directory.
+  nitro: {
+    preset: "cloudflare-pages",
+  },
 });
