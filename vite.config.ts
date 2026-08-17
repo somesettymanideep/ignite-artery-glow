@@ -4,13 +4,9 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
-  // For GitHub Pages, we want a fully static build.
-  // We use the static preset to generate HTML files for each route.
+  // Use cloudflare preset for Nitro so it correctly processes the server entry.
+  // We use 404.html redirection for static hosting on GitHub Pages.
   nitro: {
-    preset: "static",
-    prerender: {
-      routes: ["/"],
-      crawlLinks: true,
-    },
+    preset: "cloudflare",
   },
 });
