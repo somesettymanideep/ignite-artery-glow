@@ -4,8 +4,8 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
-  // Use cloudflare preset for Nitro so it correctly processes the server entry.
-  // We use 404.html redirection for static hosting on GitHub Pages.
+  // Default cloudflare preset for Nitro.
+  // We handle static hosting via public/index.html and 404.html.
   nitro: {
     preset: "cloudflare",
   },
