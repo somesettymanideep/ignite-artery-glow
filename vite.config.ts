@@ -15,9 +15,5 @@ export default defineConfig({
   // Deploy target: GitHub Pages (Static Site Generation).
   nitro: {
     preset: "static",
-    prerender: {
-      crawlLinks: true,
-      routes: ["/"],
-    },
   },
 });
