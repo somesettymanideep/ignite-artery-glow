@@ -4,22 +4,9 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
-  // We use the nitro 'static' preset to ensure Nitro generates the HTML files for each route.
-  // This is required for GitHub Pages since it doesn't have a dynamic server to handle SSR.
+  // We use standard cloudflare preset.
+  // We handle GitHub Pages static serving by providing a 404.html for SPA routing.
   nitro: {
-    preset: "static",
-    prerender: {
-      // Explicitly listing paths to ensure index.html is generated for all core pages.
-      routes: [
-        "/",
-        "/about",
-        "/contact",
-        "/gallery",
-        "/case-studies",
-        "/second-opinion",
-        "/treatments",
-        "/admin"
-      ]
-    }
+    preset: "cloudflare",
   },
 });
