@@ -8,18 +8,10 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   tanstackStart: {
-    // Force client-side rendering for static hosting compatibility (GitHub Pages)
-    ssr: false,
     server: { entry: "server" },
   },
-  // Deploy target: GitHub Pages (Static Site Generation).
-  // Using standard nitro/vite static build
+  // Deploy target: Netlify (Standard for this template).
   nitro: {
-    preset: "static",
+    preset: "netlify",
   },
-  vite: {
-    build: {
-      outDir: "dist",
-    }
-  }
 });
