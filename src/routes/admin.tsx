@@ -253,11 +253,41 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                         {r.kind}
                       </span>
                     </td>
-                    {columns.map((c) => (
-                      <td key={c} className="max-w-xs px-4 py-3 text-secondary">
-                        <div className="line-clamp-3 whitespace-pre-wrap break-words">{r.data[c] || <span className="text-muted-foreground/60">—</span>}</div>
-                      </td>
-                    ))}
+                    {columns.map((c) => {
+                      const value = r.data[c];
+                      const isImage = typeof value === 'string' && value.startsWith('data:image/');
+                      const isPDF = typeof value === 'string' && value.startsWith('data:application/pdf');
+
+                      return (
+                        <td key={c} className="max-w-xs px-4 py-3 text-secondary">
+                          {isImage ? (
+                            <a 
+                              href={value} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="group relative block h-12 w-12 overflow-hidden rounded-lg border border-border/50 bg-muted transition-transform hover:scale-110 active:scale-95"
+                            >
+                              <img src={value} alt="Attachment" className="h-full w-full object-cover" />
+                              <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">
+                                <span className="text-[10px] font-bold text-white">VIEW</span>
+                              </div>
+                            </a>
+                          ) : isPDF ? (
+                            <a 
+                              href={value} 
+                              download={`report-${r.id.substring(0, 4)}.pdf`}
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-border/50 bg-muted/50 px-3 py-1.5 text-[12px] font-semibold text-[#311261] transition-colors hover:bg-muted"
+                            >
+                              Download PDF
+                            </a>
+                          ) : (
+                            <div className="line-clamp-3 whitespace-pre-wrap break-words">
+                              {value || <span className="text-muted-foreground/60">—</span>}
+                            </div>
+                          )}
+                        </td>
+                      );
+                    })}
                     <td className="whitespace-nowrap px-4 py-3 text-right">
                       <button
                         onClick={() => { if (confirm("Delete this submission?")) removeSubmission(r.id); }}
