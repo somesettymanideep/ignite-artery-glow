@@ -8,5 +8,18 @@ export default defineConfig({
   // This is required for GitHub Pages since it doesn't have a dynamic server to handle SSR.
   nitro: {
     preset: "static",
+    prerender: {
+      // Explicitly listing paths to ensure index.html is generated for all core pages.
+      routes: [
+        "/",
+        "/about",
+        "/contact",
+        "/gallery",
+        "/case-studies",
+        "/second-opinion",
+        "/treatments",
+        "/admin"
+      ]
+    }
   },
 });
