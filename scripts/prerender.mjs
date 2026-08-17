@@ -39,14 +39,11 @@ for (const route of all) {
     
     if (res.status !== 200) { 
       console.error(`FAIL ${route} Status: ${res.status}`);
-      // Log the first few chars of error body if possible
       console.error(`Body snippet: ${html.slice(0, 200)}`);
       process.exitCode = 1; 
       continue; 
     }
     
-    // For GitHub Pages, we need a directory structure with index.html for each route
-    // /about -> /about/index.html
     const out = route === "/" ? "dist/client/index.html" : `dist/client${route}/index.html`;
     
     await mkdir(path.dirname(out), { recursive: true });
@@ -65,7 +62,6 @@ await writeFile("dist/client/CNAME", "ignitevascularcenter.com");
 await writeFile("dist/client/.nojekyll", "");
 
 // 3. SPA fallback: 404.html serves the homepage shell so deep links still hydrate
-// This is critical for routes that weren't explicitly prerendered or for client-side routing
 try {
   const indexHtml = await readFile("dist/client/index.html");
   await writeFile("dist/client/404.html", indexHtml);
