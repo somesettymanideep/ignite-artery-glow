@@ -10,8 +10,10 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
-  // Deploy target: Netlify (Standard for this template).
+  vite: {
+    base: process.env.VITE_BASE_PATH || "/",
+  },
   nitro: {
-    preset: "netlify",
+    preset: process.env.NITRO_PRESET || "netlify",
   },
 });
