@@ -18,5 +18,5 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
 
 export const startInstance = createStart(() => ({
   requestMiddleware: [errorMiddleware],
-  ssr: false, // Force SPA mode for GitHub Pages compatibility
+  ssr: typeof window !== "undefined" ? false : true, // Enable SSR only for server-side generation if needed
 }));
