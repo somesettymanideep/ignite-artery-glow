@@ -4,7 +4,9 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
-  // We use standard Vite build for GitHub Pages.
-  // TanStack Start with Vite generates an index.html if we don't force a complex Nitro preset.
-  // Removing nitro config to let the default TanStack Start Vite plugin handle the entry point.
+  // We use the nitro 'static' preset to ensure Nitro generates the HTML files for each route.
+  // This is required for GitHub Pages since it doesn't have a dynamic server to handle SSR.
+  nitro: {
+    preset: "static",
+  },
 });
