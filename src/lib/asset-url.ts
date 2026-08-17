@@ -27,7 +27,8 @@ export function resolveAssetUrl(url: string | undefined | null) {
   const isLovablePreview = isBrowser && 
     (window.location.hostname.includes("lovableproject.com") || 
      window.location.hostname.includes("lovable.app") ||
-     window.location.hostname.includes("localhost"));
+     window.location.hostname.includes("localhost") ||
+     window.location.hostname.includes("ignite-artery-glow.lovable.app"));
 
   // 1. Lovable Managed Assets (Vite proxy paths)
   // These usually start with /__l5e/ or contain /assets/ but are managed by Lovable Cloud
