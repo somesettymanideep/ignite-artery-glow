@@ -8,5 +8,10 @@ export default defineConfig({
   // We handle GitHub Pages static serving by providing a 404.html for SPA routing.
   nitro: {
     preset: "cloudflare",
+    // Prerender to ensure index.html and other static files are generated.
+    prerender: {
+      routes: ['/'],
+      crawlLinks: true
+    }
   },
 });
