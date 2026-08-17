@@ -10,7 +10,9 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
-  base: process.env.VITE_BASE_PATH || "/",
+  vite: {
+    base: process.env.VITE_BASE_PATH || "/",
+  },
   nitro: {
     preset: process.env.NITRO_PRESET || "netlify",
   },
