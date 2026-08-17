@@ -5,7 +5,7 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
-    base: process.env.VITE_BASE_PATH || "/",
+    base: process.env.VITE_BASE_PATH || "https://ignitevascularcenter.com/",
     build: {
       outDir: "dist/client",
     }
