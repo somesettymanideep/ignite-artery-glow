@@ -13,7 +13,13 @@ export default defineConfig({
     server: { entry: "server" },
   },
   // Deploy target: GitHub Pages (Static Site Generation).
+  // Using standard nitro/vite static build
   nitro: {
     preset: "static",
   },
+  vite: {
+    build: {
+      outDir: "dist",
+    }
+  }
 });
