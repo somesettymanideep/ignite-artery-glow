@@ -186,6 +186,7 @@ function RootComponent() {
       <FloatingEmergency />
       <FloatingSocials />
       <BookingModal />
+      <WhatsAppButton />
     </QueryClientProvider>
   );
 }
