@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Download, Upload, LogOut, Trash2, Search, LayoutDashboard, Mail, CalendarCheck, Stethoscope } from "lucide-react";
-import logoAsset from "@/assets/ignite-logo.png.asset.json";
 import { resolveAssetUrl } from "@/lib/asset-url";
 import {
   addSubmission,
@@ -19,7 +18,7 @@ import {
   type SubmissionKind,
 } from "@/lib/admin-store";
 
-const logoUrl = resolveAssetUrl(logoAsset.url);
+const logoUrl = resolveAssetUrl("/src/assets/ignite-logo.png");
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin • Ignite Vascular Center" }, { name: "robots", content: "noindex, nofollow" }] }),
