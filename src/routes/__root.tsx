@@ -15,6 +15,7 @@ import { ScrollToTop } from "@/components/home/ScrollToTop";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 import { FloatingSocials } from "@/components/home/FloatingSocials";
 import { BookingModal } from "@/components/booking/BookingModal";
+import { WhatsAppButton } from "@/components/home/WhatsAppButton";
 
 function NotFoundComponent() {
   return (
