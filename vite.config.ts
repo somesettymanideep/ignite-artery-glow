@@ -15,5 +15,10 @@ export default defineConfig({
   },
   nitro: {
     preset: process.env.NITRO_PRESET || "netlify",
+    static: true,
+    prerender: {
+      crawlLinks: true,
+      routes: ["/"],
+    },
   },
 });
