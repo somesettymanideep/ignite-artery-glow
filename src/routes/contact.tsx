@@ -7,7 +7,10 @@ import {
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
-import servicesImg from "@/assets/contact-services.jpg";
+import { resolveAssetUrl } from "@/lib/asset-url";
+import servicesImgAsset from "@/assets/contact-services.jpg.asset.json";
+
+const servicesImg = resolveAssetUrl(servicesImgAsset.url);
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
