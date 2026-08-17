@@ -11,9 +11,7 @@ import { Footer } from "@/components/home/Footer";
 import { SubBanner } from "@/components/home/SubBanner";
 import { SERVICES, getServiceBySlug } from "@/lib/services-data";
 import { toAbsoluteUrl, resolveAssetUrl } from "@/lib/asset-url";
-import avFistulaAsset from "@/assets/service-avfistula.jpg.asset.json";
-
-const avFistulaImg = resolveAssetUrl(avFistulaAsset.url);
+const avFistulaImg = resolveAssetUrl("/src/assets/service-avfistula.jpg");
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
