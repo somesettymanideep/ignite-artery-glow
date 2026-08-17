@@ -7,9 +7,7 @@ import {
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
-import { resolveAssetUrl } from "@/lib/asset-url";
-
-const servicesImg = resolveAssetUrl("/src/assets/contact-services.jpg");
+import servicesImg from "@/assets/contact-services.jpg";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({

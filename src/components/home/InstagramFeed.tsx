@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Instagram, Play, Pause, Heart, MessageCircle, Send, ChevronLeft, ChevronRight } from "lucide-react";
-import { resolveAssetUrl } from "@/lib/asset-url";
+
 import { Reveal } from "@/hooks/use-reveal";
-const reel1 = resolveAssetUrl("/src/assets/about-surgery.jpg");
-const reel2 = resolveAssetUrl("/src/assets/home2-doctor.jpg");
-const reel3 = resolveAssetUrl("/src/assets/about-vascular.jpg");
-const reel4 = resolveAssetUrl("/src/assets/hero-surgeon.jpg");
+import reel1 from "@/assets/about-surgery.jpg";
+import reel2 from "@/assets/home2-doctor.jpg";
+import reel3 from "@/assets/about-vascular.jpg";
+import reel4 from "@/assets/hero-surgeon.jpg";
 
 type Reel = {
   poster: string;
@@ -19,10 +19,10 @@ type Reel = {
 };
 
 const REELS: Reel[] = [
-  { webm: resolveAssetUrl("/reels/ignite-reel-1.webm"), video: resolveAssetUrl("/reels/ignite-reel-1.mp4"), poster: reel1, caption: "Inside Ignite Vascular Center — a look at our advanced vascular care", likes: "12.4k", comments: 218, views: "84k", tag: "#IgniteVascular" },
-  { webm: resolveAssetUrl("/reels/ignite-reel-2.webm"), video: resolveAssetUrl("/reels/ignite-reel-2.mp4"), poster: reel2, caption: "Dr. Narasimha Sai on early signs of varicose veins you shouldn't ignore", likes: "9.1k", comments: 342, views: "62k", tag: "#VaricoseVeins" },
-  { webm: resolveAssetUrl("/reels/ignite-reel-3.webm"), video: resolveAssetUrl("/reels/ignite-reel-3.mp4"), poster: reel3, caption: "3D walkthrough — how a diabetic foot ulcer heals with vascular care", likes: "7.6k", comments: 154, views: "48k", tag: "#DiabeticFoot" },
-  { webm: resolveAssetUrl("/reels/ignite-reel-4.webm"), video: resolveAssetUrl("/reels/ignite-reel-4.mp4"), poster: reel4, caption: "Live patient story: back to walking pain-free after PAD treatment", likes: "15.2k", comments: 487, views: "1.1M", tag: "#PatientStory" },
+  { webm: "/reels/ignite-reel-1.webm", video: "/reels/ignite-reel-1.mp4", poster: reel1, caption: "Inside Ignite Vascular Center — a look at our advanced vascular care", likes: "12.4k", comments: 218, views: "84k", tag: "#IgniteVascular" },
+  { webm: "/reels/ignite-reel-2.webm", video: "/reels/ignite-reel-2.mp4", poster: reel2, caption: "Dr. Narasimha Sai on early signs of varicose veins you shouldn't ignore", likes: "9.1k", comments: 342, views: "62k", tag: "#VaricoseVeins" },
+  { webm: "/reels/ignite-reel-3.webm", video: "/reels/ignite-reel-3.mp4", poster: reel3, caption: "3D walkthrough — how a diabetic foot ulcer heals with vascular care", likes: "7.6k", comments: 154, views: "48k", tag: "#DiabeticFoot" },
+  { webm: "/reels/ignite-reel-4.webm", video: "/reels/ignite-reel-4.mp4", poster: reel4, caption: "Live patient story: back to walking pain-free after PAD treatment", likes: "15.2k", comments: 487, views: "1.1M", tag: "#PatientStory" },
 ];
 
 type ReelCardProps = {

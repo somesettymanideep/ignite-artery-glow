@@ -13,12 +13,10 @@ import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 import { SubBanner } from "@/components/home/SubBanner";
-import { resolveAssetUrl } from "@/lib/asset-url";
-
-const doctorImg = resolveAssetUrl("/src/assets/doctor-portrait.jpg");
-const secondOpinionDoctorAsset = { url: resolveAssetUrl("/src/assets/second-opinion-doctor.png") };
-const whyImg = resolveAssetUrl("/src/assets/why-choose.jpg");
-const secondOpinionBanner = resolveAssetUrl("/src/assets/second-opinion-banner.jpg");
+import doctorImg from "@/assets/doctor-portrait.jpg";
+import secondOpinionDoctorAsset from "@/assets/second-opinion-doctor.png.asset.json";
+import whyImg from "@/assets/why-choose.jpg";
+import secondOpinionBanner from "@/assets/second-opinion-banner.jpg";
 import { SERVICES } from "@/lib/services-data";
 
 const secondOpinionSchema = z.object({

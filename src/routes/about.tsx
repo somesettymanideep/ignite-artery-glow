@@ -15,8 +15,8 @@ import { Footer } from "@/components/home/Footer";
 import { resolveAssetUrl } from "@/lib/asset-url";
 import receptionAsset from "@/assets/about-reception-new.webp.asset.json";
 import doctorImgAsset from "@/assets/doctor_image-2.webp.asset.json";
-const vascularImg = resolveAssetUrl("/src/assets/about-vascular.jpg");
-const surgeryImg = resolveAssetUrl("/src/assets/about-surgery.jpg");
+import vascularImg from "@/assets/about-vascular.jpg";
+import surgeryImg from "@/assets/about-surgery.jpg";
 
 const aboutBanner = resolveAssetUrl(aboutBannerAsset.url);
 const receptionImg = resolveAssetUrl(receptionAsset.url);

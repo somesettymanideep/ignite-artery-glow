@@ -24,18 +24,18 @@ import { SubBanner } from "@/components/home/SubBanner";
 import { resolveAssetUrl } from "@/lib/asset-url";
 import heroReceptionAsset from "@/assets/gallery-hero.png.asset.json";
 import galleryBannerAsset from "@/assets/gallery-hero.png.asset.json";
-const gFacilityExterior = resolveAssetUrl("/src/assets/gallery/facility-exterior.jpg");
-const gFacilityReception = resolveAssetUrl("/src/assets/gallery/facility-reception.jpg");
-const gFacilityCathlab = resolveAssetUrl("/src/assets/gallery/facility-cathlab.jpg");
-const gFacilityRoom = resolveAssetUrl("/src/assets/gallery/facility-room.jpg");
-const gTeamGroup = resolveAssetUrl("/src/assets/gallery/team-group.jpg");
-const gTeamSurgeon = resolveAssetUrl("/src/assets/gallery/team-surgeon.jpg");
-const gProcedureSurgery = resolveAssetUrl("/src/assets/gallery/procedure-surgery.jpg");
-const gProcedureAngio = resolveAssetUrl("/src/assets/gallery/procedure-angio.jpg");
-const gEventCamp = resolveAssetUrl("/src/assets/gallery/event-camp.jpg");
-const gEventInauguration = resolveAssetUrl("/src/assets/gallery/event-inauguration.jpg");
-const gPatientConsult = resolveAssetUrl("/src/assets/gallery/patient-consult.jpg");
-const gPatientCare = resolveAssetUrl("/src/assets/gallery/patient-care.jpg");
+import gFacilityExterior from "@/assets/gallery/facility-exterior.jpg";
+import gFacilityReception from "@/assets/gallery/facility-reception.jpg";
+import gFacilityCathlab from "@/assets/gallery/facility-cathlab.jpg";
+import gFacilityRoom from "@/assets/gallery/facility-room.jpg";
+import gTeamGroup from "@/assets/gallery/team-group.jpg";
+import gTeamSurgeon from "@/assets/gallery/team-surgeon.jpg";
+import gProcedureSurgery from "@/assets/gallery/procedure-surgery.jpg";
+import gProcedureAngio from "@/assets/gallery/procedure-angio.jpg";
+import gEventCamp from "@/assets/gallery/event-camp.jpg";
+import gEventInauguration from "@/assets/gallery/event-inauguration.jpg";
+import gPatientConsult from "@/assets/gallery/patient-consult.jpg";
+import gPatientCare from "@/assets/gallery/patient-care.jpg";
 
 const heroReception = resolveAssetUrl(heroReceptionAsset.url);
 const galleryBanner = resolveAssetUrl(galleryBannerAsset.url);
@@ -314,7 +314,7 @@ function GalleryTwoPage() {
               >
                 <figure className="contents">
                   <img
-                    src={resolveAssetUrl(img.src)}
+                    src={img.src}
                     alt={img.alt}
                     loading={i < 3 ? "eager" : "lazy"}
                     decoding="async"

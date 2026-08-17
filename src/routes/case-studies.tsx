@@ -15,10 +15,10 @@ import { resolveAssetUrl } from "@/lib/asset-url";
 
 import heroSlide1 from "@/assets/case-hero-1.jpg.asset.json";
 import heroSlide2 from "@/assets/case-hero-2.jpg.asset.json";
-const imgSurgery = resolveAssetUrl("/src/assets/gallery/procedure-surgery.jpg");
-const imgAngio = resolveAssetUrl("/src/assets/gallery/procedure-angio.jpg");
-const imgCathlab = resolveAssetUrl("/src/assets/gallery/facility-cathlab.jpg");
-const imgSurgeon = resolveAssetUrl("/src/assets/gallery/team-surgeon.jpg");
+import imgSurgery from "@/assets/gallery/procedure-surgery.jpg";
+import imgAngio from "@/assets/gallery/procedure-angio.jpg";
+import imgCathlab from "@/assets/gallery/facility-cathlab.jpg";
+import imgSurgeon from "@/assets/gallery/team-surgeon.jpg";
 
 const caseBannerUrl = resolveAssetUrl(caseBanner.url);
 const heroSlide1Url = resolveAssetUrl(heroSlide1.url);
@@ -244,7 +244,7 @@ function CaseStudiesPage() {
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <Reveal variant="zoom" delay={0.06 + i * 0.1}>
                       <img
-                        src={resolveAssetUrl(c.image)}
+                        src={c.image}
                         alt={c.title}
                         loading="lazy"
                         decoding="async"

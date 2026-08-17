@@ -1,8 +1,6 @@
 import { BadgeCheck, Cpu, Scissors, ClipboardList, Activity, HeartHandshake } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
-import { resolveAssetUrl } from "@/lib/asset-url";
-
-const whyImg = resolveAssetUrl("/src/assets/why-choose.jpg");
+import whyImg from "@/assets/why-choose.jpg";
 
 const points = [
   { icon: BadgeCheck, text: "Highly Experienced Specialist" },
