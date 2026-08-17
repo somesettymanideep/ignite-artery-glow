@@ -3,12 +3,17 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
+    prerender: { enabled: true, crawlLinks: true },
+    pages: [
+      { path: "/" },
+      { path: "/about" },
+      { path: "/contact" },
+      { path: "/treatments" },
+      { path: "/gallery" },
+      { path: "/case-studies" },
+      { path: "/second-opinion" },
+      { path: "/admin" },
+    ],
   },
-  // GitHub Pages is a static host. TanStack Start/Nitro needs to be configured 
-  // to emit a static SPA build. In this environment, we use cloudflare-pages 
-  // to get a clean dist/client output, and we rely on public/index.html as a 
-  // template for the SPA entry point.
-  nitro: {
-    preset: "cloudflare-pages",
-  },
+  nitro: { preset: "static" },
 });
