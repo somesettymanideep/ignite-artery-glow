@@ -1,4 +1,4 @@
-// Simple client-side submission store (localStorage). Not for production security.
+import { supabase } from "@/integrations/supabase/client";
 
 export type SubmissionKind = "contact" | "booking" | "second-opinion";
 
@@ -9,52 +9,48 @@ export interface Submission {
   data: Record<string, string>;
 }
 
-const KEY = "ignite:submissions";
-
-function read(): Submission[] {
-  if (typeof window === "undefined") return [];
-  try {
-    return JSON.parse(localStorage.getItem(KEY) || "[]");
-  } catch {
-    return [];
-  }
-}
-
-function write(list: Submission[]) {
-  if (typeof window === "undefined") return;
-  localStorage.setItem(KEY, JSON.stringify(list));
-  window.dispatchEvent(new Event("ignite:submissions-updated"));
-}
-
-export function addSubmission(kind: SubmissionKind, data: Record<string, unknown>) {
+export async function addSubmission(kind: SubmissionKind, data: Record<string, unknown>) {
   const clean: Record<string, string> = {};
   Object.entries(data).forEach(([k, v]) => {
     clean[k] = v == null ? "" : String(v);
   });
-  const list = read();
-  list.unshift({
-    id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+
+  const { error } = await supabase.from("submissions").insert({
     kind,
-    createdAt: new Date().toISOString(),
     data: clean,
   });
-  write(list);
+
+  if (error) {
+    console.error("Error adding submission:", error);
+    throw error;
+  }
 }
 
-export function getAll(): Submission[] {
-  return read();
+export async function getAll(): Promise<Submission[]> {
+  const { data, error } = await supabase
+    .from("submissions")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Error fetching submissions:", error);
+    return [];
+  }
+
+  return data.map((s) => ({
+    id: s.id,
+    kind: s.kind as SubmissionKind,
+    createdAt: s.created_at,
+    data: s.data as Record<string, string>,
+  }));
 }
 
-export function removeSubmission(id: string) {
-  write(read().filter((s) => s.id !== id));
-}
-
-export function clearAll(kind?: SubmissionKind) {
-  write(kind ? read().filter((s) => s.kind !== kind) : []);
-}
-
-export function replaceAll(list: Submission[]) {
-  write(list);
+export async function removeSubmission(id: string) {
+  const { error } = await supabase.from("submissions").delete().eq("id", id);
+  if (error) {
+    console.error("Error deleting submission:", error);
+    throw error;
+  }
 }
 
 // CSV helpers
@@ -81,65 +77,14 @@ export function toCSV(rows: Submission[]): string {
   return lines.join("\n");
 }
 
-export function parseCSV(text: string): Submission[] {
-  const rows: string[][] = [];
-  let cur: string[] = [];
-  let field = "";
-  let inQ = false;
-  for (let i = 0; i < text.length; i++) {
-    const c = text[i];
-    if (inQ) {
-      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
-      else if (c === '"') inQ = false;
-      else field += c;
-    } else {
-      if (c === '"') inQ = true;
-      else if (c === ",") { cur.push(field); field = ""; }
-      else if (c === "\n") { cur.push(field); rows.push(cur); cur = []; field = ""; }
-      else if (c === "\r") { /* skip */ }
-      else field += c;
-    }
-  }
-  if (field.length || cur.length) { cur.push(field); rows.push(cur); }
-  if (!rows.length) return [];
-  const headers = rows.shift()!;
-  return rows.filter((r) => r.some((v) => v.length)).map((r, idx) => {
-    const obj: Record<string, string> = {};
-    headers.forEach((h, i) => (obj[h] = r[i] ?? ""));
-    const { id, kind, createdAt, ...data } = obj;
-    return {
-      id: id || `${Date.now()}-${idx}-${Math.random().toString(36).slice(2, 6)}`,
-      kind: (kind as SubmissionKind) || "contact",
-      createdAt: createdAt || new Date().toISOString(),
-      data,
-    };
-  });
-}
-
 export function downloadCSV(filename: string, csv: string) {
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-// Auth (hardcoded, client-side only — demo)
-const AUTH_KEY = "ignite:admin-auth";
-export const ADMIN_USER = "admin";
-export const ADMIN_PASS = "123456";
-
-export function login(u: string, p: string): boolean {
-  if (u === ADMIN_USER && p === ADMIN_PASS) {
-    localStorage.setItem(AUTH_KEY, "1");
-    return true;
-  }
-  return false;
-}
-export function logout() { localStorage.removeItem(AUTH_KEY); }
-export function isLoggedIn(): boolean {
-  if (typeof window === "undefined") return false;
-  return localStorage.getItem(AUTH_KEY) === "1";
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  link.setAttribute("download", filename);
+  link.style.visibility = "hidden";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
