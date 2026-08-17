@@ -4,15 +4,12 @@
     <meta charset="utf-8">
     <title>Ignite Vascular Center</title>
     <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // https://github.com/rafgraph/spa-github-pages
-      var pathSegmentsToKeep = 0;
-
+      // Redirect sub-routes to index.html with a query param for the router to pick up
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?p=/' +
-        l.pathname.split('/').slice(1 + pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        l.pathname.split('/').slice(0, 1).join('/') + '/?/' +
+        l.pathname.split('/').slice(1).join('/').replace(/&/g, '~and~') +
         (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
         l.hash
       );

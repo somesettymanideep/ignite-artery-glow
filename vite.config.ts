@@ -4,8 +4,10 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
-  // Reverting to a basic cloudflare preset that we know works with the underlying platform.
-  // We'll rely on the 404.html for GitHub Pages SPA routing since Nitro's prerendering is failing in this environment.
+  // GitHub Pages is a static host. TanStack Start/Nitro needs to be configured 
+  // to emit a static SPA build. In this environment, we use cloudflare-pages 
+  // to get a clean dist/client output, and we rely on public/index.html as a 
+  // template for the SPA entry point.
   nitro: {
     preset: "cloudflare-pages",
   },
