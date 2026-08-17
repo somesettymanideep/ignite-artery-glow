@@ -18,5 +18,6 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
 });
 
 export const startInstance = createStart(() => ({
+  ssr: false, // Force client-side rendering for GitHub Pages
   requestMiddleware: [errorMiddleware],
 }));
