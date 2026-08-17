@@ -1,5 +1,6 @@
 import { ArrowRight, Award, Stethoscope, Users, Heart, Activity } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
+import { resolveAssetUrl } from "@/lib/asset-url";
 import doctorAsset from "@/assets/doctor-portrait-new.webp.asset.json";
 
 const DOCTOR_POINTS = [
@@ -42,7 +43,7 @@ export function VascularSpecialist() {
         <Reveal variant="zoom" className="relative">
           <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-b from-primary/10 to-secondary/10 p-3 shadow-lift">
             <img
-              src={doctorAsset.url}
+              src={resolveAssetUrl(doctorAsset.url)}
               alt="Dr. G. Narasimha Sai — Vascular & Endovascular Surgeon"
               width={900}
               height={1100}
