@@ -3,7 +3,16 @@ import path from "node:path";
 
 const worker = (await import(path.resolve("dist/server/index.mjs"))).default;
 const routes = ["/", "/about", "/contact", "/treatments", "/gallery", "/case-studies", "/second-opinion", "/admin", "/home-2", "/home-3"];
-const services = JSON.parse(process.env.SERVICE_ROUTES || "[]");
+const services = [
+  "/services/varicose-veins-treatment",
+  "/services/simple-and-complex-av-fistula",
+  "/services/peripheral-arterial-disease",
+  "/services/endovascular-procedures",
+  "/services/deep-vein-thrombosis",
+  "/services/diabetic-foot-care",
+  "/services/limb-salvage-procedures",
+  "/services/trauma-and-emergency-procedures",
+];
 const all = [...routes, ...services];
 const env = { ASSETS: undefined };
 for (const route of all) {
