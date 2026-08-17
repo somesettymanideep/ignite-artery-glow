@@ -2,10 +2,10 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { Instagram, Play, Pause, Heart, MessageCircle, Send, ChevronLeft, ChevronRight } from "lucide-react";
 import { resolveAssetUrl } from "@/lib/asset-url";
 import { Reveal } from "@/hooks/use-reveal";
-import reel1 from "@/assets/about-surgery.jpg";
-import reel2 from "@/assets/home2-doctor.jpg";
-import reel3 from "@/assets/about-vascular.jpg";
-import reel4 from "@/assets/hero-surgeon.jpg";
+const reel1 = resolveAssetUrl("/src/assets/about-surgery.jpg");
+const reel2 = resolveAssetUrl("/src/assets/home2-doctor.jpg");
+const reel3 = resolveAssetUrl("/src/assets/about-vascular.jpg");
+const reel4 = resolveAssetUrl("/src/assets/hero-surgeon.jpg");
 
 type Reel = {
   poster: string;
