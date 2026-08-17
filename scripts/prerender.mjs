@@ -1,7 +1,21 @@
 import { mkdir, writeFile, readFile } from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const worker = (await import(path.resolve("dist/server/index.mjs"))).default;
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const serverEntry = path.resolve(__dirname, "../dist/server/index.mjs");
+
+console.log(`Loading server entry from: ${serverEntry}`);
+
+let worker;
+try {
+  worker = (await import(serverEntry)).default;
+} catch (err) {
+  console.error(`CRITICAL ERROR: Could not load server entry from ${serverEntry}`);
+  console.error(err);
+  process.exit(1);
+}
+
 const routes = [
   "/", 
   "/about", 
