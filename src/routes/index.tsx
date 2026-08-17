@@ -11,10 +11,9 @@ import { FAQs } from "@/components/home/FAQs";
 import { LazyInstagramFeed } from "@/components/home/LazyInstagramFeed";
 import { Footer } from "@/components/home/Footer";
 import { Reveal } from "@/hooks/use-reveal";
-import { toAbsoluteUrl } from "@/lib/asset-url";
-import heroAsset from "@/assets/hero-varicose-legs-v3.webp.asset.json";
+import { toAbsoluteUrl, resolveAssetUrl } from "@/lib/asset-url";
 
-const homeOgImage = toAbsoluteUrl(heroAsset.url);
+const homeOgImage = toAbsoluteUrl("/src/assets/hero-varicose-legs-v3.webp");
 
 export const Route = createFileRoute("/")({
   component: Index,
