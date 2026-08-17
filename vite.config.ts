@@ -4,9 +4,6 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
-  // We use Nitro's static preset for a complete static export.
-  // This generates an index.html and other static assets in dist/client.
-  nitro: {
-    preset: "static",
-  },
+  // We use standard Vite output for static hosting.
+  // GitHub Pages needs an index.html at the root of the deployment.
 });
