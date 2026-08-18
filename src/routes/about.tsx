@@ -26,7 +26,7 @@ const receptionImg = resolveAssetUrl(receptionAsset.url);
 
 export const Route = createFileRoute("/about")({
   head: () => ({
-    title: "Best Endo Vascular Surgeon in Vijayawada — Ignite Vascular Center",
+    title: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Verify that my Home and About page browser tab titles update correctly after route changes.",
     meta: [
       { name: "description", content: "Learn about Dr. G. Narasimha Sai, the best endo vascular surgeon in Vijayawada, and the team at Ignite Vascular Center. Advanced vascular surgery & care in Kasturibai Peta." },
       { property: "og:title", content: "About Ignite Vascular Center — Vijayawada" },

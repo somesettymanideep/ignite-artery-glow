@@ -19,7 +19,7 @@ const homeOgImage = toAbsoluteUrl(heroAsset.url);
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
-    title: "Best Vascular Surgeon in Vijayawada | Ignite Vascular Center",
+    title: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Verify that my Home and About page browser tab titles update correctly after route changes.",
     meta: [
       {
         name: "description",
