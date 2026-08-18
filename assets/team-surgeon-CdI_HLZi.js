@@ -1,1 +1,0 @@
-var e=`https://ignitevascularcenter.com/assets/procedure-surgery-BwotLCa_.jpg`,t=`https://ignitevascularcenter.com/assets/procedure-angio-BTrseuXP.jpg`,n=`https://ignitevascularcenter.com/assets/facility-cathlab-DKcm38N5.jpg`,r=`https://ignitevascularcenter.com/assets/team-surgeon-CtYUkikB.jpg`;export{e as i,n,t as r,r as t};

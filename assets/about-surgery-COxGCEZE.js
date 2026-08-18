@@ -1,1 +1,0 @@
-var e=`https://ignitevascularcenter.com/assets/about-surgery-P-7CXIX6.jpg`;export{e as t};

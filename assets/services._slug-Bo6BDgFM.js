@@ -1,1 +1,0 @@
-import{t as e}from"./jsx-runtime-DUAcabCT.js";var t=e(),n=({error:e})=>(0,t.jsx)(`div`,{className:`p-10 text-center text-secondary`,children:String(e)});export{n as errorComponent};

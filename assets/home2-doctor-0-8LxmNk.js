@@ -1,1 +1,0 @@
-var e=`https://ignitevascularcenter.com/assets/home2-doctor-CBnGhTuK.jpg`;export{e as t};
