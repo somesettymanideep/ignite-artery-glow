@@ -13,3 +13,9 @@
   to = "https://ignite-artery-glow.lovable.app/__l5e/assets-v1/:splat"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/server"
+  status = 200
+
