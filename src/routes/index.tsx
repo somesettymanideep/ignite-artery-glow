@@ -43,7 +43,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:image", content: homeOgImage },
     ],
     links: [
-      { rel: "canonical", href: "https://ignite-artery-glow.lovable.app/" },
+      { rel: "canonical", href: "https://ignitevascularcenter.com/" },
       { rel: "preload", as: "image", href: homeOgImage, fetchpriority: "high" } as unknown as { rel: string; href: string },
     ],
     scripts: [
