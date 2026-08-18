@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
+import { resolveAssetUrl } from "@/lib/asset-url";
 
 type Props = {
   title: string;
@@ -12,7 +13,7 @@ export function SubBanner({ title, image, crumb }: Props) {
   return (
     <section className="relative h-[300px] overflow-hidden pt-20">
       <div className="absolute inset-0">
-        <img src={image} alt={title} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+        <img src={resolveAssetUrl(image)} alt={title} loading="lazy" decoding="async" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/75 to-secondary/50" />
       </div>
       <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-center px-5 lg:px-8">

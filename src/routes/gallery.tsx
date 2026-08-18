@@ -64,18 +64,18 @@ const FEATURES = [
 const CATEGORIES = ["All", "Center & Facilities", "Our Team", "Procedures", "Events & Camps", "Patient Care"];
 
 const IMAGES: { src: string; alt: string; cat: string }[] = [
-  { src: gFacilityExterior, alt: "Hospital Exterior", cat: "Center & Facilities" },
-  { src: gFacilityReception, alt: "Reception & Waiting Lounge", cat: "Center & Facilities" },
-  { src: gFacilityCathlab, alt: "Advanced Cath Lab", cat: "Center & Facilities" },
-  { src: gFacilityRoom, alt: "Patient Recovery Room", cat: "Center & Facilities" },
-  { src: gTeamGroup, alt: "Our Medical Team", cat: "Our Team" },
-  { src: gTeamSurgeon, alt: "Vascular Surgeon", cat: "Our Team" },
-  { src: gProcedureSurgery, alt: "Endovascular Surgery", cat: "Procedures" },
-  { src: gProcedureAngio, alt: "Angiography Procedure", cat: "Procedures" },
-  { src: gEventCamp, alt: "Free Health Check-up Camp", cat: "Events & Camps" },
-  { src: gEventInauguration, alt: "Hospital Inauguration", cat: "Events & Camps" },
-  { src: gPatientConsult, alt: "Doctor Consultation", cat: "Patient Care" },
-  { src: gPatientCare, alt: "Compassionate Bedside Care", cat: "Patient Care" },
+  { src: resolveAssetUrl(gFacilityExterior), alt: "Hospital Exterior", cat: "Center & Facilities" },
+  { src: resolveAssetUrl(gFacilityReception), alt: "Reception & Waiting Lounge", cat: "Center & Facilities" },
+  { src: resolveAssetUrl(gFacilityCathlab), alt: "Advanced Cath Lab", cat: "Center & Facilities" },
+  { src: resolveAssetUrl(gFacilityRoom), alt: "Patient Recovery Room", cat: "Center & Facilities" },
+  { src: resolveAssetUrl(gTeamGroup), alt: "Our Medical Team", cat: "Our Team" },
+  { src: resolveAssetUrl(gTeamSurgeon), alt: "Vascular Surgeon", cat: "Our Team" },
+  { src: resolveAssetUrl(gProcedureSurgery), alt: "Endovascular Surgery", cat: "Procedures" },
+  { src: resolveAssetUrl(gProcedureAngio), alt: "Angiography Procedure", cat: "Procedures" },
+  { src: resolveAssetUrl(gEventCamp), alt: "Free Health Check-up Camp", cat: "Events & Camps" },
+  { src: resolveAssetUrl(gEventInauguration), alt: "Hospital Inauguration", cat: "Events & Camps" },
+  { src: resolveAssetUrl(gPatientConsult), alt: "Doctor Consultation", cat: "Patient Care" },
+  { src: resolveAssetUrl(gPatientCare), alt: "Compassionate Bedside Care", cat: "Patient Care" },
 ];
 
 function GalleryTwoPage() {
