@@ -25,34 +25,18 @@ import { resolveAssetUrl } from "@/lib/asset-url";
 import heroReceptionAsset from "@/assets/gallery-hero.png.asset.json";
 import galleryBannerAsset from "@/assets/gallery-hero.png.asset.json";
 
-import gFacilityExteriorAsset from "@/assets/gallery/facility-exterior.jpg.asset.json";
-import gFacilityReceptionAsset from "@/assets/gallery/facility-reception.jpg.asset.json";
-import gFacilityCathlabAsset from "@/assets/gallery/facility-cathlab.jpg.asset.json";
-import gFacilityRoomAsset from "@/assets/gallery/facility-room.jpg.asset.json";
-import gTeamGroupAsset from "@/assets/gallery/team-group.jpg.asset.json";
-import gTeamSurgeonAsset from "@/assets/gallery/team-surgeon.jpg.asset.json";
-import gProcedureSurgeryAsset from "@/assets/gallery/procedure-surgery.jpg.asset.json";
-import gProcedureAngioAsset from "@/assets/gallery/procedure-angio.jpg.asset.json";
-import gEventCampAsset from "@/assets/gallery/event-camp.jpg.asset.json";
-import gEventInaugurationAsset from "@/assets/gallery/event-inauguration.jpg.asset.json";
-import gPatientConsultAsset from "@/assets/gallery/patient-consult.jpg.asset.json";
-import gPatientCareAsset from "@/assets/gallery/patient-care.jpg.asset.json";
-
-const heroReception = resolveAssetUrl(heroReceptionAsset.url);
-const galleryBanner = resolveAssetUrl(galleryBannerAsset.url);
-
-const gFacilityExterior = resolveAssetUrl(gFacilityExteriorAsset.url);
-const gFacilityReception = resolveAssetUrl(gFacilityReceptionAsset.url);
-const gFacilityCathlab = resolveAssetUrl(gFacilityCathlabAsset.url);
-const gFacilityRoom = resolveAssetUrl(gFacilityRoomAsset.url);
-const gTeamGroup = resolveAssetUrl(gTeamGroupAsset.url);
-const gTeamSurgeon = resolveAssetUrl(gTeamSurgeonAsset.url);
-const gProcedureSurgery = resolveAssetUrl(gProcedureSurgeryAsset.url);
-const gProcedureAngio = resolveAssetUrl(gProcedureAngioAsset.url);
-const gEventCamp = resolveAssetUrl(gEventCampAsset.url);
-const gEventInauguration = resolveAssetUrl(gEventInaugurationAsset.url);
-const gPatientConsult = resolveAssetUrl(gPatientConsultAsset.url);
-const gPatientCare = resolveAssetUrl(gPatientCareAsset.url);
+import gFacilityExterior from "@/assets/gallery/facility-exterior.jpg";
+import gFacilityReception from "@/assets/gallery/facility-reception.jpg";
+import gFacilityCathlab from "@/assets/gallery/facility-cathlab.jpg";
+import gFacilityRoom from "@/assets/gallery/facility-room.jpg";
+import gTeamGroup from "@/assets/gallery/team-group.jpg";
+import gTeamSurgeon from "@/assets/gallery/team-surgeon.jpg";
+import gProcedureSurgery from "@/assets/gallery/procedure-surgery.jpg";
+import gProcedureAngio from "@/assets/gallery/procedure-angio.jpg";
+import gEventCamp from "@/assets/gallery/event-camp.jpg";
+import gEventInauguration from "@/assets/gallery/event-inauguration.jpg";
+import gPatientConsult from "@/assets/gallery/patient-consult.jpg";
+import gPatientCare from "@/assets/gallery/patient-care.jpg";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({

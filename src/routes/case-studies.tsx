@@ -15,15 +15,10 @@ import { resolveAssetUrl } from "@/lib/asset-url";
 
 import heroSlide1 from "@/assets/case-hero-1.jpg.asset.json";
 import heroSlide2 from "@/assets/case-hero-2.jpg.asset.json";
-import imgSurgeryAsset from "@/assets/gallery/procedure-surgery.jpg.asset.json";
-import imgAngioAsset from "@/assets/gallery/procedure-angio.jpg.asset.json";
-import imgCathlabAsset from "@/assets/gallery/facility-cathlab.jpg.asset.json";
-import imgSurgeonAsset from "@/assets/gallery/team-surgeon.jpg.asset.json";
-
-const imgSurgery = resolveAssetUrl(imgSurgeryAsset.url);
-const imgAngio = resolveAssetUrl(imgAngioAsset.url);
-const imgCathlab = resolveAssetUrl(imgCathlabAsset.url);
-const imgSurgeon = resolveAssetUrl(imgSurgeonAsset.url);
+import imgSurgery from "@/assets/gallery/procedure-surgery.jpg";
+import imgAngio from "@/assets/gallery/procedure-angio.jpg";
+import imgCathlab from "@/assets/gallery/facility-cathlab.jpg";
+import imgSurgeon from "@/assets/gallery/team-surgeon.jpg";
 
 const caseBannerUrl = resolveAssetUrl(caseBanner.url);
 const heroSlide1Url = resolveAssetUrl(heroSlide1.url);

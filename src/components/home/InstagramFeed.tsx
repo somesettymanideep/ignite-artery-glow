@@ -3,15 +3,10 @@ import { Instagram, Play, Pause, Heart, MessageCircle, Send, ChevronLeft, Chevro
 
 import { Reveal } from "@/hooks/use-reveal";
 import { resolveAssetUrl } from "@/lib/asset-url";
-import reel1Asset from "@/assets/about-surgery.jpg.asset.json";
-import reel2Asset from "@/assets/home2-doctor.jpg.asset.json";
-import reel3Asset from "@/assets/about-vascular.jpg.asset.json";
-import reel4Asset from "@/assets/hero-surgeon.jpg.asset.json";
-
-const reel1 = resolveAssetUrl(reel1Asset.url);
-const reel2 = resolveAssetUrl(reel2Asset.url);
-const reel3 = resolveAssetUrl(reel3Asset.url);
-const reel4 = resolveAssetUrl(reel4Asset.url);
+import reel1 from "@/assets/about-surgery.jpg";
+import reel2 from "@/assets/home2-doctor.jpg";
+import reel3 from "@/assets/about-vascular.jpg";
+import reel4 from "@/assets/hero-surgeon.jpg";
 
 type Reel = {
   poster: string;
