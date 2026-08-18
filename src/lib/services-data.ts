@@ -11,14 +11,14 @@ import diabeticAsset from "@/assets/service-diabetic.png.asset.json";
 import limbAsset from "@/assets/service-limb.png.asset.json";
 import traumaAsset from "@/assets/service-trauma-emergency.webp.asset.json";
 
-const varicoseImg = resolveAssetUrl(varicoseAsset.url);
-const padImg = resolveAssetUrl(padAsset.url);
-const endoImg = resolveAssetUrl(endoAsset.url);
-const dvtImg = resolveAssetUrl(dvtAsset.url);
-const diabeticImg = resolveAssetUrl(diabeticAsset.url);
-const limbImg = resolveAssetUrl(limbAsset.url);
-const avFistulaImg = resolveAssetUrl(avFistulaAsset.url);
-const traumaImg = resolveAssetUrl(traumaAsset.url);
+const varicoseImg = varicoseAsset.url.startsWith("http") ? varicoseAsset.url : resolveAssetUrl(varicoseAsset.url);
+const padImg = padAsset.url.startsWith("http") ? padAsset.url : resolveAssetUrl(padAsset.url);
+const endoImg = endoAsset.url.startsWith("http") ? endoAsset.url : resolveAssetUrl(endoAsset.url);
+const dvtImg = dvtAsset.url.startsWith("http") ? dvtAsset.url : resolveAssetUrl(dvtAsset.url);
+const diabeticImg = diabeticAsset.url.startsWith("http") ? diabeticAsset.url : resolveAssetUrl(diabeticAsset.url);
+const limbImg = limbAsset.url.startsWith("http") ? limbAsset.url : resolveAssetUrl(limbAsset.url);
+const avFistulaImg = avFistulaAsset.url.startsWith("http") ? avFistulaAsset.url : resolveAssetUrl(avFistulaAsset.url);
+const traumaImg = traumaAsset.url.startsWith("http") ? traumaAsset.url : resolveAssetUrl(traumaAsset.url);
 
 export type ServiceCategory = "treatments" | "diagnostics" | "surgeries" | "care";
 
