@@ -27,8 +27,8 @@ const receptionImg = resolveAssetUrl(receptionAsset.url);
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Us — Ignite Vascular Center, Vijayawada" },
-      { name: "description", content: "Learn about Ignite Vascular Center — a specialized vascular surgery & endovascular care center in Kasturibai Peta, Vijayawada. Advanced vascular care with compassionate hearts." },
+      { title: "Best Endo Vascular Surgeon in Vijayawada — Ignite Vascular Center" },
+      { name: "description", content: "Learn about Dr. G. Narasimha Sai, the best endo vascular surgeon in Vijayawada, and the team at Ignite Vascular Center. Advanced vascular surgery & care in Kasturibai Peta." },
       { property: "og:title", content: "About Ignite Vascular Center — Vijayawada" },
       { property: "og:description", content: "Advanced vascular surgery and endovascular care center dedicated to excellence, innovation and compassionate patient care." },
       { property: "og:type", content: "website" },

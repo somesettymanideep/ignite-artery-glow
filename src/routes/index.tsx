@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Best Vascular Surgeon in Vijayawada | Best Endovascular Surgeon — Ignite Vascular Center" },
+      { title: "Best Vascular Surgeon in Vijayawada | Ignite Vascular Center" },
       {
         name: "description",
         content:
