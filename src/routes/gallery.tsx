@@ -25,6 +25,9 @@ import { resolveAssetUrl } from "@/lib/asset-url";
 import heroReceptionAsset from "@/assets/gallery-hero.png.asset.json";
 import galleryBannerAsset from "@/assets/gallery-hero.png.asset.json";
 
+const heroReception = resolveAssetUrl(heroReceptionAsset.url);
+const galleryBanner = resolveAssetUrl(galleryBannerAsset.url);
+
 import gFacilityExterior from "@/assets/gallery/facility-exterior.jpg";
 import gFacilityReception from "@/assets/gallery/facility-reception.jpg";
 import gFacilityCathlab from "@/assets/gallery/facility-cathlab.jpg";
