@@ -5,6 +5,7 @@ import {
   ArrowRight, ArrowUpRight,
 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
+import { ProgressiveImage } from "@/components/ui/ProgressiveImage";
 import { SERVICES, type ServiceCategory } from "@/lib/services-data";
 
 const CATEGORIES = [
@@ -91,17 +92,14 @@ export function Services() {
                 params={{ slug: s.slug }}
                 className="relative block h-[320px] overflow-hidden rounded-3xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
               >
-                <img
+                <ProgressiveImage
                   src={s.image}
                   alt=""
                   loading="lazy"
                   width={800}
                   height={640}
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-focus-visible:scale-110"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = "/placeholder.svg";
-                    (e.target as HTMLImageElement).classList.add("bg-secondary/20");
-                  }}
+                  containerClassName="absolute inset-0 h-full w-full"
                 />
                 <div
                   className="absolute inset-0"
