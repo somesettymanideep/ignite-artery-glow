@@ -21,6 +21,7 @@ import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 import { SubBanner } from "@/components/home/SubBanner";
+import { ProgressiveImage } from "@/components/ui/ProgressiveImage";
 import { resolveAssetUrl } from "@/lib/asset-url";
 import heroReceptionAsset from "@/assets/gallery-hero.png.asset.json";
 import galleryBannerAsset from "@/assets/gallery-hero.png.asset.json";
@@ -229,13 +230,14 @@ function GalleryTwoPage() {
                     fill="none"
                   />
                   <foreignObject x="0" y="0" width="600" height="500" clipPath="url(#arc-clip)">
-                    <img
+                    <ProgressiveImage
                       src={heroReception}
                       alt="Ignite Vascular Center reception"
                       decoding="async"
                       fetchPriority="high"
                       className="h-full w-full object-cover"
                       style={{ height: "500px", width: "600px" }}
+                      containerClassName="h-full w-full"
                     />
                   </foreignObject>
                 </svg>
@@ -314,12 +316,13 @@ function GalleryTwoPage() {
                 className="group relative block h-56 w-full cursor-zoom-in overflow-hidden rounded-[14px] text-left shadow-soft outline-none ring-primary/60 transition focus-visible:ring-2 focus-visible:ring-offset-2 sm:h-60 lg:h-64"
               >
                 <figure className="contents">
-                  <img
+                  <ProgressiveImage
                     src={img.src}
                     alt={img.alt}
                     loading={i < 3 ? "eager" : "lazy"}
                     decoding="async"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    containerClassName="h-full w-full"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-secondary/85 via-secondary/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <span

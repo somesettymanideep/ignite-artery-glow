@@ -35,6 +35,8 @@ type ReelCardProps = {
   registerVideo: (i: number, el: HTMLVideoElement | null) => void;
 };
 
+import { ProgressiveImage } from "@/components/ui/ProgressiveImage";
+
 function ReelCard({ reel, index, isActive, onPlayRequest, onPauseRequest, registerVideo }: ReelCardProps) {
   const cardRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -103,7 +105,7 @@ function ReelCard({ reel, index, isActive, onPlayRequest, onPauseRequest, regist
       />
 
       {!reel.video && (
-        <img
+        <ProgressiveImage
           src={reel.poster}
           alt=""
           aria-hidden="true"
@@ -111,6 +113,7 @@ function ReelCard({ reel, index, isActive, onPlayRequest, onPauseRequest, regist
           decoding="async"
           onLoad={() => setPosterLoaded(true)}
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
+          containerClassName="absolute inset-0 h-full w-full"
         />
       )}
 

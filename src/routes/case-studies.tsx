@@ -11,6 +11,7 @@ import { SubBanner } from "@/components/home/SubBanner";
 import caseBanner from "@/assets/case-studies-banner.webp.asset.json";
 import { Footer } from "@/components/home/Footer";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
+import { ProgressiveImage } from "@/components/ui/ProgressiveImage";
 import { resolveAssetUrl } from "@/lib/asset-url";
 
 import heroSlide1 from "@/assets/case-hero-1.jpg.asset.json";
@@ -243,12 +244,13 @@ function CaseStudiesPage() {
                 <article className="group flex h-full flex-col overflow-hidden rounded-[7px] bg-white shadow-soft ring-1 ring-border/60 transition-all duration-500 hover:-translate-y-1 hover:shadow-lift">
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <Reveal variant="zoom" delay={0.06 + i * 0.1}>
-                      <img
+                      <ProgressiveImage
                         src={c.image}
                         alt={c.title}
                         loading="lazy"
                         decoding="async"
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        containerClassName="h-full w-full"
                       />
                     </Reveal>
                   </div>
@@ -399,14 +401,15 @@ function HeroCarousel() {
     <div className="relative ml-auto w-full max-w-[560px] lg:max-w-none">
       <div className="relative aspect-[4/3] overflow-hidden rounded-[14px] shadow-lift ring-1 ring-border/50">
         {slides.map((s, idx) => (
-          <img
+          <ProgressiveImage
             key={s.src}
             src={s.src}
             alt={s.alt}
             loading={idx === 0 ? "eager" : "lazy"}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            containerClassName={`absolute inset-0 h-full w-full transition-opacity duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
               i === idx ? "opacity-100" : "opacity-0"
             }`}
+            className="h-full w-full object-cover"
           />
         ))}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-secondary/10 via-transparent to-transparent" />
