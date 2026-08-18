@@ -4,6 +4,12 @@ import { Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
 
 const socials = [
   {
+    name: "WhatsApp",
+    href: "https://wa.me/919966117292",
+    icon: MessageCircle,
+    bg: "#25D366",
+  },
+  {
     name: "Facebook",
     href: "https://www.facebook.com/people/Ignite-Vascular-Center/61578279247712/",
     icon: Facebook,
@@ -22,6 +28,7 @@ const socials = [
     bg: "#0A66C2",
   },
 ];
+
 
 export function FloatingSocials() {
   const [visible, setVisible] = useState(false);
