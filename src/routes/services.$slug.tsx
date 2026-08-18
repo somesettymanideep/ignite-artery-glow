@@ -178,7 +178,7 @@ function ServiceDetail() {
                   <div aria-hidden className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-brand opacity-20 blur-2xl" />
                   <div className="relative overflow-hidden rounded-[2rem] shadow-glow-red ring-1 ring-black/5">
                     <img
-                      src={service.image}
+                      src={resolveAssetUrl(service.image)}
                       alt={service.title}
                       decoding="async"
                       fetchPriority="high"
