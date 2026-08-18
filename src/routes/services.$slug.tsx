@@ -33,6 +33,7 @@ export const Route = createFileRoute("/services/$slug")({
         { property: "og:title", content: `${s.title} — Ignite Vascular Center` },
         { property: "og:description", content: s.short },
         { property: "og:type", content: "article" },
+        { property: "og:url", content: `https://ignitevascularcenter.com/services/${s.slug}` },
         { property: "og:image", content: toAbsoluteUrl(s.image) },
         { name: "twitter:card", content: "summary_large_image" },
       ],
