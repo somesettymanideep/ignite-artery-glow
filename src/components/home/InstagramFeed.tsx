@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { Instagram, Play, Pause, Heart, MessageCircle, Send, ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Reveal } from "@/hooks/use-reveal";
+import { resolveAssetUrl } from "@/lib/asset-url";
 import reel1 from "@/assets/about-surgery.jpg";
 import reel2 from "@/assets/home2-doctor.jpg";
 import reel3 from "@/assets/about-vascular.jpg";

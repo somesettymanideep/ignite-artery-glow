@@ -24,6 +24,10 @@ import { SubBanner } from "@/components/home/SubBanner";
 import { resolveAssetUrl } from "@/lib/asset-url";
 import heroReceptionAsset from "@/assets/gallery-hero.png.asset.json";
 import galleryBannerAsset from "@/assets/gallery-hero.png.asset.json";
+
+const heroReception = resolveAssetUrl(heroReceptionAsset.url);
+const galleryBanner = resolveAssetUrl(galleryBannerAsset.url);
+
 import gFacilityExterior from "@/assets/gallery/facility-exterior.jpg";
 import gFacilityReception from "@/assets/gallery/facility-reception.jpg";
 import gFacilityCathlab from "@/assets/gallery/facility-cathlab.jpg";
@@ -36,9 +40,6 @@ import gEventCamp from "@/assets/gallery/event-camp.jpg";
 import gEventInauguration from "@/assets/gallery/event-inauguration.jpg";
 import gPatientConsult from "@/assets/gallery/patient-consult.jpg";
 import gPatientCare from "@/assets/gallery/patient-care.jpg";
-
-const heroReception = resolveAssetUrl(heroReceptionAsset.url);
-const galleryBanner = resolveAssetUrl(galleryBannerAsset.url);
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
