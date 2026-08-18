@@ -1,126 +1,115 @@
-import { chromium } from 'playwright';
+import asyncio
+import json
+import sys
+from pathlib import Path
+from playwright.async_api import async_playwright
 
-const BASE_URL = 'https://ignitevascularcenter.com';
-const PAGES = [
-  '/',
-  '/about',
-  '/contact',
-  '/gallery',
-  '/case-studies',
-  '/second-opinion',
-  '/treatments',
-  '/admin'
-];
+BASE_URL = 'https://ignitevascularcenter.com'
+PAGES = [
+    '/',
+    '/about',
+    '/contact',
+    '/gallery',
+    '/case-studies',
+    '/second-opinion',
+    '/treatments',
+    '/admin'
+]
 
-async function auditPage(browser: any, path: string) {
-  const context = await browser.newContext({
-    viewport: { width: 1280, height: 1800 }
-  });
-  const page = await context.newPage();
-  const url = `${BASE_URL}${path}`;
-  console.log(`\nAuditing: ${url}`);
-  
-  const brokenAssets: string[] = [];
-  
-  // Listen for failed requests
-  page.on('requestfailed', (request: any) => {
-    const resourceType = request.resourceType();
-    if (['image', 'media', 'video'].includes(resourceType)) {
-      console.error(`❌ Request Failed: ${request.url()} (${request.failure()?.errorText || 'Unknown error'})`);
-      brokenAssets.push(request.url());
-    }
-  });
-
-  // Listen for 404s and other error statuses
-  page.on('response', (response: any) => {
-    const status = response.status();
-    const resourceType = response.request().resourceType();
-    if (status >= 400 && ['image', 'media', 'video'].includes(resourceType)) {
-      console.error(`❌ HTTP ${status}: ${response.url()}`);
-      brokenAssets.push(response.url());
-    }
-  });
-
-  try {
-    await page.goto(url, { waitUntil: 'networkidle', timeout: 60000 });
+async def audit_page(browser, path):
+    context = await browser.new_context(viewport={"width": 1280, "height": 1800})
+    page = await context.new_page()
+    url = f"{BASE_URL}{path}"
+    print(f"\nAuditing: {url}")
     
-    // Check for images in the DOM that might not have triggered a network error yet (e.g. broken src)
-    const images = await page.evaluate(() => {
-      return Array.from(document.querySelectorAll('img')).map(img => ({
-        src: img.src,
-        complete: img.complete,
-        naturalWidth: img.naturalWidth
-      }));
-    });
+    broken_assets = set()
+    
+    # Listen for failed requests
+    def on_request_failed(request):
+        resource_type = request.resource_type
+        if resource_type in ['image', 'media', 'video']:
+            error_text = request.failure.error_text if request.failure else 'Unknown error'
+            print(f"❌ Request Failed: {request.url} ({error_text})")
+            broken_assets.add(request.url)
 
-    for (const img of images) {
-      if (img.src && (!img.complete || img.naturalWidth === 0)) {
-        if (!brokenAssets.includes(img.src) && !img.src.startsWith('data:')) {
-          console.error(`❌ Broken Image (DOM check): ${img.src}`);
-          brokenAssets.push(img.src);
-        }
-      }
-    }
+    # Listen for 404s and other error statuses
+    def on_response(response):
+        status = response.status
+        resource_type = response.request.resource_type
+        if status >= 400 and resource_type in ['image', 'media', 'video']:
+            print(f"❌ HTTP {status}: {response.url}")
+            broken_assets.add(response.url)
 
-    // Check for videos
-    const videos = await page.evaluate(() => {
-      return Array.from(document.querySelectorAll('video')).map(video => ({
-        src: video.src || video.querySelector('source')?.src,
-        error: video.error
-      }));
-    });
+    page.on('requestfailed', on_request_failed)
+    page.on('response', on_response)
 
-    for (const video of videos) {
-      if (video.src && video.error) {
-        if (!brokenAssets.includes(video.src)) {
-          console.error(`❌ Broken Video (DOM check): ${video.src}`);
-          brokenAssets.push(video.src);
-        }
-      }
-    }
+    try:
+        await page.goto(url, wait_until='networkidle', timeout=60000)
+        
+        # Check for images in the DOM
+        images = await page.evaluate("""() => {
+            return Array.from(document.querySelectorAll('img')).map(img => ({
+                src: img.src,
+                complete: img.complete,
+                naturalWidth: img.naturalWidth
+            }));
+        }""")
 
-  } catch (error) {
-    console.error(`Failed to load page ${url}:`, error);
-  } finally {
-    await context.close();
-  }
+        for img in images:
+            if img['src'] and (not img['complete'] or img['naturalWidth'] == 0):
+                if not img['src'].startswith('data:'):
+                    print(f"❌ Broken Image (DOM check): {img['src']}")
+                    broken_assets.add(img['src'])
 
-  return Array.from(new Set(brokenAssets));
-}
+        # Check for videos
+        videos = await page.evaluate("""() => {
+            return Array.from(document.querySelectorAll('video')).map(video => ({
+                src: video.src || (video.querySelector('source') ? video.querySelector('source').src : null),
+                error: video.error
+            }));
+        }""")
 
-async function runAudit() {
-  console.log('🚀 Starting Media Audit for Ignite Vascular Center...');
-  const browser = await chromium.launch({ headless: true });
-  
-  const allBrokenAssets: Record<string, string[]> = {};
-  let totalBroken = 0;
+        for video in videos:
+            if video['src'] and video['error']:
+                print(f"❌ Broken Video (DOM check): {video['src']}")
+                broken_assets.add(video['src'])
 
-  try {
-    for (const path of PAGES) {
-      const broken = await auditPage(browser, path);
-      if (broken.length > 0) {
-        allBrokenAssets[path] = broken;
-        totalBroken += broken.length;
-      }
-    }
-  } finally {
-    await browser.close();
-  }
+    except Exception as e:
+        print(f"Failed to load page {url}: {e}")
+    finally:
+        await context.close()
 
-  console.log('\n' + '='.repeat(50));
-  console.log('📊 AUDIT SUMMARY');
-  console.log('='.repeat(50));
-  
-  if (totalBroken === 0) {
-    console.log('✅ No broken media assets found! All images and videos loaded successfully.');
-  } else {
-    console.log(`❌ Found ${totalBroken} broken media assets across ${Object.keys(allBrokenAssets).length} pages:`);
-    for (const [path, assets] of Object.entries(allBrokenAssets)) {
-      console.log(`\nPage: ${path}`);
-      assets.forEach(asset => console.log(`  - ${asset}`));
-    }
-  }
-  console.log('='.repeat(50));
-}
+    return list(broken_assets)
 
-runAudit().catch(console.error);
+async def main():
+    print('🚀 Starting Media Audit for Ignite Vascular Center...')
+    async with async_playwright() as playwright:
+        browser = await playwright.chromium.launch(headless=True)
+        
+        all_broken_assets = {}
+        total_broken = 0
+
+        for path in PAGES:
+            broken = await audit_page(browser, path)
+            if broken:
+                all_broken_assets[path] = broken
+                total_broken += len(broken)
+
+        await browser.close()
+
+        print('\n' + '='*50)
+        print('📊 AUDIT SUMMARY')
+        print('='*50)
+        
+        if total_broken == 0:
+            print('✅ No broken media assets found! All images and videos loaded successfully.')
+        else:
+            print(f"❌ Found {total_broken} broken media assets across {len(all_broken_assets)} pages:")
+            for path, assets in all_broken_assets.items():
+                print(f"\nPage: {path}")
+                for asset in assets:
+                    print(f"  - {asset}")
+        print('='*50)
+
+if __name__ == "__main__":
+    asyncio.run(main())
