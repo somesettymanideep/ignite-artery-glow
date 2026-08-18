@@ -253,52 +253,11 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                         {r.kind}
                       </span>
                     </td>
-                    {columns.map((c) => {
-                      const value = r.data[c];
-                      const isImage = typeof value === 'string' && value.startsWith('data:image/');
-                      const isPDF = typeof value === 'string' && value.startsWith('data:application/pdf');
-
-                      return (
-                        <td key={c} className="max-w-xs px-4 py-3 text-secondary">
-                          {isImage ? (
-                            <div className="flex items-center gap-3">
-                              <a 
-                                href={value} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="group relative block h-12 w-12 shrink-0 overflow-hidden rounded-lg border border-border/50 bg-muted transition-transform hover:scale-110 active:scale-95"
-                              >
-                                <img src={value} alt="Attachment" className="h-full w-full object-cover" />
-                                <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">
-                                  <span className="text-[10px] font-bold text-white">VIEW</span>
-                                </div>
-                              </a>
-                              <a 
-                                href={value} 
-                                download={`attachment-${r.id.substring(0, 4)}`}
-                                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border/50 bg-white text-muted-foreground transition-all hover:bg-secondary/5 hover:text-[#311261] hover:border-[#311261]/30 active:scale-95"
-                                title="Download image"
-                              >
-                                <Download className="h-4 w-4" />
-                              </a>
-                            </div>
-                          ) : isPDF ? (
-                            <a 
-                              href={value} 
-                              download={`report-${r.id.substring(0, 4)}.pdf`}
-                              className="inline-flex items-center gap-2 rounded-lg border border-border/50 bg-muted/50 px-3 py-1.5 text-[12px] font-semibold text-[#311261] transition-all hover:bg-muted hover:border-[#311261]/20"
-                            >
-                              <Download className="h-3.5 w-3.5" />
-                              Download PDF
-                            </a>
-                          ) : (
-                            <div className="line-clamp-3 whitespace-pre-wrap break-words text-[13px]">
-                              {value || <span className="text-muted-foreground/60">—</span>}
-                            </div>
-                          )}
-                        </td>
-                      );
-                    })}
+                    {columns.map((c) => (
+                      <td key={c} className="max-w-xs px-4 py-3 text-secondary">
+                        <div className="line-clamp-3 whitespace-pre-wrap break-words">{r.data[c] || <span className="text-muted-foreground/60">—</span>}</div>
+                      </td>
+                    ))}
                     <td className="whitespace-nowrap px-4 py-3 text-right">
                       <button
                         onClick={() => { if (confirm("Delete this submission?")) removeSubmission(r.id); }}

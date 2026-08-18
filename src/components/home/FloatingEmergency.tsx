@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Siren, Phone, X, MessageSquare } from "lucide-react";
+import { Siren, Phone, X } from "lucide-react";
 
 export function FloatingEmergency() {
   const [open, setOpen] = useState(false);
@@ -30,22 +30,12 @@ export function FloatingEmergency() {
           >
             +91 99661 17292
           </a>
-          <div className="mt-4 flex flex-col gap-2">
-            <a
-              href="tel:+919966117292"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105"
-            >
-              <Phone className="h-4 w-4" /> Call Now
-            </a>
-            <a
-              href="https://wa.me/919966117292"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-bold text-white shadow-lg transition-transform duration-300 hover:scale-105"
-            >
-              <MessageSquare className="h-4 w-4" /> WhatsApp Us
-            </a>
-          </div>
+          <a
+            href="tel:+919966117292"
+            className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-105"
+          >
+            <Phone className="h-4 w-4" /> Call Now
+          </a>
         </div>
       </div>
 

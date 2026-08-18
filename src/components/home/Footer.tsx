@@ -45,7 +45,7 @@ export function Footer() {
                 { Icon: FaFacebook, label: "Facebook", href: "#", color: "#1877F2" },
                 { Icon: FaInstagram, label: "Instagram", href: "#", color: "#E4405F", gradient: "linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4)" },
                 { Icon: FaYoutube, label: "YouTube", href: "#", color: "#FF0000" },
-                { Icon: FaWhatsapp, label: "WhatsApp", href: "https://wa.me/919966117292", color: "#25D366" },
+                { Icon: FaWhatsapp, label: "WhatsApp", href: "#", color: "#25D366" },
               ].map(({ Icon, label, href, color, gradient }) => (
                 <a
                   key={label}
@@ -82,7 +82,7 @@ export function Footer() {
             <ul className="mt-5 space-y-2.5 text-sm text-primary-foreground/75">
               {serviceLinks.map((s) => (
                 <li key={s}>
-                  <Link to="/" hash="services" className="hover:text-primary-foreground">{s}</Link>
+                  <Link to="/#services" className="hover:text-primary-foreground">{s}</Link>
                 </li>
               ))}
             </ul>

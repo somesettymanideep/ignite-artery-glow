@@ -178,7 +178,7 @@ function ServiceDetail() {
                   <div aria-hidden className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-brand opacity-20 blur-2xl" />
                   <div className="relative overflow-hidden rounded-[2rem] shadow-glow-red ring-1 ring-black/5">
                     <img
-                      src={resolveAssetUrl(service.image)}
+                      src={service.image}
                       alt={service.title}
                       decoding="async"
                       fetchPriority="high"
@@ -276,7 +276,7 @@ function ServiceDetail() {
                     <div aria-hidden className="absolute -inset-2 -z-10 rounded-[2rem] bg-gradient-brand-soft" />
                     <div aria-hidden className="absolute -right-4 -bottom-4 -z-10 h-40 w-40 rounded-full bg-primary/10 blur-2xl" />
                     <img
-                      src={resolveAssetUrl(service.image)}
+                      src={service.image}
                       alt={`${service.title} procedure`}
                       loading="lazy"
                       decoding="async"

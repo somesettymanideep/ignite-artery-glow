@@ -644,28 +644,14 @@ function RequestSection() {
                     type="file"
                     accept=".pdf,.jpg,.jpeg,.png"
                     className="sr-only"
-                    onChange={async (e) => {
-                      const file = e.target.files?.[0];
-                      if (!file) {
-                        updateField("file", "");
-                        return;
-                      }
-                      
-                      // Convert file to base64 for submission
-                      const reader = new FileReader();
-                      reader.onloadend = () => {
-                        const base64String = reader.result as string;
-                        updateField("file", base64String);
-                      };
-                      reader.readAsDataURL(file);
-                    }}
+                    onChange={(e) => updateField("file", e.target.files?.[0]?.name ?? "")}
                     disabled={isSubmitting}
                     aria-describedby="so-file-help"
                   />
                   {form.file && (
                     <span className="mt-1 inline-flex max-w-full items-center gap-1.5 rounded-full bg-[#311261]/10 px-3 py-1 text-[11.5px] font-semibold text-[#311261]" aria-live="polite">
                       <ClipboardCheck className="h-3 w-3 shrink-0" aria-hidden />
-                      <span className="truncate">File ready for upload</span>
+                      <span className="truncate">Selected file: {form.file}</span>
                     </span>
                   )}
                 </label>
