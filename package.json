@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "audit:media": "bun scripts/media-audit.ts"
+    "audit:media": "python3 scripts/media-audit.py"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
