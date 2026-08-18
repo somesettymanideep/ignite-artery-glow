@@ -1,4 +1,4 @@
-const LOVABLE_ASSET_ORIGIN = "https://ignitevascularcenter.com";
+const LOVABLE_ASSET_ORIGIN = "https://ignite-artery-glow.lovable.app";
 
 const ABSOLUTE_URL_RE = /^[a-z][a-z\d+.-]*:/i;
 

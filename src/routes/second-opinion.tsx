@@ -21,7 +21,7 @@ import whyImg from "@/assets/why-choose.jpg";
 import secondOpinionBanner from "@/assets/second-opinion-banner.jpg";
 import { SERVICES } from "@/lib/services-data";
 
-const secondOpinionDoctor = resolveAssetUrl(secondOpinionDoctorAsset.url);
+const secondOpinionDoctor = secondOpinionDoctorAsset.url.startsWith("http") ? secondOpinionDoctorAsset.url : resolveAssetUrl(secondOpinionDoctorAsset.url);
 
 const secondOpinionSchema = z.object({
   name: z.string().trim().min(2, "Full name is required").max(100, "Name is too long"),

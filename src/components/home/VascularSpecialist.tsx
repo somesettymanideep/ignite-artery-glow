@@ -4,7 +4,7 @@ import { ProgressiveImage } from "@/components/ui/ProgressiveImage";
 import { resolveAssetUrl } from "@/lib/asset-url";
 import doctorAsset from "@/assets/doctor-portrait-new.webp.asset.json";
 
-const doctorPortrait = resolveAssetUrl(doctorAsset.url);
+const doctorPortrait = doctorAsset.url.startsWith("http") ? doctorAsset.url : resolveAssetUrl(doctorAsset.url);
 
 const DOCTOR_POINTS = [
   { icon: Award, text: "10+ Years of Experience" },
