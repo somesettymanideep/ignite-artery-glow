@@ -12,8 +12,8 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
-  // Deploy target: Netlify (SSR via Netlify Functions).
+  // Deploy target: GitHub Pages (Static hosting).
   nitro: {
-    preset: "netlify",
+    preset: "static",
   },
 });
