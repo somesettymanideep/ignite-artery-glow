@@ -4,17 +4,16 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
-  HeadContent,
-  Scripts,
+  ScrollRestoration,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect } from "react";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
-import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ScrollToTop } from "@/components/home/ScrollToTop";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 import { FloatingSocials } from "@/components/home/FloatingSocials";
 import { BookingModal } from "@/components/booking/BookingModal";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -41,9 +40,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -77,136 +73,34 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Ignite Vascular Center | Vascular Surgery in Vijayawada" },
-      {
-        name: "description",
-        content:
-          "Advanced vascular surgery & endovascular care in Kasturibai Peta, Vijayawada. Varicose veins, PAD, diabetic foot care & dialysis access by expert specialists.",
-      },
-      { name: "author", content: "Ignite Vascular Center" },
-      { property: "og:title", content: "Ignite Vascular Center | Vascular Surgery in Vijayawada" },
-      {
-        property: "og:description",
-        content:
-          "Advanced vascular surgery & endovascular care in Kasturibai Peta, Vijayawada. Varicose veins, PAD, diabetic foot care & dialysis access by expert specialists.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Ignite Vascular Center | Vascular Surgery in Vijayawada" },
-      { name: "twitter:description", content: "Advanced vascular surgery & endovascular care in Kasturibai Peta, Vijayawada. Varicose veins, PAD, diabetic foot care & dialysis access by expert specialists." },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "icon", href: "/favicon.png", type: "image/png" },
-      { rel: "apple-touch-icon", href: "/favicon.png" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap",
-      },
-    ],
-  }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
 
-function RootShell({ children }: { children: ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-            (function(l) {
-              if (l.search) {
-                var q = {};
-                l.search.slice(1).split('&').forEach(function(v) {
-                  var a = v.split('=');
-                  q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
-                });
-                if (q.p !== undefined) {
-                  window.history.replaceState(null, null,
-                    l.pathname.slice(0, -1) + (q.p || '') +
-                    (q.q ? ('?' + q.q) : '') +
-                    l.hash
-                  );
-                }
-              }
-            }(window.location))
-          `,
-          }}
-        />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
-    let raf = 0;
-    let active = false;
-    let stopAt = 0;
-    const forceTop = () => {
-      window.scrollTo(0, 0);
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
-    };
-    const loop = () => {
-      forceTop();
-      if (performance.now() < stopAt) {
-        raf = requestAnimationFrame(loop);
-      } else {
-        active = false;
-      }
-    };
-    const start = () => {
-      stopAt = performance.now() + 400;
-      if (!active) {
-        active = true;
-        raf = requestAnimationFrame(loop);
-      }
-    };
-    const unsub = router.subscribe("onResolved", ({ toLocation, fromLocation }) => {
-      if (toLocation.hash) return;
-      if (fromLocation && fromLocation.pathname === toLocation.pathname && !fromLocation.hash) return;
-      start();
-    });
-    return () => {
-      unsub();
-      cancelAnimationFrame(raf);
-    };
-  }, [router]);
-
+  
   return (
-    <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
-      <ScrollToTop />
-      <FloatingEmergency />
-      <FloatingSocials />
-      <BookingModal />
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <Helmet>
+          <title>Ignite Vascular Center | Vascular Surgery in Vijayawada</title>
+          <meta name="description" content="Advanced vascular surgery & endovascular care in Kasturibai Peta, Vijayawada. Varicose veins, PAD, diabetic foot care & dialysis access by expert specialists." />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+        </Helmet>
+        
+        <Outlet />
+        <ScrollRestoration />
+        <ScrollToTop />
+        <FloatingEmergency />
+        <FloatingSocials />
+        <BookingModal />
+        <Toaster position="top-right" />
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 }
+
