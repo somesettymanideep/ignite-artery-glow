@@ -9,6 +9,7 @@ import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
 import { SubBanner } from "@/components/home/SubBanner";
+import { ProgressiveImage } from "@/components/ui/ProgressiveImage";
 import { SERVICES, getServiceBySlug } from "@/lib/services-data";
 import { toAbsoluteUrl, resolveAssetUrl } from "@/lib/asset-url";
 import avFistulaAsset from "@/assets/service-avfistula.jpg.asset.json";
@@ -177,12 +178,13 @@ function ServiceDetail() {
                   {/* Gradient frame */}
                   <div aria-hidden className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-brand opacity-20 blur-2xl" />
                   <div className="relative overflow-hidden rounded-[2rem] shadow-glow-red ring-1 ring-black/5">
-                    <img
+                    <ProgressiveImage
                       src={service.image}
                       alt={service.title}
                       decoding="async"
                       fetchPriority="high"
                       className="h-[420px] w-full object-cover sm:h-[500px]"
+                      containerClassName="h-full w-full"
                     />
                     <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-secondary/25 via-transparent to-transparent" />
                   </div>
@@ -275,12 +277,13 @@ function ServiceDetail() {
                   <div className="relative">
                     <div aria-hidden className="absolute -inset-2 -z-10 rounded-[2rem] bg-gradient-brand-soft" />
                     <div aria-hidden className="absolute -right-4 -bottom-4 -z-10 h-40 w-40 rounded-full bg-primary/10 blur-2xl" />
-                    <img
+                    <ProgressiveImage
                       src={service.image}
                       alt={`${service.title} procedure`}
                       loading="lazy"
                       decoding="async"
                       className="h-[340px] w-full rounded-[1.75rem] object-cover shadow-soft ring-1 ring-black/5 sm:h-[400px]"
+                      containerClassName="h-full w-full rounded-[1.75rem]"
                     />
                     {/* corner badge */}
                     <div className="absolute -left-4 -top-4 hidden rounded-2xl bg-secondary p-3 pr-4 shadow-glow-red sm:flex sm:items-center sm:gap-2">

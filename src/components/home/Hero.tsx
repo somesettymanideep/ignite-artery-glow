@@ -1,6 +1,7 @@
 import { Star, Check, Calendar, ArrowRight } from "lucide-react";
 import { openBookingModal } from "@/components/booking/BookingModal";
 import { Reveal } from "@/hooks/use-reveal";
+import { ProgressiveImage } from "@/components/ui/ProgressiveImage";
 import heroAsset from "@/assets/hero-avfistula-v5.png.asset.json";
 import { resolveAssetUrl } from "@/lib/asset-url";
 
@@ -82,7 +83,7 @@ export function Hero() {
                   "radial-gradient(ellipse 60% 55% at 55% 45%, rgba(65,48,92,0.10), transparent 70%)",
               }}
             />
-            <img
+            <ProgressiveImage
               src={heroImg}
               alt="Medical illustration showing varicose veins and AV fistula anatomy at Ignite Vascular Center"
               width={1071}

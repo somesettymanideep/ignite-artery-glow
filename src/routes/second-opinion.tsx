@@ -8,6 +8,7 @@ import {
   User, Phone, Mail, MessageCircle, Send, CalendarCheck, Loader2,
   Award, Search, Sparkles, Microscope, HeartHandshake as HeartCare, HelpCircle,
 } from "lucide-react";
+import { ProgressiveImage } from "@/components/ui/ProgressiveImage";
 import { Reveal } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
@@ -124,14 +125,15 @@ function ServicesCarousel() {
     <div className="relative">
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-secondary/5 shadow-lift ring-1 ring-black/5">
         {SERVICES.map((s, i) => (
-          <img
+          <ProgressiveImage
             key={s.slug}
             src={s.image}
             alt={s.title}
             loading={i === 0 ? "eager" : "lazy"}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-out ${
+            containerClassName={`absolute inset-0 h-full w-full transition-opacity duration-[1200ms] ease-out ${
               i === idx ? "opacity-100" : "opacity-0"
             }`}
+            className="h-full w-full object-cover"
           />
         ))}
       </div>
@@ -234,7 +236,7 @@ function HelpRibbon() {
               aria-label="Dr. Vascular Specialist, Ignite Vascular Center"
               className="group/doc relative mx-auto mb-5 aspect-square w-[140px] cursor-pointer overflow-hidden rounded-full bg-white ring-4 ring-white shadow-lift transition-all duration-500 ease-out hover:scale-[1.04] hover:ring-white/90 hover:shadow-[0_18px_40px_-12px_rgba(198,35,71,0.55)] focus-visible:outline-none focus-visible:ring-[6px] focus-visible:ring-primary focus-visible:scale-[1.04] sm:absolute sm:left-8 sm:top-1/2 sm:mx-0 sm:mb-0 sm:w-[168px] sm:-translate-y-1/2 sm:hover:-translate-y-[calc(50%+3px)] sm:focus-visible:-translate-y-[calc(50%+3px)] lg:left-10 lg:w-[188px]"
             >
-              <img
+              <ProgressiveImage
                 src={secondOpinionDoctorAsset.url}
                 alt="Dr. Vascular Specialist, Ignite Vascular Center"
                 loading="lazy"

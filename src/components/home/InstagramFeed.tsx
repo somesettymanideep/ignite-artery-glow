@@ -3,6 +3,7 @@ import { Instagram, Play, Pause, Heart, MessageCircle, Send, ChevronLeft, Chevro
 
 import { Reveal } from "@/hooks/use-reveal";
 import { resolveAssetUrl } from "@/lib/asset-url";
+import { ProgressiveImage } from "@/components/ui/ProgressiveImage";
 import reel1 from "@/assets/about-surgery.jpg";
 import reel2 from "@/assets/home2-doctor.jpg";
 import reel3 from "@/assets/about-vascular.jpg";
@@ -34,6 +35,7 @@ type ReelCardProps = {
   onPauseRequest: (i: number) => void;
   registerVideo: (i: number, el: HTMLVideoElement | null) => void;
 };
+
 
 function ReelCard({ reel, index, isActive, onPlayRequest, onPauseRequest, registerVideo }: ReelCardProps) {
   const cardRef = useRef<HTMLElement | null>(null);
@@ -103,7 +105,7 @@ function ReelCard({ reel, index, isActive, onPlayRequest, onPauseRequest, regist
       />
 
       {!reel.video && (
-        <img
+        <ProgressiveImage
           src={reel.poster}
           alt=""
           aria-hidden="true"
@@ -111,6 +113,7 @@ function ReelCard({ reel, index, isActive, onPlayRequest, onPauseRequest, regist
           decoding="async"
           onLoad={() => setPosterLoaded(true)}
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
+          containerClassName="absolute inset-0 h-full w-full"
         />
       )}
 

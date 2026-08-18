@@ -8,6 +8,7 @@ import {
   Smile, Activity, Clock, Microscope, Lightbulb, BookOpenCheck, MessagesSquare,
   Stethoscope, ChevronRight,
 } from "lucide-react";
+import { ProgressiveImage } from "@/components/ui/ProgressiveImage";
 import aboutBannerAsset from "@/assets/about-banner-narasimha-v2.png.asset.json";
 import { Reveal, useCountUp } from "@/hooks/use-reveal";
 import { Navbar } from "@/components/home/Navbar";
@@ -64,7 +65,7 @@ function Hero() {
 
         <Reveal className="reveal" variant="right" delay={0.14}>
           <div className="relative overflow-hidden rounded-2xl shadow-lift">
-            <img src={receptionImg} alt="Ignite Vascular Center reception" width={1400} height={900} loading="lazy" decoding="async" className="h-[320px] w-full object-cover sm:h-[420px] lg:h-[460px]" />
+            <ProgressiveImage src={receptionImg} alt="Ignite Vascular Center reception" width={1400} height={900} loading="lazy" decoding="async" className="h-[320px] w-full object-cover sm:h-[420px] lg:h-[460px]" />
           </div>
         </Reveal>
       </div>
@@ -211,7 +212,7 @@ function Doctor() {
           <div className="relative">
             <div className="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-[radial-gradient(circle,theme(colors.secondary/20)_1px,transparent_1.5px)] bg-[length:10px_10px]" aria-hidden />
             <div className="relative overflow-hidden rounded-3xl bg-secondary shadow-lift">
-              <img src={resolveAssetUrl(doctorImgAsset.url)} alt="Dr. G. Narasimha Sai" width={520} height={640} loading="lazy" className="h-[360px] w-full object-cover" />
+              <ProgressiveImage src={resolveAssetUrl(doctorImgAsset.url)} alt="Dr. G. Narasimha Sai" width={520} height={640} loading="lazy" className="h-[360px] w-full object-cover" />
             </div>
           </div>
         </Reveal>
