@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Phone, Menu, X, ChevronDown } from "lucide-react";
+import { Phone, Menu, X, ChevronDown, MessageCircle } from "lucide-react";
 import { SERVICES } from "@/lib/services-data";
 import logoAsset from "@/assets/ignite-logo.png.asset.json";
 import { openBookingModal } from "@/components/booking/BookingModal";
@@ -185,7 +185,17 @@ export function Navbar() {
           {NAV.map(renderDesktopItem)}
         </ul>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
+          <a
+            href="https://wa.me/919966117292"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden items-center justify-center rounded-full bg-[#25D366] p-2 text-white shadow-sm transition-transform hover:scale-110 md:flex"
+            aria-label="WhatsApp"
+          >
+            <MessageCircle className="h-4 w-4 fill-white" />
+          </a>
+
           {cta}
           <a
             href="tel:+919966117292"
@@ -194,7 +204,17 @@ export function Navbar() {
           >
             <Phone className="h-4 w-4" />
           </a>
+          <a
+            href="https://wa.me/919966117292"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="grid h-10 w-10 place-items-center rounded-full bg-[#25D366] text-white shadow-sm transition-transform hover:scale-105 lg:hidden"
+            aria-label="WhatsApp"
+          >
+            <MessageCircle className="h-4 w-4 fill-white" />
+          </a>
           <button
+
             className="relative grid h-10 w-10 place-items-center rounded-xl border border-border/60 bg-white text-secondary transition hover:border-primary/40 hover:text-primary lg:hidden"
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
