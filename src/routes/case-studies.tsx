@@ -32,6 +32,7 @@ export const Route = createFileRoute("/case-studies")({
       { property: "og:title", content: "Case Studies — Ignite Vascular Center" },
       { property: "og:description", content: "Real patients. Real results. See how advanced vascular care transformed lives." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://ignitevascularcenter.com/case-studies" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
