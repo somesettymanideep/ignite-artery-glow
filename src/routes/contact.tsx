@@ -17,7 +17,6 @@ export const Route = createFileRoute("/contact")({
       { property: "og:title", content: "Contact Ignite Vascular Center — Vijayawada" },
       { property: "og:description", content: "Reach our vascular specialists for appointments, consultations and expert care." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://ignitevascularcenter.com/contact" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),

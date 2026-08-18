@@ -29,7 +29,6 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: "About Ignite Vascular Center — Vijayawada" },
       { property: "og:description", content: "Advanced vascular surgery and endovascular care center dedicated to excellence, innovation and compassionate patient care." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://ignitevascularcenter.com/about" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
