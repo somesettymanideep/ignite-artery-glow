@@ -22,10 +22,10 @@ const FAQS = [
 ];
 
 const FLOATING_CARDS = [
-  { icon: Activity, title: "What are varicose veins?", desc: "Understand the basics of varicose veins and how they affect your health.", pos: "lg:top-0 lg:left-0" },
-  { icon: HeartPulse, title: "What causes varicose veins?", desc: "Explore the common causes and risk factors behind varicose veins.", pos: "lg:top-0 lg:right-0" },
-  { icon: ClipboardCheck, title: "What are the treatment options?", desc: "Learn about the advanced and minimally invasive treatment options.", pos: "lg:bottom-0 lg:left-0" },
-  { icon: ShieldCheck, title: "Is the treatment painful?", desc: "Know what to expect during treatment and recovery.", pos: "lg:bottom-0 lg:right-0" },
+  { icon: Activity, title: "What are varicose veins?", desc: "Understand the basics of varicose veins and how they affect your health.", pos: "lg:top-0 lg:left-0", image: "src/assets/about-vascular.jpg" },
+  { icon: HeartPulse, title: "What causes varicose veins?", desc: "Explore the common causes and risk factors behind varicose veins.", pos: "lg:top-0 lg:right-0", image: "src/assets/service-varicose.png" },
+  { icon: ClipboardCheck, title: "What are the treatment options?", desc: "Learn about the advanced and minimally invasive treatment options.", pos: "lg:bottom-0 lg:left-0", image: "src/assets/service-endo.webp" },
+  { icon: ShieldCheck, title: "Is the treatment painful?", desc: "Know what to expect during treatment and recovery.", pos: "lg:bottom-0 lg:right-0", image: "src/assets/about-surgery.jpg" },
 ];
 
 export function FAQs() {
@@ -142,8 +142,9 @@ export function FAQs() {
                       className={`relative lg:absolute lg:w-[210px] ${card.pos} animate-[floaty_6s_ease-in-out_infinite]`}
                       style={{ animationDelay: `${i * 0.4}s` }}
                     >
-                      <div className="group rounded-2xl bg-card p-5 text-center shadow-xl shadow-secondary/10 ring-1 ring-border/50 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/15">
-                        <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-secondary text-white shadow-md">
+                      <div className="group relative overflow-hidden rounded-2xl bg-card p-5 text-center shadow-xl shadow-secondary/10 ring-1 ring-border/50 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/15">
+                        <img src={card.image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-10 transition-opacity duration-500 group-hover:opacity-20" />
+                        <div className="relative mx-auto grid h-14 w-14 place-items-center rounded-full bg-secondary text-white shadow-md">
                           <Icon className="h-6 w-6" />
                         </div>
                         <h3 className="mt-3 text-sm font-bold leading-snug text-secondary">{card.title}</h3>
