@@ -8,155 +8,155 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from "./routes/__root"
-import { Route as IndexRouteImport } from "./routes/index"
-import { Route as AboutRouteImport } from "./routes/about"
-import { Route as AdminRouteImport } from "./routes/admin"
-import { Route as CaseStudiesRouteImport } from "./routes/case-studies"
-import { Route as ContactRouteImport } from "./routes/contact"
-import { Route as GalleryRouteImport } from "./routes/gallery"
-import { Route as Home2RouteImport } from "./routes/home-2"
-import { Route as Home3RouteImport } from "./routes/home-3"
-import { Route as SecondOpinionRouteImport } from "./routes/second-opinion"
-import { Route as TreatmentsRouteImport } from "./routes/treatments"
-import { Route as ServicesSlugRouteImport } from "./routes/services.$slug"
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as CaseStudiesRouteImport } from './routes/case-studies'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as Home2RouteImport } from './routes/home-2'
+import { Route as Home3RouteImport } from './routes/home-3'
+import { Route as SecondOpinionRouteImport } from './routes/second-opinion'
+import { Route as TreatmentsRouteImport } from './routes/treatments'
+import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
 const IndexRoute = IndexRouteImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
-  id: "/about",
-  path: "/about",
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
-  id: "/admin",
-  path: "/admin",
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CaseStudiesRoute = CaseStudiesRouteImport.update({
-  id: "/case-studies",
-  path: "/case-studies",
+  id: '/case-studies',
+  path: '/case-studies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
-  id: "/contact",
-  path: "/contact",
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
-  id: "/gallery",
-  path: "/gallery",
+  id: '/gallery',
+  path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Home2Route = Home2RouteImport.update({
-  id: "/home-2",
-  path: "/home-2",
+  id: '/home-2',
+  path: '/home-2',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Home3Route = Home3RouteImport.update({
-  id: "/home-3",
-  path: "/home-3",
+  id: '/home-3',
+  path: '/home-3',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SecondOpinionRoute = SecondOpinionRouteImport.update({
-  id: "/second-opinion",
-  path: "/second-opinion",
+  id: '/second-opinion',
+  path: '/second-opinion',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TreatmentsRoute = TreatmentsRouteImport.update({
-  id: "/treatments",
-  path: "/treatments",
+  id: '/treatments',
+  path: '/treatments',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
-  id: "/services/$slug",
-  path: "/services/$slug",
+  id: '/services/$slug',
+  path: '/services/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute
-  "/about": typeof AboutRoute
-  "/admin": typeof AdminRoute
-  "/case-studies": typeof CaseStudiesRoute
-  "/contact": typeof ContactRoute
-  "/gallery": typeof GalleryRoute
-  "/home-2": typeof Home2Route
-  "/home-3": typeof Home3Route
-  "/second-opinion": typeof SecondOpinionRoute
-  "/treatments": typeof TreatmentsRoute
-  "/services/$slug": typeof ServicesSlugRoute
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
+  '/case-studies': typeof CaseStudiesRoute
+  '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
+  '/home-2': typeof Home2Route
+  '/home-3': typeof Home3Route
+  '/second-opinion': typeof SecondOpinionRoute
+  '/treatments': typeof TreatmentsRoute
+  '/services/$slug': typeof ServicesSlugRoute
 }
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute
-  "/about": typeof AboutRoute
-  "/admin": typeof AdminRoute
-  "/case-studies": typeof CaseStudiesRoute
-  "/contact": typeof ContactRoute
-  "/gallery": typeof GalleryRoute
-  "/home-2": typeof Home2Route
-  "/home-3": typeof Home3Route
-  "/second-opinion": typeof SecondOpinionRoute
-  "/treatments": typeof TreatmentsRoute
-  "/services/$slug": typeof ServicesSlugRoute
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
+  '/case-studies': typeof CaseStudiesRoute
+  '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
+  '/home-2': typeof Home2Route
+  '/home-3': typeof Home3Route
+  '/second-opinion': typeof SecondOpinionRoute
+  '/treatments': typeof TreatmentsRoute
+  '/services/$slug': typeof ServicesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  "/": typeof IndexRoute
-  "/about": typeof AboutRoute
-  "/admin": typeof AdminRoute
-  "/case-studies": typeof CaseStudiesRoute
-  "/contact": typeof ContactRoute
-  "/gallery": typeof GalleryRoute
-  "/home-2": typeof Home2Route
-  "/home-3": typeof Home3Route
-  "/second-opinion": typeof SecondOpinionRoute
-  "/treatments": typeof TreatmentsRoute
-  "/services/$slug": typeof ServicesSlugRoute
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
+  '/case-studies': typeof CaseStudiesRoute
+  '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
+  '/home-2': typeof Home2Route
+  '/home-3': typeof Home3Route
+  '/second-opinion': typeof SecondOpinionRoute
+  '/treatments': typeof TreatmentsRoute
+  '/services/$slug': typeof ServicesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | "/"
-    | "/about"
-    | "/admin"
-    | "/case-studies"
-    | "/contact"
-    | "/gallery"
-    | "/home-2"
-    | "/home-3"
-    | "/second-opinion"
-    | "/treatments"
-    | "/services/$slug"
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/case-studies'
+    | '/contact'
+    | '/gallery'
+    | '/home-2'
+    | '/home-3'
+    | '/second-opinion'
+    | '/treatments'
+    | '/services/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | "/"
-    | "/about"
-    | "/admin"
-    | "/case-studies"
-    | "/contact"
-    | "/gallery"
-    | "/home-2"
-    | "/home-3"
-    | "/second-opinion"
-    | "/treatments"
-    | "/services/$slug"
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/case-studies'
+    | '/contact'
+    | '/gallery'
+    | '/home-2'
+    | '/home-3'
+    | '/second-opinion'
+    | '/treatments'
+    | '/services/$slug'
   id:
-    | "__root__"
-    | "/"
-    | "/about"
-    | "/admin"
-    | "/case-studies"
-    | "/contact"
-    | "/gallery"
-    | "/home-2"
-    | "/home-3"
-    | "/second-opinion"
-    | "/treatments"
-    | "/services/$slug"
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/case-studies'
+    | '/contact'
+    | '/gallery'
+    | '/home-2'
+    | '/home-3'
+    | '/second-opinion'
+    | '/treatments'
+    | '/services/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -173,82 +173,82 @@ export interface RootRouteChildren {
   ServicesSlugRoute: typeof ServicesSlugRoute
 }
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/": {
-      id: "/"
-      path: "/"
-      fullPath: "/"
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    "/about": {
-      id: "/about"
-      path: "/about"
-      fullPath: "/about"
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    "/admin": {
-      id: "/admin"
-      path: "/admin"
-      fullPath: "/admin"
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
-    "/case-studies": {
-      id: "/case-studies"
-      path: "/case-studies"
-      fullPath: "/case-studies"
+    '/case-studies': {
+      id: '/case-studies'
+      path: '/case-studies'
+      fullPath: '/case-studies'
       preLoaderRoute: typeof CaseStudiesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    "/contact": {
-      id: "/contact"
-      path: "/contact"
-      fullPath: "/contact"
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    "/gallery": {
-      id: "/gallery"
-      path: "/gallery"
-      fullPath: "/gallery"
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
       preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
-    "/home-2": {
-      id: "/home-2"
-      path: "/home-2"
-      fullPath: "/home-2"
+    '/home-2': {
+      id: '/home-2'
+      path: '/home-2'
+      fullPath: '/home-2'
       preLoaderRoute: typeof Home2RouteImport
       parentRoute: typeof rootRouteImport
     }
-    "/home-3": {
-      id: "/home-3"
-      path: "/home-3"
-      fullPath: "/home-3"
+    '/home-3': {
+      id: '/home-3'
+      path: '/home-3'
+      fullPath: '/home-3'
       preLoaderRoute: typeof Home3RouteImport
       parentRoute: typeof rootRouteImport
     }
-    "/second-opinion": {
-      id: "/second-opinion"
-      path: "/second-opinion"
-      fullPath: "/second-opinion"
+    '/second-opinion': {
+      id: '/second-opinion'
+      path: '/second-opinion'
+      fullPath: '/second-opinion'
       preLoaderRoute: typeof SecondOpinionRouteImport
       parentRoute: typeof rootRouteImport
     }
-    "/treatments": {
-      id: "/treatments"
-      path: "/treatments"
-      fullPath: "/treatments"
+    '/treatments': {
+      id: '/treatments'
+      path: '/treatments'
+      fullPath: '/treatments'
       preLoaderRoute: typeof TreatmentsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    "/services/$slug": {
-      id: "/services/$slug"
-      path: "/services/$slug"
-      fullPath: "/services/$slug"
+    '/services/$slug': {
+      id: '/services/$slug'
+      path: '/services/$slug'
+      fullPath: '/services/$slug'
       preLoaderRoute: typeof ServicesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
