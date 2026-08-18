@@ -55,7 +55,7 @@ export const Route = createFileRoute("/")({
           name: "Ignite Vascular Center",
           description:
             "Home to one of the best vascular and endovascular surgeons in Vijayawada, offering advanced treatment for varicose veins, DVT, PAD, diabetic foot and limb salvage.",
-          url: "https://ignite-artery-glow.lovable.app/",
+          url: "https://ignitevascularcenter.com/",
           telephone: "+91-00000-00000",
           medicalSpecialty: ["VascularSurgery", "Endovascular Surgery"],
           address: {
