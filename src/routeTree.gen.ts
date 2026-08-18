@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TreatmentsRouteImport } from './routes/treatments'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SecondOpinionRouteImport } from './routes/second-opinion'
 import { Route as Home3RouteImport } from './routes/home-3'
 import { Route as Home2RouteImport } from './routes/home-2'
@@ -25,11 +24,6 @@ import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 const TreatmentsRoute = TreatmentsRouteImport.update({
   id: '/treatments',
   path: '/treatments',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SecondOpinionRoute = SecondOpinionRouteImport.update({
@@ -93,7 +87,6 @@ export interface FileRoutesByFullPath {
   '/home-2': typeof Home2Route
   '/home-3': typeof Home3Route
   '/second-opinion': typeof SecondOpinionRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/treatments': typeof TreatmentsRoute
   '/services/$slug': typeof ServicesSlugRoute
 }
@@ -107,7 +100,6 @@ export interface FileRoutesByTo {
   '/home-2': typeof Home2Route
   '/home-3': typeof Home3Route
   '/second-opinion': typeof SecondOpinionRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/treatments': typeof TreatmentsRoute
   '/services/$slug': typeof ServicesSlugRoute
 }
@@ -122,7 +114,6 @@ export interface FileRoutesById {
   '/home-2': typeof Home2Route
   '/home-3': typeof Home3Route
   '/second-opinion': typeof SecondOpinionRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/treatments': typeof TreatmentsRoute
   '/services/$slug': typeof ServicesSlugRoute
 }
@@ -138,7 +129,6 @@ export interface FileRouteTypes {
     | '/home-2'
     | '/home-3'
     | '/second-opinion'
-    | '/sitemap.xml'
     | '/treatments'
     | '/services/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -152,7 +142,6 @@ export interface FileRouteTypes {
     | '/home-2'
     | '/home-3'
     | '/second-opinion'
-    | '/sitemap.xml'
     | '/treatments'
     | '/services/$slug'
   id:
@@ -166,7 +155,6 @@ export interface FileRouteTypes {
     | '/home-2'
     | '/home-3'
     | '/second-opinion'
-    | '/sitemap.xml'
     | '/treatments'
     | '/services/$slug'
   fileRoutesById: FileRoutesById
@@ -181,7 +169,6 @@ export interface RootRouteChildren {
   Home2Route: typeof Home2Route
   Home3Route: typeof Home3Route
   SecondOpinionRoute: typeof SecondOpinionRoute
-  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TreatmentsRoute: typeof TreatmentsRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
 }
@@ -193,13 +180,6 @@ declare module '@tanstack/react-router' {
       path: '/treatments'
       fullPath: '/treatments'
       preLoaderRoute: typeof TreatmentsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/second-opinion': {
@@ -285,20 +265,9 @@ const rootRouteChildren: RootRouteChildren = {
   Home2Route: Home2Route,
   Home3Route: Home3Route,
   SecondOpinionRoute: SecondOpinionRoute,
-  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TreatmentsRoute: TreatmentsRoute,
   ServicesSlugRoute: ServicesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
