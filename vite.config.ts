@@ -6,18 +6,5 @@ export default defineConfig({
   },
   nitro: {
     preset: "static",
-    prerender: {
-      routes: [
-        "/",
-        "/about",
-        "/contact",
-        "/gallery",
-        "/case-studies",
-        "/treatments",
-        "/second-opinion",
-        "/admin"
-      ],
-      crawlLinks: true
-    }
   },
 });
