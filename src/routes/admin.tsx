@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Download, Upload, LogOut, Trash2, Search, LayoutDashboard, Mail, CalendarCheck, Stethoscope } from "lucide-react";
+import { Download, Upload, LogOut, Trash2, Search, LayoutDashboard, Mail, CalendarCheck, Stethoscope, Image as ImageIcon, ExternalLink } from "lucide-react";
 import logoAsset from "@/assets/ignite-logo.png.asset.json";
 import { resolveAssetUrl } from "@/lib/asset-url";
 import {
@@ -253,11 +253,34 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                         {r.kind}
                       </span>
                     </td>
-                    {columns.map((c) => (
-                      <td key={c} className="max-w-xs px-4 py-3 text-secondary">
-                        <div className="line-clamp-3 whitespace-pre-wrap break-words">{r.data[c] || <span className="text-muted-foreground/60">—</span>}</div>
-                      </td>
-                    ))}
+                    {columns.map((c) => {
+                      const val = r.data[c] || "";
+                      const isImage = typeof val === "string" && val.startsWith("data:image/");
+                      return (
+                        <td key={c} className="max-w-xs px-4 py-3 text-secondary">
+                          {isImage ? (
+                            <div className="flex flex-col gap-2">
+                              <div className="relative aspect-square w-20 overflow-hidden rounded-lg border border-border bg-muted/30">
+                                <img src={val} alt="Medical Report" className="h-full w-full object-cover" />
+                              </div>
+                              <button
+                                onClick={() => {
+                                  const a = document.createElement("a");
+                                  a.href = val;
+                                  a.download = `medical-report-${r.id.slice(0, 5)}.png`;
+                                  a.click();
+                                }}
+                                className="inline-flex items-center gap-1.5 text-[11px] font-bold text-primary hover:underline"
+                              >
+                                <Download className="h-3 w-3" /> Download
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="line-clamp-3 whitespace-pre-wrap break-words">{val || <span className="text-muted-foreground/60">—</span>}</div>
+                          )}
+                        </td>
+                      );
+                    })}
                     <td className="whitespace-nowrap px-4 py-3 text-right">
                       <button
                         onClick={() => { if (confirm("Delete this submission?")) removeSubmission(r.id); }}
