@@ -39,7 +39,9 @@ export function ProgressiveImage({
     img.onerror = () => {
       setHasError(true);
       setIsLoading(false);
+      // Ensure absolute fallback if provided, or default to relative placeholder
       setCurrentSrc(fallback);
+      console.warn(`ProgressiveImage: Failed to load image at ${src}. Falling back to ${fallback}`);
     };
   }, [src, fallback]);
 
