@@ -14,11 +14,14 @@ import { Navbar } from "@/components/home/Navbar";
 import { Footer } from "@/components/home/Footer";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 import { SubBanner } from "@/components/home/SubBanner";
+import { resolveAssetUrl } from "@/lib/asset-url";
 import doctorImg from "@/assets/doctor-portrait.jpg";
 import secondOpinionDoctorAsset from "@/assets/second-opinion-doctor.png.asset.json";
 import whyImg from "@/assets/why-choose.jpg";
 import secondOpinionBanner from "@/assets/second-opinion-banner.jpg";
 import { SERVICES } from "@/lib/services-data";
+
+const secondOpinionDoctor = secondOpinionDoctorAsset.url.startsWith("http") ? secondOpinionDoctorAsset.url : resolveAssetUrl(secondOpinionDoctorAsset.url);
 
 const secondOpinionSchema = z.object({
   name: z.string().trim().min(2, "Full name is required").max(100, "Name is too long"),
@@ -237,7 +240,7 @@ function HelpRibbon() {
               className="group/doc relative mx-auto mb-5 aspect-square w-[140px] cursor-pointer overflow-hidden rounded-full bg-white ring-4 ring-white shadow-lift transition-all duration-500 ease-out hover:scale-[1.04] hover:ring-white/90 hover:shadow-[0_18px_40px_-12px_rgba(198,35,71,0.55)] focus-visible:outline-none focus-visible:ring-[6px] focus-visible:ring-primary focus-visible:scale-[1.04] sm:absolute sm:left-8 sm:top-1/2 sm:mx-0 sm:mb-0 sm:w-[168px] sm:-translate-y-1/2 sm:hover:-translate-y-[calc(50%+3px)] sm:focus-visible:-translate-y-[calc(50%+3px)] lg:left-10 lg:w-[188px]"
             >
               <ProgressiveImage
-                src={secondOpinionDoctorAsset.url}
+                src={secondOpinionDoctor}
                 alt="Dr. Vascular Specialist, Ignite Vascular Center"
                 loading="lazy"
                 width={400}
