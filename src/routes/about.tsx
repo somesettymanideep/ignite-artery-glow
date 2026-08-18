@@ -16,6 +16,8 @@ import { Footer } from "@/components/home/Footer";
 import { resolveAssetUrl } from "@/lib/asset-url";
 import receptionAsset from "@/assets/about-reception-new.webp.asset.json";
 import doctorImgAsset from "@/assets/doctor_image-2.webp.asset.json";
+
+const doctorImg = resolveAssetUrl(doctorImgAsset.url);
 import vascularImg from "@/assets/about-vascular.jpg";
 import surgeryImg from "@/assets/about-surgery.jpg";
 
@@ -212,7 +214,7 @@ function Doctor() {
           <div className="relative">
             <div className="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-[radial-gradient(circle,theme(colors.secondary/20)_1px,transparent_1.5px)] bg-[length:10px_10px]" aria-hidden />
             <div className="relative overflow-hidden rounded-3xl bg-secondary shadow-lift">
-              <ProgressiveImage src={resolveAssetUrl(doctorImgAsset.url)} alt="Dr. G. Narasimha Sai" width={520} height={640} loading="lazy" className="h-[360px] w-full object-cover" />
+              <ProgressiveImage src={doctorImg} alt="Dr. G. Narasimha Sai" width={520} height={640} loading="lazy" className="h-[360px] w-full object-cover" />
             </div>
           </div>
         </Reveal>
