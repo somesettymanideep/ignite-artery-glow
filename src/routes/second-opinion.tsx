@@ -649,14 +649,22 @@ function RequestSection() {
                     type="file"
                     accept=".pdf,.jpg,.jpeg,.png"
                     className="sr-only"
-                    onChange={(e) => updateField("file", e.target.files?.[0]?.name ?? "")}
+                    onChange={(e) => {
+                      const f = e.target.files?.[0];
+                      if (!f) return;
+                      const reader = new FileReader();
+                      reader.onload = (ev) => {
+                        updateField("file", ev.target?.result as string);
+                      };
+                      reader.readAsDataURL(f);
+                    }}
                     disabled={isSubmitting}
                     aria-describedby="so-file-help"
                   />
                   {form.file && (
                     <span className="mt-1 inline-flex max-w-full items-center gap-1.5 rounded-full bg-[#311261]/10 px-3 py-1 text-[11.5px] font-semibold text-[#311261]" aria-live="polite">
                       <ClipboardCheck className="h-3 w-3 shrink-0" aria-hidden />
-                      <span className="truncate">Selected file: {form.file}</span>
+                      <span className="truncate">Selected file: {form.file.startsWith("data:") ? "Medical Report Image" : form.file}</span>
                     </span>
                   )}
                 </label>
