@@ -48,6 +48,7 @@ export const Route = createFileRoute("/gallery")({
       { property: "og:title", content: "Gallery — Ignite Vascular Center" },
       { property: "og:description", content: "A glimpse into our center, our team, and the care we provide every day." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://ignitevascularcenter.com/gallery" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),

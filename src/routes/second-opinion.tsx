@@ -43,6 +43,7 @@ export const Route = createFileRoute("/second-opinion")({
       { property: "og:title", content: "Get a Second Opinion — Ignite Vascular Center" },
       { property: "og:description", content: "Clarity and confidence for your vascular care. Confidential expert review by senior specialists." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://ignitevascularcenter.com/second-opinion" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),

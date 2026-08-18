@@ -20,6 +20,7 @@ export const Route = createFileRoute("/treatments")({
       { property: "og:title", content: "Our Treatments — Ignite Vascular Center" },
       { property: "og:description", content: "Advanced vascular surgery and endovascular treatments in Vijayawada." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://ignitevascularcenter.com/treatments" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
