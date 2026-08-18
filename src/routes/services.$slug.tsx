@@ -276,7 +276,7 @@ function ServiceDetail() {
                     <div aria-hidden className="absolute -inset-2 -z-10 rounded-[2rem] bg-gradient-brand-soft" />
                     <div aria-hidden className="absolute -right-4 -bottom-4 -z-10 h-40 w-40 rounded-full bg-primary/10 blur-2xl" />
                     <img
-                      src={service.image}
+                      src={resolveAssetUrl(service.image)}
                       alt={`${service.title} procedure`}
                       loading="lazy"
                       decoding="async"
