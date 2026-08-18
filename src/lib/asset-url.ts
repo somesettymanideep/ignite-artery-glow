@@ -1,7 +1,7 @@
 // For local assets (imported images), we let Vite handle them normally.
 // Only Lovable-managed assets or explicit public paths need the origin prefix
 // to resolve correctly across different environments.
-const LOVABLE_ASSET_ORIGIN = "https://ignitevascularcenter.com";
+const LOVABLE_ASSET_ORIGIN = "https://ignite-artery-glow.lovable.app";
 
 const ABSOLUTE_URL_RE = /^[a-z][a-z\d+.-]*:/i;
 
