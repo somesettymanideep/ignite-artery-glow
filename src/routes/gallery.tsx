@@ -51,6 +51,10 @@ export const Route = createFileRoute("/gallery")({
       { property: "og:description", content: "A glimpse into our center, our team, and the care we provide every day." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "robots", content: "index, follow" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://ignite-artery-glow.lovable.app/gallery" },
     ],
   }),
   component: GalleryTwoPage,
