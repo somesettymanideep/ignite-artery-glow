@@ -109,6 +109,8 @@ async def main():
                 print(f"\nPage: {path}")
                 for asset in assets:
                     print(f"  - {asset}")
+            print('='*50)
+            sys.exit(1)
         print('='*50)
 
 if __name__ == "__main__":
