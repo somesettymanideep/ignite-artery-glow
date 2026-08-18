@@ -3,6 +3,7 @@ import { Instagram, Play, Pause, Heart, MessageCircle, Send, ChevronLeft, Chevro
 
 import { Reveal } from "@/hooks/use-reveal";
 import { resolveAssetUrl } from "@/lib/asset-url";
+import { ProgressiveImage } from "@/components/ui/ProgressiveImage";
 import reel1 from "@/assets/about-surgery.jpg";
 import reel2 from "@/assets/home2-doctor.jpg";
 import reel3 from "@/assets/about-vascular.jpg";
@@ -35,7 +36,6 @@ type ReelCardProps = {
   registerVideo: (i: number, el: HTMLVideoElement | null) => void;
 };
 
-import { ProgressiveImage } from "@/components/ui/ProgressiveImage";
 
 function ReelCard({ reel, index, isActive, onPlayRequest, onPauseRequest, registerVideo }: ReelCardProps) {
   const cardRef = useRef<HTMLElement | null>(null);
