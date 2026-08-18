@@ -4,15 +4,16 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  ScrollRestoration,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
-
-import appCss from "../styles.css?url";
+import { useEffect } from "react";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import { ScrollToTop } from "@/components/home/ScrollToTop";
 import { FloatingEmergency } from "@/components/home/FloatingEmergency";
 import { FloatingSocials } from "@/components/home/FloatingSocials";
 import { BookingModal } from "@/components/booking/BookingModal";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -72,47 +73,37 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Ignite Vascular Center | Vascular Surgery in Vijayawada" },
-      {
-        name: "description",
-        content:
-          "Advanced vascular surgery & endovascular care in Kasturibai Peta, Vijayawada. Varicose veins, PAD, diabetic foot care & dialysis access by expert specialists.",
-      },
-      { name: "author", content: "Ignite Vascular Center" },
-      { property: "og:title", content: "Ignite Vascular Center | Vascular Surgery in Vijayawada" },
-      {
-        property: "og:description",
-        content:
-          "Advanced vascular surgery & endovascular care in Kasturibai Peta, Vijayawada. Varicose veins, PAD, diabetic foot care & dialysis access by expert specialists.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Ignite Vascular Center | Vascular Surgery in Vijayawada" },
-      { name: "twitter:description", content: "Advanced vascular surgery & endovascular care in Kasturibai Peta, Vijayawada. Varicose veins, PAD, diabetic foot care & dialysis access by expert specialists." },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "icon", href: "/favicon.png", type: "image/png" },
-      { rel: "apple-touch-icon", href: "/favicon.png" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap",
-      },
-    ],
-  }),
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
+
+function RootComponent() {
+  const { queryClient } = Route.useRouteContext();
+  
+  return (
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <Helmet>
+          <title>Ignite Vascular Center | Vascular Surgery in Vijayawada</title>
+          <meta name="description" content="Advanced vascular surgery & endovascular care in Kasturibai Peta, Vijayawada. Varicose veins, PAD, diabetic foot care & dialysis access by expert specialists." />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+        </Helmet>
+        
+        <Outlet />
+        <ScrollRestoration />
+        <ScrollToTop />
+        <FloatingEmergency />
+        <FloatingSocials />
+        <BookingModal />
+        <Toaster position="top-right" />
+      </QueryClientProvider>
+    </HelmetProvider>
+  );
+}
+
 
 
 function RootComponent() {
