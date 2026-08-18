@@ -1,5 +1,6 @@
 import { ArrowRight, Award, Stethoscope, Users, Heart, Activity } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
+import { resolveAssetUrl } from "@/lib/asset-url";
 import doctorAsset from "@/assets/doctor-portrait-new.webp.asset.json";
 
 const DOCTOR_POINTS = [
