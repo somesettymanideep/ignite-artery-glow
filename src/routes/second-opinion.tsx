@@ -48,6 +48,10 @@ export const Route = createFileRoute("/second-opinion")({
       { property: "og:description", content: "Clarity and confidence for your vascular care. Confidential expert review by senior specialists." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "robots", content: "index, follow" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://ignite-artery-glow.lovable.app/second-opinion" },
     ],
   }),
   component: SecondOpinionPage,

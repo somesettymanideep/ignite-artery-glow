@@ -41,6 +41,7 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: "https://ignite-artery-glow.lovable.app/" },
       { property: "og:image", content: homeOgImage },
       { name: "twitter:image", content: homeOgImage },
+      { name: "robots", content: "index, follow" },
     ],
     links: [
       { rel: "canonical", href: "https://ignite-artery-glow.lovable.app/" },

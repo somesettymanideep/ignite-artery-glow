@@ -34,6 +34,10 @@ export const Route = createFileRoute("/case-studies")({
       { property: "og:description", content: "Real patients. Real results. See how advanced vascular care transformed lives." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "robots", content: "index, follow" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://ignite-artery-glow.lovable.app/case-studies" },
     ],
   }),
   component: CaseStudiesPage,

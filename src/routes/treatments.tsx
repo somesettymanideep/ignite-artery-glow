@@ -21,6 +21,10 @@ export const Route = createFileRoute("/treatments")({
       { property: "og:description", content: "Advanced vascular surgery and endovascular treatments in Vijayawada." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "robots", content: "index, follow" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://ignite-artery-glow.lovable.app/treatments" },
     ],
   }),
   component: TreatmentsPage,
