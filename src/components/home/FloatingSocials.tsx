@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Facebook, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
+
 
 const socials = [
   {
