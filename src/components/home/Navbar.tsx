@@ -204,7 +204,17 @@ export function Navbar() {
           >
             <Phone className="h-4 w-4" />
           </a>
+          <a
+            href="https://wa.me/919966117292"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="grid h-10 w-10 place-items-center rounded-full bg-[#25D366] text-white shadow-sm transition-transform hover:scale-105 lg:hidden"
+            aria-label="WhatsApp"
+          >
+            <MessageCircle className="h-4 w-4 fill-white" />
+          </a>
           <button
+
             className="relative grid h-10 w-10 place-items-center rounded-xl border border-border/60 bg-white text-secondary transition hover:border-primary/40 hover:text-primary lg:hidden"
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
