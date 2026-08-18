@@ -14,8 +14,8 @@ import treatmentsBanner from "@/assets/about-surgery.jpg";
 
 export const Route = createFileRoute("/treatments")({
   head: () => ({
+    title: "Our Treatments — Ignite Vascular Center, Vijayawada",
     meta: [
-      { title: "Our Treatments — Ignite Vascular Center, Vijayawada" },
       { name: "description", content: "Explore advanced vascular treatments at Ignite Vascular Center in Vijayawada. Arterial & venous diseases, dialysis access, central line access and more." },
       { property: "og:title", content: "Our Treatments — Ignite Vascular Center" },
       { property: "og:description", content: "Advanced vascular surgery and endovascular treatments in Vijayawada." },

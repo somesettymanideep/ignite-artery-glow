@@ -19,8 +19,8 @@ const homeOgImage = toAbsoluteUrl(heroAsset.url);
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
+    title: "Best Vascular Surgeon in Vijayawada | Ignite Vascular Center",
     meta: [
-      { title: "Best Vascular Surgeon in Vijayawada | Ignite Vascular Center" },
       {
         name: "description",
         content:

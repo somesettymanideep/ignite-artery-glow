@@ -11,8 +11,8 @@ import servicesImg from "@/assets/contact-services.jpg";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
+    title: "Contact Us — Ignite Vascular Center, Vijayawada",
     meta: [
-      { title: "Contact Us — Ignite Vascular Center, Vijayawada" },
       { name: "description", content: "Get in touch with Ignite Vascular Center in Kasturibai Peta, Vijayawada. Book appointments, consultations, or ask questions about vascular care." },
       { property: "og:title", content: "Contact Ignite Vascular Center — Vijayawada" },
       { property: "og:description", content: "Reach our vascular specialists for appointments, consultations and expert care." },
