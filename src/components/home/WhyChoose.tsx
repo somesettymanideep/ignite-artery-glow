@@ -1,5 +1,6 @@
 import { BadgeCheck, Cpu, Scissors, ClipboardList, Activity, HeartHandshake } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
+import { resolveAssetUrl } from "@/lib/asset-url";
 import whyImg from "@/assets/why-choose.jpg";
 
 const points = [
@@ -18,7 +19,7 @@ export function WhyChoose() {
         <Reveal variant="left" className="relative">
           <div className="absolute -inset-5 rounded-[2.5rem] bg-gradient-brand opacity-10 blur-2xl" aria-hidden />
           <img
-            src={whyImg}
+            src={resolveAssetUrl(whyImg)}
             alt="Advanced 3D visualization of the human vascular system in red and indigo"
             width={1024}
             height={1024}
