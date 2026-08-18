@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Phone, Menu, X, ChevronDown, MessageCircle } from "lucide-react";
+import { Phone, Menu, X, ChevronDown, MessageCircle, Facebook, Instagram } from "lucide-react";
 import { SERVICES } from "@/lib/services-data";
 import logoAsset from "@/assets/ignite-logo.png.asset.json";
 import { openBookingModal } from "@/components/booking/BookingModal";
@@ -318,6 +318,18 @@ export function Navbar() {
           >
             <Phone className="h-3.5 w-3.5" /> +91 99661 17292
           </a>
+          
+          <div className="mt-4 flex items-center justify-center gap-6 pb-2">
+            <a href="https://www.facebook.com/people/Ignite-Vascular-Center/61578279247712/" target="_blank" rel="noopener noreferrer" className="text-secondary/60 transition-colors hover:text-primary">
+              <Facebook className="h-5 w-5" />
+            </a>
+            <a href="https://www.instagram.com/ignite_vascular_center/?hl=en" target="_blank" rel="noopener noreferrer" className="text-secondary/60 transition-colors hover:text-primary">
+              <Instagram className="h-5 w-5" />
+            </a>
+            <a href="https://wa.me/919966117292" target="_blank" rel="noopener noreferrer" className="text-secondary/60 transition-colors hover:text-primary">
+              <MessageCircle className="h-5 w-5" />
+            </a>
+          </div>
         </div>
       </aside>
     </header>
