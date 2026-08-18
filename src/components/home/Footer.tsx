@@ -82,7 +82,7 @@ export function Footer() {
             <ul className="mt-5 space-y-2.5 text-sm text-primary-foreground/75">
               {serviceLinks.map((s) => (
                 <li key={s}>
-                  <Link to="/#services" className="hover:text-primary-foreground">{s}</Link>
+                  <Link to="/" hash="services" className="hover:text-primary-foreground">{s}</Link>
                 </li>
               ))}
             </ul>
