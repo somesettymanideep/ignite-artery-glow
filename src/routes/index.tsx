@@ -19,23 +19,23 @@ const homeOgImage = toAbsoluteUrl(heroAsset.url);
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
-    title: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Verify that my Home and About page browser tab titles update correctly after route changes.",
+    title: "Best Vascular Surgeon in Vijayawada for Advanced Vein & Artery Care",
     meta: [
       {
         name: "description",
         content:
-          "Ignite Vascular Center, Vijayawada — led by Dr. G. Narasimha Sai, one of the best vascular & endovascular surgeons in Vijayawada. Advanced treatment for varicose veins, DVT, PAD, diabetic foot & limb salvage.",
+          "Get expert diagnosis and advanced treatment for varicose veins, vascular disorders, blocked arteries, and other blood vessel conditions.",
       },
       {
         name: "keywords",
         content:
-          "best vascular surgeon in Vijayawada, best endovascular surgeon, vascular surgeon Vijayawada, endovascular surgery Vijayawada, varicose veins treatment Vijayawada, DVT treatment, PAD treatment, diabetic foot care, limb salvage, Ignite Vascular Center",
+          "Best Vascular Surgeon in Vijayawada",
       },
-      { property: "og:title", content: "Best Vascular & Endovascular Surgeon in Vijayawada — Ignite Vascular Center" },
+      { property: "og:title", content: "Best Vascular Surgeon in Vijayawada for Advanced Vein & Artery Care" },
       {
         property: "og:description",
         content:
-          "Advanced vascular & endovascular care in Vijayawada by Dr. G. Narasimha Sai (DrNB Vascular Surgery, NIMS). Book a consultation today.",
+          "Get expert diagnosis and advanced treatment for varicose veins, vascular disorders, blocked arteries, and other blood vessel conditions.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://ignite-artery-glow.lovable.app/" },
