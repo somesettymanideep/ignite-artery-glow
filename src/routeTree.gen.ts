@@ -16,10 +16,13 @@ import { Route as Home2RouteImport } from './routes/home-2'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
+import { Route as BlogsRouteImport } from './routes/blogs'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogsIndexRouteImport } from './routes/blogs.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
+import { Route as BlogsSlugRouteImport } from './routes/blogs.$slug'
 
 const TreatmentsRoute = TreatmentsRouteImport.update({
   id: '/treatments',
@@ -56,6 +59,11 @@ const CaseStudiesRoute = CaseStudiesRouteImport.update({
   path: '/case-studies',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogsRoute = BlogsRouteImport.update({
+  id: '/blogs',
+  path: '/blogs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -71,16 +79,27 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogsIndexRoute = BlogsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BlogsRoute,
+} as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
   id: '/services/$slug',
   path: '/services/$slug',
   getParentRoute: () => rootRouteImport,
+} as any)
+const BlogsSlugRoute = BlogsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogsRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/blogs': typeof BlogsRouteWithChildren
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
@@ -88,7 +107,9 @@ export interface FileRoutesByFullPath {
   '/home-3': typeof Home3Route
   '/second-opinion': typeof SecondOpinionRoute
   '/treatments': typeof TreatmentsRoute
+  '/blogs/$slug': typeof BlogsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blogs/': typeof BlogsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -101,13 +122,16 @@ export interface FileRoutesByTo {
   '/home-3': typeof Home3Route
   '/second-opinion': typeof SecondOpinionRoute
   '/treatments': typeof TreatmentsRoute
+  '/blogs/$slug': typeof BlogsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blogs': typeof BlogsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/blogs': typeof BlogsRouteWithChildren
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
@@ -115,7 +139,9 @@ export interface FileRoutesById {
   '/home-3': typeof Home3Route
   '/second-opinion': typeof SecondOpinionRoute
   '/treatments': typeof TreatmentsRoute
+  '/blogs/$slug': typeof BlogsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blogs/': typeof BlogsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -123,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/blogs'
     | '/case-studies'
     | '/contact'
     | '/gallery'
@@ -130,7 +157,9 @@ export interface FileRouteTypes {
     | '/home-3'
     | '/second-opinion'
     | '/treatments'
+    | '/blogs/$slug'
     | '/services/$slug'
+    | '/blogs/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -143,12 +172,15 @@ export interface FileRouteTypes {
     | '/home-3'
     | '/second-opinion'
     | '/treatments'
+    | '/blogs/$slug'
     | '/services/$slug'
+    | '/blogs'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/admin'
+    | '/blogs'
     | '/case-studies'
     | '/contact'
     | '/gallery'
@@ -156,13 +188,16 @@ export interface FileRouteTypes {
     | '/home-3'
     | '/second-opinion'
     | '/treatments'
+    | '/blogs/$slug'
     | '/services/$slug'
+    | '/blogs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
+  BlogsRoute: typeof BlogsRouteWithChildren
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
   GalleryRoute: typeof GalleryRoute
@@ -224,6 +259,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CaseStudiesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs': {
+      id: '/blogs'
+      path: '/blogs'
+      fullPath: '/blogs'
+      preLoaderRoute: typeof BlogsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -245,6 +287,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/': {
+      id: '/blogs/'
+      path: '/'
+      fullPath: '/blogs/'
+      preLoaderRoute: typeof BlogsIndexRouteImport
+      parentRoute: typeof BlogsRoute
+    }
     '/services/$slug': {
       id: '/services/$slug'
       path: '/services/$slug'
@@ -252,13 +301,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blogs/$slug': {
+      id: '/blogs/$slug'
+      path: '/$slug'
+      fullPath: '/blogs/$slug'
+      preLoaderRoute: typeof BlogsSlugRouteImport
+      parentRoute: typeof BlogsRoute
+    }
   }
 }
+
+interface BlogsRouteChildren {
+  BlogsSlugRoute: typeof BlogsSlugRoute
+  BlogsIndexRoute: typeof BlogsIndexRoute
+}
+
+const BlogsRouteChildren: BlogsRouteChildren = {
+  BlogsSlugRoute: BlogsSlugRoute,
+  BlogsIndexRoute: BlogsIndexRoute,
+}
+
+const BlogsRouteWithChildren = BlogsRoute._addFileChildren(BlogsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
+  BlogsRoute: BlogsRouteWithChildren,
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
   GalleryRoute: GalleryRoute,

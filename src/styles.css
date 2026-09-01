@@ -404,3 +404,44 @@
     animation: none !important;
   }
 }
+
+/* ---------- Blog Specific Styling ---------- */
+.brand-highlight {
+  color: #DA3234;
+  font-weight: 700;
+  background-color: rgba(218, 50, 52, 0.08);
+  padding: 0.12em 0.38em;
+  border-radius: 0.35rem;
+  border: 1px solid rgba(218, 50, 52, 0.18);
+  display: inline-block;
+  line-height: 1.35;
+}
+
+.brand-link-internal {
+  color: #DA3234;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  transition: all 0.2s ease;
+}
+
+.brand-link-internal:hover {
+  color: #41305c;
+  text-decoration-color: #41305c;
+}
+
+.brand-link-external {
+  color: #41305c;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  transition: all 0.2s ease;
+}
+
+.brand-link-external:hover {
+  color: #DA3234;
+  text-decoration-color: #DA3234;
+}
+

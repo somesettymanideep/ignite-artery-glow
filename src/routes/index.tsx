@@ -19,32 +19,32 @@ const homeOgImage = toAbsoluteUrl(heroAsset.url);
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
-    title: "Best Vascular Surgeon in Vijayawada for Advanced Vein & Artery Care",
+    title: "av fistula surgeon in Vijayawada",
     meta: [
       {
         name: "description",
         content:
-          "Get expert diagnosis and advanced treatment for varicose veins, vascular disorders, blocked arteries, and other blood vessel conditions.",
+          "Looking for the best AV fistula surgeon in Vijayawada? Dr. G. Narasimha Sai provides expert AV fistula creation, salvage, and dialysis vascular access care at Ignite Vascular Center.",
       },
       {
         name: "keywords",
         content:
-          "Best Vascular Surgeon in Vijayawada",
+          "av fistula surgeon in Vijayawada, AV fistula creation Vijayawada, vascular surgeon in Vijayawada, dialysis access surgeon Vijayawada",
       },
-      { property: "og:title", content: "Best Vascular Surgeon in Vijayawada for Advanced Vein & Artery Care" },
+      { property: "og:title", content: "av fistula surgeon in Vijayawada | Ignite Vascular Center" },
       {
         property: "og:description",
         content:
-          "Get expert diagnosis and advanced treatment for varicose veins, vascular disorders, blocked arteries, and other blood vessel conditions.",
+          "Looking for the best AV fistula surgeon in Vijayawada? Dr. G. Narasimha Sai provides expert AV fistula creation, salvage, and dialysis vascular access care at Ignite Vascular Center.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://ignite-artery-glow.lovable.app/" },
+      { property: "og:url", content: "https://ignitevascularcenter.com/" },
       { property: "og:image", content: homeOgImage },
       { name: "twitter:image", content: homeOgImage },
       { name: "robots", content: "index, follow" },
     ],
     links: [
-      { rel: "canonical", href: "https://ignite-artery-glow.lovable.app/" },
+      { rel: "canonical", href: "https://ignitevascularcenter.com/" },
       { rel: "preload", as: "image", href: homeOgImage, fetchpriority: "high" } as unknown as { rel: string; href: string },
     ],
     scripts: [

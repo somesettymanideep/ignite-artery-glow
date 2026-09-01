@@ -12,6 +12,7 @@ const quickLinks: { label: string; to: string }[] = [
   { label: "About", to: "/about" },
   { label: "Our Treatments", to: "/treatments" },
   { label: "Second Opinion", to: "/second-opinion" },
+  { label: "Blogs", to: "/blogs" },
   { label: "Gallery", to: "/gallery" },
   { label: "Contact", to: "/contact" },
 ];

@@ -14,17 +14,30 @@ import treatmentsBanner from "@/assets/about-surgery.jpg";
 
 export const Route = createFileRoute("/treatments")({
   head: () => ({
-    title: "Our Treatments — Ignite Vascular Center, Vijayawada",
+    title: "best vascular center in Vijayawada",
     meta: [
-      { name: "description", content: "Explore advanced vascular treatments at Ignite Vascular Center in Vijayawada. Arterial & venous diseases, dialysis access, central line access and more." },
-      { property: "og:title", content: "Our Treatments — Ignite Vascular Center" },
-      { property: "og:description", content: "Advanced vascular surgery and endovascular treatments in Vijayawada." },
+      {
+        name: "description",
+        content:
+          "Looking for the best vascular center in Vijayawada? Ignite Vascular Center provides world-class treatment for arterial, venous, dialysis access, and diabetic foot disorders.",
+      },
+      {
+        name: "keywords",
+        content:
+          "best vascular center in Vijayawada, vascular center Vijayawada, vascular surgery hospital Vijayawada, vein clinic Vijayawada, endovascular clinic Vijayawada",
+      },
+      { property: "og:title", content: "best vascular center in Vijayawada | Ignite Vascular Center" },
+      {
+        property: "og:description",
+        content:
+          "Looking for the best vascular center in Vijayawada? Ignite Vascular Center provides world-class treatment for arterial, venous, dialysis access, and diabetic foot disorders.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "index, follow" },
     ],
     links: [
-      { rel: "canonical", href: "https://ignite-artery-glow.lovable.app/treatments" },
+      { rel: "canonical", href: "https://ignitevascularcenter.com/treatments" },
     ],
   }),
   component: TreatmentsPage,

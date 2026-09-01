@@ -26,17 +26,30 @@ const receptionImg = resolveAssetUrl(receptionAsset.url);
 
 export const Route = createFileRoute("/about")({
   head: () => ({
-    title: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Verify that my Home and About page browser tab titles update correctly after route changes.",
+    title: "vascular center in Vijayawada",
     meta: [
-      { name: "description", content: "Learn about Dr. G. Narasimha Sai, the best endo vascular surgeon in Vijayawada, and the team at Ignite Vascular Center. Advanced vascular surgery & care in Kasturibai Peta." },
-      { property: "og:title", content: "About Ignite Vascular Center — Vijayawada" },
-      { property: "og:description", content: "Advanced vascular surgery and endovascular care center dedicated to excellence, innovation and compassionate patient care." },
+      {
+        name: "description",
+        content:
+          "Ignite Vascular Center is the premier vascular center in Vijayawada led by Dr. G. Narasimha Sai. Dedicated to advanced arterial, venous, and endovascular care in Kasturibai Peta.",
+      },
+      {
+        name: "keywords",
+        content:
+          "vascular center in Vijayawada, best vascular hospital in Vijayawada, vascular surgery clinic Vijayawada, vascular specialist Vijayawada",
+      },
+      { property: "og:title", content: "vascular center in Vijayawada | Ignite Vascular Center" },
+      {
+        property: "og:description",
+        content:
+          "Ignite Vascular Center is the premier vascular center in Vijayawada led by Dr. G. Narasimha Sai. Dedicated to advanced arterial, venous, and endovascular care in Kasturibai Peta.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "index, follow" },
     ],
     links: [
-      { rel: "canonical", href: "https://ignite-artery-glow.lovable.app/about" },
+      { rel: "canonical", href: "https://ignitevascularcenter.com/about" },
     ],
   }),
   component: AboutPage,

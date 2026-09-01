@@ -27,15 +27,29 @@ export const Route = createFileRoute("/services/$slug")({
       return { meta: [{ title: "Service not found — Ignite Vascular Center" }, { name: "robots", content: "noindex" }] };
     }
     const s = loaderData.service;
+    const isVaricose = s.slug === "varicose-veins-treatment";
+    const pageTitle = isVaricose ? "varicose veins treatment in Vijayawada" : `${s.title} — Ignite Vascular Center, Vijayawada`;
+    const pageDescription = isVaricose
+      ? "Looking for advanced varicose veins treatment in Vijayawada? Ignite Vascular Center offers painless laser (EVLA) and radiofrequency ablation with same-day recovery."
+      : s.short;
+    const pageKeywords = isVaricose
+      ? "varicose veins treatment in Vijayawada, varicose vein doctor Vijayawada, laser vein treatment Vijayawada, EVLA Vijayawada"
+      : `${s.title}, vascular surgery Vijayawada`;
+
     return {
+      title: pageTitle,
       meta: [
-        { title: `${s.title} — Ignite Vascular Center, Vijayawada` },
-        { name: "description", content: s.short },
-        { property: "og:title", content: `${s.title} — Ignite Vascular Center` },
-        { property: "og:description", content: s.short },
+        { name: "description", content: pageDescription },
+        { name: "keywords", content: pageKeywords },
+        { property: "og:title", content: pageTitle },
+        { property: "og:description", content: pageDescription },
         { property: "og:type", content: "article" },
         { property: "og:image", content: toAbsoluteUrl(s.image) },
         { name: "twitter:card", content: "summary_large_image" },
+        { name: "robots", content: "index, follow" },
+      ],
+      links: [
+        { rel: "canonical", href: `https://ignitevascularcenter.com/services/${s.slug}` },
       ],
     };
   },
