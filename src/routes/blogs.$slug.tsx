@@ -44,8 +44,8 @@ export const Route = createFileRoute("/blogs/$slug")({
     }
     const p = loaderData.post;
     return {
-      title: p.metaTitle,
       meta: [
+        { title: p.metaTitle },
         { name: "description", content: p.metaDescription },
         { name: "keywords", content: p.keywords || "best vascular surgeon in Vijayawada, vascular surgeon in Vijayawada" },
         { property: "og:title", content: p.metaTitle },

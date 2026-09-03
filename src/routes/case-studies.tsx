@@ -27,8 +27,8 @@ const heroSlide2Url = resolveAssetUrl(heroSlide2.url);
 
 export const Route = createFileRoute("/case-studies")({
   head: () => ({
-    title: "Case Studies — Real Patients, Real Results | Ignite Vascular Center",
     meta: [
+      { title: "Case Studies — Real Patients, Real Results | Ignite Vascular Center" },
       { name: "description", content: "Explore real vascular surgery case studies from Ignite Vascular Center, Vijayawada — varicose veins, PAD, DVT, aneurysm repair, diabetic foot care and more." },
       { property: "og:title", content: "Case Studies — Ignite Vascular Center" },
       { property: "og:description", content: "Real patients. Real results. See how advanced vascular care transformed lives." },
