@@ -37,8 +37,8 @@ export const Route = createFileRoute("/services/$slug")({
       : `${s.title}, vascular surgery Vijayawada`;
 
     return {
-      title: pageTitle,
       meta: [
+        { title: pageTitle },
         { name: "description", content: pageDescription },
         { name: "keywords", content: pageKeywords },
         { property: "og:title", content: pageTitle },

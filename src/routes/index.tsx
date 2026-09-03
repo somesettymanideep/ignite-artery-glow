@@ -19,8 +19,8 @@ const homeOgImage = toAbsoluteUrl(heroAsset.url);
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
-    title: "av fistula surgeon in Vijayawada",
     meta: [
+      { title: "av fistula surgeon in Vijayawada" },
       {
         name: "description",
         content:

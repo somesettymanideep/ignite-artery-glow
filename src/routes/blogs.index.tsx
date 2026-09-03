@@ -24,8 +24,8 @@ import aboutVascularImg from "@/assets/about-vascular.jpg";
 
 export const Route = createFileRoute("/blogs/")({
   head: () => ({
-    title: "Vascular Health Blog & Guides | Ignite Vascular Center, Vijayawada",
     meta: [
+      { title: "Vascular Health Blog & Guides | Ignite Vascular Center, Vijayawada" },
       {
         name: "description",
         content:
