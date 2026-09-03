@@ -14,8 +14,8 @@ import treatmentsBanner from "@/assets/about-surgery.jpg";
 
 export const Route = createFileRoute("/treatments")({
   head: () => ({
-    title: "best vascular center in Vijayawada",
     meta: [
+      { title: "best vascular center in Vijayawada" },
       {
         name: "description",
         content:

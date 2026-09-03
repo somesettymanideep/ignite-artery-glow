@@ -44,8 +44,8 @@ import gPatientCare from "@/assets/gallery/patient-care.jpg";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
-    title: "Gallery — Ignite Vascular Center, Vijayawada",
     meta: [
+      { title: "Gallery — Ignite Vascular Center, Vijayawada" },
       { name: "description", content: "Explore our facilities, team, procedures and moments of care at Ignite Vascular Center." },
       { property: "og:title", content: "Gallery — Ignite Vascular Center" },
       { property: "og:description", content: "A glimpse into our center, our team, and the care we provide every day." },

@@ -41,8 +41,8 @@ type FormErrors = Partial<Record<keyof FormData, string>>;
 
 export const Route = createFileRoute("/second-opinion")({
   head: () => ({
-    title: "Second Opinion — Ignite Vascular Center, Vijayawada",
     meta: [
+      { title: "Second Opinion — Ignite Vascular Center, Vijayawada" },
       { name: "description", content: "Request an expert vascular second opinion. Confidential review of your diagnosis and treatment plan by senior vascular specialists in Vijayawada." },
       { property: "og:title", content: "Get a Second Opinion — Ignite Vascular Center" },
       { property: "og:description", content: "Clarity and confidence for your vascular care. Confidential expert review by senior specialists." },
