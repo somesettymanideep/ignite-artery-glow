@@ -26,7 +26,7 @@ const receptionImg = resolveAssetUrl(receptionAsset.url);
 
 export const Route = createFileRoute("/about")({
   head: () => ({
-    title: "vascular center in Vijayawada",
+    title: "Best Vascular Center in Vijayawada | Ignite Vascular Center",
     meta: [
       {
         name: "description",
@@ -38,7 +38,7 @@ export const Route = createFileRoute("/about")({
         content:
           "vascular center in Vijayawada, best vascular hospital in Vijayawada, vascular surgery clinic Vijayawada, vascular specialist Vijayawada",
       },
-      { property: "og:title", content: "vascular center in Vijayawada | Ignite Vascular Center" },
+      { property: "og:title", content: "Best Vascular Center in Vijayawada | Ignite Vascular Center" },
       {
         property: "og:description",
         content:
