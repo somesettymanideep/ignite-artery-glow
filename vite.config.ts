@@ -24,6 +24,37 @@ function copyIndexTo404() {
   };
 }
 
+// Emit a real index.html for every URL in the sitemap so GitHub Pages
+// serves HTTP 200 (not the 404.html fallback) for deep links like /blogs/<slug>.
+function emitRouteShells() {
+  return {
+    name: "emit-route-shells",
+    async closeBundle() {
+      const buildDir = path.resolve(__dirname, "dist");
+      try {
+        const html = await fs.readFile(path.join(buildDir, "index.html"), "utf8");
+        const sitemap = await fs.readFile(
+          path.resolve(__dirname, "public/sitemap.xml"),
+          "utf8",
+        );
+        const paths = Array.from(sitemap.matchAll(/<loc>([^<]+)<\/loc>/g))
+          .map((m) => new URL(m[1]).pathname.replace(/^\/|\/$/g, ""))
+          .filter(Boolean);
+        for (const p of Array.from(new Set(paths))) {
+          const dir = path.join(buildDir, p);
+          await fs.mkdir(dir, { recursive: true });
+          await fs.writeFile(path.join(dir, "index.html"), html);
+        }
+        console.log(`✓ Emitted ${new Set(paths).size} static route shells for GitHub Pages.`);
+      } catch (err) {
+        console.error("Error emitting route shells:", err);
+      }
+    },
+  };
+}
+
+
+
 export default defineConfig({
   plugins: [
     TanStackRouterVite({
