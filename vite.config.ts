@@ -65,6 +65,8 @@ export default defineConfig({
     tailwindcss(),
     tsconfigPaths(),
     copyIndexTo404(),
+    emitRouteShells(),
+
   ],
   build: {
     outDir: "dist",
