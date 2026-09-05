@@ -16,7 +16,7 @@ const DOCTOR_POINTS = [
 
 export function VascularSpecialist() {
   return (
-    <section id="about" className="relative overflow-hidden py-20 lg:py-24">
+    <section id="about" className="relative overflow-hidden pt-4 pb-16 sm:pt-6 sm:pb-18 lg:pt-6 lg:pb-20">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-[1fr_1fr_1fr] lg:px-8">
         <Reveal variant="left">
           <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary">Expert Care You Can Trust</span>

@@ -17,7 +17,7 @@ const trust = [
 
 export function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-28">
+    <section id="home" className="relative overflow-hidden pt-28 pb-6 sm:pt-32 sm:pb-8 lg:pt-36 lg:pb-10">
       {/* Ambient gradient blobs */}
       <div className="pointer-events-none absolute -top-32 -left-32 h-[480px] w-[480px] rounded-full bg-primary/10 blur-3xl" aria-hidden />
       <div className="pointer-events-none absolute top-40 -right-40 h-[520px] w-[520px] rounded-full bg-secondary/15 blur-3xl" aria-hidden />
