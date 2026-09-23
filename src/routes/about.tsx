@@ -31,25 +31,86 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Ignite Vascular Center is the premier vascular center in Vijayawada led by Dr. G. Narasimha Sai. Dedicated to advanced arterial, venous, and endovascular care in Kasturibai Peta.",
+          "Ignite Vascular Center is the best vascular center in Vijayawada, led by Dr. G. Narasimha Sai at Kasturibai Peta. Advanced arterial, venous, AV fistula and endovascular care. Call +91 99661 17292.",
       },
       {
         name: "keywords",
         content:
-          "vascular center in Vijayawada, best vascular hospital in Vijayawada, vascular surgery clinic Vijayawada, vascular specialist Vijayawada",
+          "best vascular center in Vijayawada, vascular center in Vijayawada, best vascular hospital in Vijayawada, vascular surgery clinic Vijayawada, vascular specialist Vijayawada",
       },
       { property: "og:title", content: "Best Vascular Center in Vijayawada | Ignite Vascular Center" },
       {
         property: "og:description",
         content:
-          "Ignite Vascular Center is the premier vascular center in Vijayawada led by Dr. G. Narasimha Sai. Dedicated to advanced arterial, venous, and endovascular care in Kasturibai Peta.",
+          "Ignite Vascular Center is the best vascular center in Vijayawada, led by Dr. G. Narasimha Sai at Kasturibai Peta. Advanced arterial, venous, AV fistula and endovascular care.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://ignitevascularcenter.com/about" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "robots", content: "index, follow" },
     ],
     links: [
       { rel: "canonical", href: "https://ignitevascularcenter.com/about" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": ["MedicalClinic", "LocalBusiness"],
+              "@id": "https://ignitevascularcenter.com/#clinic",
+              name: "Ignite Vascular Center",
+              description:
+                "Best vascular center in Vijayawada offering advanced arterial, venous, AV fistula, dialysis access and endovascular treatment.",
+              url: "https://ignitevascularcenter.com/",
+              telephone: "+91 99661 17292",
+              email: "ignitevascularcenter@gmail.com",
+              priceRange: "₹₹",
+              medicalSpecialty: ["VascularSurgery", "Surgical"],
+              address: {
+                "@type": "PostalAddress",
+                streetAddress:
+                  "Opp. Brahmanandam Orthopaedic Center, Bellapu Sobhanadri Street, Kasturibai Peta",
+                addressLocality: "Vijayawada",
+                addressRegion: "Andhra Pradesh",
+                postalCode: "520002",
+                addressCountry: "IN",
+              },
+              areaServed: { "@type": "City", name: "Vijayawada" },
+              openingHoursSpecification: [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                  opens: "09:00",
+                  closes: "20:00",
+                },
+              ],
+              employee: {
+                "@type": "Physician",
+                name: "Dr. G. Narasimha Sai",
+                medicalSpecialty: "VascularSurgery",
+                telephone: "+91 99661 17292",
+              },
+            },
+            {
+              "@type": "AboutPage",
+              "@id": "https://ignitevascularcenter.com/about#webpage",
+              url: "https://ignitevascularcenter.com/about",
+              name: "Best Vascular Center in Vijayawada | Ignite Vascular Center",
+              about: { "@id": "https://ignitevascularcenter.com/#clinic" },
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: "https://ignitevascularcenter.com/" },
+                { "@type": "ListItem", position: 2, name: "About Us", item: "https://ignitevascularcenter.com/about" },
+              ],
+            },
+          ],
+        }),
+      },
     ],
   }),
   component: AboutPage,
