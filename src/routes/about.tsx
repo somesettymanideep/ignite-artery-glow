@@ -62,15 +62,14 @@ function Hero() {
         <Reveal className="reveal" variant="left">
           <span className="inline-block text-xs font-bold uppercase tracking-[0.28em] text-primary">About Us</span>
           <h1 className="mt-4 font-display text-2xl font-black leading-[1.1] tracking-tight text-secondary sm:text-3xl lg:text-4xl">
-            Advanced Vascular Care.<br />
-            <span className="text-primary">Compassionate</span> Hearts.
+            Best Vascular Center in <span className="text-primary">Vijayawada</span>
           </h1>
           <span className="mt-5 block h-[3px] w-16 rounded-full bg-secondary/70" />
           <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
-            Ignite Vascular Center is a specialized vascular surgery and endovascular
-            care center in Kasturibai Peta, Vijayawada. We diagnose and treat diseases
-            affecting arteries, veins, and blood vessels using advanced technology and
-            minimally invasive techniques.
+            Ignite Vascular Center is widely regarded as the best vascular center in
+            Vijayawada — a specialized vascular surgery and endovascular care center in
+            Kasturibai Peta. We diagnose and treat diseases affecting arteries, veins and
+            blood vessels using advanced technology and minimally invasive techniques.
           </p>
           <div className="mt-8">
             <button type="button" onClick={() => openBookingModal()} className="group inline-flex items-center gap-3 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-glow-red transition-transform duration-300 hover:scale-[1.03]">
@@ -198,7 +197,7 @@ function WhyChoose() {
         <Reveal className="reveal text-center">
           <span className="text-xs font-bold uppercase tracking-[0.32em] text-primary">Why Choose Us</span>
           <h2 className="mt-3 font-display text-3xl font-black tracking-tight text-secondary sm:text-4xl">
-            Excellence in Vascular Care
+            Why We Are the Best Vascular Center in Vijayawada
           </h2>
           <span className="mx-auto mt-4 block h-0.5 w-14 rounded-full bg-primary" />
         </Reveal>
@@ -489,9 +488,9 @@ function SubBanner() {
       </div>
       <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-center px-5 lg:px-8">
         <Reveal variant="up">
-          <h1 className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+          <p className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
             About Us
-          </h1>
+          </p>
         </Reveal>
         <Reveal variant="up" delay={0.08}>
           <nav aria-label="Breadcrumb" className="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur-sm">
