@@ -488,9 +488,9 @@ function SubBanner() {
       </div>
       <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-center px-5 lg:px-8">
         <Reveal variant="up">
-          <h1 className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+          <p className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
             About Us
-          </h1>
+          </p>
         </Reveal>
         <Reveal variant="up" delay={0.08}>
           <nav aria-label="Breadcrumb" className="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur-sm">
