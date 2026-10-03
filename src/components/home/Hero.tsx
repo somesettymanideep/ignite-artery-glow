@@ -34,8 +34,8 @@ export function Hero() {
           </div>
 
           <h1 className="text-4xl font-extrabold leading-[1.15] tracking-tight sm:text-5xl lg:text-[2.5rem] xl:text-[2.75rem]">
-            Advanced Vascular Surgery with{" "}
-            <span className="text-gradient">Compassion &amp; Precision</span>
+            Expert AV Fistula Surgeon in{" "}
+            <span className="text-gradient">Vijayawada</span>
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">

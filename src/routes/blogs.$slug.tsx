@@ -54,11 +54,40 @@ export const Route = createFileRoute("/blogs/$slug")({
         { property: "og:image", content: p.coverImage },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "robots", content: "index, follow" },
+        { property: "og:url", content: `https://ignitevascularcenter.com/blogs/${p.slug}` },
       ],
       links: [
         {
           rel: "canonical",
           href: `https://ignitevascularcenter.com/blogs/${p.slug}`,
+        },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BlogPosting",
+                headline: p.title,
+                description: p.metaDescription,
+                keywords: p.keywords,
+                image: p.coverImage,
+                mainEntityOfPage: `https://ignitevascularcenter.com/blogs/${p.slug}`,
+                author: { "@type": "Physician", name: p.author.name },
+                publisher: { "@id": "https://ignitevascularcenter.com/#clinic", "@type": "MedicalClinic", name: "Ignite Vascular Center" },
+              },
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: "https://ignitevascularcenter.com/" },
+                  { "@type": "ListItem", position: 2, name: "Blogs", item: "https://ignitevascularcenter.com/blogs" },
+                  { "@type": "ListItem", position: 3, name: p.metaTitle, item: `https://ignitevascularcenter.com/blogs/${p.slug}` },
+                ],
+              },
+            ],
+          }),
         },
       ],
     };
